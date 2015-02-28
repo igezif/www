@@ -1,0 +1,22 @@
+body {	
+	font-family: Arial, Helvetica, sans-serif;
+	background: url("img/garage_bg.png");
+}
+
+#advertisement{
+	width: 1000px;
+	margin: 50px auto 0 auto;
+	background-color: #ffffff;
+}
+
+#advertisement h1{
+	text-align: center;
+	padding: 15px 0 0 0;
+	margin: 0;
+}
+
+#advertisement p{
+	font-size: 120%;
+	padding: 15px;
+	margin: 0;
+}

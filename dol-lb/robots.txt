@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /js
+Disallow: /fonts
+Disallow: /tmpl
+Disallow: /lib
+Disallow: /captcha.php
+Disallow: /functions.php
+
+Host: dol-lb.ru

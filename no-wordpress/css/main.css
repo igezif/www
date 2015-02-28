@@ -1,0 +1,98 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-family: Verdana, Arial, Tahoma;
+	font-size: 90%;
+	color: #505050;
+}
+
+#all {
+    margin: 10px auto;
+    width: 1000px; 
+	padding: 0;
+    border-radius: 30px;
+    box-shadow: 0 0 10px rgb(222,118,67);
+}
+
+h1, h2{
+	text-align: center;
+}
+
+hr {
+	width: 970px;
+	margin: 0 auto;
+}
+
+#header img {
+	width: 250px;
+	float: left;
+	margin-right: 20px;
+}
+
+#content  .image {
+	float: left;
+	width: 250px;
+}
+
+#content  p {
+	margin: 0 20px 0 0;
+	text-align: justify;
+	line-height: 1.5;
+	text-indent: 30px;
+}
+
+#header {
+	padding: 30px 10px 30px 30px;
+	height: 140px;
+}
+
+#content {
+	padding: 0px 10px 10px 30px;
+}
+
+table {
+	margin: 0 auto; 
+	padding: 20px 0 20px 0;
+}
+
+h3 {
+	line-height: 1.5;
+}
+
+#kart {
+	display: none;
+	position: fixed;
+	top: 150px;
+	left: 500px;
+	border: 4px outset orange;
+	border-radius: 5px; 
+	background-color: white;
+	text-align: right;
+}
+
+#kart img {
+	padding: 5px;
+}
+
+a, #adress {
+	text-decoration: none;
+	color: #288ef3;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+#adress:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+#close:hover {
+	cursor: pointer;
+}
+
+#counter{
+	display: none;
+}
+

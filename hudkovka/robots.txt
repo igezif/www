@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /js
+Host: hudkovka54.ru

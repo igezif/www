@@ -1,0 +1,4 @@
+AddDefaultCharset UTF-8
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^www.hudkovka54.ru$ [NC]
+RewriteRule ^(.*)$ http://hudkovka54.ru/$1 [R=301,L]
