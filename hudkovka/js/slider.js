@@ -36,7 +36,6 @@ function Slider(){
 	
 	this.start = function(){
 		var left = 0;
-		document.body.style.overflowX = "hidden";
 		var images = document.getElementsByClassName("slider-image");
 		var len = images.length;
 		for(var i = 0; i < len; i++){
