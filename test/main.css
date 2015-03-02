@@ -1,12 +1,21 @@
 body {	
 	font-family: Arial, Helvetica, sans-serif;
 	background: url("img/garage_bg.png");
+	height: 100%;
+	text-indent: 50px;
+}
+
+p{
+	text-align: justify;
+	line-height: 1.5;
 }
 
 #advertisement{
 	width: 1000px;
-	margin: 50px auto 0 auto;
+	margin: 50px auto 50px auto;
 	background-color: #ffffff;
+	border-radius: 10px;
+	box-shadow: 0 0 20px rgba(0,0,0,0.7);
 }
 
 #advertisement h1{
@@ -19,4 +28,16 @@ body {
 	font-size: 120%;
 	padding: 15px;
 	margin: 0;
+}
+
+#map div{
+	margin: 0 auto;
+	width: 600px;
+	height: 450px;
+}
+
+#counter div{
+	margin: 5px auto 15px auto;
+	padding: 5px 0 10px 0;
+	display: table;
 }
