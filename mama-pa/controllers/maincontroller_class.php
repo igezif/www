@@ -7,15 +7,17 @@ class MainController extends Controller {
 		$this->meta_desc = "Как создать свой сайт? Ответ на этот вопрос находится на этом сайте. Огромное количество материалов по темам: как создать свой сайт и как раскрутить сайт!";
 		$this->meta_key = "как создать свой сайт, создание сайта";
 		
-		$articles = ArticleDB::getAllShow(Config::COUNT_ARTICLES_ON_PAGE, $this->getOffset(Config::COUNT_ARTICLES_ON_PAGE), true);
-		$pagination = $this->getPagination(ArticleDB::getCount(), Config::COUNT_ARTICLES_ON_PAGE, "/");
-		$blog = new Blog();
-		$blog->articles = $articles;
-		$blog->pagination = $pagination;
-		$this->render($this->renderData(array("blog" => $blog), "index"));
+		//$articles = ArticleDB::getAllShow(Config::COUNT_ARTICLES_ON_PAGE, $this->getOffset(Config::COUNT_ARTICLES_ON_PAGE), true);
+		//$pagination = $this->getPagination(ArticleDB::getCount(), Config::COUNT_ARTICLES_ON_PAGE, "/");
+		//$blog = new Blog();
+		//$blog->articles = $articles;
+		//$blog->pagination = $pagination;
+		$index = new Index();
+		$index->sections = $this->getSections();
+		$this->render($this->renderData(array("index" => $index), "index"));
 	}
 	
-	public function actionSection() {
+	/* public function actionSection() {
 		$section_db = new SectionDB();
 		$section_db->load($this->request->id);
 		if (!$section_db->isSaved()) $this->notFound();
@@ -377,7 +379,7 @@ class MainController extends Controller {
 		$form->submit("Далее");
 		$form->addJSV("email", $this->jsv->email());
 		return $form;
-	}
+	} */
 	
 }
 

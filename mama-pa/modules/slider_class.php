@@ -4,7 +4,7 @@ class Slider extends Module {
 	
 	public function __construct() {
 		parent::__construct();
-		$this->add("course");
+		$this->add("product");
 	}
 	
 	public function getTmplFile() {

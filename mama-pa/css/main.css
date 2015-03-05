@@ -45,7 +45,7 @@ nav{
 	height: 169px;
 }
 
-#top_menu{
+#top_menu_wrap{
 	color: #efeaf1;
 	padding: 10px 0 0 10px;
 }
@@ -54,15 +54,15 @@ nav{
 	background: url("../img/main/logo.png") no-repeat;
 }
 
-#top_menu div{
+#top_menu_wrap div{
 	vertical-align: middle;
 }
 
-#top_menu_1{
+#top_menu{
 	padding: 0 0 0 89px;
 }
 
-#top_menu_1 a{
+#top_menu a{
 	color: #fefeff;
 	font-size: 80%;
 	padding: 0 10px 0 0;
@@ -122,16 +122,30 @@ nav{
 	padding: 6px 0 0 35px;
 }
 
-#second_menu{
+#second_menu_wrap{
 	margin: 23px 0 0 0;
 }
 
-#second_menu > div{
+#second_menu_wrap > div{
 	vertical-align: middle;
 }
 
-#menu_search{
+#second_menu_and_search{
 	margin: 0 0 0 55px;
+}
+
+#second_menu a{
+	color: #f4f1f8;
+	font-size: 80%;
+	text-transform: uppercase;
+	font-weight: bold;
+	padding: 7px 15px 7px 15px;
+	text-shadow: 1px 1px 1px black, 0 0 2px black
+	border-radius: 3px;
+}
+
+#second_menu a:hover{
+	background: url("../img/main/button_active.png") repeat;
 }
 
 #search{
@@ -193,19 +207,6 @@ nav{
 
 #search_wrap{
 	padding: 12px 0 0 0;
-}
-
-#menu a{
-	color: #f4f1f8;
-	font-size: 80%;
-	text-transform: uppercase;
-	font-weight: bold;
-	padding: 7px 15px 7px 15px;
-	text-shadow: 1px 1px 1px black, 0 0 2px black
-}
-
-#menu a:hover{
-	background: url("../img/main/button_active.png") repeat;
 }
 
 /* ---   MIDDLE   --- */

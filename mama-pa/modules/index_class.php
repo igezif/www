@@ -1,15 +1,14 @@
 <?php
 
-class TopMenu extends Module {
+class Index extends Module {
 	
 	public function __construct() {
 		parent::__construct();
-		$this->add("uri");
-		$this->add("items", null, true);
+		$this->add("sections");
 	}
 	
 	public function getTmplFile() {
-		return "topmenu";
+		return "index";
 	}
 	
 }

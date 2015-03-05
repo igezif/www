@@ -7,12 +7,14 @@ abstract class Controller extends AbstractController {
 	protected $meta_key;
 	protected $mail = null;
 	protected $url_active;
+	protected $link_search;
 	protected $section_id = 0;
 	
 	public function __construct() {
 		parent::__construct(new View(Config::DIR_TMPL), new Message(Config::FILE_MESSAGES));
 		$this->mail = new Mail();
 		$this->url_active = URL::deleteGET(URL::current(), "page");
+		$this->link_search = URL::get("search");
 	}
 	
 	public function action404() {
@@ -41,31 +43,48 @@ abstract class Controller extends AbstractController {
 	
 	final protected function render($str) {
 		$params = array();
+		$params["head"] = $this->getHeader();
 		$params["header"] = $this->getHeader();
-		$params["auth"] = $this->getAuth();
-		$params["top"] = $this->getTop();
-		$params["slider"] = $this->getSlider();
-		$params["left"] = $this->getLeft();
+		$params["content"] = $str;
+		$params["footer"] = $this->getFooter();
+		/* $params["left"] = $this->getLeft();
 		$params["right"] = $this->getRight();
-		$params["center"] = $str;
-		$params["link_search"] = URL::get("search");
+		$params["center"] = $str; 
+		$params["link_search"] = URL::get("search");*/
 		$this->view->render(Config::LAYOUT, $params);
 	}
 	
+	protected function getHead() {
+		$head = new Head();
+		$head->title = $this->title;
+		$head->meta("Content-Type", "text/html; charset=utf-8", true);
+		$head->meta("description", $this->meta_desc, false);
+		$head->meta("keywords", $this->meta_key, false);
+		$head->meta("viewport", "width=device-width", false);
+		$head->favicon = "/favicon.ico";
+		$head->css = array("/css/main.css", "/styles/prettify.css");
+		$head->js = array("/js/jquery-1.10.2.min.js", "/js/main.js");
+		return $head;
+	}
+	
 	protected function getHeader() {
+		//$items = MenuDB::getTopMenu();
 		$header = new Header();
-		$header->title = $this->title;
-		$header->meta("Content-Type", "text/html; charset=utf-8", true);
-		$header->meta("description", $this->meta_desc, false);
-		$header->meta("keywords", $this->meta_key, false);
-		$header->meta("viewport", "width=device-width", false);
-		$header->favicon = "/favicon.ico";
-		$header->css = array("/styles/main.css", "/styles/prettify.css");
-		$header->js = array("/js/jquery-1.10.2.min.js", "/js/functions.js", "/js/validator.js", "/js/prettify.js");
+		$header->uri = $this->url_active;
+		$header->link_search = $this->link_search;
+		//$theader->items = $items;
 		return $header;
 	}
 	
-	protected function getAuth() {
+	protected function getFooter() {
+		/* $course = new CourseDB();
+		$course->loadOnSectionID($this->section_id, PAY_COURSE); */
+		$footer = new Footer();
+		//$slider->course = $course;
+		return $footer;
+	}
+	
+	/* protected function getAuth() {
 		if ($this->auth_user) return "";
 		$auth = new Auth();
 		$auth->message = $this->fp->getSessionMessage("auth");
@@ -74,25 +93,10 @@ abstract class Controller extends AbstractController {
 		$auth->link_reset = URL::get("reset");
 		$auth->link_remind = URL::get("remind");
 		return $auth;
-	}
+	} */
 	
-	protected function getTop() {
-		$items = MenuDB::getTopMenu();
-		$topmenu = new TopMenu();
-		$topmenu->uri = $this->url_active;
-		$topmenu->items = $items;
-		return $topmenu;
-	}
 	
-	protected function getSlider() {
-		$course = new CourseDB();
-		$course->loadOnSectionID($this->section_id, PAY_COURSE);
-		$slider = new Slider();
-		$slider->course = $course;
-		return $slider;
-	}
-	
-	protected function getLeft() {
+	/* protected function getLeft() {
 		$items = MenuDB::getMainMenu();
 		$mainmenu = new MainMenu();
 		$mainmenu->uri = $this->url_active;
@@ -142,7 +146,6 @@ abstract class Controller extends AbstractController {
 		$hornav->addData("Главная", URL::get(""));
 		return $hornav;
 	}
-	
 	final protected function getOffset($count_on_page) {
 		return $count_on_page * ($this->getPage() - 1);
 	}
@@ -184,6 +187,7 @@ abstract class Controller extends AbstractController {
 		}
 		return null;
 	}
+	 */
 	
 }
 
