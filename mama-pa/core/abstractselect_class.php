@@ -12,21 +12,30 @@ class AbstractSelect {
 		$this->db = $db;
 	}
 	
-	public function from($table_name, $fields) {
+	public function from($table_name, $fields, $as = false, $alias = false) {
 		$table_name = $this->db->getTableName($table_name);
+		if ($alias) $alias = "`$alias`";
 		$from = "";
-		if ($fields == "*") $from = "*";
+		if ($fields == "*") {
+			if ($alias) $from = $alias.".*";
+			else $from = "*";
+		}
 		else {
 			for ($i = 0; $i < count($fields); $i++) {
+				
 				if (($pos_1 = strpos($fields[$i], "(")) !== false) {
 					$pos_2 = strpos($fields[$i], ")");
 					$from .= substr($fields[$i], 0, $pos_1)."(`".substr($fields[$i], $pos_1 + 1, $pos_2 - $pos_1 - 1)."`),";
 				}
-				else $from .= "`".$fields[$i]."`,";
+				else{
+					if ($alias) $from .= $alias.".`".$fields[$i]."`,";
+					else $from .= "`".$fields[$i]."`,";
+				}
 			}
 			$from = substr($from, 0, -1);
 		}
-		$from .= " FROM `$table_name`";
+		if ($alias) $from .= " FROM $alias.`$table_name`";
+		else $from .= " FROM `$table_name`";
 		$this->from = $from;
 		return $this;
 	}
@@ -37,6 +46,11 @@ class AbstractSelect {
 			$this->addWhere($where, $and);
 		}
 		return $this;
+	}
+	
+	public function innerJoin($table_name, $alias) {
+		$table_name = $this->db->getTableName($table_name);
+		return true;
 	}
 	
 	public function whereIn($field, $values, $and = true) {
