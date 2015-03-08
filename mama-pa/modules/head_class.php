@@ -20,7 +20,7 @@ class Head extends Module {
 	}
 	
 	public function getTmplFile() {
-		return "header";
+		return "head";
 	}
 	
 }

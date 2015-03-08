@@ -14,17 +14,17 @@ abstract class Config {
 	const DB_USER = "root";
 	const DB_PASSWORD = "123qwe";
 	const DB_NAME = "mapa";
-	const DB_PREFIX = "pisetz_";
+	const DB_PREFIX = "xyz_";
 	const DB_SYM_QUERY = "?";
 	
-	const DIR_IMG = "/img/";
-	const DIR_IMG_PRODUCTS = "/img/products/";
-	//const DIR_AVATAR = "/img/avatars/";
-	const DIR_TMPL = "/tmpl/";
-	const DIR_EMAILS = "/tmpl/emails/";
+	const DIR_IMG = "img/";
+	const DIR_IMG_PRODUCTS = "img/products/";
+	//const DIR_AVATAR = "img/avatars/";
+	const DIR_TMPL = "tmpl/";
+	const DIR_EMAILS = "tmpl/emails/";
 	
 	const LAYOUT = "main";
-	const FILE_MESSAGES = "/text/messages.ini";
+	const FILE_MESSAGES = "text/messages.ini";
 	
 	const FORMAT_DATE = "%d.%m.%Y %H:%M:%S";
 	

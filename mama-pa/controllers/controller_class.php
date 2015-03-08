@@ -43,7 +43,7 @@ abstract class Controller extends AbstractController {
 	
 	final protected function render($str) {
 		$params = array();
-		$params["head"] = $this->getHeader();
+		$params["head"] = $this->getHead();
 		$params["header"] = $this->getHeader();
 		$params["content"] = $str;
 		$params["footer"] = $this->getFooter();
@@ -62,7 +62,7 @@ abstract class Controller extends AbstractController {
 		$head->meta("keywords", $this->meta_key, false);
 		$head->meta("viewport", "width=device-width", false);
 		$head->favicon = "/favicon.ico";
-		$head->css = array("/css/main.css", "/styles/prettify.css");
+		$head->css = array("/css/main.css");
 		$head->js = array("/js/jquery-1.10.2.min.js", "/js/main.js");
 		return $head;
 	}
@@ -75,6 +75,11 @@ abstract class Controller extends AbstractController {
 		//$theader->items = $items;
 		return $header;
 	}
+	
+	/* protected function getSlider() {
+		$slider = new Slider();
+		return $slider;
+	} */
 	
 	protected function getFooter() {
 		/* $course = new CourseDB();

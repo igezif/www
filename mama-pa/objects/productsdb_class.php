@@ -1,16 +1,16 @@
 <?php
 
-class ProductsDB extends ProductsDB {
+class ProductsDB extends ObjectDB {
 	
-	protected static $table = "articles";
+	protected static $table = "products";
 	
 	public function __construct() {
 		parent::__construct(self::$table);
-		$this->add("title", "ValidateTitle");
+		$this->add("name", "ValidateTitle");
+		$this->add("section_id", "ValidateID");
 		$this->add("img", "ValidateIMG");
 		$this->add("intro", "ValidateText");
 		$this->add("full", "ValidateText");
-		$this->add("section_id", "ValidateID");
 		$this->add("cat_id", "ValidateID");
 		$this->add("date", "ValidateDate", self::TYPE_TIMESTAMP, $this->getDate());
 		$this->add("meta_desc", "ValidateMD");

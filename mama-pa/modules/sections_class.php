@@ -1,14 +1,14 @@
 <?php
 
-class Index extends Module {
+class Sections extends Module {
 	
 	public function __construct() {
 		parent::__construct();
-		$this->add("sections");
+		$this->add("items");
 	}
 	
 	public function getTmplFile() {
-		return "index";
+		return "sections";
 	}
 	
 }

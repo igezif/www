@@ -3,18 +3,16 @@
 class MainController extends Controller {
 
 	public function actionIndex() {
-		$this->title = "Как создать свой сайт";
-		$this->meta_desc = "Как создать свой сайт? Ответ на этот вопрос находится на этом сайте. Огромное количество материалов по темам: как создать свой сайт и как раскрутить сайт!";
-		$this->meta_key = "как создать свой сайт, создание сайта";
+		$this->title = "Мама-па";
+		$this->meta_desc = "Интернет-магазин детских товаров";
+		$this->meta_key = "товары для детей, детские товары";
 		
-		//$articles = ArticleDB::getAllShow(Config::COUNT_ARTICLES_ON_PAGE, $this->getOffset(Config::COUNT_ARTICLES_ON_PAGE), true);
-		//$pagination = $this->getPagination(ArticleDB::getCount(), Config::COUNT_ARTICLES_ON_PAGE, "/");
-		//$blog = new Blog();
-		//$blog->articles = $articles;
-		//$blog->pagination = $pagination;
-		$index = new Index();
-		$index->sections = $this->getSections();
-		$this->render($this->renderData(array("index" => $index), "index"));
+		//$sections = SectionDB::getAllShow();
+		$sections = new Sections();
+		$slider = new Slider();
+		//$index->sections = $sections;
+		$sections->items = array("1" => 1, "2" => 2, "3" => 3);
+		$this->render($this->renderData(array("slider" => $slider, "sections" => $sections), "index"));
 	}
 	
 	/* public function actionSection() {
