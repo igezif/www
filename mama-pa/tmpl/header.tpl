@@ -27,7 +27,7 @@
 			<div id = "second_menu_and_search">
 				<div id = "second_menu">
 					<div class = "row">
-						<a href="#">Бренды</a>
+						<a href="/section.html">Бренды</a>
 						<a href="#">Лето и отдых</a>
 						<a href="#">Купание</a>
 						<a href="#">Для детской</a>

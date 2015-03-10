@@ -1,0 +1,4 @@
+AddDefaultCharset UTF-8
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^mama-pa.ru$ [NC]
+RewriteRule ^(.*)$ http://www.mama-pa.ru/$1 [R=301,L]

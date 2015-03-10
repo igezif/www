@@ -98,7 +98,7 @@ abstract class Controller extends AbstractController {
 		$auth->link_reset = URL::get("reset");
 		$auth->link_remind = URL::get("remind");
 		return $auth;
-	} */
+	}
 	
 	
 	/* protected function getLeft() {

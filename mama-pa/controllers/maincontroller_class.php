@@ -14,8 +14,8 @@ class MainController extends Controller {
 		$this->render($this->renderData(array("slider" => $slider, "sections" => $sections), "index"));
 	}
 	
-	/* public function actionSection() {
-		$section_db = new SectionDB();
+	public function actionSection() {
+		/* $section_db = new SectionDB();
 		$section_db->load($this->request->id);
 		if (!$section_db->isSaved()) $this->notFound();
 		$this->section_id = $section_db->id;
@@ -43,10 +43,11 @@ class MainController extends Controller {
 		}
 		
 		$blog->articles = $articles;
-		$blog->more_articles = $more_articles;
-		$this->render($intro.$blog);
+		$blog->more_articles = $more_articles; */
+		$this->render("пт Бро!");
 	}
 	
+	/* 
 	public function actionCategory() {
 		$category_db = new CategoryDB();
 		$category_db->load($this->request->id);
