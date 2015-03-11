@@ -75,6 +75,10 @@ nav{
 	padding: 0 10px 0 0;
 }
 
+#top_menu a:hover{
+	text-decoration: underline;
+}
+
 #menu_network{
 	padding: 0 0 0 131px;
 }
@@ -138,7 +142,7 @@ nav{
 }
 
 #second_menu{
-	padding: 0 0 12px 0
+	width: 763px;
 }
 
 #second_menu a{
@@ -149,6 +153,7 @@ nav{
 	padding: 7px 15px 7px 15px;
 	text-shadow: 1px 1px 1px black, 0 0 2px black;
 	border-radius: 3px;
+	margin: 0 0 6px 0;
 }
 
 #second_menu a:hover{

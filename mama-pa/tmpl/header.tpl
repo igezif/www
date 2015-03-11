@@ -28,16 +28,14 @@
 				<div id = "second_menu">
 					<div class = "row">
 						<a href="/section.html">Бренды</a>
-						<a href="#">Лето и отдых</a>
-						<a href="#">Купание</a>
-						<a href="#">Для детской</a>
-						<a href="#">Кормление</a>	
-						<a href="#">Обувь и одежда</a>
-					</div>		
-					<div class = "row">
-						<a href="#">Сумки</a>
-						<a href="#">Игрушки</a>
-						<a href="#">Информация</a>
+						<a href="/summer.html">Лето и отдых</a>
+						<a href="/bathing.html">Купание</a>
+						<a href="/forbabyroom.html">Для детской</a>
+						<a href="/eating.html">Кормление</a>	
+						<a href="/clothes.html">Обувь и одежда</a>
+						<a href="/bags.html">Сумки</a>
+						<a href="/playing.html">Игрушки</a>
+						<a href="/info.html">Информация</a>
 					</div>
 				</div>
 				<div id = "search">

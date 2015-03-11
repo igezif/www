@@ -21,14 +21,14 @@ class SefDB extends ObjectDB {
 	public static function getAliasOnLink($link) {
 		$select = new Select(self::$db);
 		$select->from(self::$table, array("alias"))
-			->where("`link` = ".self::$db->getSQ(), array($link));
+			->where("`link` = ?", array($link));
 		return self::$db->selectCell($select);
 	}
 	
 	public static function getLinkOnAlias($alias) {
 		$select = new Select(self::$db);
 		$select->from(self::$table, array("link"))
-			->where("`alias` = ".self::$db->getSQ(), array($alias));
+			->where("`alias` = ?", array($alias));
 		return self::$db->selectCell($select);
 	}
 
