@@ -47,10 +47,6 @@ abstract class Controller extends AbstractController {
 		$params["header"] = $this->getHeader();
 		$params["content"] = $str;
 		$params["footer"] = $this->getFooter();
-		/* $params["left"] = $this->getLeft();
-		$params["right"] = $this->getRight();
-		$params["center"] = $str; 
-		$params["link_search"] = URL::get("search");*/
 		$this->view->render(Config::LAYOUT, $params);
 	}
 	
@@ -68,24 +64,14 @@ abstract class Controller extends AbstractController {
 	}
 	
 	protected function getHeader() {
-		//$items = MenuDB::getTopMenu();
 		$header = new Header();
 		$header->uri = $this->url_active;
 		$header->link_search = $this->link_search;
-		//$theader->items = $items;
 		return $header;
 	}
 	
-	/* protected function getSlider() {
-		$slider = new Slider();
-		return $slider;
-	} */
-	
 	protected function getFooter() {
-		/* $course = new CourseDB();
-		$course->loadOnSectionID($this->section_id, PAY_COURSE); */
 		$footer = new Footer();
-		//$slider->course = $course;
 		return $footer;
 	}
 	
@@ -195,5 +181,3 @@ abstract class Controller extends AbstractController {
 	 */
 	
 }
-
-?>

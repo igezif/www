@@ -25,7 +25,6 @@ class UseSEF {
 		$uri = substr($uri, 1);
 		if (preg_match("/^page-(\d+)$/i", $uri, $matches)) return "/?page=".$matches[1];
 		$result = SefDB::getLinkOnAlias($uri);
-		print_r($result);
 		if (!$result) {
 			$uri = substr($uri, 0, strpos($uri, "?"));
 			$result = SefDB::getLinkOnAlias($uri);
@@ -35,5 +34,3 @@ class UseSEF {
 	}
 	
 }
-
-?>
