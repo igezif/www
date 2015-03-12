@@ -6,10 +6,9 @@
 		case "refresh":
 			if ($request->key === Config::REFRESH_KEY){
 				$refresh = new Refresh();
-				$result = $refresh->go();
-				echo json_encode(array("result" => $result, "error" => false));
+				echo $refresh->go();
 			}
-			else echo json_encode(array("result" => false, "error" => "no correct refresh-key"));
+			else echo $refresh->error();
 			break;
 	}
 	

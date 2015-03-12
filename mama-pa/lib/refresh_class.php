@@ -1,10 +1,33 @@
 <?php
 
+require_once "simple_html_dom.php";
+
 class Refresh {
-
 	
-
-	/* private $mail;
+	private static $categories;
+	
+	public function __construct() {	
+		$this->dom = new simple_html_dom();
+	}
+	
+	public function go() {
+		$xml = file_get_contents('http://abumba.ru/index.php?route=feed/opt_yml');
+		$dom = new SimpleXMLElement($xml);
+		//$categories = $dom->shop->categories->category[0];
+		$categories = $dom->shop->categories->category;
+		foreach ($categories as $category) {
+			if (!$category['parentId']) echo $category."<br />";
+		}
+		//return count($categories);
+		//return $categories;
+		//return $xml;
+	}
+	
+	public function error() {
+		return json_encode(array("result" => false, "error" => "no correct refresh-key"));
+	}
+	/* 
+	private $mail;
 	private $auth_user;
 	
 	public function __construct() {
