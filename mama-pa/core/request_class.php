@@ -17,6 +17,10 @@ class Request {
 		if (isset($this->data[$name])) return $this->data[$name];
 	}
 	
+	public function getCountParam() {
+		return count($this->data);
+	}
+	
 	private function xss($data) {
 		if (is_array($data)) {
 			$escaped = array();

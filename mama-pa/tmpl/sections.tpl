@@ -8,7 +8,7 @@
 			<div	class = "section_ul">
 				<ul>
 					<li>
-						<a href = "#" alt = "">3 sprouts</a>
+						<a href = "#" alt = "">3 sprouts gdhdhgrt dfghrthyrthyrthy ffgrthtyurthrt5jhty rthyrtytrhtr5yh5uy tyhtyu5tjhtyjh6ytjht6</a>
 					</li>
 					<li>
 						<a href = "#" alt = "">Allilo</a>
@@ -18,7 +18,6 @@
 					</li>
 				</ul>
 			</div>
-			
 			<div class = "section_item">
 				<a class = "section_image" href = "#" alt = ""><img src = "img/products/tovar.png" alt = "" /></a>
 				<div class = "section_description">Игрушка для купания в ванне "Островок"</div>

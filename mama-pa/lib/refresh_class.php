@@ -1,8 +1,10 @@
 <?php
 
-class API {
+class Refresh {
 
-	private $mail;
+	
+
+	/* private $mail;
 	private $auth_user;
 	
 	public function __construct() {
@@ -73,7 +75,9 @@ class API {
 		} catch (Exception $e) {
 			return false;
 		}
-	}
+	} */
+	
+	
 	
 }
 

@@ -319,6 +319,15 @@ nav{
 	width: 200px;
 }
 
+.section_ul ul{
+	font-size: 80%;
+	list-style-image: url(../img/main/arow_small.png);
+}
+
+.section_ul ul li{
+	margin: 0 0 5px 0;
+}
+
 .section_ul a{
 	color: #808080;
 }
@@ -338,10 +347,6 @@ nav{
 	display: block;
 }
 
-.section_ul ul{
-	font-size: 80%;
-	list-style-image: url(../img/main/arow_small.png);
-}
 
 .section_description{
 	font-size: 80%;

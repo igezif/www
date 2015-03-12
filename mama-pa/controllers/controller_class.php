@@ -57,6 +57,7 @@ abstract class Controller extends AbstractController {
 		$head->meta("description", $this->meta_desc, false);
 		$head->meta("keywords", $this->meta_key, false);
 		$head->meta("viewport", "width=device-width", false);
+		$head->meta("robots", "noindex, nofollow", false);
 		$head->favicon = "/favicon.ico";
 		$head->css = array("/css/main.css");
 		$head->js = array("/js/jquery-1.10.2.min.js", "/js/main.js");
