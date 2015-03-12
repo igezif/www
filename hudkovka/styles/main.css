@@ -1,3 +1,6 @@
+html{
+	height: 100%;
+}
 body {
 	font-family: Arial, Helvetica, sans-serif;
 	margin: 0;
@@ -9,10 +12,10 @@ body {
 }
 #container{
 	width: 100%;
-	height: 100%;
+	min-height: 100%;
+	background: linear-gradient(180deg, #1b1b1b 0%, #454545 100%);
 }
 #content{
-	background: linear-gradient(180deg, #1b1b1b 0%, #454545 100%);
 	height: auto;
 }
 a{
@@ -178,9 +181,6 @@ nav .network-ul ul li a:hover{
 }
 #slider .slider-image:hover{
 	opacity: 0.5;
-}
-#contacts, #production, #gallery{
-	background: linear-gradient(180deg, #454545 0%, #1b1b1b 100%);
 }
 article h3{
 	color: #bcbbbb;
@@ -349,9 +349,6 @@ article a:hover{
 	display: block;
 	padding: 10px 0 10px 0;
 }
-#last_work{
-	background: linear-gradient(180deg, #454545 0%, #1b1b1b 100%);
-}
 #last_work .last_work-div{
 	display: inline-block;
 }
@@ -383,10 +380,16 @@ article a:hover{
 	cursor: pointer;
 	opacity: 0.7;
 }
+.hFooter{
+	height: 70px;
+}
 footer{
 	background: url("../img/slider_bg.png");
 	border-top: 3px ridge #ef6f12;
 	text-align: center;
+	position: relative;
+	margin-top: -70px;
+	height: 67px;
 }
 footer a:hover{
 	text-decoration: underline;

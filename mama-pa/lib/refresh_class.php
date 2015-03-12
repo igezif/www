@@ -1,17 +1,12 @@
 <?php
 
-require_once "simple_html_dom.php";
-
 class Refresh {
 	
 	private static $categories;
 	
-	public function __construct() {	
-		$this->dom = new simple_html_dom();
-	}
-	
 	public function go() {
-		$xml = file_get_contents('http://abumba.ru/index.php?route=feed/opt_yml');
+		//$xml = file_get_contents('http://abumba.ru/index.php?route=feed/opt_yml');
+		$xml = file_get_contents('http://test');
 		$dom = new SimpleXMLElement($xml);
 		//$categories = $dom->shop->categories->category[0];
 		$categories = $dom->shop->categories->category;
