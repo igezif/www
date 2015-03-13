@@ -254,7 +254,7 @@ article a:hover{
 }
 #form_kart{
 	margin: 0 auto;
-	width: 1000px;
+	display: table;
 	padding: 15px 0 15px 0;
 	
 }
