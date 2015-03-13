@@ -64,7 +64,8 @@ header .address b{
 header .address a:hover{
 	text-decoration: underline;
 }
-header .logo div{
+header .logo a, header .logo div{
+	display: block;
 	width: 118px;
 	height: 113px;
 	background: url("../img/logo.png");
