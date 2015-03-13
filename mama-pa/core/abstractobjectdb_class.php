@@ -84,6 +84,7 @@ abstract class AbstractObjectDB {
 			}
 			else {
 				$this->id = self::$db->insert($this->table_name, $row);
+				//echo $this->id."<br />";
 				if (!$this->id) throw new Exception();
 			}
 		}
@@ -218,7 +219,7 @@ abstract class AbstractObjectDB {
 		return false;
 	}
 	
-	protected function add($field, $validator, $type = null, $default = null) {
+	protected function add($field, $validator = false, $type = null, $default = null) {
 		$this->properties[$field] = array("value" => $default, "validator" => $validator, "type" => in_array($type, self::$types)? $type : null);
 	}
 	
@@ -342,6 +343,7 @@ abstract class AbstractObjectDB {
 		$v = array();
 		$errors = array();
 		foreach ($this->properties as $key => $value) {
+			if (!$value["validator"]) return true;
 			$v[$key] = new $value["validator"]($value["value"]);
 		}
 		foreach ($v as $key => $validator) {
@@ -355,5 +357,3 @@ abstract class AbstractObjectDB {
 	}
 	
 }
-
-?>

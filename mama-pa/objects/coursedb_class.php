@@ -10,11 +10,11 @@ class CourseDB extends ObjectDB {
 		$this->add("header", "ValidateTitle");
 		$this->add("sub_header", "ValidateTitle");
 		$this->add("img", "ValidateIMG");
-		$this->add("link", "ValidateURL");
-		$this->add("text", "ValidateText");
-		$this->add("did", "ValidateID");
-		$this->add("latest", "ValidateBoolean");
-		$this->add("section_ids", "ValidateIDs");
+		$this->add("price");
+		$this->add("title", "ValidateTitle");
+		$this->add("meta_desc", "ValidateID");
+		$this->add("meta_key", "ValidateBoolean");
+		$this->add("available", "ValidateIDs");
 	}
 	
 	protected function postInit() {

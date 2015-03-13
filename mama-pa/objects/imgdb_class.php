@@ -1,23 +1,16 @@
 <?php
 
-class ProductsDB extends ObjectDB {
+class ImgDB extends ObjectDB {
 	
-	protected static $table = "products";
+	protected static $table = "img";
 	
 	public function __construct() {
 		parent::__construct(self::$table);
-		$this->add("name", "ValidateTitle");
-		$this->add("section_id", "ValidateID");
-		$this->add("img", "ValidateIMG");
-		$this->add("intro", "ValidateText");
-		$this->add("full", "ValidateText");
-		$this->add("cat_id", "ValidateID");
-		$this->add("date", "ValidateDate", self::TYPE_TIMESTAMP, $this->getDate());
-		$this->add("meta_desc", "ValidateMD");
-		$this->add("meta_key", "ValidateMK");
+		$this->add("product_number", "ValidateID");
+		$this->add("url");
 	}
 	
-	protected function postInit() {
+	/* protected function postInit() {
 		if (!is_null($this->img)) $this->img = Config::DIR_IMG_ARTICLES.$this->img;
 		$this->link = URL::get("article", "", array("id" => $this->id));
 		return true;
@@ -122,8 +115,6 @@ class ProductsDB extends ObjectDB {
 		$this->count_comments = CommentDB::getCountOnArticleID($this->id);
 		$this->day_show = ObjectDB::getDay($this->date);
 		$this->month_show = ObjectDB::getMonth($this->date);
-	}
+	} */
 	
 }
-
-?>

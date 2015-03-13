@@ -2,25 +2,67 @@
 
 class Refresh {
 	
-	private static $categories;
-	
 	public function go() {
+		$ids_category = array();
 		//$xml = file_get_contents('http://abumba.ru/index.php?route=feed/opt_yml');
 		$xml = file_get_contents('http://test');
 		$dom = new SimpleXMLElement($xml);
 		//$categories = $dom->shop->categories->category[0];
 		$categories = $dom->shop->categories->category;
 		foreach ($categories as $category) {
-			if (!$category['parentId']) echo $category."<br />";
+			$category_db = new CategoryDB();
+			$category_db->number = $category["id"];
+			$category_db->parent_number = $category["parentId"] ? $category["parentId"] : null;
+			$category_db->title = (string) $category;
+			$category_db->meta_desc = (string) $category;
+			$category_db->meta_key = (string) $category;
+			$category_db->save();
 		}
-		//return count($categories);
-		//return $categories;
-		//return $xml;
+		
+		$products = $dom->shop->offers->offer;
+		
+		$i = 0;
+		foreach ($products as $product) {
+			$product_db = new ProductDB();
+			
+			$product_number = $product["id"];
+			
+			$product_db->number = $product_number;
+			$product_db->category_number = (string) $product->categoryId[0];
+			$product_db->img = (string) $product->picture[0];
+			$product_db->brand = (string) $product->vendor[0];
+			$product_db->price = (string) $product->price[0];
+			$product_db->title = (string) $product->name[0];
+			$product_db->meta_desc = (string) $product->name[0];
+			$product_db->meta_key = (string) $product->name[0];
+			if ($product["available"] === "false") $product_db->available = 0;
+			else $product_db->available = 1;
+			$product_db->save();
+			
+			$images = $product->picture;
+			for ($j = 1; $j < count($images); $j++) {
+				//echo (string) $images[$j]."<br />";
+				$img_db = new ImgDB();
+				$img_db->product_number = $product_number;
+				$img_db->url = (string) $images[$j];
+				$img_db->save();
+			}
+			
+			$i++;
+			//if ($i == 3) break;
+		}
+		echo $i;
 	}
 	
 	public function error() {
 		return json_encode(array("result" => false, "error" => "no correct refresh-key"));
 	}
+	
+	
+	
+	
+	
+	
 	/* 
 	private $mail;
 	private $auth_user;
@@ -98,5 +140,3 @@ class Refresh {
 	
 	
 }
-
-?>

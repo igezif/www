@@ -117,7 +117,8 @@ abstract class AbstractDataBase {
 	}
 	
 	private function query($query, $params = false) {
-		$success = $this->mysqli->query($this->getQuery($query, $params));
+		$sql = $this->getQuery($query, $params);
+		$success = $this->mysqli->query($sql);
 		if (!$success) return false;
 		if ($this->mysqli->insert_id === 0) return true;
 		return $this->mysqli->insert_id;
@@ -136,5 +137,3 @@ abstract class AbstractDataBase {
 	}
 	
 }
-
-?>
