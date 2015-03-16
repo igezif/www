@@ -14,24 +14,40 @@ class CategoryDB extends ObjectDB {
 		
 	}
 	
-	/* 
-	protected function preInsert() {
+	/* protected function postInit() {
+		//if (!is_null($this->img)) $this->img = Config::DIR_IMG_ARTICLES.$this->img;
+		//$this->link = URL::get("article", "", array("id" => $this->id));
+		//$this->link = "link";
 		return true;
+	} */
+	
+	public static function getAllShow() {
+		$select = new Select(self::$db);
+		$select->from(self::$table, "*")
+			->where("`parent_number` is NULL");
+		//echo $select; die;
+		$data = self::$db->select($select);
+		$category = ObjectDB::buildMultiple(__CLASS__, $data);
+		foreach ($category as $cat) $cat->postHandling();
+		//$category->postHandling();
+		return $category;
+		//return $data;
 	}
 	
-	protected function postInit() {
-		if (!is_null($this->img)) $this->img = Config::DIR_IMG_ARTICLES.$this->img;
-		$this->link = URL::get("category", "", array("id" => $this->id));
-		$section = new SectionDB();
-		$section->load($this->section_id);
-		$this->section = $section;
-		return true;
+	private static function getChildCategory($category_number){
+		$select = new Select(self::$db);
+		$select->from(self::$table, "*")
+			->where("`parent_number` = ?", array($category_number));
+		//echo $select;die;	
+		$data = self::$db->select($select);
+		$category = ObjectDB::buildMultiple(__CLASS__, $data);
+		return $category;
 	}
-		
-	protected function preValidate() {
-		if (!is_null($this->img)) $this->img = basename($this->img);
-		return true;
-	} 
-	*/
+	
+	private function postHandling() {
+		$this->child_category = self::getChildCategory ($this->number);
+		//$this->product = ProductDB::getThreeRandProduct ($this->number);
+		//$this->brand = ProductDB::getBrandsOnCategory ($this->number);
+	}
 	
 }

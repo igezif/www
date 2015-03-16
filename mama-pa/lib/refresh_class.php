@@ -4,8 +4,8 @@ class Refresh {
 	
 	public function go() {
 		$ids_category = array();
-		//$xml = file_get_contents('http://abumba.ru/index.php?route=feed/opt_yml');
-		$xml = file_get_contents('http://test');
+		$xml = file_get_contents('http://abumba.ru/index.php?route=feed/opt_yml');
+		//$xml = file_get_contents('http://test');
 		$dom = new SimpleXMLElement($xml);
 		//$categories = $dom->shop->categories->category[0];
 		$categories = $dom->shop->categories->category;
@@ -51,6 +51,10 @@ class Refresh {
 			$i++;
 			//if ($i == 3) break;
 		}
+		//$product_db = new ProductDB();
+		//$select = new Select(self::$db);
+		//$select->from("product")
+		
 		echo $i;
 	}
 	

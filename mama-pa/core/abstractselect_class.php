@@ -3,9 +3,11 @@
 class AbstractSelect {
 	
 	private $db;
+	private $distinct = "";
 	private $from = "";
 	private $where = "";
 	private $order = "";
+	private $group = "";
 	private $limit = "";
 	
 	public function __construct($db) {
@@ -37,6 +39,11 @@ class AbstractSelect {
 		if ($alias) $from .= " FROM $alias.`$table_name`";
 		else $from .= " FROM `$table_name`";
 		$this->from = $from;
+		return $this;
+	}
+	
+	public function distinct() {
+		$this->distinct = " DISTINCT";
 		return $this;
 	}
 	
@@ -90,6 +97,20 @@ class AbstractSelect {
 		return $this;
 	}
 	
+	public function group($field) {
+		if (is_array($field)) {
+			$this->group = "GROUP BY ";
+			for ($i = 0; $i < count($field); $i++) {
+				$this->group .= "`".$field[$i]."`,";
+			}
+			$this->group = substr($this->group, 0, -1);
+		}
+		else {
+			$this->group = "GROUP BY `$field`";
+		}
+		return $this;
+	}
+	
 	public function limit($count, $offset = 0) {
 		$count = (int) $count;
 		$offset = (int) $offset;
@@ -104,7 +125,7 @@ class AbstractSelect {
 	}
 	
 	public function __toString() {
-		if ($this->from) $ret = "SELECT ".$this->from." ".$this->where." ".$this->order." ".$this->limit;
+		if ($this->from) $ret = "SELECT ".$this->distinct." ".$this->from." ".$this->where." ".$this->order." ".$this->group." ".$this->limit;
 		else $ret = "";
 		return $ret;
 	}
