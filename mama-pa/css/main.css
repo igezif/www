@@ -5,7 +5,7 @@ html{
 }
 
 body {
-	background: url("../img/main/bg.png") repeat;
+	background: url("../img/main/bg_repeat.png") repeat;
 	font-family: Arial, Helvetica, sans-serif;
 	height: 100%;
 }
@@ -229,17 +229,46 @@ nav{
 	padding: 10px;
 }
 
-.slider_carousel img{
-	display: block;
-	margin: 0 0 5px 0;
-	border: 1px solid #808080;
+.slider_image img{
+	height: 337px;
 }
 
-.slider_carousel img{
+.slider_arow{
+	content: '';
 	display: block;
-	margin: 0 0 5px 0;
+	width: 0;
+	height: 0;
+	border-right: 21px solid #ffffff;
+	border-top-width: 15px;
+	border-top-style: solid;
+	border-top-color: transparent;
+	border-bottom-width: 15px;
+	border-bottom-style: solid;
+	border-bottom-color: transparent;
+	position: relative;
+	top: 10px;
+	left: 10px;
+	box-shadow: 0 0 10px rgba(0,0,0,1);
+}
+
+.active_slide img{
+	display: block;
+	position: relative;
+	top: -30px;
+	left: 0px;
+}
+
+.slider_carousel > div{
+	height: 105px;
+	margin: 0 0 7px 0;
 	border: 1px solid #808080;
+	
+}
+
+.slider_carousel > div img{
 	height: 100px;
+	margin-top: 2px;
+	display: block;
 }
 
 .slider_content{
@@ -277,7 +306,7 @@ nav{
 }
 
 .slider_data{
-	display: none;
+	display: none !important;
 }
 
 .border{

@@ -30,7 +30,10 @@ class AbstractSelect {
 				else if (strpos($fields[$i], ".") !== false) {
 					$a = explode(".", $fields[$i]);
 					$f = "";
-					foreach($a as $k => $v) $a[$k] = "`".$v."`";
+					foreach($a as $k => $v) {
+						if ($v !== "*") $a[$k] = "`".$v."`";
+						else $a[$k] = $v;
+					}
 					$field = implode(".", $a);
 					$from .= $field.",";
 				}

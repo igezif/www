@@ -9,6 +9,7 @@ class SliderDB extends ObjectDB {
 		$this->add("product_id", "ValidateID");
 		$this->add("name", "ValidateText");
 		$this->add("description", "ValidateText");
+		$this->add("img", "ValidateIMG");
 	}
 	
 	protected function postInit() {
@@ -18,12 +19,13 @@ class SliderDB extends ObjectDB {
 
 	public static function getItems() {
 		$select = new Select(self::$db);
-		$select->from(self::$table, "*", "s")
+		$select->from(self::$table, array("s.*", "p.img"), "s")
 			->join("INNER", "product", "p", "s.product_id = p.id");
-		echo $select;die;
+		//echo $select;die;
 		$data = self::$db->select($select);
-		
-		print_r($data); die;
+		$slider = ObjectDB::buildMultiple(__CLASS__, $data);
+		//print_r($slider); die;
+		return $slider;
 	}
 	
 	protected function postInsert() {

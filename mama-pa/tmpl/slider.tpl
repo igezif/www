@@ -6,20 +6,21 @@
 		<div class = "slider_content">
 			<div class = "slider_description">Коврик интерактивный</div>
 			<div class = "slider_name"><b>Веселый тренажер</b></div>
-			<div class = "slider_button">Посмотреть</div>
+			<a href = ""><div class = "slider_button">Посмотреть</div></a>
 		</div>
 		<div class = "slider_carousel">
-			<img src = "img/products/tovar.png" class = "slider_product" alt = "" />
-			<img src = "img/products/tovar.png" class = "slider_product active_slide" alt = "" />
-			<img src = "img/products/tovar.png" class = "slider_product" alt = "" />
+			<div class = "slider_product"><img src = "img/products/tovar.png" alt = "" /></div>
+			<div class = "slider_product active_slide"><div class = "slider_arow"></div><img src = "img/products/tovar.png" alt = "" /></div>
+			<div class = "slider_product"><img src = "img/products/tovar.png" alt = "" /></div>
 		</div>
 		
 		<div class = "slider_data">
 			<?php foreach ($items as $item) { ?>
 			<div class = "slider_item">
-				<img src = "img/products/tovar.png" class = "slider_product" alt = "" />
-				<p class = "name"></p>
-				<p class = "description"></p>
+				<img src = "<?=$item->img?>" alt = "Image" />
+				<p class = "name"><?=$item->name?></p>
+				<p class = "description"><?=$item->description?></p>
+				<p class = "link"><?=$item->link?></p>
 			</div>
 			<?php } ?>
 		</div>
