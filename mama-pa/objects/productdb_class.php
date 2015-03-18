@@ -6,8 +6,7 @@ class ProductDB extends ObjectDB {
 	
 	public function __construct() {
 		parent::__construct(self::$table);
-		$this->add("number", "ValidateID");
-		$this->add("category_number", "ValidateID");
+		$this->add("category_id", "ValidateID");
 		$this->add("img", "ValidateIMG");
 		$this->add("brand");
 		$this->add("price");
@@ -29,9 +28,30 @@ class ProductDB extends ObjectDB {
 		return true;
 	} */
 	
-	public static function getThreeRandProduct($category_number) {
+	public static function getThreeRandProduct($category_id) {
+		$select = new Select(self::$db);
+		/* $select->from(self::$table, array("COUNT(id)"))
+			->where("`category_id` = ?", array($category_id));
+		$max = self::$db->selectCell($select); */
 		
-		return true;
+		$select->from(self::$table, array("id"))
+			->where("`category_id` = ?", array($category_id));
+			
+		$ids_category = self::$db->selectCol($select);
+		print_r($ids_category);die;
+		
+		
+		$ids = self::getRandDigits($max, 3);
+		
+		$select = new Select(self::$db);
+		$select->from(self::$table, "*")
+			->whereIn("id", $ids)
+			->where("category_id = ?", array($category_id));
+		echo $select;die;
+		$data = self::$db->select($select);
+		$products = ObjectDB::buildMultiple(__CLASS__, $data);
+		//print_r($count);
+		return $products;
 	}
 	
 	public static function getBrandsOnCategory ($category_number) {
@@ -42,6 +62,23 @@ class ProductDB extends ObjectDB {
 		$data = self::$db->select($select);
 		$brands = ObjectDB::buildMultiple(__CLASS__, $data);
 		return $brands;
+	}
+	
+	private static function getRandDigits($max, $count){
+		$x=array();
+		$tmp=array();
+		for ($i = 0; $i < $count; $i++) {
+		   do {
+			  $a = mt_rand(1, $max);
+		   } while(isset($tmp[$a]));
+		   $tmp[$a]=1;
+		   $x[]=$a;
+		}
+		return $x;
+	}
+	
+	protected function postInsert() {
+		return $this->id;
 	}
 	
 }

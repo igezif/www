@@ -6,7 +6,7 @@ class ImgDB extends ObjectDB {
 	
 	public function __construct() {
 		parent::__construct(self::$table);
-		$this->add("product_number", "ValidateID");
+		$this->add("product_id", "ValidateID");
 		$this->add("url");
 	}
 	
