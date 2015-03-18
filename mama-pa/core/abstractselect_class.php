@@ -5,6 +5,7 @@ class AbstractSelect {
 	private $db;
 	private $distinct = "";
 	private $from = "";
+	private $join = "";
 	private $where = "";
 	private $order = "";
 	private $group = "";
@@ -14,30 +15,30 @@ class AbstractSelect {
 		$this->db = $db;
 	}
 	
-	public function from($table_name, $fields, $as = false, $alias = false) {
+	public function from($table_name, $fields, $alias = false) {
 		$table_name = $this->db->getTableName($table_name);
-		if ($alias) $alias = "`$alias`";
+		if (!$alias) $table_name = "`$table_name`";
+		else $table_name = "`$table_name` `$alias`";
 		$from = "";
-		if ($fields == "*") {
-			if ($alias) $from = $alias.".*";
-			else $from = "*";
-		}
+		if ($fields == "*") $from = "*";
 		else {
 			for ($i = 0; $i < count($fields); $i++) {
-				
 				if (($pos_1 = strpos($fields[$i], "(")) !== false) {
 					$pos_2 = strpos($fields[$i], ")");
 					$from .= substr($fields[$i], 0, $pos_1)."(`".substr($fields[$i], $pos_1 + 1, $pos_2 - $pos_1 - 1)."`),";
 				}
-				else{
-					if ($alias) $from .= $alias.".`".$fields[$i]."`,";
-					else $from .= "`".$fields[$i]."`,";
+				else if (strpos($fields[$i], ".") !== false) {
+					$a = explode(".", $fields[$i]);
+					$f = "";
+					foreach($a as $k => $v) $a[$k] = "`".$v."`";
+					$field = implode(".", $a);
+					$from .= $field.",";
 				}
+				else $from .= "`".$fields[$i]."`,";
 			}
 			$from = substr($from, 0, -1);
 		}
-		if ($alias) $from .= " FROM $alias.`$table_name`";
-		else $from .= " FROM `$table_name`";
+		$from .= " FROM $table_name";
 		$this->from = $from;
 		return $this;
 	}
@@ -55,9 +56,14 @@ class AbstractSelect {
 		return $this;
 	}
 	
-	public function innerJoin($table_name, $alias) {
+	/* SELECT * 
+	FROM  `xyz_slider` s
+	INNER JOIN xyz_product p ON s.product_id = p.id */
+	
+	public function join($view, $table_name, $alias, $on) {
 		$table_name = $this->db->getTableName($table_name);
-		return true;
+		$this->join = " ".$view." JOIN `".$table_name."` `$alias` ON ".$on;
+		return $this;
 	}
 	
 	public function whereIn($field, $values, $and = true) {
@@ -125,7 +131,7 @@ class AbstractSelect {
 	}
 	
 	public function __toString() {
-		if ($this->from) $ret = "SELECT ".$this->distinct." ".$this->from." ".$this->where." ".$this->order." ".$this->group." ".$this->limit;
+		if ($this->from) $ret = "SELECT ".$this->distinct." ".$this->from." ".$this->join." ".$this->where." ".$this->order." ".$this->group." ".$this->limit;
 		else $ret = "";
 		return $ret;
 	}

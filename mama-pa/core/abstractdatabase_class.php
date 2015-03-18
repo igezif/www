@@ -43,6 +43,14 @@ abstract class AbstractDataBase {
 		return $array;
 	}
 	
+	private function getResultSet(AbstractSelect $select, $zero, $one) {
+		$result_set = $this->mysqli->query($select);
+		if (!$result_set) return false;
+		if ((!$zero) && ($result_set->num_rows == 0)) return false;
+		if ((!$one) && ($result_set->num_rows == 1)) return false;
+		return $result_set;
+	}
+	
 	public function selectRow(AbstractSelect $select) {
 		$result_set = $this->getResultSet($select, false, true);
 		if (!$result_set) return false;
@@ -116,22 +124,14 @@ abstract class AbstractDataBase {
 		return $this->prefix.$table_name;
 	}
 	
-	private function query($query, $params = false) {
+	public function query($query, $params = false) {
 		$sql = $this->getQuery($query, $params);
 		$success = $this->mysqli->query($sql);
 		if (!$success) return false;
 		if ($this->mysqli->insert_id === 0) return true;
 		return $this->mysqli->insert_id;
 	}
-	
-	private function getResultSet(AbstractSelect $select, $zero, $one) {
-		$result_set = $this->mysqli->query($select);
-		if (!$result_set) return false;
-		if ((!$zero) && ($result_set->num_rows == 0)) return false;
-		if ((!$one) && ($result_set->num_rows == 1)) return false;
-		return $result_set;
-	}
-	
+		
 	public function __destruct() {
 		if (($this->mysqli) && (!$this->mysqli->connect_errno)) $this->mysqli->close();
 	}

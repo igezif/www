@@ -15,11 +15,13 @@
 		</div>
 		
 		<div class = "slider_data">
+			<?php foreach ($items as $item) { ?>
 			<div class = "slider_item">
 				<img src = "img/products/tovar.png" class = "slider_product" alt = "" />
 				<p class = "name"></p>
 				<p class = "description"></p>
 			</div>
+			<?php } ?>
 		</div>
 	</div>	
 </div>

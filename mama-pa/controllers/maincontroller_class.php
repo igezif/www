@@ -6,11 +6,10 @@ class MainController extends Controller {
 		$this->title = "Мама-па";
 		$this->meta_desc = "Интернет-магазин детских товаров";
 		$this->meta_key = "товары для детей, детские товары";
-		
-		$category = CategoryDB::getAllShow();
 		$sections = new Sections();
+		$sections->items = CategoryDB::getAllShow();
 		$slider = new Slider();
-		$sections->items = $category;
+		$slider->items = SliderDB::getItems();
 		$this->render($this->renderData(array("slider" => $slider, "sections" => $sections), "index"));
 	}
 	
