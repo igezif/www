@@ -14,6 +14,19 @@ abstract class ObjectDB extends AbstractObjectDB {
 		return self::$months[date("n", $date) - 1];
 	}
 	
+	protected static function getRandDigits($max, $count){
+		$x=array();
+		$tmp=array();
+		for ($i = 0; $i < $count; $i++) {
+		   do {
+			  $a = mt_rand(1, $max);
+		   } while(isset($tmp[$a]));
+		   $tmp[$a]=1;
+		   $x[]=$a;
+		}
+		return $x;
+	}
+	
 	public function preEdit($field, $value) {
 		return true;
 	}

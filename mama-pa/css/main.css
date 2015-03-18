@@ -239,6 +239,7 @@ nav{
 	display: block;
 	margin: 0 0 5px 0;
 	border: 1px solid #808080;
+	height: 100px;
 }
 
 .slider_content{
@@ -273,6 +274,10 @@ nav{
 
 .slider .active_slide{
 	box-shadow: 0 0 10px rgba(0,0,0,1);
+}
+
+.slider_data{
+	display: none;
 }
 
 .border{
@@ -347,6 +352,9 @@ nav{
 	display: block;
 }
 
+.section_item > a > img{
+	height: 150px;
+}
 
 .section_description{
 	font-size: 80%;
