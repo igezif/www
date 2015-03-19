@@ -221,25 +221,42 @@ nav{
 
 /* ---   MIDDLE   --- */
 
-.slider div{
+#slider{
+	overflow: hidden;
+}
+
+#slider div{
 	vertical-align: middle;
 }
 
-.slider_carousel{
-	padding: 10px;
+#slider_carousel{
+	padding: 10px 10px 10px 19px;
+	overflow: hidden;
 }
 
-.slider_image img{
+#slider_image{
+	width: 493px;
+	max-width: 493px;
+	text-align: center;
+}
+
+.slider_product{
+	width: 209px;
+	text-align: center;
+}
+
+#slider_image img{
 	height: 337px;
 }
 
-.active_slide .slider_arow{
+#active_slide #slider_arow{
 	position: relative;
 	top: 41px;
-	left: -10px;
+	left: -11px;
 	height: 20px;
 	width: 20px;
-	box-shadow: -3px 3px 9px -3px rgba(0,0,0,1);
+	border-left: 1px solid #808080;
+	border-bottom: 1px solid #808080;
 	background-color: #ffffff;
 	-moz-transform: rotate(45deg); /* Для Firefox */
     -ms-transform: rotate(45deg); /* Для IE */
@@ -249,44 +266,44 @@ nav{
 	z-index: 1;
 }
 
-.active_slide{
+#active_slide{
 	box-shadow: 0 0 10px rgba(0,0,0,1);
 }
 
-.active_slide img{
+#active_slide img{
 	position: relative;
 	top: -20px;
 	left: 0px;
 	z-index: 21;
 }
 
-.slider_carousel > a > div{
+#slider_carousel > a > div{
 	height: 105px;
 	margin: 0 0 7px 0;
 	border: 1px solid #808080;
 }
 
-.slider_carousel > a div img{
+#slider_carousel > a div img{
 	height: 100px;
-	margin-top: 2px;
+	margin: 2px auto 0 auto;
 	display: block;
 }
 
-.slider_content{
+#slider_content{
 	width: 238px;
 }
 
-.slider_name{
+#slider_name{
 	color: #528310;
 	font-size: 140%;
 }
 
-.slider_description{
+#slider_description{
 	color: #ef5612;
 	font-size: 140%;
 }
 
-.slider_button{
+#slider_button{
 	background: url("../img/main/butt2.png") no-repeat;
 	height: 31px;
 	width: 190px;
@@ -295,14 +312,14 @@ nav{
 	padding-top: 13px;
 	position: relative;
 	top: 31px;
-	left: 10px;
+	left: 0px;
 }
 
-.slider_button:hover{
+#slider_button:hover{
 	cursor: pointer;
 }
 
-.slider_data{
+#slider_data{
 	display: none !important;
 }
 

@@ -19,12 +19,12 @@ class SliderDB extends ObjectDB {
 
 	public static function getItems() {
 		$select = new Select(self::$db);
-		$select->from(self::$table, array("s.*", "p.img"), "s")
-			->join("INNER", "product", "p", "s.product_id = p.id");
+		//$select->from(self::$table, array("s.*", "p.img"), "s")
+		//	->join("INNER", "product", "p", "s.product_id = p.id");
+		$select->from(self::$table, "*");
 		//echo $select;die;
 		$data = self::$db->select($select);
 		$slider = ObjectDB::buildMultiple(__CLASS__, $data);
-		//print_r($slider); die;
 		return $slider;
 	}
 	
