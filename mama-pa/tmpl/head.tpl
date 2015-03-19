@@ -9,7 +9,7 @@
 	<?php foreach ($css as $href) { ?>
 		<link type="text/css" rel="stylesheet" href="<?=$href?>" />
 	<?php } ?>
-	<?php foreach ($js as $src) { ?>
-		<script type="text/javascript" src="<?=$src?>"></script>
-	<?php } ?>
+	<?php if ($js) { foreach ($js as $src) { ?>
+				<script type="text/javascript" src="<?=$src?>"></script>
+	<?php } }?>
 </head>

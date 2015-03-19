@@ -21,7 +21,7 @@ abstract class AbstractController {
 		}
 	}
 	
-	abstract protected function render($str);
+	abstract protected function render($head, $content);
 	abstract protected function accessDenied();
 	abstract protected function action404();
 	

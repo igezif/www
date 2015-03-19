@@ -41,16 +41,16 @@ abstract class Controller extends AbstractController {
 		$this->render($pm);
 	}
 	
-	final protected function render($str) {
+	final protected function render($head, $content) {
 		$params = array();
-		$params["head"] = $this->getHead();
+		$params["head"] = $head;
 		$params["header"] = $this->getHeader();
-		$params["content"] = $str;
+		$params["content"] = $content;
 		$params["footer"] = $this->getFooter();
 		$this->view->render(Config::LAYOUT, $params);
 	}
 	
-	protected function getHead() {
+	protected function getHead($css = false, $js = false) {
 		$head = new Head();
 		$head->title = $this->title;
 		$head->meta("Content-Type", "text/html; charset=utf-8", true);
@@ -59,8 +59,8 @@ abstract class Controller extends AbstractController {
 		$head->meta("viewport", "width=device-width", false);
 		$head->meta("robots", "noindex, nofollow", false);
 		$head->favicon = "/favicon.ico";
-		$head->css = array("/css/main.css");
-		$head->js = array("/js/jquery-1.10.2.min.js", "/js/main.js");
+		$head->css = $css;
+		$head->js = $js;
 		return $head;
 	}
 	
