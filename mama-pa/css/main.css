@@ -233,7 +233,7 @@ nav{
 	height: 337px;
 }
 
-.slider_arow{
+.active_slide .slider_arow{
 	position: relative;
 	top: 41px;
 	left: -10px;
@@ -260,13 +260,13 @@ nav{
 	z-index: 21;
 }
 
-.slider_carousel > div{
+.slider_carousel > a > div{
 	height: 105px;
 	margin: 0 0 7px 0;
 	border: 1px solid #808080;
 }
 
-.slider_carousel > div img{
+.slider_carousel > a div img{
 	height: 100px;
 	margin-top: 2px;
 	display: block;
