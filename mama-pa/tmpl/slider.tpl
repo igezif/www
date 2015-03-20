@@ -11,21 +11,20 @@
 			<?php } ?>
 		</div>
 		
-		
-		<!-- <div id = "slider_image">
+		<!-- 
+		<div id = "slider_image">
 			<a href = ""><img src = "/img/slider/1.jpg" alt = "" /></a>
 		</div>
 		<div id = "slider_content">
-			<div id = "slider_description">бcfbdfghdfgdfgd dfgdfg dfgdfgdfg оты</div>
-			<div id = "slider_name"><b>боты dfgdfgd dfgdfgfhfghfgn fgfghrt ghrthrthrthhhhhhh hhhhhhhhhhhhh hhhhhhhhhhhhhh hhhhhhhh hhhhhhhhh</b></div>
+			<div id = "slider_description">полотенце</div>
+			<div id = "slider_name"><b>полотенце с петухом</b></div>
 			<a href = ""><div id = "slider_button">Посмотреть</div></a>
 		</div>
 		<div id = "slider_carousel">
-			<a><div class = "slider_product"><img src = "/img/slider/2.jpg" alt = "" /></div></a>
+			<a><div class = "slider_product" id = "first_image"><img src = "/img/slider/2.jpg" alt = "" /></div></a>
 			<a><div class = "slider_product" id = "active_slide"><div id = "slider_arow"></div><img src = "/img/slider/1.jpg" alt = "" /></div></a>
-			<a><div class = "slider_product"><img src = "/img/slider/3.jpg" alt = "" /></div></a>
-		</div> -->
-		
-		
+			<a><div class = "slider_product" id = "third_image"><img src = "/img/slider/3.jpg" alt = "" /></div></a>
+		</div> 
+		-->
 	</div>	
 </div>
