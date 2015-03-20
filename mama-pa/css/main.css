@@ -158,6 +158,7 @@ nav{
 
 #second_menu a:hover{
 	background: url("../img/main/button_active.png") repeat;
+	box-shadow: inset 0px 3px 11px -3px rgba(0,0,0,1)
 }
 
 #search{

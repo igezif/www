@@ -23,22 +23,22 @@ abstract class Controller extends AbstractController {
 		$this->title = "Страница не найдена - 404";
 		$this->meta_desc = "Запрошенная страница не существует.";
 		$this->meta_key = "страница не найдена, страница не существует, 404";
-		
+		$head = $this->getHead(array("/css/main.css"));
 		$pm = new PageMessage();
 		$pm->header = "Страница не найдена";
 		$pm->text = "К сожалению, запрошенная страница не существует. Проверьте правильность ввода адреса.";
-		$this->render($pm);
+		$this->render($head, $pm);
 	}
 	
 	protected function accessDenied() {
 		$this->title = "Доступ закрыт!";
 		$this->meta_desc = "Доступ к данной странице закрыт.";
 		$this->meta_key = "доступ закрыт, доступ закрыт страница, доступ закрыт страница 403";
-		
+		$head = $this->getHead(array("/css/main.css"));
 		$pm = new PageMessage();
 		$pm->header = "Доступ закрыт!";
 		$pm->text = "У Вас нет прав доступа к данной странице.";
-		$this->render($pm);
+		$this->render($head, $pm);
 	}
 	
 	final protected function render($head, $content) {
