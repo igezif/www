@@ -62,8 +62,7 @@ function Slider() {
 			indexes[0] = 5;
 			indexes[1] = 6;
 			indexes[2] = 0;
-		}
-		else if (first_index === last_index) {
+		}else if (first_index === last_index) {
 			indexes[0] = 6;
 			indexes[1] = 0;
 			indexes[2] = 1;
