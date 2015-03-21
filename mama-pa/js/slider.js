@@ -1,4 +1,4 @@
-var head_timer_interval = 1000;
+var head_timer_interval = 3000;
 
 function Slider() {
 	
@@ -60,7 +60,10 @@ function Slider() {
 	}
 	
 	this.setActive = function(item){
+		
 		big_img.src = item.src;
+		big_img.style.opacity = 0;
+		
 		description_block.innerText = item.description;
 		name_block.innerText = item.name;
 		second_active_img.src = item.src;
@@ -105,11 +108,12 @@ function Slider() {
 	}
 	
 	this.opacityOff = function(){
+		var op = 1;
 		var timer = setInterval(function() {
-			img.style.opacity = op;
-			op = op + 0.05;
-			if(op >= 1){
-				img.style.opacity = 1;
+			op = op - 0.1;
+			big_img.style.opacity = op;
+			if(op <= 0){
+				big_img.style.opacity = 0;
 				clearInterval(timer);
 			}
 		}, 70);
@@ -117,18 +121,27 @@ function Slider() {
 	}
 	
 	this.opacityOn = function(){
-		
+		var op = 0;
+		var timer = setInterval(function() {
+			op = op + 0.1;
+			big_img.style.opacity = op;
+			if(op >= 1){
+				big_img.style.opacity = 1;
+				clearInterval(timer);
+			}
+		}, 70);
 		return;
 	}
 	
 	this.go = function(){
 		var timer = setInterval(function() {
+			
 			self.setIndexes();
-			self.opacityOff();
 			self.setFirst(items[indexes[0]]);
 			self.setActive(items[indexes[1]]);
 			self.setThird(items[indexes[2]]);
 			self.opacityOn();
+			
 		}, head_timer_interval);
 		return;
 	}
