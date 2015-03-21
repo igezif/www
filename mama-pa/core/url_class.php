@@ -30,7 +30,7 @@ class URL {
 	
 	public static function getControllerAndAction() {
 		$uri = $_SERVER["REQUEST_URI"];
-		$uri = UseSEF::getRequest($uri);
+		//$uri = UseSEF::getRequest($uri);
 		if (!$uri) return array("Main", "404");
 		list($url_part, $qs_part) = array_pad(explode("?", $uri), 2, "");
 		parse_str($qs_part, $qs_vars);

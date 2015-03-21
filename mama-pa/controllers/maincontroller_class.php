@@ -44,7 +44,8 @@ class MainController extends Controller {
 		
 		$blog->articles = $articles;
 		$blog->more_articles = $more_articles; */
-		$this->render("пт Бро!");
+		$head = $this->getHead(array("/css/main.css"));
+		$this->render($head, "пт Бро!");
 	}
 	
 	/* 

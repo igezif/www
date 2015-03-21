@@ -353,8 +353,16 @@ nav{
 	font-size: 100%;
 }
 
+.section_block{
+	display: table;
+}
+
 .section_block > div{
-	vertical-align: top;
+	display: table-cell;
+}
+
+.section_price_wrap{
+	
 }
 
 .big_arow{
@@ -366,6 +374,7 @@ nav{
 .section_ul{
 	padding: 0 0 0 27px;
 	width: 200px;
+	vertical-align: top;
 }
 
 .section_ul ul{

@@ -22,12 +22,12 @@
 		</div>
 		<div id = "second_menu_wrap" class = "row">
 			<div id = "logo">
-				<a href = "/"><img src = "img/main/logo.png" alt = ""/></a>
+				<a href = "/"><img src = "/img/main/logo.png" alt = ""/></a>
 			</div>
 			<div id = "second_menu_and_search">
 				<div id = "second_menu">
 					<div class = "row">
-						<a href="/section.html">Бренды</a>
+						<a href="/section">Бренды</a>
 						<a href="/summer.html">Лето и отдых</a>
 						<a href="/bathing.html">Купание</a>
 						<a href="/forbabyroom.html">Для детской</a>
