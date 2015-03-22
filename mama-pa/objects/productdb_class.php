@@ -8,7 +8,7 @@ class ProductDB extends ObjectDB {
 		parent::__construct(self::$table);
 		$this->add("category_id", "ValidateID");
 		$this->add("img", "ValidateIMG");
-		$this->add("brand");
+		$this->add("brand_id", "ValidateID");
 		$this->add("price");
 		$this->add("title", "ValidateTitle");
 		$this->add("meta_desc", "ValidateMD");

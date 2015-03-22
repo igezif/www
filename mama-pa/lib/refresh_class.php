@@ -3,9 +3,9 @@
 class Refresh {
 	
 	public function go() {
-		$ids_category = array();
-		/* $xml = file_get_contents('http://abumba.ru/index.php?route=feed/opt_yml'); */
-		$xml = file_get_contents('http://test');
+		$brand = array();
+		$xml = file_get_contents('http://abumba.ru/index.php?route=feed/opt_yml');
+		//$xml = file_get_contents('http://test');
 		$dom = new SimpleXMLElement($xml);
 		$categories = $dom->shop->categories->category;
 		$products = $dom->shop->offers->offer;
@@ -17,7 +17,9 @@ class Refresh {
 			$category_db->meta_desc = (string) $category;
 			$category_db->meta_key = (string) $category;
 			$category_id = $category_db->save();
+			
 			foreach ($products as $product) {
+				
 				if ((string) $product->categoryId[0] == (string) $category["id"]){
 					$images = $product->picture;
 					$product_db = new ProductDB();
@@ -27,11 +29,21 @@ class Refresh {
 					$product_db->title = (string) $product->name[0];
 					$product_db->meta_desc = (string) $product->name[0];
 					$product_db->meta_key = (string) $product->name[0];
+					
 					if ($product["available"] === "false") $product_db->available = 0;
 					else $product_db->available = 1;
 					
-					$product_db->brand = (string) $product->vendor[0];
+					$brand= (string) $product->vendor[0];
 					
+					$id = BrandDB::getBrandIDonName($brand);
+					
+					if(!$id){
+						$brand_db = new BrandDB();
+						$brand_db->name = $brand;
+						$brand_db->img = null;
+						$product_db->brand_id = $brand_db->save();
+					}
+					else $product_db->brand_id = $id;
 					
 					$product_id = $product_db->save();
 					for ($j = 1; $j < count($images); $j++) {
@@ -42,6 +54,7 @@ class Refresh {
 					}	
 				}
 			}
+			
 		}
 	}
 

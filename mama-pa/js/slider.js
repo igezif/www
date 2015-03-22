@@ -17,9 +17,9 @@ function Slider() {
 	this.itemInit = function(block){
 		var item = Object.create(null);
 		item.src = block.children[0].src;
-		item.name = block.children[1].innerText;;
-		item.description = block.children[2].innerText;
-		item.link = block.children[3].innerText;
+		item.name = block.children[1].textContent;
+		item.description = block.children[2].textContent;
+		item.link = block.children[3].textContent;
 		return item;
 	}
 	
@@ -27,11 +27,11 @@ function Slider() {
 		var img_1 = data[0].children[0].src;
 		var img_2_act = data[1].children[0].src;
 		var img_3 = data[2].children[0].src;
-		var link_1 = data[0].children[3].innerText;
-		var link_2_act = data[1].children[3].innerText;
-		var link_3 = data[2].children[3].innerText;
-		var name = data[1].children[1].innerText;
-		var description = data[1].children[2].innerText;
+		var link_1 = data[0].children[3].textContent;
+		var link_2_act = data[1].children[3].textContent;
+		var link_3 = data[2].children[3].textContent;
+		var name = data[1].children[1].textContent;
+		var description = data[1].children[2].textContent;
 		var slider_data = document.getElementById("slider_data");
 		var html = '<div id = "slider_image"><a href = "' + link_2_act + '"><img src = "' + img_2_act + '" alt = "Изображение" /></a></div><div id = "slider_content"><div id = "slider_description">' + description + '</div><div id = "slider_name"><b>' + name + '</b></div><a href = "' + link_2_act + '"><div id = "slider_button">Посмотреть</div></a></div><div id = "slider_carousel"><a href = "' + link_1 + '"><div class = "slider_product" id = "first_image"><img src = "' + img_1 + '" alt = "Изображение" /></div></a><a href = "' + link_2_act + '"><div class = "slider_product" id = "active_slide"><div id = "slider_arow"></div><img src = "' + img_2_act + '" alt = "Изображение" /></div></a><a href = "' + link_3 + '"><div class = "slider_product" id = "third_image"><img src = "' + img_3 + '" alt = "" /></div></a></div>';
 		first_index = 0;
@@ -64,8 +64,8 @@ function Slider() {
 		big_img.src = item.src;
 		big_img.style.opacity = 0;
 		
-		description_block.innerText = item.description;
-		name_block.innerText = item.name;
+		description_block.textContent = item.description;
+		name_block.textContent = item.name;
 		second_active_img.src = item.src;
 		big_img_a.href = item.link;
 		button_a.href = item.link;
