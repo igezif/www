@@ -14,17 +14,29 @@ class AdminController extends Controller {
 			$user_panel->addItem("Редактировать профиль", URL::get("editprofile", "user"));
 			$user_panel->addItem("Выход", URL::get("logout"));
 		}
-		
-		
 		//$sections = SectionsDB::getAllShow();
 		$sections = new Sections();
 		$slider = new Slider();
 		$sections->items = array("1" => 1, "2" => 2, "3" => 3); 
-		
 		$this->render($this->renderData(array("slider" => $slider, "sections" => $sections), "adminpanel"));*/
-		$head = $this->getHead(array("/css/main.css"));
-		$adminpanel = new Adminpanel();
-		$this->render($head, $adminpanel);
+		
+		$head = $this->getHead(array("/css/main.css"), true);
+		
+		if ($this->auth_admin) {
+			$admin_panel = new Adminpanel();
+			$user_panel->user = $this->auth_user;
+			$user_panel->uri = $this->url_active;
+			$user_panel->addItem("Редактировать профиль", URL::get("editprofile", "user"));
+			$user_panel->addItem("Выход", URL::get("logout"));
+		}
+		else{
+			$user_panel = "";
+			
+		}
+		
+		
+		//$this->render($head, $adminpanel);
+		$this->render($head, $this->renderData(array("header" => "Администраторская панель", "admin_menu" => $admin_menu), "adminpanel"));
 	}
 	
 }

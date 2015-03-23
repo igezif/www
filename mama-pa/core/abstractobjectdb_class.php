@@ -84,7 +84,6 @@ abstract class AbstractObjectDB {
 			}
 			else {
 				$this->id = self::$db->insert($this->table_name, $row);
-				//echo $this->id."<br />";
 				if (!$this->id) throw new Exception();
 			}
 		}

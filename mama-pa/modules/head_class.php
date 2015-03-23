@@ -8,7 +8,6 @@ class Head extends Module {
 		$this->add("favicon");
 		$this->add("meta", null, true);
 		$this->add("css", null, true);
-		$this->add("js", null, true);
 	}
 	
 	public function meta($name, $content, $http_equiv) {

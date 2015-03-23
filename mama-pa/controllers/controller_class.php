@@ -50,17 +50,16 @@ abstract class Controller extends AbstractController {
 		$this->view->render(Config::LAYOUT, $params);
 	}
 	
-	protected function getHead($css = false, $js = false) {
+	protected function getHead($css = false, $noindex = false) {
 		$head = new Head();
 		$head->title = $this->title;
 		$head->meta("Content-Type", "text/html; charset=utf-8", true);
 		$head->meta("description", $this->meta_desc, false);
 		$head->meta("keywords", $this->meta_key, false);
 		$head->meta("viewport", "width=device-width", false);
-		$head->meta("robots", "noindex, nofollow", false);
+		$head->meta("robots", (!$noindex) ? "index, follow" : "noindex, nofollow", false);
 		$head->favicon = "/favicon.ico";
 		$head->css = $css;
-		$head->js = $js;
 		return $head;
 	}
 	

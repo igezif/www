@@ -6,7 +6,9 @@ class MainController extends Controller {
 		$this->title = "Мама-па";
 		$this->meta_desc = "Интернет-магазин детских товаров";
 		$this->meta_key = "товары для детей, детские товары";
-		$head = $this->getHead(array("/css/main.css"), array("/js/jquery-1.10.2.min.js", "/js/main.js", "/js/slider.js"));
+		$head = $this->getHead(array("/css/main.css"));
+		$head->add("js", null, true);
+		$head->js = array("/js/jquery-1.10.2.min.js", "/js/main.js", "/js/slider.js");
 		$sections = new Sections();
 		$sections->items = CategoryDB::getAllShow();
 		$slider = new Slider();

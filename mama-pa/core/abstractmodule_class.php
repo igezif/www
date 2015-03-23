@@ -9,7 +9,7 @@ abstract class AbstractModule {
 		$this->view = $view;
 	}
 	
-	final protected function add($name, $default = null, $is_array = false) {
+	final public function add($name, $default = null, $is_array = false) {
 		$this->properties[$name]["is_array"] = $is_array;
 		if ($is_array && $default == null) $this->properties[$name]["value"] = array();
 		else $this->properties[$name]["value"] = $default;
