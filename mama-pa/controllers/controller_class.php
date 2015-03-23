@@ -75,19 +75,57 @@ abstract class Controller extends AbstractController {
 		return $footer;
 	}
 	
-	/* protected function getAuth() {
-		if ($this->auth_user) return "";
-		$auth = new Auth();
+	protected function authAdmin() {
+		$login = "";
+		$password = "";
+		$redirect = false;
+		if ($this->request->auth) {
+			$login = $this->request->login;
+			$password = $this->request->password;
+			$redirect = true;
+		}
+		$admin = $this->fp->auth("auth", "AdminDB", "authAdmin", $login, $password);
+		if ($admin instanceof AdminDB) {
+			if ($redirect) $this->redirect(URL::current());
+			return $admin;
+		}
+		return null;
+	}
+	
+	protected function getAuthAdmin() {
+		if ($this->auth_admin) return "";
+		$auth = new Authadmin();
 		$auth->message = $this->fp->getSessionMessage("auth");
 		$auth->action = URL::current("", true);
-		$auth->link_register = URL::get("register");
-		$auth->link_reset = URL::get("reset");
-		$auth->link_remind = URL::get("remind");
 		return $auth;
 	}
 	
+	protected function getAdminMenu(){
+		$admin_menu = new Adminmenu();
+		$admin_menu->admin = $this->auth_adminu;
+		return $admin_menu;
+	}
 	
-	/* protected function getLeft() {
+	/*
+	
+	protected function authUser() {
+		$login = "";
+		$password = "";
+		$redirect = false;
+		if ($this->request->auth) {
+			$login = $this->request->login;
+			$password = $this->request->password;
+			$redirect = true;
+		}
+		$user = $this->fp->auth("auth", "UserDB", "authUser", $login, $password);
+		if ($user instanceof UserDB) {
+			if ($redirect) $this->redirect(URL::current());
+			return $user;
+		}
+		return null;
+	}
+	
+	 protected function getLeft() {
 		$items = MenuDB::getMainMenu();
 		$mainmenu = new MainMenu();
 		$mainmenu->uri = $this->url_active;

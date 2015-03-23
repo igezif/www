@@ -6,6 +6,7 @@ abstract class AbstractController {
 	protected $request;
 	protected $fp = null;
 	protected $auth_user = null;
+	protected $auth_admin = null;
 	protected $jsv = null;
 	
 	public function __construct($view, $message) {
@@ -26,6 +27,10 @@ abstract class AbstractController {
 	abstract protected function action404();
 	
 	protected function authUser() {
+		return null;
+	}
+	
+	protected function authAdmin() {
 		return null;
 	}
 	
