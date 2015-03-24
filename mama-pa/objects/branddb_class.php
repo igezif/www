@@ -23,6 +23,10 @@ class BrandDB extends ObjectDB {
 		return self::$db->selectCell($select);
 	}
 	
+	public static function getAdminBrandShow(){
+		return self::getAll();
+	}
+	
 	protected function postInsert() {
 		return $this->id;
 	}

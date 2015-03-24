@@ -5,8 +5,6 @@ abstract class AbstractController {
 	protected $view;
 	protected $request;
 	protected $fp = null;
-	protected $auth_user = null;
-	protected $auth_admin = null;
 	protected $jsv = null;
 	
 	public function __construct($view, $message) {
@@ -16,6 +14,7 @@ abstract class AbstractController {
 		$this->fp = new FormProcessor($this->request, $message);
 		$this->jsv = new JSValidator($message);
 		$this->auth_user = $this->authUser();
+		$this->auth_admin = $this->authAdmin();
 		if (!$this->access()) {
 			$this->accessDenied();
 			throw new Exception("ACCESS_DENIED");

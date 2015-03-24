@@ -50,14 +50,14 @@ abstract class Controller extends AbstractController {
 		$this->view->render(Config::LAYOUT, $params);
 	}
 	
-	protected function getHead($css = false, $noindex = false) {
+	protected function getHead($css = false, $index = false) {
 		$head = new Head();
 		$head->title = $this->title;
 		$head->meta("Content-Type", "text/html; charset=utf-8", true);
 		$head->meta("description", $this->meta_desc, false);
 		$head->meta("keywords", $this->meta_key, false);
 		$head->meta("viewport", "width=device-width", false);
-		$head->meta("robots", (!$noindex) ? "index, follow" : "noindex, nofollow", false);
+		$head->meta("robots", ($index) ? "index, follow" : "noindex, nofollow", false);
 		$head->favicon = "/favicon.ico";
 		$head->css = $css;
 		return $head;
@@ -92,19 +92,22 @@ abstract class Controller extends AbstractController {
 		return null;
 	}
 	
-	protected function getAuthAdmin() {
+	protected function renderAuthAdmin() {
 		if ($this->auth_admin) return "";
+		$head = $this->getHead(array("/css/main.css"), false);
 		$auth = new Authadmin();
 		$auth->message = $this->fp->getSessionMessage("auth");
 		$auth->action = URL::current("", true);
-		return $auth;
+		$this->render($head, $this->renderData(array("admin_menu" => $auth), "admin_panel"));
 	}
 	
 	protected function getAdminMenu(){
 		$admin_menu = new Adminmenu();
-		$admin_menu->admin = $this->auth_adminu;
+		$admin_menu->admin = $this->auth_admin;
 		return $admin_menu;
 	}
+	
+	
 	
 	/*
 	

@@ -6,29 +6,43 @@ class AdminController extends Controller {
 		$this->title = "Админ панель";
 		$this->meta_desc = "Админ панель";
 		$this->meta_key = "админ панель";
-		
-		/* if ($this->auth_user) {
-			$user_panel = new UserPanel();
-			$user_panel->user = $this->auth_user;
-			$user_panel->uri = $this->url_active;
-			$user_panel->addItem("Редактировать профиль", URL::get("editprofile", "user"));
-			$user_panel->addItem("Выход", URL::get("logout"));
+		$head = $this->getHead(array("/css/main.css"), false);
+		if ($this->auth_admin) {
+			$admin_menu = $this->getAdminMenu();
+			$this->render($head, $this->renderData(array("admin_menu" => $admin_menu), "admin_panel"));
 		}
-		//$sections = SectionsDB::getAllShow();
-		$sections = new Sections();
-		$slider = new Slider();
-		$sections->items = array("1" => 1, "2" => 2, "3" => 3); 
-		$this->render($this->renderData(array("slider" => $slider, "sections" => $sections), "adminpanel"));*/
+		else $this->renderAuthAdmin();
+	}
+	
+	public function actionBrand() {
+		$this->title = "Админ панель";
+		$this->meta_desc = "Админ панель";
+		$this->meta_key = "админ панель";
+		$head = $this->getHead(array("/css/main.css"), false);
+		if ($this->auth_admin) {
+			$head = $this->getHead(array("/css/main.css"), false);
+			$admin_menu = new Brandadmin();
+			$admin_menu->items = BrandDB::getAdminBrandShow();
+			$this->render($head, $this->renderData(array("admin_menu" => $admin_menu), "admin_panel"));
+		}
+		else $this->renderAuthAdmin();
+	}
+	
+	public function actionCategory() {
 		
-		$head = $this->getHead(array("/css/main.css"), true);
+	}
+	
+	public function actionProduct() {
 		
-		if ($this->auth_admin) $admin_menu = $this->getAdminMenu();
-		else $admin_menu = $this->getAuthAdmin();
+	}
+	
+	public function actionSlider() {
 		
-		
-		
-		//$this->render($head, $adminpanel);
-		$this->render($head, $this->renderData(array("header" => "Администраторская панель", "admin_menu" => $admin_menu), "admin_panel"));
+	}
+	
+	public function actionLogout() {
+		AdminDB::logout();
+		$this->redirect($_SERVER["HTTP_REFERER"]);
 	}
 	
 }
