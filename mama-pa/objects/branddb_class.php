@@ -6,13 +6,13 @@ class BrandDB extends ObjectDB {
 	
 	public function __construct() {
 		parent::__construct(self::$table);
-		$this->add("name");
-		$this->add("img");
+		$this->add("name", "ValidateName");
+		$this->add("img", "ValidateIMG");
 	}
 	
 	protected function postInit() {
 		if (!is_null($this->img)) $this->img = Config::DIR_IMG_BRANDS.$this->img;
-		$this->link = URL::get("brandadmin", "admin", array("id" => $this->id));
+		$this->link = URL::get("update", "admin", array("view" => "brand", "id" => $this->id));
 		return true;
 	}
 	

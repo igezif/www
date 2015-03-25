@@ -445,6 +445,11 @@ nav{
 	margin: 0 0 10px 10px;
 }
 
+.admin_block input{
+	height: 22px;
+	padding: 0 5px 0 5px;
+}
+
 .admin_table{
 	margin: 10px;
 }
