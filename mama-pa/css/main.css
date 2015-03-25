@@ -441,16 +441,29 @@ nav{
 }
 
 /* ---   ADMINKA   --- */
+.admin_block h3{
+	margin: 0 0 10px 10px;
+}
 
-.admin_block{
-	
+.admin_table{
+	margin: 10px;
+}
+
+.admin_table tr td{
+	padding: 7px;
+}
+
+.admin_insert{
+	color: red;
+	font-weight: bold;
+	margin:  0 0 10px 10px;
 }
 
 .admin_block div{
 	margin: 10px 0 0 0;
 }
 
-.admin_block div a:hover{
+.admin_block a:hover{
 	text-decoration: underline;
 }
 

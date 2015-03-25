@@ -30,6 +30,20 @@ abstract class Controller extends AbstractController {
 		$this->render($head, $pm);
 	}
 	
+	protected function isAuthAdmin() {
+		if (!$this->auth_admin) {
+			$this->title = "Админ панель";
+			$this->meta_desc = "Админ панель";
+			$this->meta_key = "админ панель";
+			$head = $this->getHead(array("/css/main.css"), false);
+			$auth = new Authadmin();
+			$auth->message = $this->fp->getSessionMessage("auth");
+			$auth->action = URL::current("", true);
+			$this->render($head, $this->renderData(array("admin_menu" => $auth), "admin_panel"));
+		}
+		else return true;
+	}
+	
 	protected function accessDenied() {
 		$this->title = "Доступ закрыт!";
 		$this->meta_desc = "Доступ к данной странице закрыт.";
@@ -90,21 +104,6 @@ abstract class Controller extends AbstractController {
 			return $admin;
 		}
 		return null;
-	}
-	
-	protected function renderAuthAdmin() {
-		if ($this->auth_admin) return "";
-		$head = $this->getHead(array("/css/main.css"), false);
-		$auth = new Authadmin();
-		$auth->message = $this->fp->getSessionMessage("auth");
-		$auth->action = URL::current("", true);
-		$this->render($head, $this->renderData(array("admin_menu" => $auth), "admin_panel"));
-	}
-	
-	protected function getAdminMenu(){
-		$admin_menu = new Adminmenu();
-		$admin_menu->admin = $this->auth_admin;
-		return $admin_menu;
 	}
 	
 	

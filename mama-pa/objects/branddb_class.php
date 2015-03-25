@@ -11,8 +11,8 @@ class BrandDB extends ObjectDB {
 	}
 	
 	protected function postInit() {
-		//if (!is_null($this->img)) $this->img = Config::DIR_IMG_BRANDS.$this->img;
-		$this->link = URL::get("brand", "", array("id" => $this->id));
+		if (!is_null($this->img)) $this->img = Config::DIR_IMG_BRANDS.$this->img;
+		$this->link = URL::get("brandadmin", "admin", array("id" => $this->id));
 		return true;
 	}
 	
@@ -30,7 +30,5 @@ class BrandDB extends ObjectDB {
 	protected function postInsert() {
 		return $this->id;
 	}
-	
-	
-	
+
 }
