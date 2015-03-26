@@ -15,12 +15,9 @@ class AdminController extends Controller {
 	
 	public function actionBrand() {
 		if (!self::isAuthAdmin()) return null;
-		$message_avatar_name = "avatar";
-		$message_name_name = "name";
-		$message_password_name = "password";
 		if ($this->request->insert_brand) {
-			
-			$img = $this->fp->uploadIMG($message_avatar_name, $_FILES["img"], Config::MAX_SIZE_BRAND_IMG, Config::DIR_BRAND);
+			$brand_db = new BrandDB();
+			$brand_db->uploadBrand($this->request->name, $_FILES["img"]);
 			
 			/*
 			if ($img) {

@@ -23,6 +23,15 @@ class BrandDB extends ObjectDB {
 		return self::$db->selectCell($select);
 	}
 	
+	public static function uploadBrand($name, $file){
+		$message_name = "brand";
+		//$message_name_name = "name";
+		//$message_password_name = "password";
+		$this->name = $name;
+		$id = $this->save();
+		$img = $this->fp->uploadIMG($message_avatar_name, $_FILES["img"], Config::MAX_SIZE_IMG, Config::DIR_IMG_BRAND, $id);
+	}
+	
 	public static function getAdminBrandShow(){
 		return self::getAll();
 	}
