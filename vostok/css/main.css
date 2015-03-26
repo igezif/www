@@ -100,3 +100,20 @@ nav{
 	background: url("../img/main/active_menu_bt.png");
 }
 
+/* SLIDER */
+
+#slider_block{
+	margin-top: 20px;
+}
+
+.line_slider{
+	background-color: #444242;
+	height: 5px;
+}
+
+#slider_image{
+	background: url("../img/main/banner.png") no-repeat;
+	width: 964px;
+	height: 403px;
+	margin: 0 auto;
+}
