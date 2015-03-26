@@ -1,0 +1,73 @@
+* {margin: 0; padding: 0;}
+
+html{
+	height: 100%;
+}
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	height: 100%;
+}
+
+.content{
+	width: 1000px;
+	margin: 0 auto;
+}
+
+/* HEADER */
+
+#logo{
+	background: url("../img/main/logo.png") no-repeat;
+	width: 126px;
+	height: 65px;
+	height: 65px;
+	margin: 20px 0 0 5px;
+}
+
+.contacts > div{
+	display: inline-block;
+}
+
+#contacts{
+	vertical-align: top;
+	margin: 0 0 0 542px;
+}
+
+#consultation{
+	padding: 6px 0px 7px 34px;
+	background: url("../img/main/on-line_kons.png") no-repeat;
+	width: 288px;
+	color: #ffffff;
+	font-size: 97%;
+}
+
+#phone{
+	margin: 13px 0 0 0;
+}
+
+#phone > span {
+	display: inline-block;
+	font-size: 90%;
+	margin: 0 0 0 14px;
+}
+
+nav{
+	height: 41px;
+	background: url("../img/main/menu_bokovue.jpg") repeat-x;
+	margin: 25px 0 0 0;
+}
+
+.menu{
+	background: url("../img/main/menu.jpg") repeat-x;
+	height: 59px;
+	position: relative;
+	top: -10px;
+}
+
+.menu > div{
+	display: inline-block;
+	height: 59px;
+	color: #ffffff;
+	padding: 19px 22px;
+	font-size: 90%;
+}
