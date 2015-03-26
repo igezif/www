@@ -86,6 +86,17 @@ class FormProcessor {
 		}
 	}
 	
+	public function uploadAdminIMG($message_name, $file, $max_size, $dir, $id) {
+		try {
+			
+			$name = File::uploadAdminIMG($file, $max_size, $dir, false, $id);
+			return $name;
+		} catch (Exception $e) {
+			$this->setSessionMessage($message_name, $this->getError($e));
+			return false;
+		}
+	}
+	
 	private function getError($e) {
 		if ($e instanceof ValidatorException) {
 			$error = current($e->getErrors());

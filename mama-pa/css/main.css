@@ -458,6 +458,10 @@ nav{
 	padding: 7px;
 }
 
+.admin_table img{
+	height: 100px;
+}
+
 .admin_insert{
 	color: red;
 	font-weight: bold;

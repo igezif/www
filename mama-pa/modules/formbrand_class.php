@@ -4,7 +4,7 @@ class Formbrand extends Form {
 	
 	public function __construct() {
 		parent::__construct();
-		//$this->add("items");
+		$this->add("message");
 		//$this->add("link_insert");
 	}
 	

@@ -11,7 +11,9 @@ class BrandDB extends ObjectDB {
 	}
 	
 	protected function postInit() {
-		if (!is_null($this->img)) $this->img = Config::DIR_IMG_BRANDS.$this->img;
+		$view = new View(Config::DIR_TMPL);
+		if (!is_null($this->img)) $this->img = $view->render("img", array("src" => Config::DIR_IMG_BRAND.$this->img), true);
+		else $this->img = "нет";
 		$this->link = URL::get("update", "admin", array("view" => "brand", "id" => $this->id));
 		return true;
 	}
@@ -21,15 +23,6 @@ class BrandDB extends ObjectDB {
 		$select->from(self::$table, array("id"))
 			->where("name = ?", array($name));
 		return self::$db->selectCell($select);
-	}
-	
-	public static function uploadBrand($name, $file){
-		$message_name = "brand";
-		//$message_name_name = "name";
-		//$message_password_name = "password";
-		$this->name = $name;
-		$id = $this->save();
-		$img = $this->fp->uploadIMG($message_avatar_name, $_FILES["img"], Config::MAX_SIZE_IMG, Config::DIR_IMG_BRAND, $id);
 	}
 	
 	public static function getAdminBrandShow(){
