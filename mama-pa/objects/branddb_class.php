@@ -18,6 +18,7 @@ class BrandDB extends ObjectDB {
 		}
 		else $this->img = "нет";
 		$this->link = URL::get("update", "admin", array("view" => "brand", "id" => $this->id));
+		$this->link_delete = URL::get("delete", "admin", array("view" => "brand", "id" => $this->id));
 		return true;
 	}
 	
@@ -27,6 +28,8 @@ class BrandDB extends ObjectDB {
 			->where("name = ?", array($name));
 		return self::$db->selectCell($select);
 	}
+	
+	
 	
 	public static function getAdminBrandShow(){
 		return self::getAll();
