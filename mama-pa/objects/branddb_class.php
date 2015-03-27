@@ -12,7 +12,10 @@ class BrandDB extends ObjectDB {
 	
 	protected function postInit() {
 		$view = new View(Config::DIR_TMPL);
-		if (!is_null($this->img)) $this->img = $view->render("img", array("src" => Config::DIR_IMG_BRAND.$this->img), true);
+		if (!is_null($this->img)){
+			$this->imageName = $this->img;
+			$this->img = $view->render("img", array("src" => Config::DIR_IMG_BRAND.$this->img), true);
+		}
 		else $this->img = "нет";
 		$this->link = URL::get("update", "admin", array("view" => "brand", "id" => $this->id));
 		return true;

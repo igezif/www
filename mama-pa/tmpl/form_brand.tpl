@@ -3,7 +3,7 @@
 	<table class = "admin_table">
 		<?php foreach ($inputs as $input) {?>
 		<tr>
-			<td><?=$input->label?></td><td><input type="<?=$input->type?>" name = "<?=$input->name?>" /></td>
+			<td><?=$input->label?></td><td><input type="<?=$input->type?>" name = "<?=$input->name?>" <?php if($input->value){ ?> value = "<?=$input->value?>" <?php } ?> /></td>
 		</tr>
 		<?php } ?>
 	</table>

@@ -128,6 +128,14 @@ abstract class AbstractObjectDB {
 		return $ret;
 	}
 	
+	public static function getCellonID($id, $field){
+		$class = get_called_class();
+		$select = new Select();
+		$select->from($class::$table, array($field))
+			->where ("`id` = ".self::$db->getSQ(), array($id));
+		return self::$db->selectCell($select);
+	}
+	
 	public static function getAll($count = false, $offset = false) {
 		$class = get_called_class();
 		return self::getAllWithOrder($class::$table, $class, "id", true, $count, $offset);

@@ -27,13 +27,11 @@ class AdminController extends Controller {
 	
 	public function actionInsert() {
 		if (!self::isAuthAdmin()) return null;
-		$message_name = "brand";
 		if ($this->request->insert_brand) {
-			$message_name = "brand";
-			$img = $this->fp->uploadIMG($message_name, $_FILES["img"], Config::MAX_SIZE_IMG, Config::DIR_IMG_BRAND);
+			$img = $this->fp->uploadIMG($this->request->view, $_FILES["img"], Config::MAX_SIZE_IMG, Config::DIR_IMG_BRAND);
 			if ($img) {
 				$brand_db = new BrandDB();
-				$obj = $this->fp->process($message_name, $brand_db, array("name", array("img", $img)), array(), "SUCCESS_IMG_INSERT");
+				$obj = $this->fp->process($this->request->view, $brand_db, array("name", array("img", $img)), array(), "SUCCESS_POSITION_INSERT");
 				if ($obj instanceof BrandDB) $this->redirect(URL::current());
 			}
 		}
@@ -41,26 +39,37 @@ class AdminController extends Controller {
 		$this->meta_desc = "Админ панель";
 		$this->meta_key = "админ панель";
 		$head = $this->getHead(array("/css/main.css"), false);
+		
 		$class = "Form".$this->request->view;
 		$admin_menu = new $class();
-		$admin_menu->name = "form_brand";
-		$admin_menu->enctype = "multipart/form-data";
-		$admin_menu->action = URL::current();
-		$admin_menu->text("name", "Название:");
-		$admin_menu->file("img", "Картинка:");
-		$admin_menu->submit("insert_brand", "Сохранить");
-		
-		$admin_menu->message = $this->fp->getSessionMessage($message_name);
-		$admin_menu->addJSV("avatar", $this->jsv->avatar());
+		$admin_menu->message = $this->fp->getSessionMessage($this->request->view);
+		//$admin_menu->addJSV($this->request->view, $this->jsv->avatar());
 		$this->render($head, $this->renderData(array("admin_menu" => $admin_menu), "admin_panel"));
 	}
 	
 	public function actionUpdate() {
 		if (!self::isAuthAdmin()) return null;
+		if ($this->request->update_brand) {
+			$img = $this->fp->uploadIMG($this->request->view, $_FILES["img"], Config::MAX_SIZE_IMG, Config::DIR_IMG_BRAND);
+			if ($img) {
+				$brand_db = new BrandDB();
+				$brand_db->load($this->request->id);
+				$tmp = $brand_db->imageName;
+				$obj = $this->fp->process($this->request->view, $brand_db, array("name", array("img", $img)), array(), "SUCCESS_POSITION_UPDATE");
+				if ($obj instanceof BrandDB){
+					if ($tmp) File::delete(Config::DIR_IMG_BRAND.$tmp);
+					$this->redirect(URL::current());				
+				}
+			}
+		}
 		$this->title = "Админ панель";
 		$this->meta_desc = "Админ панель";
 		$this->meta_key = "админ панель";
 		$head = $this->getHead(array("/css/main.css"), false);
+		$class = "Form".$this->request->view;
+		$admin_menu = new $class($this->request->id);
+		$admin_menu->message = $this->fp->getSessionMessage($this->request->view);
+		$this->render($head, $this->renderData(array("admin_menu" => $admin_menu), "admin_panel"));
 	}
 	
 	public function actionCategory() {
