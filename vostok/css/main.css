@@ -7,6 +7,7 @@ html{
 body {
 	font-family: Arial, Helvetica, sans-serif;
 	height: 100%;
+	color: #2f2f2f;
 }
 
 a{
@@ -20,6 +21,10 @@ a{
 
 .row > a, .row > div{
 	display: inline-block;
+}
+
+.clear{
+	clear: both;
 }
 
 /* HEADER */
@@ -45,7 +50,7 @@ a{
 	padding: 6px 0px 7px 34px;
 	background: url("../img/main/on-line_kons.png") no-repeat;
 	width: 288px;
-	color: #ffffff;
+	color: #dddddd;
 	font-size: 97%;
 }
 
@@ -80,7 +85,7 @@ nav{
 	float: left;
 }
 
-.menu :first-child{
+.menu > :first-child{
 	border-radius: 7px 0 0 0;
 }
 
@@ -91,7 +96,7 @@ nav{
 }
 
 .menu a{
-	color: #ffffff;
+	color: #dddddd;
 	padding: 19px 15px 20px 15px;
 	font-size: 90%;
 }
@@ -116,4 +121,157 @@ nav{
 	width: 964px;
 	height: 403px;
 	margin: 0 auto;
+}
+
+/* BIG_MENU */
+
+#big_menu{
+	margin: 25px auto 0 auto;
+	height: 227px;
+}
+
+#big_menu > div{
+	width: 18px;
+	height: 222px;
+	float: left;
+}
+
+.big_menu_item{
+	display: block;
+	float: left;
+	height: 225px;
+	background: url("../img/main/fon.png") repeat;
+	width: 319px;
+	border: 1px solid #888888;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	text-align: center;
+}
+
+.big_menu_item:hover{
+	box-shadow: none;
+}
+
+.big_menu_item img{
+	display: block;
+}
+
+.big_menu_item > .big_menu_foto{
+	margin: 18px auto auto 20px;
+}
+
+.big_menu_item > .big_menu_arow{
+	position: relative;
+	top: -193px;
+	left: 55px;
+}
+
+.big_menu_item > h2{
+	color: #dddddd;
+	position: relative;
+	font-size: 90%;
+}
+
+.big_menu_item > .first_p{
+	top: -253px;
+}
+
+.big_menu_item > .second_p{
+	top: -247px;
+}
+
+.big_menu_item > .third_p{
+	top: -247px;
+}
+
+/* MIDDLE */
+
+.middle{
+	margin: 20px auto 0 auto;
+}
+
+.left_block{
+	float: left;
+	margin-right: 19px;
+	width: 660px;
+}
+
+.right_block{
+	float: left;
+	width: 320px;
+}
+
+.info{
+	margin: 0 0 35px 0;
+	background: url("../img/main/fon.png") repeat;
+	padding: 15px;
+	border: 1px solid #888888;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.info h1{
+	color: #7e162d;
+	font-style: italic;
+	font-size: 121%;
+}
+
+.info p{
+	margin: 10px 0 0 0;
+	text-indent: 0.7em;
+	line-height: 1.3;
+}
+
+.about{
+	margin: 15px 0 0 0;
+}
+
+.about .info{
+	padding: 0 15px 15px 15px;
+	margin: 15px 0 0 0;
+}
+
+.collective_block > p{
+	display: block;
+	padding: 10px;
+	background: url("../img/main/fon.png") repeat;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	border: 1px solid #888888;
+}
+
+.collective_content{
+	border-left: 1px solid #888888;
+	border-right: 1px solid #888888;
+	border-bottom: 1px solid #888888;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.collective_item{
+	padding: 10px;
+}
+
+.collective_item > :last-child{
+	margin: 0 0 0 10px;
+}
+
+.collective_content > span{
+	background: url("../img/main/razdeliel_blok_naw_kollectiv.png") repeat;
+	height: 32px;
+	width: 313px;
+	display: block;
+}
+
+.collective_item > div{
+	vertical-align: middle;
+}
+	
+.collective_item > div > p{
+	line-height: 1.7;
+}
+
+.fio_collective_item{
+	font-style: italic;
+	font-size: 90%;
+}
+
+.phone_collective_item{
+	font-style: italic;
 }
