@@ -99,6 +99,7 @@
             <File name="mama-pa\tmpl\slider_admin.tpl" />
             <File name="mama-pa\tmpl\form_brand.tpl" />
             <File name="mama-pa\tmpl\img.tpl" />
+            <File name="mama-pa\tmpl\hornav.tpl" />
         </Folder>
         <Folder name="text">
             <File name="mama-pa\text\messages.ini" />

@@ -23,7 +23,19 @@ class AdminController extends Controller {
 		$admin_menu->items = BrandDB::getAdminBrandShow();
 		$admin_menu->link_insert = URL::get("insert", "admin", array("view" => "brand"));
 		$admin_menu->message = $this->fp->getSessionMessage("brand");
-		$this->render($head, $this->renderData(array("admin_menu" => $admin_menu), "admin_panel"));
+		$hornav = new Hornav();
+		$hornav->addData("Админпанель", URL::get("menu", "admin"));
+		$hornav->addData("Бренды");
+		$this->render($head, $this->renderData(array("hornav" => $hornav, "admin_menu" => $admin_menu), "admin_panel"));
+	}
+	
+	public function actionCategory() {
+		if (!self::isAuthAdmin()) return null;
+		$this->title = "Админ панель";
+		$this->meta_desc = "Админ панель";
+		$this->meta_key = "админ панель";
+		$head = $this->getHead(array("/css/main.css"), false);
+		$admin_menu = new Categoryadmin();
 	}
 	
 	public function actionInsert() {
@@ -90,9 +102,7 @@ class AdminController extends Controller {
 		$this->redirect(URL::get("brand", "admin"));
 	}
 	
-	public function actionCategory() {
-		
-	}
+	
 	
 	public function actionProduct() {
 		

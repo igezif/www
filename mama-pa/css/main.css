@@ -48,7 +48,7 @@ header{
 	background: url("../img/main/header.png") repeat;
 }
 
-nav{
+#headnav{
 	height: 169px;
 }
 
@@ -218,6 +218,10 @@ nav{
 
 #search_wrap{
 	padding: 12px 0 0 0;
+}
+
+.hornav{
+	padding: 0 15px 15px 15px;
 }
 
 /* ---   MIDDLE   --- */
@@ -465,7 +469,8 @@ nav{
 .admin_insert{
 	color: red;
 	font-weight: bold;
-	margin:  0 0 10px 10px;
+	display: block;
+	padding: 15px;
 }
 
 .admin_block div{
