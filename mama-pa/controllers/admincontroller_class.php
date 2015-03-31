@@ -20,7 +20,7 @@ class AdminController extends Controller {
 		$this->meta_key = "админ панель";
 		$head = $this->getHead(array("/css/main.css"), false);
 		$admin_menu = new Brandadmin();
-		$admin_menu->items = BrandDB::getAdminBrandShow();
+		$admin_menu->items = BrandDB::getAdminShow();
 		$admin_menu->link_insert = URL::get("insert", "admin", array("view" => "brand"));
 		$admin_menu->message = $this->fp->getSessionMessage("brand");
 		$hornav = new Hornav();
@@ -44,7 +44,7 @@ class AdminController extends Controller {
 			$img = $this->fp->uploadIMG($this->request->view, $_FILES["img"], Config::MAX_SIZE_IMG, Config::DIR_IMG_BRAND);
 			if ($img) {
 				$brand_db = new BrandDB();
-				$obj = $this->fp->process($this->request->view, $brand_db, array("name", array("img", $img)), array(), "SUCCESS_POSITION_INSERT");
+				$obj = $this->fp->process($this->request->view, $brand_db, array("title", "meta_desc", "meta_key", array("img", $img)), array(), "SUCCESS_POSITION_INSERT");
 				if ($obj instanceof BrandDB) $this->redirect(URL::get("brand", "admin"));
 				else $this->redirect(URL::current());
 			}
@@ -56,7 +56,11 @@ class AdminController extends Controller {
 		$class = "Form".$this->request->view;
 		$admin_menu = new $class();
 		$admin_menu->message = $this->fp->getSessionMessage($this->request->view);
-		$this->render($head, $this->renderData(array("admin_menu" => $admin_menu), "admin_panel"));
+		$hornav = new Hornav();
+		$hornav->addData("Админпанель", URL::get("menu", "admin"));
+		$hornav->addData($this->request->view, URL::get($this->request->view, "admin"));
+		$hornav->addData("Добавить");
+		$this->render($head, $this->renderData(array("hornav" => $hornav, "admin_menu" => $admin_menu), "admin_panel"));
 	}
 	
 	public function actionUpdate() {
@@ -67,7 +71,7 @@ class AdminController extends Controller {
 				$brand_db = new BrandDB();
 				$brand_db->load($this->request->id);
 				$tmp = $brand_db->imageName;
-				$obj = $this->fp->process($this->request->view, $brand_db, array("name", array("img", $img)), array(), "SUCCESS_POSITION_UPDATE");
+				$obj = $this->fp->process($this->request->view, $brand_db, array("title", "meta_desc", "meta_key", array("img", $img)), array(), "SUCCESS_POSITION_UPDATE");
 				if ($obj instanceof BrandDB){
 					if ($tmp) File::delete(Config::DIR_IMG_BRAND.$tmp);
 					$this->redirect(URL::get("brand", "admin"));		
@@ -82,7 +86,11 @@ class AdminController extends Controller {
 		$class = "Form".$this->request->view;
 		$admin_menu = new $class($this->request->id);
 		$admin_menu->message = $this->fp->getSessionMessage($this->request->view);
-		$this->render($head, $this->renderData(array("admin_menu" => $admin_menu), "admin_panel"));
+		$hornav = new Hornav();
+		$hornav->addData("Админпанель", URL::get("menu", "admin"));
+		$hornav->addData($this->request->view, URL::get($this->request->view, "admin"));
+		$hornav->addData("Изменить");
+		$this->render($head, $this->renderData(array("hornav" => $hornav, "admin_menu" => $admin_menu), "admin_panel"));
 	}
 	
 	public function actionDelete(){

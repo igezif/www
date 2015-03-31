@@ -30,8 +30,6 @@ class FormProcessor {
 				return $obj;
 			}
 		} catch (Exception $e) {
-			print_r($e);
-			exit;
 			$this->setSessionMessage($message_name, $this->getError($e));
 			return null;
 		}

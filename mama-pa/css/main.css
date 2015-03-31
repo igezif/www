@@ -456,6 +456,11 @@ header{
 
 .admin_table{
 	margin: 10px;
+	border-collapse: collapse;
+}
+
+.admin_table tr td{
+	border: 1px solid black;
 }
 
 .admin_table tr td{
@@ -479,6 +484,16 @@ header{
 
 .admin_block a:hover{
 	text-decoration: underline;
+}
+
+.admin_form > div{
+	margin: 10px;
+	vertical-align: top;
+}
+
+.admin_form textarea{
+	height: 100px;
+	width: 200px;
 }
 
 /* ---   FOOTER   --- */

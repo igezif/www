@@ -7,15 +7,21 @@ class Formbrand extends Form {
 		$this->name = "form_brand";
 		$this->enctype = "multipart/form-data";
 		$this->action = URL::current();
-		$this->file("img", "Картинка:");
 		if(!$id){
-			$this->text("name", "Название:");
+			$this->text("title", "Название:");
+			$this->file("img", "Картинка:");
+			$this->textarea("meta_desc", "Описание:");
+			$this->textarea("meta_key", "Ключевые слова:");
 			$this->submit("insert_brand", "Сохранить");
 		}
 		else{
 			$this->hidden("id", $id);
-			$value = BrandDB::getCellonID($id, "name");
-			$this->text("name", "Название:", $value);
+			$brand = new BrandDB();
+			$brand->load($id);
+			$this->text("title", "Название:", $brand->title);
+			$this->file("img", "Картинка:");
+			$this->textarea("meta_desc", "Описание:", $brand->meta_desc);
+			$this->textarea("meta_key", "Ключевые слова:", $brand->meta_key);
 			$this->submit("update_brand", "Сохранить");
 		}
 		

@@ -23,6 +23,10 @@ class Form extends ModuleHornav {
 		$this->input($name, "text", $label, $value, $default_v);
 	}
 	
+	public function textarea($name, $label = "", $value = "", $default_v = "") {
+		$this->input($name, "textarea", $label, $value, $default_v);
+	}
+	
 	public function password($name, $label = "", $default_v = "") {
 		$this->input($name, "password", $label, "", $default_v);
 	}

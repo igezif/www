@@ -28,6 +28,12 @@ class CategoryDB extends ObjectDB {
 		foreach ($category as $cat) $cat->postHandling();
 		return $category;
 	}
+	
+	public static function getAdminShow(){
+		$category = self::getAll();
+		foreach ($category as $cat) $cat->postAdminHandling();
+		return $category;
+	}
 
 	private static function getChildCategory($category_number){
 		$select = new Select(self::$db);
@@ -37,6 +43,11 @@ class CategoryDB extends ObjectDB {
 		$data = self::$db->select($select);
 		$category = ObjectDB::buildMultiple(__CLASS__, $data);
 		return $category;
+	}
+	
+	private function postAdminHandling(){
+		$this->link_update = URL::get("update", "admin", array("view" => "brand", "id" => $this->id));
+		$this->link_delete = URL::get("delete", "admin", array("view" => "brand", "id" => $this->id));
 	}
 	
 	private function postHandling() {

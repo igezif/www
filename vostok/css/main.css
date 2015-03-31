@@ -84,7 +84,7 @@ nav{
 	box-shadow: 0 0 7px rgba(0,0,0,2.0);
 }
 
-.menu div, .menu a{
+.menu > div, .menu > a{
 	display: block;
 	float: left;
 }
@@ -93,13 +93,13 @@ nav{
 	border-radius: 7px 0 0 0;
 }
 
-.menu div{
+.menu > div{
 	background: url("../img/main/razdelitel.png") no-repeat;
 	width: 2px;
 	height: 59px;
 }
 
-.menu a{
+.menu > a{
 	color: #dddddd;
 	padding: 19px 15px 20px 15px;
 	font-size: 90%;
@@ -107,6 +107,14 @@ nav{
 
 .menu a:hover{
 	background: url("../img/main/active_menu_bt.png");
+}
+
+.menu > a > div{
+	vertical-align: middle;
+}
+
+#link_magazine{
+	padding: 13px 15px 14px 15px;
 }
 
 /* SLIDER */
@@ -256,9 +264,9 @@ nav{
 }
 
 .collective_content > span{
-	background: url("../img/main/razdeliel_blok_naw_kollectiv.png") repeat;
+	background: url("../img/main/razdelitel_l.png") repeat;
 	height: 32px;
-	width: 313px;
+	width: 318px;
 	display: block;
 }
 
