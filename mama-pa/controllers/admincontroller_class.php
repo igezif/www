@@ -29,6 +29,22 @@ class AdminController extends Controller {
 		$this->render($head, $this->renderData(array("hornav" => $hornav, "admin_menu" => $admin_menu), "admin_panel"));
 	}
 	
+	public function actionSlider() {
+		if (!self::isAuthAdmin()) return null;
+		$this->title = "Админ панель";
+		$this->meta_desc = "Админ панель";
+		$this->meta_key = "админ панель";
+		$head = $this->getHead(array("/css/main.css"), false);
+		$admin_menu = new Slideradmin();
+		$admin_menu->items = SliderDB::getAdminShow();
+		$admin_menu->link_insert = URL::get("insert", "admin", array("view" => "slider"));
+		$admin_menu->message = $this->fp->getSessionMessage("slider");
+		$hornav = new Hornav();
+		$hornav->addData("Админпанель", URL::get("menu", "admin"));
+		$hornav->addData("Слайдер на главной странице");
+		$this->render($head, $this->renderData(array("hornav" => $hornav, "admin_menu" => $admin_menu), "admin_panel"));
+	}
+	
 	public function actionCategory() {
 		if (!self::isAuthAdmin()) return null;
 		$this->title = "Админ панель";
@@ -48,6 +64,9 @@ class AdminController extends Controller {
 				if ($obj instanceof BrandDB) $this->redirect(URL::get("brand", "admin"));
 				else $this->redirect(URL::current());
 			}
+		}
+		else if ($this->request->insert_slider) {
+			
 		}
 		$this->title = "Админ панель";
 		$this->meta_desc = "Админ панель";
@@ -116,9 +135,7 @@ class AdminController extends Controller {
 		
 	}
 	
-	public function actionSlider() {
-		
-	}
+	
 	
 	public function actionLogout() {
 		AdminDB::logout();

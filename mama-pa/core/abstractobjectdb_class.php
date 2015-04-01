@@ -26,6 +26,7 @@ abstract class AbstractObjectDB {
 	
 	public function load($id) {
 		$id = (int) $id;
+		
 		if ($id < 0) return false;
 		$select = new Select(self::$db);
 		$select = $select->from($this->table_name, $this->getSelectFields())

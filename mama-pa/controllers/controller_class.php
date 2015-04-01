@@ -36,7 +36,7 @@ abstract class Controller extends AbstractController {
 			$this->meta_desc = "Админ панель";
 			$this->meta_key = "админ панель";
 			$head = $this->getHead(array("/css/main.css"), false);
-			$auth = new Authadmin();
+			$auth = new Adminauth();
 			$auth->message = $this->fp->getSessionMessage("auth");
 			$auth->action = URL::current("", true);
 			$this->render($head, $this->renderData(array("admin_menu" => $auth), "admin_panel"));

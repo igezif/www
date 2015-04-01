@@ -1,8 +1,11 @@
 <?php
 
+
+
 class Refresh {
 	
 	public function go() {
+		$p = 0;
 		$brand = array();
 		$xml = file_get_contents('http://abumba.ru/index.php?route=feed/opt_yml');
 		//$xml = file_get_contents('http://test');
@@ -39,13 +42,14 @@ class Refresh {
 					
 					if(!$id){
 						$brand_db = new BrandDB();
-						$brand_db->name = $brand;
+						$brand_db->title = $brand;
 						$brand_db->img = null;
 						$product_db->brand_id = $brand_db->save();
 					}
 					else $product_db->brand_id = $id;
 					
 					$product_id = $product_db->save();
+					$p++;
 					for ($j = 1; $j < count($images); $j++) {
 						$img_db = new ImgDB();
 						$img_db->product_id = (int) $product_id;
@@ -56,6 +60,7 @@ class Refresh {
 			}
 			
 		}
+		echo "В базу внесено ".$p." наименований товаров.";
 	}
 
 	public function error() {

@@ -4,7 +4,7 @@
 			<?php foreach ($items as $item) { ?>
 			<div class = "slider_item">
 				<img src = "<?=$item->img?>" alt = "Image" />
-				<p class = "name"><?=$item->name?></p>
+				<p class = "name"><?=$item->title?></p>
 				<p class = "description"><?=$item->description?></p>
 				<p class = "link"><?=$item->link?></p>
 			</div>

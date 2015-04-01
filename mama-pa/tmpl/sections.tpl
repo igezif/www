@@ -16,7 +16,7 @@
 			</div>
 			<?php foreach ($section->product as $product) { ?>
 			<div class = "section_item">
-				<a class = "section_image" href = "<?=$product->link?>" alt = "Image"><img src = "<?="eee!"//$product->img?>" alt = "Изображение" /></a>
+				<a class = "section_image" href = "<?=$product->link?>" alt = "Image"><img src = "<?=$product->img//"eee"?>" alt = "Изображение" /></a>
 				<div class = "section_description"><?=$product->title?></div>
 				<div class = "section_price_wrap">
 					<div class = "section_price_block">Цена: <span class = "section_price_digit"><?=$product->price?></span> <span class = "section_price_word">руб.</span></div>

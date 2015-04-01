@@ -16,12 +16,12 @@ class Formbrand extends Form {
 		}
 		else{
 			$this->hidden("id", $id);
-			$brand = new BrandDB();
-			$brand->load($id);
-			$this->text("title", "Название:", $brand->title);
+			$obj = new BrandDB();
+			$obj->load($id);
+			$this->text("title", "Название:", $obj->title);
 			$this->file("img", "Картинка:");
-			$this->textarea("meta_desc", "Описание:", $brand->meta_desc);
-			$this->textarea("meta_key", "Ключевые слова:", $brand->meta_key);
+			$this->textarea("meta_desc", "Описание:", $obj->meta_desc);
+			$this->textarea("meta_key", "Ключевые слова:", $obj->meta_key);
 			$this->submit("update_brand", "Сохранить");
 		}
 		

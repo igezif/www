@@ -5,7 +5,7 @@ html{
 }
 
 body {
-	background: url("../img/main/bg_repeat.png") repeat;
+	background: url("../img/main/bg.png") repeat;
 	font-family: Arial, Helvetica, sans-serif;
 	height: 100%;
 }
@@ -460,7 +460,7 @@ header{
 }
 
 .admin_table tr td{
-	border: 1px solid black;
+	border: 1px solid #808080;
 }
 
 .admin_table tr td{
