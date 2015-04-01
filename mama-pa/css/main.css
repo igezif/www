@@ -467,8 +467,8 @@ header{
 	padding: 7px;
 }
 
-.admin_table img{
-	height: 100px;
+.admin_img > img{
+	height: 150px;
 }
 
 .admin_insert{
@@ -488,7 +488,11 @@ header{
 
 .admin_form > div{
 	margin: 10px;
-	vertical-align: top;
+}
+
+.admin_form > div > label{
+	display: block;
+	margin: 15px 0 5px 5px;
 }
 
 .admin_form textarea{

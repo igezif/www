@@ -26,7 +26,6 @@ abstract class AbstractObjectDB {
 	
 	public function load($id) {
 		$id = (int) $id;
-		
 		if ($id < 0) return false;
 		$select = new Select(self::$db);
 		$select = $select->from($this->table_name, $this->getSelectFields())
@@ -227,7 +226,7 @@ abstract class AbstractObjectDB {
 		return false;
 	}
 	
-	protected function add($field, $validator = false, $type = null, $default = null) {
+	public function add($field, $validator = false, $type = null, $default = null) {
 		$this->properties[$field] = array("value" => $default, "validator" => $validator, "type" => in_array($type, self::$types)? $type : null);
 	}
 	

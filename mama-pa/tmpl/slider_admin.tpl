@@ -20,7 +20,7 @@
 					<?=$item->description?>
 				</td>
 				<td>
-					<?=($item->img) ? $item->img : "нет"?>
+					<div class = "admin_img"><?=$item->img?></div>
 				</td>
 				<td>
 					<a href = "<?=$item->link_delete?>">Удалить</a>

@@ -9,14 +9,12 @@ class SliderDB extends ObjectDB {
 		$this->add("product_id", "ValidateID");
 		$this->add("title", "ValidateText");
 		$this->add("description", "ValidateText");
+		$this->add("img");
 	}
 	
 	private function postAdminHandling(){
 		$view = new View(Config::DIR_TMPL);
-		if (!is_null($this->img)){
-			$this->imageName = $this->img;
-			$this->img = $view->render("img", array("src" => $this->img), true);
-		}
+		if (!is_null($this->img)) $this->img = $view->render("img", array("src" => $this->img), true);
 		else $this->img = "нет";
 		$this->link_update = URL::get("update", "admin", array("view" => "slider", "id" => $this->id));
 		$this->link_delete = URL::get("delete", "admin", array("view" => "slider", "id" => $this->id));
@@ -38,8 +36,6 @@ class SliderDB extends ObjectDB {
 		$select = new Select(self::$db);
 		$select->from(self::$table, array("s.*", "p.img"), "s")
 			->join("INNER", "product", "p", "s.product_id = p.id");
-		//$select->from(self::$table, "*");
-		//echo $select;die;
 		$data = self::$db->select($select);
 		$slider = ObjectDB::buildMultiple(__CLASS__, $data);
 		return $slider;
