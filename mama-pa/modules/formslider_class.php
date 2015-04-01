@@ -5,6 +5,8 @@ class Formslider extends Form {
 	public function __construct($id = false) {
 		parent::__construct();
 		$this->add("img");
+		$this->add("products");
+		$this->add("product_id");
 		$this->name = "form_slider";
 		$this->enctype = "multipart/form-data";
 		$this->action = URL::current();
@@ -22,9 +24,11 @@ class Formslider extends Form {
 			$this->text("title", "Название:", $obj->title);
 			$img = ProductDB::getCellOnID($obj->product_id, "img");
 			$view = new View(Config::DIR_TMPL);
-			$this->img = $view->render("img", array("src" => $img), true);
 			$this->textarea("description", "Описание:", $obj->description);
 			$this->submit("update_slider", "Сохранить");
+			$this->img = $view->render("img", array("src" => $img), true);
+			$this->product_id = $obj->product_id;
+			$this->products = ProductDB::getAll();
 		}
 		
 		

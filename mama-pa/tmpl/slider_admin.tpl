@@ -1,5 +1,5 @@
 <div class = "admin_block">
-	<p class="message"><?=$message?></p>
+	<?php if ($message) { ?><p class="admin_message"><?=$message?></p><?php } ?>
 	<div class = "row section_header">
 		<div class = "big_arow"></div>
 		<div><h2>Слайдер на главной странице</h2></div>

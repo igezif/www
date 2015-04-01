@@ -500,6 +500,27 @@ header{
 	width: 200px;
 }
 
+#admin_slider_products{
+	width: 300px;
+}
+
+.admin_active_slider_product td{
+	background-color: yellow;
+}
+
+.for_radio_td{
+	background-color: orange;
+	width: 30px;
+}
+
+.admin_message{
+	text-align: center;
+	padding: 7px;
+	display: block;
+	border: 2px solid #e7e3a7;
+	border-radius: 3px;
+	background-color: #ffffff;
+}
 /* ---   FOOTER   --- */
 
 footer{

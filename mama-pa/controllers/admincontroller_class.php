@@ -59,14 +59,17 @@ class AdminController extends Controller {
 		if ($this->request->insert_brand) {
 			$img = $this->fp->uploadIMG($this->request->view, $_FILES["img"], Config::MAX_SIZE_IMG, Config::DIR_IMG_BRAND);
 			if ($img) {
-				$brand_db = new BrandDB();
-				$obj = $this->fp->process($this->request->view, $brand_db, array("title", "meta_desc", "meta_key", array("img", $img)), array(), "SUCCESS_POSITION_INSERT");
+				$obj_db = new BrandDB();
+				$obj = $this->fp->process($this->request->view, $obj_db, array("title", "meta_desc", "meta_key", array("img", $img)), array(), "SUCCESS_POSITION_INSERT");
 				if ($obj instanceof BrandDB) $this->redirect(URL::get("brand", "admin"));
 				else $this->redirect(URL::current());
 			}
 		}
 		else if ($this->request->insert_slider) {
-			
+			$obj_db = new SliderDB();
+			$obj = $this->fp->process($this->request->view, $obj_db, array("product_id", "title", "description"), array(), "SUCCESS_POSITION_UPDATE");
+			if ($obj instanceof SliderDB) $this->redirect(URL::get("slider", "admin"));
+			else $this->redirect(URL::current());
 		}
 		$this->title = "Админ панель";
 		$this->meta_desc = "Админ панель";
@@ -87,16 +90,23 @@ class AdminController extends Controller {
 		if ($this->request->update_brand) {
 			$img = $this->fp->uploadIMG($this->request->view, $_FILES["img"], Config::MAX_SIZE_IMG, Config::DIR_IMG_BRAND);
 			if ($img) {
-				$brand_db = new BrandDB();
-				$brand_db->load($this->request->id);
-				$tmp = $brand_db->imageName;
-				$obj = $this->fp->process($this->request->view, $brand_db, array("title", "meta_desc", "meta_key", array("img", $img)), array(), "SUCCESS_POSITION_UPDATE");
+				$obj_db = new BrandDB();
+				$obj_db->load($this->request->id);
+				$tmp = $obj_db->imageName;
+				$obj = $this->fp->process($this->request->view, $obj_db, array("title", "meta_desc", "meta_key", array("img", $img)), array(), "SUCCESS_POSITION_UPDATE");
 				if ($obj instanceof BrandDB){
 					if ($tmp) File::delete(Config::DIR_IMG_BRAND.$tmp);
 					$this->redirect(URL::get("brand", "admin"));		
 				}
 				else $this->redirect(URL::current());
 			}
+		}
+		else if($this->request->update_slider){
+			$obj_db = new SliderDB();
+			$obj_db->load($this->request->id);
+			$obj = $this->fp->process($this->request->view, $obj_db, array("product_id", "title", "description"), array(), "SUCCESS_POSITION_UPDATE");
+			if ($obj instanceof SliderDB) $this->redirect(URL::get("slider", "admin"));
+			else $this->redirect(URL::current());
 		}
 		$this->title = "Админ панель";
 		$this->meta_desc = "Админ панель";
@@ -116,17 +126,28 @@ class AdminController extends Controller {
 		if (!self::isAuthAdmin()) return null;
 		if($this->request->view == "brand"){
 			try {
-				$brand_db = new BrandDB();
-				$brand_db->load($this->request->id);
-				$tmp = $brand_db->imageName;
+				$obj_db = new BrandDB();
+				$obj_db->load($this->request->id);
+				$tmp = $obj_db->imageName;
 				if ($tmp) File::delete(Config::DIR_IMG_BRAND.$tmp);
-				if($brand_db->delete()) $this->fp->setSessionMessage("brand", "SUCCESS_POSITION_DELETE");
-				else $this->fp->setSessionMessage("brand", "NOTFOUND_POSITION");
+				if($obj_db->delete()) $this->fp->setSessionMessage($this->request->view, "SUCCESS_POSITION_DELETE");
+				else $this->fp->setSessionMessage($this->request->view, "NOTFOUND_POSITION");
+				$this->redirect(URL::get($this->request->view, "admin"));
 			} catch (Exception $e) {
-				$this->setSessionMessage("brand", $this->getError($e));
+				$this->setSessionMessage($this->request->view, $this->getError($e));
 			}
 		}
-		$this->redirect(URL::get("brand", "admin"));
+		else if($this->request->view == "slider"){
+			try {
+				$obj_db = new SliderDB();
+				$obj_db->load($this->request->id);
+				if($obj_db->delete()) $this->fp->setSessionMessage($this->request->view, "SUCCESS_POSITION_DELETE");
+				else $this->fp->setSessionMessage($this->request->view, "NOTFOUND_POSITION");
+				$this->redirect(URL::get($this->request->view, "admin"));
+			} catch (Exception $e) {
+				$this->setSessionMessage($this->request->view, $this->getError($e));
+			}
+		}
 	}
 	
 	
