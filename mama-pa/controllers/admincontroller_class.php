@@ -66,8 +66,9 @@ class AdminController extends Controller {
 			}
 		}
 		else if ($this->request->insert_slider) {
+			//print_r($this->request);die;
 			$obj_db = new SliderDB();
-			$obj = $this->fp->process($this->request->view, $obj_db, array("product_id", "title", "description"), array(), "SUCCESS_POSITION_UPDATE");
+			$obj = $this->fp->process($this->request->view, $obj_db, array("product_id", "title", "description"), array(), "SUCCESS_POSITION_INSERT");
 			if ($obj instanceof SliderDB) $this->redirect(URL::get("slider", "admin"));
 			else $this->redirect(URL::current());
 		}

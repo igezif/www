@@ -14,7 +14,6 @@
             <File name="mama-pa\modules\slider_class.php" />
             <File name="mama-pa\modules\footer_class.php" />
             <File name="mama-pa\modules\brandadmin_class.php" />
-            <File name="mama-pa\modules\authadmin_class.php" />
             <File name="mama-pa\modules\productadmin_class.php" />
             <File name="mama-pa\modules\sections_class.php" />
             <File name="mama-pa\modules\slideradmin_class.php" />
@@ -22,6 +21,8 @@
             <File name="mama-pa\modules\header_class.php" />
             <File name="mama-pa\modules\formbrand_class.php" />
             <File name="mama-pa\modules\form_class.php" />
+            <File name="mama-pa\modules\adminauth_class.php" />
+            <File name="mama-pa\modules\formslider_class.php" />
         </Folder>
         <Folder name="img">
             <Folder name="products">
@@ -90,7 +91,6 @@
             <File name="mama-pa\tmpl\main.tpl" />
             <File name="mama-pa\tmpl\footer.tpl" />
             <File name="mama-pa\tmpl\slider.tpl" />
-            <File name="mama-pa\tmpl\auth_admin.tpl" />
             <File name="mama-pa\tmpl\sections.tpl" />
             <File name="mama-pa\tmpl\header.tpl" />
             <File name="mama-pa\tmpl\brand_admin.tpl" />
@@ -100,6 +100,8 @@
             <File name="mama-pa\tmpl\form_brand.tpl" />
             <File name="mama-pa\tmpl\img.tpl" />
             <File name="mama-pa\tmpl\hornav.tpl" />
+            <File name="mama-pa\tmpl\admin_auth.tpl" />
+            <File name="mama-pa\tmpl\form_slider.tpl" />
         </Folder>
         <Folder name="text">
             <File name="mama-pa\text\messages.ini" />

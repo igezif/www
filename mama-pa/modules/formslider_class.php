@@ -4,20 +4,19 @@ class Formslider extends Form {
 	
 	public function __construct($id = false) {
 		parent::__construct();
-		$this->add("img");
 		$this->add("products");
-		$this->add("product_id");
 		$this->name = "form_slider";
 		$this->enctype = "multipart/form-data";
 		$this->action = URL::current();
 		if(!$id){
 			$this->text("title", "Название:");
-			$this->file("img", "Картинка:");
-			$this->textarea("meta_desc", "Описание:");
-			$this->textarea("meta_key", "Ключевые слова:");
-			$this->submit("insert_brand", "Сохранить");
+			$this->textarea("description", "Описание:");
+			$this->submit("insert_slider", "Сохранить");
+			$this->products = ProductDB::getAll();
 		}
 		else{
+			$this->add("img");
+			$this->add("product_id");
 			$this->hidden("id", $id);
 			$obj = new SliderDB();
 			$obj->load($id);
