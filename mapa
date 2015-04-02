@@ -24,6 +24,8 @@
             <File name="mama-pa\modules\.htaccess" />
             <File name="mama-pa\modules\form_class.php" />
             <File name="mama-pa\modules\header_class.php" />
+            <File name="mama-pa\modules\sectionadmin_class.php" />
+            <File name="mama-pa\modules\formsection_class.php" />
         </Folder>
         <Folder name="img">
             <Folder name="brand" />

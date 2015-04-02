@@ -94,6 +94,12 @@ class AdminController extends Controller {
 			if ($obj instanceof SliderDB) $this->redirect(URL::get("slider", "admin"));
 			else $this->redirect(URL::current());
 		}
+		else if ($this->request->insert_section) {
+			$obj_db = new SectionDB();
+			$obj = $this->fp->process($this->request->view, $obj_db, array("title", "meta_desc", "meta_key"), array(), "SUCCESS_POSITION_INSERT");
+			if ($obj instanceof SectionDB) $this->redirect(URL::get("section", "admin"));
+			else $this->redirect(URL::current());
+		}
 		$this->title = "Админ панель";
 		$this->meta_desc = "Админ панель";
 		$this->meta_key = "админ панель";
@@ -135,7 +141,7 @@ class AdminController extends Controller {
 			$obj_db = new SectionDB();
 			$obj_db->load($this->request->id);
 			$obj = $this->fp->process($this->request->view, $obj_db, array("title", "meta_desc", "meta_key"), array(), "SUCCESS_POSITION_UPDATE");
-			if ($obj instanceof SliderDB) $this->redirect(URL::get("section", "admin"));
+			if ($obj instanceof SectionDB) $this->redirect(URL::get("section", "admin"));
 			else $this->redirect(URL::current());
 		}
 		$this->title = "Админ панель";
@@ -154,43 +160,52 @@ class AdminController extends Controller {
 	
 	public function actionDelete(){
 		if (!self::isAuthAdmin()) return null;
-		if($this->request->view == "brand"){
-			try {
-				$obj_db = new BrandDB();
-				$obj_db->load($this->request->id);
-				$tmp = $obj_db->imageName;
-				if ($tmp) File::delete(Config::DIR_IMG_BRAND.$tmp);
-				if($obj_db->delete()) $this->fp->setSessionMessage($this->request->view, "SUCCESS_POSITION_DELETE");
-				else $this->fp->setSessionMessage($this->request->view, "NOTFOUND_POSITION");
-				$this->redirect(URL::get($this->request->view, "admin"));
-			} catch (Exception $e) {
-				$this->setSessionMessage($this->request->view, $this->getError($e));
-			}
-		}
-		else if($this->request->view == "slider"){
-			try {
-				$obj_db = new SliderDB();
-				$obj_db->load($this->request->id);
-				if($obj_db->delete()) $this->fp->setSessionMessage($this->request->view, "SUCCESS_POSITION_DELETE");
-				else $this->fp->setSessionMessage($this->request->view, "NOTFOUND_POSITION");
-				$this->redirect(URL::get($this->request->view, "admin"));
-			} catch (Exception $e) {
-				$this->setSessionMessage($this->request->view, $this->getError($e));
-			}
-		}
+		switch ($this->request->view) {
+			case "brand":
+				try {
+					$obj_db = new BrandDB();
+					$obj_db->load($this->request->id);
+					$tmp = $obj_db->imageName;
+					if ($tmp) File::delete(Config::DIR_IMG_BRAND.$tmp);
+					if($obj_db->delete()) $this->fp->setSessionMessage($this->request->view, "SUCCESS_POSITION_DELETE");
+					else $this->fp->setSessionMessage($this->request->view, "NOTFOUND_POSITION");
+					$this->redirect(URL::get($this->request->view, "admin"));
+				} catch (Exception $e) {
+					$this->setSessionMessage($this->request->view, $this->getError($e));
+				}
+			break;
+			case "slider":
+				try {
+					$obj_db = new SliderDB();
+					$obj_db->load($this->request->id);
+					if($obj_db->delete()) $this->fp->setSessionMessage($this->request->view, "SUCCESS_POSITION_DELETE");
+					else $this->fp->setSessionMessage($this->request->view, "NOTFOUND_POSITION");
+					$this->redirect(URL::get($this->request->view, "admin"));
+				} catch (Exception $e) {
+					$this->setSessionMessage($this->request->view, $this->getError($e));
+				}
+			break;
+			case "section":
+				try {
+					$obj_db = new SectionDB();
+					$obj_db->load($this->request->id);
+					if($obj_db->delete()) $this->fp->setSessionMessage($this->request->view, "SUCCESS_POSITION_DELETE");
+					else $this->fp->setSessionMessage($this->request->view, "NOTFOUND_POSITION");
+					$this->redirect(URL::get($this->request->view, "admin"));
+				} catch (Exception $e) {
+					$this->setSessionMessage($this->request->view, $this->getError($e));
+				}
+			break;
+		}	
 	}
-	
-	
 	
 	public function actionProduct() {
 		
 	}
-	
-	
-	
+
 	public function actionLogout() {
 		AdminDB::logout();
 		$this->redirect($_SERVER["HTTP_REFERER"]);
 	}
-	
+
 }
