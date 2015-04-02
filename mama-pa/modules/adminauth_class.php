@@ -9,7 +9,7 @@ class Adminauth extends Module {
 	}
 	
 	public function getTmplFile() {
-		return "admin_auth";
+		return "adminauth";
 	}
 	
 }

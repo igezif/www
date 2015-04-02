@@ -39,7 +39,7 @@ abstract class Controller extends AbstractController {
 			$auth = new Adminauth();
 			$auth->message = $this->fp->getSessionMessage("auth");
 			$auth->action = URL::current("", true);
-			$this->render($head, $this->renderData(array("admin_menu" => $auth), "admin_panel"));
+			$this->render($head, $this->renderData(array("admin_menu" => $auth), "adminpanel"));
 		}
 		else return true;
 	}

@@ -8,7 +8,7 @@ class Adminmenu extends Module {
 	}
 
 	public function getTmplFile() {
-		return "admin_menu";
+		return "adminmenu";
 	}
 
 }

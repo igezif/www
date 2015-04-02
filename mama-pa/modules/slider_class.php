@@ -12,5 +12,3 @@ class Slider extends Module {
 	}
 	
 }
-
-?>

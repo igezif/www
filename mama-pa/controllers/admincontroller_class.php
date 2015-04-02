@@ -10,7 +10,7 @@ class AdminController extends Controller {
 		$head = $this->getHead(array("/css/main.css"), false);
 		$admin_menu = new Adminmenu();
 		$admin_menu->admin = $this->auth_admin;
-		$this->render($head, $this->renderData(array("admin_menu" => $admin_menu), "admin_panel"));
+		$this->render($head, $this->renderData(array("admin_menu" => $admin_menu), "adminpanel"));
 	}
 	
 	public function actionBrand() {
@@ -26,7 +26,7 @@ class AdminController extends Controller {
 		$hornav = new Hornav();
 		$hornav->addData("Админпанель", URL::get("menu", "admin"));
 		$hornav->addData("Бренды");
-		$this->render($head, $this->renderData(array("hornav" => $hornav, "admin_menu" => $admin_menu), "admin_panel"));
+		$this->render($head, $this->renderData(array("hornav" => $hornav, "admin_menu" => $admin_menu), "adminpanel"));
 	}
 	
 	public function actionSlider() {
@@ -42,7 +42,23 @@ class AdminController extends Controller {
 		$hornav = new Hornav();
 		$hornav->addData("Админпанель", URL::get("menu", "admin"));
 		$hornav->addData("Слайдер на главной странице");
-		$this->render($head, $this->renderData(array("hornav" => $hornav, "admin_menu" => $admin_menu), "admin_panel"));
+		$this->render($head, $this->renderData(array("hornav" => $hornav, "admin_menu" => $admin_menu), "adminpanel"));
+	}
+	
+	public function actionSection() {
+		if (!self::isAuthAdmin()) return null;
+		$this->title = "Админ панель";
+		$this->meta_desc = "Админ панель";
+		$this->meta_key = "админ панель";
+		$head = $this->getHead(array("/css/main.css"), false);
+		$admin_menu = new Sectionadmin();
+		$admin_menu->items = SectionDB::getAdminShow();
+		$admin_menu->link_insert = URL::get("insert", "admin", array("view" => "section"));
+		$admin_menu->message = $this->fp->getSessionMessage("section");
+		$hornav = new Hornav();
+		$hornav->addData("Админпанель", URL::get("menu", "admin"));
+		$hornav->addData("Секции");
+		$this->render($head, $this->renderData(array("hornav" => $hornav, "admin_menu" => $admin_menu), "adminpanel"));
 	}
 	
 	public function actionCategory() {
@@ -52,6 +68,13 @@ class AdminController extends Controller {
 		$this->meta_key = "админ панель";
 		$head = $this->getHead(array("/css/main.css"), false);
 		$admin_menu = new Categoryadmin();
+		$admin_menu->items = SliderDB::getAdminShow();
+		$admin_menu->link_insert = URL::get("insert", "admin", array("view" => "slider"));
+		$admin_menu->message = $this->fp->getSessionMessage("slider");
+		$hornav = new Hornav();
+		$hornav->addData("Админпанель", URL::get("menu", "admin"));
+		$hornav->addData("Слайдер на главной странице");
+		$this->render($head, $this->renderData(array("hornav" => $hornav, "admin_menu" => $admin_menu), "adminpanel"));
 	}
 	
 	public function actionInsert() {
@@ -66,7 +89,6 @@ class AdminController extends Controller {
 			}
 		}
 		else if ($this->request->insert_slider) {
-			//print_r($this->request);die;
 			$obj_db = new SliderDB();
 			$obj = $this->fp->process($this->request->view, $obj_db, array("product_id", "title", "description"), array(), "SUCCESS_POSITION_INSERT");
 			if ($obj instanceof SliderDB) $this->redirect(URL::get("slider", "admin"));
@@ -83,7 +105,7 @@ class AdminController extends Controller {
 		$hornav->addData("Админпанель", URL::get("menu", "admin"));
 		$hornav->addData($this->request->view, URL::get($this->request->view, "admin"));
 		$hornav->addData("Добавить");
-		$this->render($head, $this->renderData(array("hornav" => $hornav, "admin_menu" => $admin_menu), "admin_panel"));
+		$this->render($head, $this->renderData(array("hornav" => $hornav, "admin_menu" => $admin_menu), "adminpanel"));
 	}
 	
 	public function actionUpdate() {
@@ -109,6 +131,13 @@ class AdminController extends Controller {
 			if ($obj instanceof SliderDB) $this->redirect(URL::get("slider", "admin"));
 			else $this->redirect(URL::current());
 		}
+		else if($this->request->update_section){
+			$obj_db = new SectionDB();
+			$obj_db->load($this->request->id);
+			$obj = $this->fp->process($this->request->view, $obj_db, array("title", "meta_desc", "meta_key"), array(), "SUCCESS_POSITION_UPDATE");
+			if ($obj instanceof SliderDB) $this->redirect(URL::get("section", "admin"));
+			else $this->redirect(URL::current());
+		}
 		$this->title = "Админ панель";
 		$this->meta_desc = "Админ панель";
 		$this->meta_key = "админ панель";
@@ -120,7 +149,7 @@ class AdminController extends Controller {
 		$hornav->addData("Админпанель", URL::get("menu", "admin"));
 		$hornav->addData($this->request->view, URL::get($this->request->view, "admin"));
 		$hornav->addData("Изменить");
-		$this->render($head, $this->renderData(array("hornav" => $hornav, "admin_menu" => $admin_menu), "admin_panel"));
+		$this->render($head, $this->renderData(array("hornav" => $hornav, "admin_menu" => $admin_menu), "adminpanel"));
 	}
 	
 	public function actionDelete(){

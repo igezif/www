@@ -9,8 +9,8 @@ class MainController extends Controller {
 		$head = $this->getHead(array("/css/main.css"));
 		$head->add("js", null, true);
 		$head->js = array("/js/jquery-1.10.2.min.js", "/js/main.js", "/js/slider.js");
-		$sections = new Sections();
-		$sections->items = CategoryDB::getAllShow();
+		$sections = new Section();
+		$sections->items = SectionDB::getAllShow();
 		$slider = new Slider();
 		$slider->items = SliderDB::getItems();
 		$this->render($head, $this->renderData(array("slider" => $slider, "sections" => $sections), "index"));

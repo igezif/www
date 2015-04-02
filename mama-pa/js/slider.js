@@ -60,10 +60,8 @@ function Slider() {
 	}
 	
 	this.setActive = function(item){
-		
 		big_img.src = item.src;
 		big_img.style.opacity = 0;
-		
 		description_block.textContent = item.description;
 		name_block.textContent = item.name;
 		second_active_img.src = item.src;
@@ -135,13 +133,11 @@ function Slider() {
 	
 	this.go = function(){
 		var timer = setInterval(function() {
-			
 			self.setIndexes();
 			self.setFirst(items[indexes[0]]);
 			self.setActive(items[indexes[1]]);
 			self.setThird(items[indexes[2]]);
 			self.opacityOn();
-			
 		}, head_timer_interval);
 		return;
 	}

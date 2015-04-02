@@ -8,5 +8,3 @@ abstract class ModuleHornav extends Module {
 	}
 	
 }
-
-?>

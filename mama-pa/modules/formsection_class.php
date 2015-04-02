@@ -29,7 +29,7 @@ class Formbrand extends Form {
 	}
 	
 	public function getTmplFile() {
-		return "formbrand";
+		return "formsection";
 	}
 	
 }

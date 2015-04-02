@@ -1,14 +1,11 @@
 <?php
 
-class CategoryDB extends ObjectDB {
+class SectionDB extends ObjectDB {
 	
-	protected static $table = "category";
+	protected static $table = "section";
 	
 	public function __construct() {
 		parent::__construct(self::$table);
-		$this->add("section_id", "ValidateID");
-		$this->add("number", "ValidateID");
-		$this->add("parent_number", "ValidateID");
 		$this->add("title", "ValidateTitle");
 		$this->add("meta_desc", "ValidateMD");
 		$this->add("meta_key", "ValidateMK");
@@ -16,16 +13,17 @@ class CategoryDB extends ObjectDB {
 	}
 	
 	protected function postInit() {
-		$this->link = URL::get("category", "", array("id" => $this->id));
+		$this->link = URL::get("section", "", array("id" => $this->id));
 		return true;
 	}
 
 	public static function getAllShow() {
-		$select = new Select(self::$db);
-		$select->from(self::$table, "*")
-			->where("`parent_id` is NULL");
-		$data = self::$db->select($select);
-		$category = ObjectDB::buildMultiple(__CLASS__, $data);
+		//$select = new Select(self::$db);
+		//$select->from(self::$table, "*")
+		//	->where("`parent_id` is NULL");
+		//$data = self::$db->select($select);
+		$category = self::getAll();
+		//$category = ObjectDB::buildMultiple(__CLASS__, $data);
 		foreach ($category as $cat) $cat->postHandling();
 		return $category;
 	}
@@ -36,23 +34,23 @@ class CategoryDB extends ObjectDB {
 		return $category;
 	}
 
-	public static function getChildCategory($id){
+	/* private static function getChildCategory($id){
 		$select = new Select(self::$db);
 		$select->from(self::$table, "*")
-			->where("`section_id` = ?", array($id))
+			->where("`parent_id` = ?", array($id))
 			->group("title");
 		$data = self::$db->select($select);
 		$category = ObjectDB::buildMultiple(__CLASS__, $data);
 		return $category;
-	}
+	} */
 	
 	private function postAdminHandling(){
-		$this->link_update = URL::get("update", "admin", array("view" => "brand", "id" => $this->id));
-		$this->link_delete = URL::get("delete", "admin", array("view" => "brand", "id" => $this->id));
+		$this->link_update = URL::get("update", "admin", array("view" => "section", "id" => $this->id));
+		$this->link_delete = URL::get("delete", "admin", array("view" => "section", "id" => $this->id));
 	}
 	
 	private function postHandling() {
-		$this->child_category = self::getChildCategory ($this->id);
+		$this->child_category = CategoryDB::getChildCategory ($this->id);
 		$this->product = ProductDB::getThreeRandProduct ($this->id);
 	}
 	

@@ -23,7 +23,7 @@
 					<?=$item->meta_key?>
 				</td>
 				<td>
-					<?=($item->img) ? $item->img : "нет"?>
+					<?=$item->img?>
 				</td>
 				<td>
 					<a href = "<?=$item->link_delete?>">Удалить</a>

@@ -1,15 +1,14 @@
 <?php
 
-class Footer extends Module {
+class Section extends Module {
 	
 	public function __construct() {
 		parent::__construct();
-		//$this->add("uri");
-		//$this->add("items", null, true);
+		$this->add("items");
 	}
 	
 	public function getTmplFile() {
-		return "footer";
+		return "section";
 	}
 	
 }

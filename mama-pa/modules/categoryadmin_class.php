@@ -8,7 +8,7 @@ class Categoryadmin extends Module {
 	}
 	
 	public function getTmplFile() {
-		return "category_admin";
+		return "categoryadmin";
 	}
 	
 }

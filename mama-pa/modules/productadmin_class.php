@@ -8,7 +8,7 @@ class Productadmin extends Module {
 	}
 	
 	public function getTmplFile() {
-		return "product_admin";
+		return "productadmin";
 	}
 	
 }

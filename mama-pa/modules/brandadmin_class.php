@@ -10,7 +10,7 @@ class Brandadmin extends Module {
 	}
 	
 	public function getTmplFile() {
-		return "brand_admin";
+		return "brandadmin";
 	}
 	
 }

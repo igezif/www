@@ -10,7 +10,7 @@ class Slideradmin extends Module {
 	}
 	
 	public function getTmplFile() {
-		return "slider_admin";
+		return "slideradmin";
 	}
 	
 }

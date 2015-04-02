@@ -1,7 +1,4 @@
 <?php
-
-
-
 class Refresh {
 	
 	public function go() {
@@ -61,6 +58,7 @@ class Refresh {
 			
 		}
 		echo "В базу внесено ".$p." наименований товаров.";
+		
 	}
 
 	public function error() {

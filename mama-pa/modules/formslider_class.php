@@ -34,7 +34,7 @@ class Formslider extends Form {
 	}
 	
 	public function getTmplFile() {
-		return "form_slider";
+		return "formslider";
 	}
 	
 }

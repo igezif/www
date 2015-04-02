@@ -9,9 +9,7 @@ class PageMessage extends ModuleHornav {
 	}
 	
 	public function getTmplFile() {
-		return "page_message";
+		return "pagemessage";
 	}
 	
 }
-
-?>
