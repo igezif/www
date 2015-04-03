@@ -36,9 +36,10 @@ abstract class AbstractObjectDB {
 	}
 	
 	public function init($row) {
-		foreach ($this->properties as $key => $value) {
-			$val = $row[$key];
-			switch ($value["type"]) {
+		foreach ($row as $key => $value) {
+			if (!array_key_exists($key, $this->properties)) $this->add($key);
+			$val = $value;
+			switch ($this->properties[$key]) {
 				case self::TYPE_TIMESTAMP:
 					if (!is_null($val)) $val = strftime($this->format_date, $val);
 					break;

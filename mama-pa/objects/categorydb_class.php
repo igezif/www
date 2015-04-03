@@ -12,7 +12,6 @@ class CategoryDB extends ObjectDB {
 		$this->add("title", "ValidateTitle");
 		$this->add("meta_desc", "ValidateMD");
 		$this->add("meta_key", "ValidateMK");
-		
 	}
 	
 	protected function postInit() {
@@ -31,7 +30,8 @@ class CategoryDB extends ObjectDB {
 	}
 	
 	public static function getAdminShow(){
-		$category = self::getAll();
+		$data = self::$db->getResult("select c.*, s.title as section from ".Config::DB_PREFIX."category c left join ".Config::DB_PREFIX."section s on c.section_id=s.id");
+		$category = ObjectDB::buildMultiple(__CLASS__, $data);
 		foreach ($category as $cat) $cat->postAdminHandling();
 		return $category;
 	}
@@ -47,8 +47,8 @@ class CategoryDB extends ObjectDB {
 	}
 	
 	private function postAdminHandling(){
-		$this->link_update = URL::get("update", "admin", array("view" => "brand", "id" => $this->id));
-		$this->link_delete = URL::get("delete", "admin", array("view" => "brand", "id" => $this->id));
+		$this->link_update = URL::get("update", "admin", array("view" => "category", "id" => $this->id));
+		$this->link_delete = URL::get("delete", "admin", array("view" => "category", "id" => $this->id));
 	}
 	
 	private function postHandling() {

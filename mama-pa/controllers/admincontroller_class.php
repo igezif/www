@@ -68,12 +68,12 @@ class AdminController extends Controller {
 		$this->meta_key = "админ панель";
 		$head = $this->getHead(array("/css/main.css"), false);
 		$admin_menu = new Categoryadmin();
-		$admin_menu->items = SliderDB::getAdminShow();
-		$admin_menu->link_insert = URL::get("insert", "admin", array("view" => "slider"));
-		$admin_menu->message = $this->fp->getSessionMessage("slider");
+		$admin_menu->items = CategoryDB::getAdminShow();
+		$admin_menu->link_insert = URL::get("insert", "admin", array("view" => "category"));
+		$admin_menu->message = $this->fp->getSessionMessage("category");
 		$hornav = new Hornav();
 		$hornav->addData("Админпанель", URL::get("menu", "admin"));
-		$hornav->addData("Слайдер на главной странице");
+		$hornav->addData("Категории товаров");
 		$this->render($head, $this->renderData(array("hornav" => $hornav, "admin_menu" => $admin_menu), "adminpanel"));
 	}
 	
@@ -98,6 +98,12 @@ class AdminController extends Controller {
 			$obj_db = new SectionDB();
 			$obj = $this->fp->process($this->request->view, $obj_db, array("title", "meta_desc", "meta_key"), array(), "SUCCESS_POSITION_INSERT");
 			if ($obj instanceof SectionDB) $this->redirect(URL::get("section", "admin"));
+			else $this->redirect(URL::current());
+		}
+		else if ($this->request->insert_category) {
+			$obj_db = new CategoryDB();
+			$obj = $this->fp->process($this->request->view, $obj_db, array("section_id", "title", "meta_desc", "meta_key"), array(), "SUCCESS_POSITION_INSERT");
+			if ($obj instanceof CategoryDB) $this->redirect(URL::get("category", "admin"));
 			else $this->redirect(URL::current());
 		}
 		$this->title = "Админ панель";
@@ -144,6 +150,13 @@ class AdminController extends Controller {
 			if ($obj instanceof SectionDB) $this->redirect(URL::get("section", "admin"));
 			else $this->redirect(URL::current());
 		}
+		else if($this->request->update_category){
+			$obj_db = new CategoryDB();
+			$obj_db->load($this->request->id);
+			$obj = $this->fp->process($this->request->view, $obj_db, array("section_id", "title", "meta_desc", "meta_key"), array(), "SUCCESS_POSITION_UPDATE");
+			if ($obj instanceof CategoryDB) $this->redirect(URL::get("category", "admin"));
+			else $this->redirect(URL::current());
+		}
 		$this->title = "Админ панель";
 		$this->meta_desc = "Админ панель";
 		$this->meta_key = "админ панель";
@@ -188,6 +201,17 @@ class AdminController extends Controller {
 			case "section":
 				try {
 					$obj_db = new SectionDB();
+					$obj_db->load($this->request->id);
+					if($obj_db->delete()) $this->fp->setSessionMessage($this->request->view, "SUCCESS_POSITION_DELETE");
+					else $this->fp->setSessionMessage($this->request->view, "NOTFOUND_POSITION");
+					$this->redirect(URL::get($this->request->view, "admin"));
+				} catch (Exception $e) {
+					$this->setSessionMessage($this->request->view, $this->getError($e));
+				}
+			break;
+			case "category":
+				try {
+					$obj_db = new CategoryDB();
 					$obj_db->load($this->request->id);
 					if($obj_db->delete()) $this->fp->setSessionMessage($this->request->view, "SUCCESS_POSITION_DELETE");
 					else $this->fp->setSessionMessage($this->request->view, "NOTFOUND_POSITION");

@@ -34,12 +34,13 @@ a{
 /* HEADER */
 
 #logo{
-	background: url("../img/main/logo.png") no-repeat;
+	margin: 20px 0 0 25px;
+}
+
+#logo > img{
 	width: 126px;
 	height: 65px;
-	height: 65px;
-	margin: 20px 0 0 5px;
-}
+} 
 
 .contacts > div{
 	display: inline-block;
@@ -47,7 +48,7 @@ a{
 
 #contacts{
 	vertical-align: top;
-	margin: 0 0 0 542px;
+	margin: 0 0 0 522px;
 }
 
 #consultation{

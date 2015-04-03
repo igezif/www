@@ -9,7 +9,6 @@ class SliderDB extends ObjectDB {
 		$this->add("product_id", "ValidateID");
 		$this->add("title", "ValidateText");
 		$this->add("description", "ValidateText");
-		$this->add("img");
 	}
 	
 	private function postAdminHandling(){

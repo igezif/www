@@ -8,11 +8,11 @@ class Formslider extends Form {
 		$this->name = "form_slider";
 		$this->enctype = "multipart/form-data";
 		$this->action = URL::current();
+		$this->products = ProductDB::getAll();
 		if(!$id){
 			$this->text("title", "Название:");
 			$this->textarea("description", "Описание:");
 			$this->submit("insert_slider", "Сохранить");
-			$this->products = ProductDB::getAll();
 		}
 		else{
 			$this->add("img");
@@ -27,7 +27,6 @@ class Formslider extends Form {
 			$this->submit("update_slider", "Сохранить");
 			$this->img = $view->render("img", array("src" => $img), true);
 			$this->product_id = $obj->product_id;
-			$this->products = ProductDB::getAll();
 		}
 		
 		

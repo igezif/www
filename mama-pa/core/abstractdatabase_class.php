@@ -131,6 +131,16 @@ abstract class AbstractDataBase {
 		if ($this->mysqli->insert_id === 0) return true;
 		return $this->mysqli->insert_id;
 	}
+	
+	public function getResult($query, $params = false){
+		$sql = $this->getQuery($query, $params);
+		$result_set = $this->mysqli->query($sql);
+		if (!$result_set) return false;
+		$array = array();
+		while (($row = $result_set->fetch_assoc()) != false)
+			$array[] = $row;
+		return $array;
+	}
 		
 	public function __destruct() {
 		if (($this->mysqli) && (!$this->mysqli->connect_errno)) $this->mysqli->close();
