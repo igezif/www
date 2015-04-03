@@ -7,17 +7,21 @@ class MainController extends Controller {
 		$this->meta_desc = "Интернет-магазин детских товаров";
 		$this->meta_key = "товары для детей, детские товары";
 		$head = $this->getHead(array("/css/main.css"));
-		$head->add("js", null, true);
+		/* $head->add("js", null, true);
 		$head->js = array("/js/jquery-1.10.2.min.js", "/js/main.js", "/js/slider.js");
 		$sections = new Section();
 		$sections->items = SectionDB::getAllShow();
 		$slider = new Slider();
 		$slider->items = SliderDB::getItems();
-		$this->render($head, $this->renderData(array("slider" => $slider, "sections" => $sections), "index"));
+		$this->render($head, $this->renderData(array("slider" => $slider, "sections" => $sections), "index")); */
+		
+		$head = $this->getHead(array("/css/main.css"));
+		$this->render($head, "<h1>В настоящее время на сайте идут технические работы.</h1>");
 	}
 	
+	/*
 	public function actionSection() {
-		/* $section_db = new SectionDB();
+		$section_db = new SectionDB();
 		$section_db->load($this->request->id);
 		if (!$section_db->isSaved()) $this->notFound();
 		$this->section_id = $section_db->id;
@@ -45,12 +49,12 @@ class MainController extends Controller {
 		}
 		
 		$blog->articles = $articles;
-		$blog->more_articles = $more_articles; */
+		$blog->more_articles = $more_articles; 
 		$head = $this->getHead(array("/css/main.css"));
 		$this->render($head, "пт Бро!");
 	}
 	
-	/* 
+	 
 	public function actionCategory() {
 		$category_db = new CategoryDB();
 		$category_db->load($this->request->id);

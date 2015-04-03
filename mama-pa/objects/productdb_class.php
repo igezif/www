@@ -9,7 +9,7 @@ class ProductDB extends ObjectDB {
 		$this->add("category_id", "ValidateID");
 		$this->add("img", "ValidateIMG");
 		$this->add("brand_id", "ValidateID");
-		$this->add("price");
+		$this->add("price", "ValidatePrice");
 		$this->add("title", "ValidateTitle");
 		$this->add("meta_desc", "ValidateMD");
 		$this->add("meta_key", "ValidateMK");

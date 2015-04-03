@@ -2,6 +2,8 @@
 
 class AdminController extends Controller {
 	
+	private $names = array("brand" => "Бренды", "slider" => "Слайдер на главной странице", "section" => "Секции", "category" => "Категории", "product" => "Товары");
+	
 	public function actionMenu() {
 		if (!self::isAuthAdmin()) return null;
 		$this->title = "Админ панель";
@@ -131,7 +133,8 @@ class AdminController extends Controller {
 		$admin_menu->message = $this->fp->getSessionMessage($this->request->view);
 		$hornav = new Hornav();
 		$hornav->addData("Админпанель", URL::get("menu", "admin"));
-		$hornav->addData($this->request->view, URL::get($this->request->view, "admin"));
+		$name = $this->names[$this->request->view];
+		$hornav->addData($name, URL::get($this->request->view, "admin"));
 		$hornav->addData("Добавить");
 		$this->render($head, $this->renderData(array("hornav" => $hornav, "admin_menu" => $admin_menu), "adminpanel"));
 	}
@@ -189,7 +192,8 @@ class AdminController extends Controller {
 		$admin_menu->message = $this->fp->getSessionMessage($this->request->view);
 		$hornav = new Hornav();
 		$hornav->addData("Админпанель", URL::get("menu", "admin"));
-		$hornav->addData($this->request->view, URL::get($this->request->view, "admin"));
+		$name = $this->names[$this->request->view];
+		$hornav->addData($name, URL::get($this->request->view, "admin"));
 		$hornav->addData("Изменить");
 		$this->render($head, $this->renderData(array("hornav" => $hornav, "admin_menu" => $admin_menu), "adminpanel"));
 	}
