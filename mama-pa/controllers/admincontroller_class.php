@@ -77,6 +77,22 @@ class AdminController extends Controller {
 		$this->render($head, $this->renderData(array("hornav" => $hornav, "admin_menu" => $admin_menu), "adminpanel"));
 	}
 	
+	public function actionProduct() {
+		if (!self::isAuthAdmin()) return null;
+		$this->title = "Админ панель";
+		$this->meta_desc = "Админ панель";
+		$this->meta_key = "админ панель";
+		$head = $this->getHead(array("/css/main.css"), false);
+		$admin_menu = new Productadmin();
+		$admin_menu->items = ProductDB::getAdminShow();
+		//$admin_menu->link_insert = URL::get("insert", "admin", array("view" => "product"));
+		$admin_menu->message = $this->fp->getSessionMessage("product");
+		$hornav = new Hornav();
+		$hornav->addData("Админпанель", URL::get("menu", "admin"));
+		$hornav->addData("Товары");
+		$this->render($head, $this->renderData(array("hornav" => $hornav, "admin_menu" => $admin_menu), "adminpanel"));
+	}
+	
 	public function actionInsert() {
 		if (!self::isAuthAdmin()) return null;
 		if ($this->request->insert_brand) {
@@ -157,6 +173,13 @@ class AdminController extends Controller {
 			if ($obj instanceof CategoryDB) $this->redirect(URL::get("category", "admin"));
 			else $this->redirect(URL::current());
 		}
+		else if($this->request->update_product){
+			$obj_db = new ProductDB();
+			$obj_db->load($this->request->id);
+			$obj = $this->fp->process($this->request->view, $obj_db, array("category_id", "brand_id", "price", "title", "meta_desc", "meta_key", "available"), array(), "SUCCESS_POSITION_UPDATE");
+			if ($obj instanceof ProductDB) $this->redirect(URL::get("product", "admin"));
+			else $this->redirect(URL::current());
+		}
 		$this->title = "Админ панель";
 		$this->meta_desc = "Админ панель";
 		$this->meta_key = "админ панель";
@@ -221,10 +244,6 @@ class AdminController extends Controller {
 				}
 			break;
 		}	
-	}
-	
-	public function actionProduct() {
-		
 	}
 
 	public function actionLogout() {

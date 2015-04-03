@@ -490,9 +490,18 @@ header{
 	margin: 10px;
 }
 
-.admin_form > div > label{
+.admin_form div > label{
 	display: block;
 	margin: 15px 0 5px 5px;
+}
+
+.admin_form div > input[type=text]{
+	width: 250px;
+}
+
+.admin_form div > textarea{
+	width: 250px;
+	padding: 0 5px 0 5px;
 }
 
 .admin_form textarea{

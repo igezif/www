@@ -36,7 +36,31 @@ class ProductDB extends ObjectDB {
 		return $products;
 	}
 	
-	public static function getBrandsOnCategory ($category_number) {
+	public static function getAdminShow(){
+		$data = self::$db->getResult(
+			"select p.id, p.title, p.img, c.title as category, b.title as brand, p.price, p.meta_desc, p.meta_key, p.available
+			from ".Config::DB_PREFIX."product p 
+			left join ".Config::DB_PREFIX."category c on p.category_id=c.id
+			left join ".Config::DB_PREFIX."brand b on p.brand_id=b.id"
+		);
+		$items = ObjectDB::buildMultiple(__CLASS__, $data);
+		foreach ($items as $item) $item->postAdminHandling();
+		return $items;
+	}
+	
+	private function postAdminHandling(){
+		if (!is_null($this->img)){
+			$view = new View(Config::DIR_TMPL);
+			$this->imageName = $this->img;
+			$this->img = $view->render("img", array("src" => $this->img), true);
+		}
+		else $this->img = "нет";
+		$this->link_update = URL::get("update", "admin", array("view" => "product", "id" => $this->id));
+		$this->link_delete = URL::get("delete", "admin", array("view" => "product", "id" => $this->id));
+		return true;
+	}
+	
+	/* public static function getBrandsOnCategory ($category_number) {
 		$select = new Select(self::$db);
 		$select->from(self::$table, "*")
 			->where("`category_number` = ".self::$db->getSQ(), array($category_number))
@@ -44,7 +68,7 @@ class ProductDB extends ObjectDB {
 		$data = self::$db->select($select);
 		$brands = ObjectDB::buildMultiple(__CLASS__, $data);
 		return $brands;
-	}
+	} */
 	
 	protected function postInsert() {
 		return $this->id;

@@ -20,8 +20,8 @@ class BrandDB extends ObjectDB {
 	}
 	
 	private function postAdminHandling(){
-		$view = new View(Config::DIR_TMPL);
 		if (!is_null($this->img)){
+			$view = new View(Config::DIR_TMPL);
 			$this->imageName = $this->img;
 			$this->img = $view->render("img", array("src" => Config::DIR_IMG_BRAND.$this->img), true);
 		}

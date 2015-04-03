@@ -23,6 +23,10 @@ class Form extends ModuleHornav {
 		$this->input($name, "text", $label, $value, $default_v);
 	}
 	
+	public function checkbox($name, $label = "", $value = "", $default_v = "", $on = false) {
+		$this->input($name, "checkbox", $label, $value, $default_v, $on);
+	}
+	
 	public function textarea($name, $label = "", $value = "", $default_v = "") {
 		$this->input($name, "textarea", $label, $value, $default_v);
 	}
@@ -47,13 +51,14 @@ class Form extends ModuleHornav {
 		$this->input($name, "submit", "", $value);
 	}
 	
-	private function input($name, $type, $label, $value = false, $default_v = false) {
+	private function input($name, $type, $label, $value = false, $default_v = false, $on = false) {
 		$cl = new stdClass();
 		$cl->name = $name;
 		$cl->type = $type;
 		$cl->label = $label;
 		$cl->value = $value;
 		$cl->default_v = $default_v;
+		$cl->on = $on;
 		$this->inputs = $cl;
 	}
 	

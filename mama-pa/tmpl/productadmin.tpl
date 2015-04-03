@@ -1,7 +1,36 @@
-<h3>Бренды</h3>
-<table border = "1">
-<tr><td>№</td><td>Навание</td><td>Картинка</td></tr>
-<?php $i = 1; foreach ($items as $item) {?>
-<tr><td><?=$i?></td><td><a href = "<?=$item->link?>"><?=$item->name?></a></td><td><?=($item->img) ? $item->img : "нет"?></td></tr>
-<?php $i++; } ?>
-</table>
+<div class = "admin_block">
+	<?php if ($message) { ?><p class="admin_message"><?=$message?></p><?php } ?>
+	<div class = "row section_header">
+		<div class = "big_arow"></div>
+		<div><h2>Товары</h2></div>
+	</div>
+	
+	<div class = "border">
+		<table class = "admin_table" style = "font-size: 80%;">
+			<tr>
+				<td>№</td>
+				<td>Навание</td>
+				<td>Картинка</td>
+				<td>Категория</td>
+				<td>Бренд</td>
+				<td>Цена</td>
+				<td>Описание</td>
+				<td>Ключевые слова</td>
+				<td>Н</td>
+			</tr>
+			<?php $i = 1; foreach ($items as $item) {?>
+			<tr>
+				<td><?=$i?></td>
+				<td><a href = "<?=$item->link_update?>"><?=$item->title?></a></td>
+				<td class = "admin_img"><?=$item->img?></td>
+				<td><?=$item->category?></td>
+				<td><?=$item->brand?></td>
+				<td><?=$item->price?></td>
+				<td><?=$item->meta_desc?></td>
+				<td><?=$item->meta_key?></td>
+				<td><?=$item->available?></td>
+			</tr>
+			<?php $i++; } ?>
+		</table>
+	</div>
+</div>
