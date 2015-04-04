@@ -26,6 +26,8 @@
             <File name="mama-pa\modules\header_class.php" />
             <File name="mama-pa\modules\sectionadmin_class.php" />
             <File name="mama-pa\modules\formsection_class.php" />
+            <File name="mama-pa\modules\formcategory_class.php" />
+            <File name="mama-pa\modules\formproduct_class.php" />
         </Folder>
         <Folder name="img">
             <Folder name="brand" />
@@ -105,6 +107,9 @@
             <File name="mama-pa\tmpl\adminpanel.tpl" />
             <File name="mama-pa\tmpl\f_captcha.tpl" />
             <File name="mama-pa\tmpl\header.tpl" />
+            <File name="mama-pa\tmpl\formcategory.tpl" />
+            <File name="mama-pa\tmpl\formproduct.tpl" />
+            <File name="mama-pa\tmpl\f_checkbox.tpl" />
         </Folder>
         <Folder name="text">
             <File name="mama-pa\text\messages.ini" />
@@ -140,6 +145,7 @@
             <File name="mama-pa\lib\usesef_class.php" />
             <File name="mama-pa\lib\objectdb_class.php" />
             <File name="mama-pa\lib\.htaccess" />
+            <File name="mama-pa\lib\download_class.php" />
         </Folder>
         <Folder name="validator">
             <File name="mama-pa\validator\validateid_class.php" />
@@ -162,6 +168,7 @@
             <File name="mama-pa\validator\validatedate_class.php" />
             <File name="mama-pa\validator\.htaccess" />
             <File name="mama-pa\validator\validatename_class.php" />
+            <File name="mama-pa\validator\validateprice_class.php" />
         </Folder>
         <File name="mama-pa\captcha.php" />
         <File name="mama-pa\api.php" />

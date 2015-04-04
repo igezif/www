@@ -6,14 +6,14 @@ class ProductDB extends ObjectDB {
 	
 	public function __construct() {
 		parent::__construct(self::$table);
-		$this->add("category_id", "ValidateID");
-		$this->add("img", "ValidateIMG");
-		$this->add("brand_id", "ValidateID");
-		$this->add("price", "ValidatePrice");
-		$this->add("title", "ValidateTitle");
-		$this->add("meta_desc", "ValidateMD");
-		$this->add("meta_key", "ValidateMK");
-		$this->add("available", "ValidateBoolean");
+		$this->add("category_id");
+		$this->add("img");
+		$this->add("brand_id");
+		$this->add("price");
+		$this->add("title");
+		$this->add("meta_desc");
+		$this->add("meta_key");
+		$this->add("available");
 	}
 	
 	protected function postInit() {
@@ -52,7 +52,7 @@ class ProductDB extends ObjectDB {
 		if (!is_null($this->img)){
 			$view = new View(Config::DIR_TMPL);
 			$this->imageName = $this->img;
-			$this->img = $view->render("img", array("src" => $this->img), true);
+			$this->img = $view->render("img", array("src" => Config::DIR_IMG_PRODUCT.$this->img), true);
 		}
 		else $this->img = "нет";
 		$this->link_update = URL::get("update", "admin", array("view" => "product", "id" => $this->id));

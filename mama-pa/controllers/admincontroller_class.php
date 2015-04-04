@@ -87,7 +87,7 @@ class AdminController extends Controller {
 		$head = $this->getHead(array("/css/main.css"), false);
 		$admin_menu = new Productadmin();
 		$admin_menu->items = ProductDB::getAdminShow();
-		//$admin_menu->link_insert = URL::get("insert", "admin", array("view" => "product"));
+		$admin_menu->link_insert = URL::get("insert", "admin", array("view" => "product"));
 		$admin_menu->message = $this->fp->getSessionMessage("product");
 		$hornav = new Hornav();
 		$hornav->addData("Админпанель", URL::get("menu", "admin"));

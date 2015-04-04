@@ -18,8 +18,8 @@ abstract class Config {
 	const DB_PREFIX = "xyz_";
 	const DB_SYM_QUERY = "?";
 	
-	const DIR_IMG = "img/";
-	const DIR_IMG_PRODUCTS = "img/product/";
+	const DIR_IMG = "/img/";
+	const DIR_IMG_PRODUCT = "/img/product/";
 	const DIR_IMG_BRAND = "/img/brand/";
 	//const DIR_AVATAR = "img/avatar/";
 	const DIR_TMPL = "tmpl/";

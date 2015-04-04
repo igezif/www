@@ -1,15 +1,29 @@
 <?php
 	require_once "start.php";
 	$request = new Request();
+	ini_set('max_execution_time', 500000);
 	
 	switch ($request->action) {
 		case "refresh":
 			if ($request->key === Config::REFRESH_KEY){
-				$refresh = new Refresh();
-				echo $refresh->go();
+				$obj = new Refresh();
+				echo $obj->go();
 			}
-			else echo $refresh->error();
-			break;
+			else echo $obj->error();
+		break;
+		case "download":
+			$obj = new Download();
+			echo $obj->go();
+		break;
+		case "setp":
+			$obj = new Download();
+			$obj->setProduct($request->category_id, $request->img, $request->brand_id, $request->price, $request->title, $request->meta_desc, $request->meta_key, $request->available);
+		break;
+		
+		case "loadp":
+			$obj = new Download();
+			$obj->loadp();
+		break;
 	}
 	
 	

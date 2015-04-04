@@ -7,16 +7,16 @@ class MainController extends Controller {
 		$this->meta_desc = "Интернет-магазин детских товаров";
 		$this->meta_key = "товары для детей, детские товары";
 		$head = $this->getHead(array("/css/main.css"));
-		/* $head->add("js", null, true);
+		$head->add("js", null, true);
 		$head->js = array("/js/jquery-1.10.2.min.js", "/js/main.js", "/js/slider.js");
 		$sections = new Section();
 		$sections->items = SectionDB::getAllShow();
 		$slider = new Slider();
 		$slider->items = SliderDB::getItems();
-		$this->render($head, $this->renderData(array("slider" => $slider, "sections" => $sections), "index")); */
+		$this->render($head, $this->renderData(array("slider" => $slider, "sections" => $sections), "index"));
 		
-		$head = $this->getHead(array("/css/main.css"));
-		$this->render($head, "<h1>В настоящее время на сайте идут технические работы.</h1>");
+		//$head = $this->getHead(array("/css/main.css"));
+		//$this->render($head, "<h1>В настоящее время на сайте идут технические работы.</h1>");
 	}
 	
 	/*
