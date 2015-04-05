@@ -5,6 +5,7 @@
 			<?php foreach ($inputs as $input) { ?>
 				<?php include "f_".$input->type.".tpl"; ?>
 			<?php } ?>
+			<div id = "for_file_input_adm"><span>Изменить картинку</span><div id = "file_input_adm_wrap" class = "row"><div id = "minus_adm_input">---</div><div id = "div_file_input"></div></div></div>
 		</div>
 		<div>
 			<div style = "vertical-align: top; margin: 10px 0 0 0;">

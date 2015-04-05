@@ -6,14 +6,14 @@ class ProductDB extends ObjectDB {
 	
 	public function __construct() {
 		parent::__construct(self::$table);
-		$this->add("category_id");
-		$this->add("img");
-		$this->add("brand_id");
-		$this->add("price");
-		$this->add("title");
-		$this->add("meta_desc");
-		$this->add("meta_key");
-		$this->add("available");
+		$this->add("category_id", "ValidateID");
+		$this->add("img", "ValidateIMG");
+		$this->add("brand_id", "ValidateID");
+		$this->add("price", "ValidatePrice");
+		$this->add("title", "ValidateTitle");
+		$this->add("meta_desc", "ValidateMD");
+		$this->add("meta_key", "ValidateMK");
+		$this->add("available", "ValidateBoolean");
 	}
 	
 	protected function postInit() {

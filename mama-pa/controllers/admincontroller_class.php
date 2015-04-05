@@ -106,6 +106,23 @@ class AdminController extends Controller {
 				else $this->redirect(URL::current());
 			}
 		}
+		else if($this->request->insert_product){
+			if(isset($_FILES["img"])){
+				$img = $this->fp->uploadIMG($this->request->view, $_FILES["img"], Config::MAX_SIZE_IMG, Config::DIR_IMG_PRODUCT);
+				if ($img) {
+					$obj_db = new ProductDB();
+					$obj = $this->fp->process($this->request->view, $obj_db, array("category_id", array("img", $img), "brand_id", "price", "title", "meta_desc", "meta_key", ($this->request->available) ? "available" : array("available", 0)), array(), "SUCCESS_POSITION_INSERT");
+					if ($obj instanceof ProductDB) $this->redirect(URL::get("product", "admin"));
+					else $this->redirect(URL::current());
+				}
+			}
+			else{
+				$obj_db = new ProductDB();
+				$obj = $this->fp->process($this->request->view, $obj_db, array("category_id", "brand_id", "price", "title", "meta_desc", "meta_key", ($this->request->available) ? "available" : array("available", 0)), array(), "SUCCESS_POSITION_INSERT");
+				if ($obj instanceof ProductDB)$this->redirect(URL::get("product", "admin"));
+				else $this->redirect(URL::current());
+			}
+		}
 		else if ($this->request->insert_slider) {
 			$obj_db = new SliderDB();
 			$obj = $this->fp->process($this->request->view, $obj_db, array("product_id", "title", "description"), array(), "SUCCESS_POSITION_INSERT");
@@ -128,6 +145,8 @@ class AdminController extends Controller {
 		$this->meta_desc = "Админ панель";
 		$this->meta_key = "админ панель";
 		$head = $this->getHead(array("/css/main.css"), false);
+		$head->add("js", null, true);
+		$head->js = array("/js/admin.js");
 		$class = "Form".$this->request->view;
 		$admin_menu = new $class();
 		$admin_menu->message = $this->fp->getSessionMessage($this->request->view);
@@ -152,6 +171,29 @@ class AdminController extends Controller {
 					if ($tmp) File::delete(Config::DIR_IMG_BRAND.$tmp);
 					$this->redirect(URL::get("brand", "admin"));		
 				}
+				else $this->redirect(URL::current());
+			}
+		}
+		else if($this->request->update_product){
+			if(isset($_FILES["img"])){
+				$img = $this->fp->uploadIMG($this->request->view, $_FILES["img"], Config::MAX_SIZE_IMG, Config::DIR_IMG_PRODUCT);
+				if ($img) {
+					$obj_db = new ProductDB();
+					$obj_db->load($this->request->id);
+					$tmp = $obj_db->imageName;
+					$obj = $this->fp->process($this->request->view, $obj_db, array("category_id", array("img", $img), "brand_id", "price", "title", "meta_desc", "meta_key", "available"), array(), "SUCCESS_POSITION_UPDATE");
+					if ($obj instanceof ProductDB){
+						if ($tmp) File::delete(Config::DIR_IMG_PRODUCT.$tmp);
+						$this->redirect(URL::get("product", "admin"));		
+					}
+					else $this->redirect(URL::current());
+				}
+			}
+			else{
+				$obj_db = new ProductDB();
+				$obj_db->load($this->request->id);
+				$obj = $this->fp->process($this->request->view, $obj_db, array("category_id", "brand_id", "price", "title", "meta_desc", "meta_key", "available"), array(), "SUCCESS_POSITION_UPDATE");
+				if ($obj instanceof ProductDB)$this->redirect(URL::get("product", "admin"));
 				else $this->redirect(URL::current());
 			}
 		}
@@ -187,6 +229,8 @@ class AdminController extends Controller {
 		$this->meta_desc = "Админ панель";
 		$this->meta_key = "админ панель";
 		$head = $this->getHead(array("/css/main.css"), false);
+		$head->add("js", null, true);
+		$head->js = array("/js/admin.js");
 		$class = "Form".$this->request->view;
 		$admin_menu = new $class($this->request->id);
 		$admin_menu->message = $this->fp->getSessionMessage($this->request->view);
@@ -207,6 +251,19 @@ class AdminController extends Controller {
 					$obj_db->load($this->request->id);
 					$tmp = $obj_db->imageName;
 					if ($tmp) File::delete(Config::DIR_IMG_BRAND.$tmp);
+					if($obj_db->delete()) $this->fp->setSessionMessage($this->request->view, "SUCCESS_POSITION_DELETE");
+					else $this->fp->setSessionMessage($this->request->view, "NOTFOUND_POSITION");
+					$this->redirect(URL::get($this->request->view, "admin"));
+				} catch (Exception $e) {
+					$this->setSessionMessage($this->request->view, $this->getError($e));
+				}
+			break;
+			case "product":
+				try {
+					$obj_db = new ProductDB();
+					$obj_db->load($this->request->id);
+					$tmp = $obj_db->imageName;
+					if ($tmp) File::delete(Config::DIR_IMG_PRODUCT.$tmp);
 					if($obj_db->delete()) $this->fp->setSessionMessage($this->request->view, "SUCCESS_POSITION_DELETE");
 					else $this->fp->setSessionMessage($this->request->view, "NOTFOUND_POSITION");
 					$this->redirect(URL::get($this->request->view, "admin"));

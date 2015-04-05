@@ -4,7 +4,7 @@
 		<div class = "big_arow"></div>
 		<div><h2>Товары</h2></div>
 	</div>
-	
+	<a class = "admin_insert" href = "<?=$link_insert?>">Добавить</a>
 	<div class = "border">
 		<table class = "admin_table" style = "font-size: 80%;">
 			<tr>
@@ -21,7 +21,7 @@
 			<?php $i = 1; foreach ($items as $item) {?>
 			<tr>
 				<td><?=$i?></td>
-				<td><a href = "<?=$item->link_update?>"><?=$item->title?></a></td>
+				<td class = "row"><a href = "<?=$item->link_update?>"><?=$item->title?></a><a class="link_adm_del" href = "<?=$item->link_delete?>">Удалить</a></td>
 				<td class = "admin_img"><?=$item->img?></td>
 				<td><?=$item->category?></td>
 				<td><?=$item->brand?></td>

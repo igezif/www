@@ -530,6 +530,50 @@ header{
 	border-radius: 3px;
 	background-color: #ffffff;
 }
+
+.link_adm_del{
+	margin: 25px 0 0 10px
+}
+
+#for_file_input_adm{
+	padding: 10px 0 0 7px;
+}
+
+#for_file_input_adm > span{
+	color: blue;
+	display: block;
+}
+
+#file_input_adm_wrap{
+	display: none;
+}
+
+#for_file_input_adm > span:hover{
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+#minus_adm_image:hover{
+	cursor: pointer;
+}
+
+#minus_adm_input{
+	
+	padding: 5px;
+	background-color: orange;
+}
+
+#minus_adm_input:hover{
+	cursor: pointer;
+	font-style: bold;
+	color: blue;
+	background-color: #ffffff;
+}
+
+#input_file{
+	
+}
+
 /* ---   FOOTER   --- */
 
 footer{

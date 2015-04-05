@@ -12,8 +12,8 @@ class Formproduct extends Form {
 		$this->categories = CategoryDB::getAll();
 		$this->brands = BrandDB::getAll();
 		if(!$id){
-			$this->text("price", "Цена:");
 			$this->text("title", "Название:");
+			$this->text("price", "Цена:");			
 			$this->textarea("meta_desc", "Описание:");
 			$this->textarea("meta_key", "Ключевые слова:");
 			$this->checkbox("available", "Наличие:", "1");

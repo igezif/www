@@ -2,7 +2,7 @@
 	<nav id = "headnav" class = "content">
 		<div id = "top_menu_wrap" class = "row">
 			<div id = "phone">
-				8 (383) 913-13-13
+				+7-913-781-39-97
 			</div>
 			<div id="top_menu" class = "row">
 				<a href="#">Статус заказа</a>
