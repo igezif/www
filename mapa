@@ -4,6 +4,7 @@
             <File name="mama-pa\js\jquery-1.10.2.min.js" />
             <File name="mama-pa\js\slider.js" />
             <File name="mama-pa\js\main.js" />
+            <File name="mama-pa\js\admin.js" />
         </Folder>
         <Folder name="modules">
             <File name="mama-pa\modules\adminauth_class.php" />

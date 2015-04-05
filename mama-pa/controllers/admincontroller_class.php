@@ -218,13 +218,6 @@ class AdminController extends Controller {
 			if ($obj instanceof CategoryDB) $this->redirect(URL::get("category", "admin"));
 			else $this->redirect(URL::current());
 		}
-		else if($this->request->update_product){
-			$obj_db = new ProductDB();
-			$obj_db->load($this->request->id);
-			$obj = $this->fp->process($this->request->view, $obj_db, array("category_id", "brand_id", "price", "title", "meta_desc", "meta_key", "available"), array(), "SUCCESS_POSITION_UPDATE");
-			if ($obj instanceof ProductDB) $this->redirect(URL::get("product", "admin"));
-			else $this->redirect(URL::current());
-		}
 		$this->title = "Админ панель";
 		$this->meta_desc = "Админ панель";
 		$this->meta_key = "админ панель";

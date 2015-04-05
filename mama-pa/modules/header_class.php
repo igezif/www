@@ -14,5 +14,3 @@ class Header extends Module {
 	}
 	
 }
-
-?>
