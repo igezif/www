@@ -31,6 +31,10 @@ a{
 	height: 30px;
 }
 
+#container{
+	min-height: 100%;
+}
+
 /* HEADER */
 
 #logo{
