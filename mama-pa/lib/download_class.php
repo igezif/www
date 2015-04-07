@@ -2,6 +2,49 @@
 ini_set('max_execution_time', 500000);
 class Download {
 	
+	private $xml;
+	private $dom;
+	private $products;
+	private $xml_products;
+	private $categories;
+	private $xml_categories;
+	
+	public function __construct() {
+		$this->xml = file_get_contents('http://abumba.ru/index.php?route=feed/opt_yml');
+		//$xml = file_get_contents('http://test');
+		$this->dom = new SimpleXMLElement($this->xml);
+		$this->products = ProductDB::getAll();
+		$this->xml_products = $this->dom->shop->offers->offer;
+		$this->categories = CategoryDB::getAll();
+		$this->xml_categories = $this->dom->shop->categories->category;
+	}
+	
+	public function setCategory(){
+		$i = 1;
+		foreach($this->products as $product){
+			$product_db = new ProductDB();
+			$product_db->load($product->id);
+			if($product_db->category_id === "0"){	
+				$category_id = $this->getCategoryIdOnName($product->title);
+				$product_db->category_id = $category_id;
+				$product_db->save();
+				$i++;
+			}
+			//if($i==3)break;
+		}
+	}
+	
+	public function getCategoryIdOnName($p_title){
+		foreach($this->xml_products as $xml_product){
+			$name = (string) $xml_product->name[0];
+			if ($name === $p_title) {
+				$number = (string) $xml_product->categoryId[0];
+				$id = CategoryDB::getIdonNumder($number);
+				return $id;
+			}
+		}
+	}
+	
 	public function go() {
 		$products = ProductDB::getAll();
 		$i = 1;
@@ -35,6 +78,8 @@ class Download {
 		$obj->available = $available;
 		$obj->save();
 	}
+	
+	
 	
 	private function getName(){
 		$n = uniqid();

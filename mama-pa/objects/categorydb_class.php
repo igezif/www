@@ -18,25 +18,8 @@ class CategoryDB extends ObjectDB {
 		$this->link = URL::get("category", "", array("id" => $this->id));
 		return true;
 	}
-
-	public static function getAllShow() {
-		$select = new Select(self::$db);
-		$select->from(self::$table, "*")
-			->where("`parent_id` is NULL");
-		$data = self::$db->select($select);
-		$category = ObjectDB::buildMultiple(__CLASS__, $data);
-		foreach ($category as $cat) $cat->postHandling();
-		return $category;
-	}
 	
-	public static function getAdminShow(){
-		$data = self::$db->getResult("select c.*, s.title as section from ".Config::DB_PREFIX."category c left join ".Config::DB_PREFIX."section s on c.section_id=s.id");
-		$category = ObjectDB::buildMultiple(__CLASS__, $data);
-		foreach ($category as $cat) $cat->postAdminHandling();
-		return $category;
-	}
-
-	public static function getChildCategory($id){
+	public static function getCategoryOnSection($id){
 		$select = new Select(self::$db);
 		$select->from(self::$table, "*")
 			->where("`section_id` = ?", array($id))
@@ -46,18 +29,35 @@ class CategoryDB extends ObjectDB {
 		return $category;
 	}
 	
+	protected function postInsert() {
+		return $this->id;
+	}
+	
+	/* ADMINKA */
+	public static function getAdminShow(){
+		$data = self::$db->getResult("select c.*, s.title as section from ".Config::DB_PREFIX."category c left join ".Config::DB_PREFIX."section s on c.section_id=s.id");
+		$category = ObjectDB::buildMultiple(__CLASS__, $data);
+		foreach ($category as $cat) $cat->postAdminHandling();
+		return $category;
+	}
+	
 	private function postAdminHandling(){
 		$this->link_update = URL::get("update", "admin", array("view" => "category", "id" => $this->id));
 		$this->link_delete = URL::get("delete", "admin", array("view" => "category", "id" => $this->id));
 	}
 	
-	private function postHandling() {
-		$this->child_category = self::getChildCategory ($this->id);
-		$this->product = ProductDB::getThreeRandProduct ($this->id);
-	}
-	
-	protected function postInsert() {
-		return $this->id;
+	public static function getIdonNumder($number){
+		$select = new Select(self::$db);
+		$select->from(self::$table, array("id"))
+			->where("`number` = ?", array($number));
+		$id = self::$db->selectCell($select);
+		if(!$id){
+			$select = new Select(self::$db);
+			$select->from(self::$table, array("id"))
+				->where("`parent_number` = ?", array($number));
+			$id = self::$db->selectCell($select);
+		}
+		return $id;
 	}
 	
 }

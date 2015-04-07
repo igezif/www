@@ -39,7 +39,7 @@ abstract class AbstractDataBase {
 		if (!$result_set) return false;
 		$array = array();
 		while (($row = $result_set->fetch_assoc()) != false)
-			$array[] = $row;
+			$array[$row["id"]] = $row;
 		return $array;
 	}
 	

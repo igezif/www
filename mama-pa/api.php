@@ -22,7 +22,7 @@
 		
 		case "loadp":
 			$obj = new Download();
-			$obj->loadp();
+			$obj->setCategory();
 		break;
 	}
 	

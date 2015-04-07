@@ -60,6 +60,9 @@ class Refresh {
 		echo "В базу внесено ".$p." наименований товаров.";
 		
 	}
+	
+	
+
 
 	public function error() {
 		return json_encode(array("result" => false, "error" => "no correct refresh-key"));
