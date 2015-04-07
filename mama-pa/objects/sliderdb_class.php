@@ -48,7 +48,7 @@ class SliderDB extends ObjectDB {
 	
 	private function postAdminHandling(){
 		$view = new View(Config::DIR_TMPL);
-		if (!is_null($this->img)) $this->img = $view->render("img", array("src" => Config::DIR_IMG_PRODUCT.$this->img), true);
+		if (!is_null($this->img)) $this->img = $view->render("img", array("src" => $this->img), true);
 		else $this->img = "нет";
 		$this->link_update = URL::get("update", "admin", array("view" => "slider", "id" => $this->id));
 		$this->link_delete = URL::get("delete", "admin", array("view" => "slider", "id" => $this->id));

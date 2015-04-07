@@ -6,7 +6,7 @@ class Header extends Module {
 		parent::__construct();
 		$this->add("uri");
 		$this->add("link_search");
-		//$this->add("items", null, true);
+		$this->add("menu_items", null, true);
 	}
 	
 	public function getTmplFile() {

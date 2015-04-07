@@ -27,15 +27,9 @@
 			<div id = "second_menu_and_search">
 				<div id = "second_menu">
 					<div class = "row">
-						<a href="/section">Бренды</a>
-						<a href="/summer.html">Лето и отдых</a>
-						<a href="/bathing.html">Купание</a>
-						<a href="/forbabyroom.html">Для детской</a>
-						<a href="/eating.html">Кормление</a>	
-						<a href="/clothes.html">Обувь и одежда</a>
-						<a href="/bags.html">Сумки</a>
-						<a href="/playing.html">Игрушки</a>
-						<a href="/info.html">Информация</a>
+						<?php foreach($menu_items as $item) { ?>
+						<a href="<?=$item->link?>"><?=$item->title?></a>
+						<?php } ?>
 					</div>
 				</div>
 				<div id = "search">

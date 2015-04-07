@@ -19,7 +19,7 @@
 						<td><?=$i?></td>
 						<td><?=$product->title?></td>
 						<td><?=$product->meta_desc?></td>
-						<td class = "admin_img"><img src = "<?=$product->img?>" /></td>
+						<td class = "admin_img"><?=$product->img?></td>
 						<td class = "for_radio_td">
 							<input name="product_id" type="radio" value="<?=$product->id?>" <?php if(isset($product_id) && $product->id == $product_id) { ?>checked<?php } ?> />
 						</td>

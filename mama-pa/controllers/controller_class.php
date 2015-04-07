@@ -15,6 +15,7 @@ abstract class Controller extends AbstractController {
 		$this->mail = new Mail();
 		$this->url_active = URL::deleteGET(URL::current(), "page");
 		$this->link_search = URL::get("search");
+		
 	}
 	
 	public function action404() {
@@ -81,6 +82,7 @@ abstract class Controller extends AbstractController {
 		$header = new Header();
 		$header->uri = $this->url_active;
 		$header->link_search = $this->link_search;
+		$header->menu_items = SectionDB::getAll();
 		return $header;
 	}
 	

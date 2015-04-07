@@ -10,11 +10,6 @@ class SectionDB extends ObjectDB {
 		$this->add("meta_desc", "ValidateMD");
 		$this->add("meta_key", "ValidateMK");
 	}
-	
-	protected function postInit() {
-		$this->link = URL::get("section", "", array("id" => $this->id));
-		return true;
-	}
 
 	public static function getAllShow() {
 		$category = self::getAll();

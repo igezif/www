@@ -32,7 +32,7 @@ class ProductDB extends ObjectDB {
 			from ".Config::DB_PREFIX."product p 
 			inner join ".Config::DB_PREFIX."category c on p.category_id=c.id
 			inner join ".Config::DB_PREFIX."section s on c.section_id=s.id
-			where s.id = ?", array($section_id)
+			where s.id = ? and p.available = 1", array($section_id)
 		);
 		shuffle($data);
 		$array = array_slice($data, 0, 3);
@@ -55,7 +55,6 @@ class ProductDB extends ObjectDB {
 			left join ".Config::DB_PREFIX."category c on p.category_id=c.id
 			left join ".Config::DB_PREFIX."brand b on p.brand_id=b.id"
 		);
-		print_r($data);die;
 		$items = ObjectDB::buildMultiple(__CLASS__, $data);
 		foreach ($items as $item) $item->postAdminHandling();
 		return $items;

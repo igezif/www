@@ -7,17 +7,17 @@
 	<a class = "admin_insert" href = "<?=$link_insert?>">Добавить</a>
 	<div class = "border">
 		<table class = "admin_table">
-			<tr><td><i>№</i></td><td><i>Секция</i></td><td><i>Навание</i></td><td><i>Описание</i></td><td><i>Ключевые слова</i></td><td><i>Удалить</i></td></tr>
+			<tr><td><i>№</i></td><td><i>Навание</i></td><td><i>Секция</i></td><td><i>Описание</i></td><td><i>Ключевые слова</i></td><td><i>Удалить</i></td></tr>
 			<?php $i = 1; foreach ($items as $item) {?>
 			<tr>
 				<td>
 					<b><?=$i?></b>
 				</td>
 				<td>
-					<?=$item->section?>
+					<a href = "<?=$item->link_update?>"><?=$item->title?></a>
 				</td>
 				<td>
-					<a href = "<?=$item->link_update?>"><?=$item->title?></a>
+					<?=$item->section?>
 				</td>
 				<td>
 					<?=$item->meta_desc?>

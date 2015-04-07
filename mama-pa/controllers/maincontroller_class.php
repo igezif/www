@@ -14,8 +14,6 @@ class MainController extends Controller {
 		$slider = new Slider();
 		$slider->items = SliderDB::getItems();
 		$this->render($head, $this->renderData(array("slider" => $slider, "sections" => $sections), "index"));
-		
-		//$head = $this->getHead(array("/css/main.css"));
 		//$this->render($head, "<h1>В настоящее время на сайте идут технические работы.</h1>");
 	}
 	
