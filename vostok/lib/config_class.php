@@ -2,9 +2,9 @@
 
 abstract class Config {
 
-	const SITENAME = "www.mama-pa.ru";
+	const SITENAME = "prorab54.ru";
 	const SECRET = "EEE";
-	const ADDRESS = "http://www.mama-pa.ru";
+	const ADDRESS = "http://prorab54.ru";
 	const ADM_NAME = "Василий Борисович";
 	const ADM_EMAIL = "vasilek.php@yandex.ru";
 	
@@ -12,10 +12,10 @@ abstract class Config {
 	const REFRESH_KEY = "update113";
 	
 	const DB_HOST = "localhost";
-	const DB_USER = "root";
-	const DB_PASSWORD = "123qwe";
+	const DB_USER = "vostok";
+	const DB_PASSWORD = "123service4567";
 	const DB_NAME = "vostok";
-	const DB_PREFIX = "xyz_";
+	const DB_PREFIX = "lektor11_";
 	const DB_SYM_QUERY = "?";
 	
 	const DIR_IMG = "/img/";
