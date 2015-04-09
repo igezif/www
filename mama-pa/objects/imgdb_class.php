@@ -10,6 +10,20 @@ class ImgDB extends ObjectDB {
 		$this->add("url", "ValidateIMG");
 	}
 	
+	public static function getImgOnID($id){
+		$select = new Select(self::$db);
+		$select->from(self::$table, "*")
+			->where("`product_id` = ".self::$db->getSQ(), array($id));
+		$data = self::$db->select($select);
+		$images = ObjectDB::buildMultiple(__CLASS__, $data);
+		foreach ($images as $image) $image->postAdminHandling();
+		return $images;
+	}
+	
+	private function postAdminHandling(){
+		$this->url = Config::DIR_IMG_FSAPRODUCT.$this->url;
+	}
+	
 	/* protected function postInit() {
 		if (!is_null($this->img)) $this->img = Config::DIR_IMG_ARTICLES.$this->img;
 		$this->link = URL::get("article", "", array("id" => $this->id));

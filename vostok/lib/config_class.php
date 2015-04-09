@@ -12,10 +12,10 @@ abstract class Config {
 	const REFRESH_KEY = "update113";
 	
 	const DB_HOST = "localhost";
-	const DB_USER = "vostok";
-	const DB_PASSWORD = "123service4567";
+	const DB_USER = "root";
+	const DB_PASSWORD = "123qwe";
 	const DB_NAME = "vostok";
-	const DB_PREFIX = "lektor11_";
+	const DB_PREFIX = "";
 	const DB_SYM_QUERY = "?";
 	
 	const DIR_IMG = "/img/";
@@ -41,5 +41,3 @@ abstract class Config {
 	//const DEFAULT_AVATAR = "default.png";
 	const MAX_SIZE_IMG = 300000;
 }
-
-?>

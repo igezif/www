@@ -6,6 +6,7 @@ class Formproduct extends Form {
 		parent::__construct();
 		$this->add("categories");
 		$this->add("brands");
+		
 		$this->name = "form_product";
 		$this->enctype = "multipart/form-data";
 		$this->action = URL::current();
@@ -22,6 +23,7 @@ class Formproduct extends Form {
 		else{
 			$this->add("category_id");
 			$this->add("brand_id");
+			$this->add("fotos");
 			$this->hidden("id", $id);
 			$obj = new ProductDB();
 			$obj->load($id);
@@ -35,6 +37,7 @@ class Formproduct extends Form {
 			$this->img = $view->render("img", array("src" => $obj->img), true);
 			$this->category_id = $obj->category_id;
 			$this->brand_id = $obj->brand_id;
+			$this->fotos = ImgDB::getImgOnID($id);
 		}
 		
 		

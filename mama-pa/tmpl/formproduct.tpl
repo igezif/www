@@ -43,5 +43,13 @@
 				</table>
 			</div>
 		</div>
+		<div class = "dop_admin_foto row">
+			<p>Фотографии</p>
+			<?php foreach($fotos as $foto) { ?>
+			<div>
+				<img src = "<?=$foto->url?>" alt = "Изображение" />
+			</div>
+			<?php } ?>
+		</div>
 	</div>
 </form>

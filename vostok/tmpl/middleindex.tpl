@@ -5,22 +5,22 @@
 </div>
 <div id = "big_menu" class = "content">
 	<a href = "#" class = "big_menu_item">
-		<img class = "big_menu_foto" src = "/img/main/big_menu.png" alt = "Изображение" />
-		<img class = "big_menu_arow" src = "/img/main/strelka_1.png" alt = "Изображение" />
+		<!-- <img class = "big_menu_foto" src = "/img/main/big_menu.png" alt = "Изображение" />
+		<img class = "big_menu_arow" src = "/img/main/strelka_1.png" alt = "Изображение" /> -->
 		<h2 class = "first_p">Строительство домов<br /> и коттеджей</h2>
 	</a>
 	<div>
 	</div>
 	<a href = "#" class = "big_menu_item">
-		<img class = "big_menu_foto" src = "/img/main/big_menu.png" alt = "Изображение" />
-		<img class = "big_menu_arow" src = "/img/main/strelka_1.png" alt = "Изображение" />
+		<!-- <img class = "big_menu_foto" src = "/img/main/big_menu.png" alt = "Изображение" />
+		<img class = "big_menu_arow" src = "/img/main/strelka_1.png" alt = "Изображение" /> -->
 		<h2 class = "second_p">Ремонт квартир</h2>
 	</a>
 	<div>
 	</div>
 	<a href = "#" class = "big_menu_item">
-		<img class = "big_menu_foto" src = "/img/main/big_menu.png" alt = "Изображение" />
-		<img class = "big_menu_arow" src = "/img/main/strelka_1.png" alt = "Изображение" />
+		<!-- <img class = "big_menu_foto" src = "/img/main/big_menu.png" alt = "Изображение" />
+		<img class = "big_menu_arow" src = "/img/main/strelka_1.png" alt = "Изображение" /> -->
 		<h2 class = "third_p">Для юридических лиц</h2>
 	</a>
 </div>
@@ -39,6 +39,8 @@
 			<p>
 				Компания "Новее" предоставляет комплексные работы по ремонту и строительству домов под ключ в Новосибирске и Новосибирской обл. уже  15 лет.
 			</p>
+			<a href = "#" class = "button more">Подробнее</a>
+			<div class = "clear"></div>
 		</div>
 		<div class = "info_wrap">
 			<h3>
@@ -54,9 +56,44 @@
 				<p>
 					Компания "Новее" предоставляет комплексные работы по ремонту и строительству домов под ключ в Новосибирске и Новосибирской обл. уже  15 лет.
 				</p>
+				<a href = "#" class = "button more">Подробнее</a>
+				<div class = "clear"></div>
 			</div>
 		</div>
-		<div class = "info_wrap text">
+		<div class = "gallery_block">
+			<p>Фотогалерея работ</p>
+			<table>
+				<tr>
+					<td>
+						<img src = "/img/main/footer_foto.png" alt = "Изображение" />
+					</td>
+					<td>
+						<img src = "/img/main/footer_foto.png" alt = "Изображение" />
+					</td>
+					<td>
+						<img src = "/img/main/footer_foto.png" alt = "Изображение" />
+					</td>
+					<td>
+						<img src = "/img/main/footer_foto.png" alt = "Изображение" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<img src = "/img/main/footer_foto.png" alt = "Изображение" />
+					</td>
+					<td>
+						<img src = "/img/main/footer_foto.png" alt = "Изображение" />
+					</td>
+					<td>
+						<img src = "/img/main/footer_foto.png" alt = "Изображение" />
+					</td>
+					<td>
+						<img src = "/img/main/footer_foto.png" alt = "Изображение" />
+					</td>
+				</tr>
+			</table>
+		</div>
+		<!-- <div class = "info_wrap text">
 			<h3>
 				Почему с нами строительство дома комфортно
 			</h3>
@@ -78,11 +115,32 @@
 			<p>
 				Возможность значительной экономии на строительстве дома в Новосибирске под ключ при комплексном заказе с рабочим проектом.
 			</p>
-		</div>
+		</div> -->
 	</div>
 	
 	<div class = "right_block">
-		<div class = "collective_block">
+		<div class = "action_block">
+			<h3>Акции</h3>
+			<a href = "#" class = "action_item">
+				<img class = "action_foto" src = "/img/main/big_menu.png" alt = "Изображение" />
+				<img class = "action_arow" src = "/img/main/strelka_1.png" alt = "Изображение" />
+				<p class = "action_header">Собственный коттедж<br /> 25000 руб/м2</p>
+			</a>
+			<a href = "#" class = "action_item">
+				<img class = "action_foto" src = "/img/main/big_menu.png" alt = "Изображение" />
+				<img class = "action_arow" src = "/img/main/strelka_1.png" alt = "Изображение" />
+				<p class = "action_header">Собственный коттедж<br /> 25000 руб/м2</p>
+			</a>
+			<a href = "#" class = "action_item">
+				<img class = "action_foto" src = "/img/main/big_menu.png" alt = "Изображение" />
+				<img class = "action_arow" src = "/img/main/strelka_1.png" alt = "Изображение" />
+				<p class = "action_header">Собственный коттедж<br /> 25000 руб/м2</p>
+			</a>
+		</div>
+		<div class = "calc_block">
+			<h3>Калькулятор</h3>
+		</div>
+		<!-- <div class = "collective_block">
 			<p>Наш коллектив</p>
 			<div class = "collective_content">
 				<div class = "row collective_item">
@@ -120,43 +178,9 @@
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class = "gallery_block">
-			<p>Фотогалерея работ</p>
-			<table>
-				<tr>
-					<td>
-						<img src = "/img/main/footer_foto.png" alt = "Изображение" />
-					</td>
-					<td>
-						<img src = "/img/main/footer_foto.png" alt = "Изображение">
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<img src = "/img/main/footer_foto.png" alt = "Изображение" />
-					</td>
-					<td>
-						<img src = "/img/main/footer_foto.png" alt = "Изображение">
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<img src = "/img/main/footer_foto.png" alt = "Изображение" />
-					</td>
-					<td>
-						<img src = "/img/main/footer_foto.png" alt = "Изображение">
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<img src = "/img/main/footer_foto.png" alt = "Изображение" />
-					</td>
-					<td>
-						<img src = "/img/main/footer_foto.png" alt = "Изображение">
-					</td>
-				</tr>
-			</table>
-		</div>
+		</div> -->
+		
+		
+		
 	</div>
 </div>

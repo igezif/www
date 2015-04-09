@@ -570,6 +570,16 @@ header{
 	background-color: #ffffff;
 }
 
+.dop_admin_foto{
+	border: 1px solid #808080;
+	padding: 5px;
+}
+
+.dop_admin_foto > div > img{
+	width: 150px;
+	
+}
+
 #input_file{
 	
 }

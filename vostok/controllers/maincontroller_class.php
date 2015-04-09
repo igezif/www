@@ -3,10 +3,10 @@
 class MainController extends Controller {
 
 	public function actionIndex() {
-		$this->title = "Мама-па";
-		$this->meta_desc = "Интернет-магазин детских товаров";
-		$this->meta_key = "товары для детей, детские товары";
-		$head = $this->getHead(array("/css/main.css"));
+		$this->title = "Восток сервис";
+		$this->meta_desc = "строительная фирма Восток сервис";
+		$this->meta_key = "строительная фирма Восток сервис";
+		$head = $this->getHead(array("/css/main.css"), false);
 		//$head->add("js", null, true);
 		//$head->js = array("/js/jquery-1.10.2.min.js", "/js/main.js", "/js/slider.js");
 		
