@@ -2,7 +2,7 @@
 
 class ValidateMK extends Validator {
 	
-	const MAX_LEN = 255;
+	const MAX_LEN = 1000;
 	const CODE_EMPTY = "ERROR_MK_EMPTY";
 	const CODE_MAX_LEN = "ERROR_MK_MAX_LEN";
 	

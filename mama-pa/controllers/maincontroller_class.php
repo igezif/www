@@ -17,42 +17,15 @@ class MainController extends Controller {
 		//$this->render($head, "<h1>В настоящее время на сайте идут технические работы.</h1>");
 	}
 	
-	/*
-	public function actionSection() {
-		$section_db = new SectionDB();
-		$section_db->load($this->request->id);
-		if (!$section_db->isSaved()) $this->notFound();
-		$this->section_id = $section_db->id;
-		$this->title = $section_db->title;
-		$this->meta_desc = $section_db->meta_desc;
-		$this->meta_key = $section_db->meta_key;
-		
-		$hornav = $this->getHornav();
-		$hornav->addData($section_db->title);
-		
-		$intro = new Intro();
-		$intro->hornav = $hornav;
-		$intro->obj = $section_db;
-		
-		$blog = new Blog();
-		$articles = ArticleDB::getAllOnPageAndSectionID($this->request->id, Config::COUNT_ARTICLES_ON_PAGE);
-		
-		$more_articles = ArticleDB::getAllOnSectionID($this->request->id, false);
-		
-		$i = 0;
-		foreach ($more_articles as $id => $article) {
-			$i++;
-			unset($more_articles[$id]);
-			if ($i == Config::COUNT_ARTICLES_ON_PAGE) break;
-		}
-		
-		$blog->articles = $articles;
-		$blog->more_articles = $more_articles; 
+	public function actionProduct() {
 		$head = $this->getHead(array("/css/main.css"));
-		$this->render($head, "пт Бро!");
+		$obj = new ProductDB();
+		if(!$obj->load($this->request->id)) $this->action404();
+		
+		$this->render($head, $this->renderData(array(), "product"));
 	}
 	
-	 
+	/*
 	public function actionCategory() {
 		$category_db = new CategoryDB();
 		$category_db->load($this->request->id);

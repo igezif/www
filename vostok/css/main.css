@@ -120,11 +120,11 @@ nav{
 
 #link_magazine{
 	padding: 13px 15px 14px 15px;
-	background: linear-gradient(180deg, #c60125 0%, #810013 100%);
+	background: linear-gradient(#FB9575, #F45A38 48%, #EA1502 52%, #F02F17);
 }
 
-#link_magazine:hover{
-	background: linear-gradient(180deg, #810013 0%, #c60125 100%);
+#stroimat{
+	font-size: 130%;
 }
 
 /* SLIDER */
@@ -181,14 +181,18 @@ nav{
 	display: block;
 	float: left;
 	height: 150px;
-	/* background: url("../img/main/fon.png") repeat; */
-	width: 321px;
-	/* border: 1px solid #888888; */
-	box-shadow: 0 0 10px rgba(0,0,0,0.5);
-	text-align: center;
-	border-radius: 5px;
+	width: 317px;
 	vertical-align: middle;
-	background: linear-gradient(180deg, #888888 0%, #404040 100%);
+	text-align: center;
+	text-decoration: none;
+	text-shadow: 0 -1px 1px #777;
+	color: #fff;
+	outline: none;
+	border: 2px solid #F64C2B;
+	border-radius: 5px;
+	box-shadow: 0 0 0 60px rgba(0,0,0,0) inset, .1em .1em .2em #800;
+	background: linear-gradient(#FB9575, #F45A38 48%, #EA1502 52%, #F02F17);
+	transition: 0.2s;
 }
 
 .big_menu_item h2{

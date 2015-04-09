@@ -36,7 +36,7 @@
 			</a>
 			<div></div>
 			<a href = "" class = "row menu_item" id = "link_magazine">
-				<div>
+				<div id = "stroimat">
 					Стройматериалы
 				</div>
 				<div>
