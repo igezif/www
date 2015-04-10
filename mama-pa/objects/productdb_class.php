@@ -25,6 +25,20 @@ class ProductDB extends ObjectDB {
 	protected function postInsert() {
 		return $this->id;
 	}
+
+	public static function getAllShow($field, $value, $count = false, $offset = false, $post_handling = false) {
+		//$select = self::getBaseSelect();
+
+		$select = new Select(self::$db);
+		$select->from(self::$table, "*");
+			->where("$field = ?", )
+			->order("date", false);
+		if ($count) $select->limit($count, $offset);
+		$data = self::$db->select($select);
+		$articles = ObjectDB::buildMultiple(__CLASS__, $data);
+		if ($post_handling) foreach ($articles as $article) $article->postHandling();
+		return $articles;
+	}
 	
 	public function loadProduct($id){
 		$data = self::$db->getRow(
@@ -61,7 +75,6 @@ class ProductDB extends ObjectDB {
 	}
 	
 	/* ADMINKA */
-	
 	public static function getAdminShow(){
 		$data = self::$db->getResult(
 			"select p.id, p.title, p.img, c.title as category, b.title as brand, p.price, p.meta_desc, p.meta_key, p.available

@@ -444,6 +444,10 @@ header{
 	height: 10px;
 }
 
+.product_foto > div > img{
+	width: 170px;
+}
+
 /* ---   ADMINKA   --- */
 .admin_block h3{
 	margin: 0 0 10px 10px;

@@ -6,7 +6,7 @@ class MainController extends Controller {
 		$this->title = "Мама-па";
 		$this->meta_desc = "Интернет-магазин детских товаров";
 		$this->meta_key = "товары для детей, детские товары";
-		$head = $this->getHead(array("/css/main.css"));
+		$head = $this->getHead(array("/css/main.css"), false);
 		$head->add("js", null, true);
 		$head->js = array("/js/jquery-1.10.2.min.js", "/js/main.js", "/js/slider.js");
 		$sections = new Section();
@@ -18,9 +18,12 @@ class MainController extends Controller {
 	}
 	
 	public function actionProduct() {
-		$head = $this->getHead(array("/css/main.css"));
 		$obj = new ProductDB();
-		if(!$obj->loadProduct($this->request->id)) $this->action404();
+		if(!$obj->loadProduct($this->request->id)) $this->notFound();
+		$this->title = $obj->title;
+		$this->meta_desc = $obj->meta_desc;
+		$this->meta_key= $obj->meta_key;
+		$head = $this->getHead(array("/css/main.css"), false);
 		$product = new Product();
 		$hornav = $this->getHornav();
 		$hornav->addData($obj->section, URL::get("section", "", array("id" => $obj->section_id)));
@@ -33,39 +36,28 @@ class MainController extends Controller {
 		$product->id = $obj->id;
 		$product->brand = $obj->brand;
 		$product->price = $obj->price;
-		//$product->foto = ImgDB::getFoto($this->request->id);
+		$product->foto = ImgDB::getImgOnID($this->request->id);
+		$this->render($head, $product);
+	}
+	
+	public function actionSection() {
+		$obj = new SectionDB();
+		if(!$obj->load($this->request->id)) $this->notFound();
+		$this->title = $obj->title;
+		$this->meta_desc = $obj->meta_desc;
+		$this->meta_key= $obj->meta_key;
+		$head = $this->getHead(array("/css/main.css"), false);
+		$sp = new Sectionproduct();
+		
+		$products = ProductDB::getAllShow("section_id", $this->request->id, Config::COUNT_PRODUCTS_ON_PAGE, $this->getOffset(Config::COUNT_PRODUCTS_ON_PAGE), true);
+		$pagination = $this->getPagination(count($products), Config::COUNT_PRODUCTS_ON_PAGE, "/");
+		
+		$sp->products = $products;
+		$sp->pagination = $pagination;
 		$this->render($head, $product);
 	}
 	
 	/*
-	public function actionCategory() {
-		$category_db = new CategoryDB();
-		$category_db->load($this->request->id);
-		if (!$category_db->isSaved()) $this->notFound();
-		$this->section_id = $category_db->section_id;
-		$this->title = $category_db->title;
-		$this->meta_desc = $category_db->meta_desc;
-		$this->meta_key = $category_db->meta_key;
-		
-		$section_db = new SectionDB();
-		$section_db->load($category_db->section_id);
-		
-		$hornav = $this->getHornav();
-		$hornav->addData($section_db->title, $section_db->link);
-		$hornav->addData($category_db->title);
-		
-		$intro = new Intro();
-		$intro->hornav = $hornav;
-		$intro->obj = $category_db;
-		
-		$category = new Category();
-		$articles = ArticleDB::getAllOnCatID($this->request->id, Config::COUNT_ARTICLES_ON_PAGE);
-				
-		$category->articles = $articles;
-		
-		$this->render($intro.$category);
-	}
-	
 	public function actionArticle() {
 		$article_db = new ArticleDB();
 		$article_db->load($this->request->id);

@@ -16,18 +16,17 @@ class ImgDB extends ObjectDB {
 			->where("`product_id` = ".self::$db->getSQ(), array($id));
 		$data = self::$db->select($select);
 		$images = ObjectDB::buildMultiple(__CLASS__, $data);
-		foreach ($images as $image) $image->postAdminHandling();
 		return $images;
 	}
 	
-	private function postAdminHandling(){
+	protected function postInit() {
 		$this->url = Config::DIR_IMG_FSAPRODUCT.$this->url;
+		return true;
 	}
 	
-	/* protected function postInit() {
-		if (!is_null($this->img)) $this->img = Config::DIR_IMG_ARTICLES.$this->img;
-		$this->link = URL::get("article", "", array("id" => $this->id));
-		return true;
+	/*
+	private function postAdminHandling(){
+		$this->url = Config::DIR_IMG_FSAPRODUCT.$this->url;
 	}
 	
 	protected function postLoad() {

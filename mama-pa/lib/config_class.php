@@ -1,6 +1,14 @@
 <?php
 
 abstract class Config {
+	/* DataBase */
+	const DB_HOST = "localhost";
+	const DB_USER = "root";
+	const DB_PASSWORD = "123qwe";
+	const DB_NAME = "wm28081_mama-pa";
+	const DB_PREFIX = "xyz_";
+	const DB_SYM_QUERY = "?";
+	/* ------- */
 
 	const SITENAME = "www.mama-pa.ru";
 	const SECRET = "EEE";
@@ -10,13 +18,6 @@ abstract class Config {
 	
 	const API_KEY = "DKEL39DL";
 	const REFRESH_KEY = "update113";
-	
-	const DB_HOST = "localhost";
-	const DB_USER = "root";
-	const DB_PASSWORD = "123qwe";
-	const DB_NAME = "wm28081_mama-pa";
-	const DB_PREFIX = "xyz_";
-	const DB_SYM_QUERY = "?";
 	
 	const DIR_IMG = "/img/";
 	const DIR_IMG_PRODUCT = "/img/product/";
@@ -31,8 +32,8 @@ abstract class Config {
 	
 	const FORMAT_DATE = "%d.%m.%Y %H:%M:%S";
 	
-	//const COUNT_ARTICLES_ON_PAGE = 3;
-	//const COUNT_SHOW_PAGES = 10;
+	const COUNT_PRODUCTS_ON_PAGE = 3;
+	const COUNT_SHOW_PAGES = 10;
 	
 	const MIN_SEARCH_LEN = 3;
 	const LEN_SEARCH_RES = 255;
@@ -42,5 +43,3 @@ abstract class Config {
 	//const DEFAULT_AVATAR = "default.png";
 	const MAX_SIZE_IMG = 300000;
 }
-
-?>

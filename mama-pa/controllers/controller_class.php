@@ -65,7 +65,7 @@ abstract class Controller extends AbstractController {
 		$this->view->render(Config::LAYOUT, $params);
 	}
 	
-	protected function getHead($css = false, $index = false) {
+	protected function getHead($css = false, $index = true) {
 		$head = new Head();
 		$head->title = $this->title;
 		$head->meta("Content-Type", "text/html; charset=utf-8", true);
@@ -112,6 +112,21 @@ abstract class Controller extends AbstractController {
 		$hornav = new Hornav();
 		$hornav->addData("Главная", URL::get(""));
 		return $hornav;
+	}
+	
+	final protected function getPagination($count_elements, $count_on_page, $url = false) {
+		$count_pages = ceil($count_elements / $count_on_page);
+		$active = $this->getPage();
+		if (($active > $count_pages) && ($active > 1)) $this->notFound();
+		$pagination = new Pagination();
+		if (!$url) $url = URL::deletePage(URL::current());
+		$pagination->url = $url;
+		$pagination->url_page = URL::addTemplatePage($url);
+		$pagination->count_elements = $count_elements;
+		$pagination->count_on_page = $count_on_page;
+		$pagination->count_show_pages = Config::COUNT_SHOW_PAGES;
+		$pagination->active = $active;
+		return $pagination;
 	}
 	
 	/*
