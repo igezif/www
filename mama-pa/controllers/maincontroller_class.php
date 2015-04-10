@@ -20,9 +20,21 @@ class MainController extends Controller {
 	public function actionProduct() {
 		$head = $this->getHead(array("/css/main.css"));
 		$obj = new ProductDB();
-		if(!$obj->load($this->request->id)) $this->action404();
-		
-		$this->render($head, $this->renderData(array(), "product"));
+		if(!$obj->loadProduct($this->request->id)) $this->action404();
+		$product = new Product();
+		$hornav = $this->getHornav();
+		$hornav->addData($obj->section, URL::get("section", "", array("id" => $obj->section_id)));
+		$hornav->addData($obj->category, URL::get("category", "", array("id" => $obj->category_id)));
+		$hornav->addData($obj->title);
+		$product->hornav = $hornav;
+		$product->title = $obj->title;
+		$product->img = $obj->img;
+		$product->available = $obj->available;
+		$product->id = $obj->id;
+		$product->brand = $obj->brand;
+		$product->price = $obj->price;
+		//$product->foto = ImgDB::getFoto($this->request->id);
+		$this->render($head, $product);
 	}
 	
 	/*

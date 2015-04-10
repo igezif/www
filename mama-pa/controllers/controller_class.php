@@ -108,7 +108,11 @@ abstract class Controller extends AbstractController {
 		return null;
 	}
 	
-	
+	protected function getHornav() {
+		$hornav = new Hornav();
+		$hornav->addData("Главная", URL::get(""));
+		return $hornav;
+	}
 	
 	/*
 	
@@ -174,11 +178,7 @@ abstract class Controller extends AbstractController {
 		
 	}
 	
-	protected function getHornav() {
-		$hornav = new Hornav();
-		$hornav->addData("Главная", URL::get(""));
-		return $hornav;
-	}
+	
 	final protected function getOffset($count_on_page) {
 		return $count_on_page * ($this->getPage() - 1);
 	}

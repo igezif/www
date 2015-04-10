@@ -37,7 +37,7 @@ abstract class AbstractObjectDB {
 	
 	public function init($row) {
 		foreach ($row as $key => $value) {
-			if (!array_key_exists($key, $this->properties)) $this->add($key);
+			if (!isset($this->properties[$key])) $this->add($key);
 			$val = $value;
 			switch ($this->properties[$key]) {
 				case self::TYPE_TIMESTAMP:
@@ -213,7 +213,6 @@ abstract class AbstractObjectDB {
 		$select->from($class::$table, "*")
 			->whereIn($field, $ids);
 		$data = self::$db->select($select);
-		//print_r($data);die;
 		return AbstractObjectDB::buildMultiple($class, $data);
 	}
 	

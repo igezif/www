@@ -20,6 +20,7 @@ abstract class Config {
 	
 	const DIR_IMG = "/img/";
 	const DIR_IMG_PRODUCT = "/img/product/";
+	const DIR_IMG_FSAPRODUCT = "/img/fsa-product/";
 	const DIR_IMG_BRAND = "/img/brand/";
 	//const DIR_AVATAR = "img/avatar/";
 	const DIR_TMPL = "tmpl/";

@@ -18,11 +18,25 @@ class ProductDB extends ObjectDB {
 	
 	protected function postInit() {
 		$this->link = URL::get("product", "", array("id" => $this->id));
+		$this->img = Config::DIR_IMG_PRODUCT.$this->img;
 		return true;
 	}
 	
 	protected function postInsert() {
 		return $this->id;
+	}
+	
+	public function loadProduct($id){
+		$data = self::$db->getRow(
+			"select p.*,  c.title as category, s.title as section, s.id as section_id, c.id as category_id, b.title as brand 
+			from ".Config::DB_PREFIX."product p 
+			inner join ".Config::DB_PREFIX."category c on p.category_id=c.id
+			inner join ".Config::DB_PREFIX."section s on c.section_id=s.id
+			inner join ".Config::DB_PREFIX."brand b on p.brand_id=b.id
+			where p.id = ? and p.available = 1", array($id)
+		);
+		if ($data) return $this->init($data);
+		else return false;
 	}
 	
 	public static function getThreeRandProductOnSection($section_id) {
@@ -42,7 +56,7 @@ class ProductDB extends ObjectDB {
 	}
 	
 	private function postHandling(){
-		$this->img = Config::DIR_IMG_PRODUCT.$this->img;
+		//$this->img = Config::DIR_IMG_PRODUCT.$this->img;
 		return true;
 	}
 	
@@ -64,7 +78,7 @@ class ProductDB extends ObjectDB {
 		if (!is_null($this->img)){
 			$view = new View(Config::DIR_TMPL);
 			$this->imageName = $this->img;
-			$this->img = $view->render("img", array("src" => Config::DIR_IMG_PRODUCT.$this->img), true);
+			$this->img = $view->render("img", array("src" => $this->img), true);
 		}
 		else $this->img = "нет";
 		$this->link_update = URL::get("update", "admin", array("view" => "product", "id" => $this->id));

@@ -141,6 +141,14 @@ abstract class AbstractDataBase {
 			$array[] = $row;
 		return $array;
 	}
+	
+	public function getRow($query, $params = false){
+		$sql = $this->getQuery($query, $params);
+		$result_set = $this->mysqli->query($sql);
+		if (!$result_set->num_rows) return false;
+		while (($row = $result_set->fetch_assoc()) != false)	
+		return $row;
+	}
 		
 	public function __destruct() {
 		if (($this->mysqli) && (!$this->mysqli->connect_errno)) $this->mysqli->close();
