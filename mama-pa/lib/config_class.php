@@ -32,7 +32,7 @@ abstract class Config {
 	
 	const FORMAT_DATE = "%d.%m.%Y %H:%M:%S";
 	
-	const COUNT_PRODUCTS_ON_PAGE = 3;
+	const COUNT_PRODUCTS_ON_PAGE = 9;
 	const COUNT_SHOW_PAGES = 10;
 	
 	const MIN_SEARCH_LEN = 3;

@@ -30,8 +30,8 @@ class ProductDB extends ObjectDB {
 		//$select = self::getBaseSelect();
 
 		$select = new Select(self::$db);
-		$select->from(self::$table, "*");
-			->where("$field = ?", )
+		$select->from(self::$table, "*")
+			->where("$field = ?", array($field))
 			->order("date", false);
 		if ($count) $select->limit($count, $offset);
 		$data = self::$db->select($select);
