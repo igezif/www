@@ -122,7 +122,12 @@ nav{
 
 #link_magazine{
 	padding: 13px 15px 14px 15px;
-	background: linear-gradient(#FB9575, #F45A38 48%, #EA1502 52%, #F02F17);
+	background: linear-gradient(#EA1502 52%, #fd6500);
+}
+
+#link_magazine:hover{
+	background: linear-gradient(#EA1502 52%, #F02F17);
+	transition: 0.2s;
 }
 
 #stroimat{
