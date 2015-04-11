@@ -5,26 +5,26 @@
 </div>
 <div id = "big_menu" class = "content">
 	<a href = "#" class = "big_menu_item">
-		<!-- <img class = "big_menu_foto" src = "/img/main/big_menu.png" alt = "Изображение" />
-		<img class = "big_menu_arow" src = "/img/main/strelka_1.png" alt = "Изображение" /> -->
-		<h2 class = "first_p">Строительство домов<br /> и коттеджей</h2>
+		<h2 class = "first_h2_big_menu">Строительство домов<br /> и коттеджей</h2>
+		<img class = "big_menu_foto" src = "/img/main/big_menu.png" alt = "Изображение" />
+		<img class = "big_menu_arow" src = "/img/main/strelka_1.png" alt = "Изображение" />
 	</a>
 	<div>
 	</div>
 	<a href = "#" class = "big_menu_item">
-		<!-- <img class = "big_menu_foto" src = "/img/main/big_menu.png" alt = "Изображение" />
-		<img class = "big_menu_arow" src = "/img/main/strelka_1.png" alt = "Изображение" /> -->
-		<h2 class = "second_p">Ремонт квартир</h2>
+		<h2>Ремонт квартир</h2>
+		<img class = "big_menu_foto" src = "/img/main/big_menu.png" alt = "Изображение" />
+		<img class = "big_menu_arow" src = "/img/main/strelka_1.png" alt = "Изображение" />
 	</a>
 	<div>
 	</div>
 	<a href = "#" class = "big_menu_item">
-		<!-- <img class = "big_menu_foto" src = "/img/main/big_menu.png" alt = "Изображение" />
-		<img class = "big_menu_arow" src = "/img/main/strelka_1.png" alt = "Изображение" /> -->
-		<h2 class = "third_p">Для юридических лиц</h2>
+		<h2>Для юридических лиц</h2>
+		<img class = "big_menu_foto" src = "/img/main/big_menu.png" alt = "Изображение" />
+		<img class = "big_menu_arow" src = "/img/main/strelka_1.png" alt = "Изображение" />
 	</a>
 </div>
-<div class = "content middle">
+<div class = "content">
 	<div class = "left_block">
 		<div class = "info">
 			<h1>

@@ -61,6 +61,7 @@ a{
 	width: 288px;
 	color: #E2E2E2;
 	font-size: 97%;
+	text-shadow: 0 -1px 1px #777;
 }
 
 #phone{
@@ -108,6 +109,7 @@ nav{
 	color: #dddddd;
 	padding: 19px 15px 20px 15px;
 	font-size: 90%;
+	text-shadow: 0 -1px 1px #777;
 }
 
 .menu a:hover{
@@ -148,8 +150,7 @@ nav{
 /* BIG_MENU */
 
 #big_menu{
-	margin: 25px auto 0 auto;
-	/* height: 227px; */
+	margin: 20px auto 0 auto;
 }
 
 #big_menu > div{
@@ -177,11 +178,12 @@ nav{
 	color: #dddddd;
 }
 
+/* 
 .big_menu_item{
+	width: 317px;
+	height: 150px;
 	display: block;
 	float: left;
-	height: 150px;
-	width: 317px;
 	vertical-align: middle;
 	text-align: center;
 	text-decoration: none;
@@ -192,26 +194,70 @@ nav{
 	border-radius: 5px;
 	box-shadow: 0 0 0 60px rgba(0,0,0,0) inset, .1em .1em .2em #800;
 	background: linear-gradient(#FB9575, #F45A38 48%, #EA1502 52%, #F02F17);
+	transition: 0.2s; 
+}
+*/
+
+.big_menu_item{
+	display: block;
+	float: left;
+	height: 225px;
+	background: url("../img/main/fon.png") repeat;
+	width: 319px;
+	border: 1px solid #888888;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	text-align: center;
 	transition: 0.2s;
+	border-radius: 7px;
 }
 
 .big_menu_item h2{
-	/* color: #dddddd;
-	position: relative; */
+	position: relative;
+	font-size: 113%;
+	margin: -3px 0 0 0;
+	top: 39px;
+	color: #dddddd;
+	vertical-align: middle;
+	z-index: 22;
+	text-shadow: 0 -1px 1px #777;
+}
+
+.first_h2_big_menu{
+	margin: -23px 0 0 0 !important;
+	top: 49px !important;
+}
+
+.big_menu_item > .big_menu_arow{
+	position: relative;
+  	top: -198px;
+  	z-index: 1;
+  	height: 89px;
+}
+
+.action_item > h2{
 	font-size: 113%;
 	margin: 59px 0 0 0;
 	color: #dddddd;
 	vertical-align: middle;
 }
 
-.action_item > h2{
-	/* color: #dddddd;
-	position: relative; */
-	font-size: 113%;
-	margin: 59px 0 0 0;
-	color: #dddddd;
-	vertical-align: middle;
+.big_menu_foto{
+	opacity: 1;
+	transition: 0.2s;
 }
+
+.big_menu_item:hover{
+	box-shadow: none;
+	border-radius: 0;
+	transition: 0.2s;
+}
+
+.big_menu_item:hover .big_menu_foto{
+	opacity: 0.5;
+	transition: 0.2s;
+}
+
+/* MIDDLE */
 
 .button{
 	background: linear-gradient(180deg, #888888 0%, #404040 100%);
@@ -224,10 +270,6 @@ nav{
 .more{
 	margin: 10px 0 0 0;
 	float: right;
-}
-
-.big_menu_item:hover{
-	box-shadow: none;
 }
 
 .action_block img{
@@ -243,20 +285,6 @@ nav{
 	top: -193px;
 	left: 55px;
 }
-
-.big_menu_item > .first_p{
-	/* top: -253px; */
-}
-
-.big_menu_item > .second_p{
-	/* top: -247px; */
-}
-
-.big_menu_item > .third_p{
-	/* top: -247px; */
-}
-
-/* MIDDLE */
 
 .middle{
 	margin: 20px auto 20px auto;
