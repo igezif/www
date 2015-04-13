@@ -34,7 +34,7 @@ abstract class AbstractObjectDB {
 		if (!$row) return false;
 		if ($this->init($row)) return $this->postLoad();
 	}
-	
+
 	public function init($row) {
 		foreach ($row as $key => $value) {
 			if (!isset($this->properties[$key])) $this->add($key);

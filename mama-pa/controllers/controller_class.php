@@ -128,113 +128,15 @@ abstract class Controller extends AbstractController {
 		$pagination->active = $active;
 		return $pagination;
 	}
-	
-	/*
-	
-	protected function authUser() {
-		$login = "";
-		$password = "";
-		$redirect = false;
-		if ($this->request->auth) {
-			$login = $this->request->login;
-			$password = $this->request->password;
-			$redirect = true;
-		}
-		$user = $this->fp->auth("auth", "UserDB", "authUser", $login, $password);
-		if ($user instanceof UserDB) {
-			if ($redirect) $this->redirect(URL::current());
-			return $user;
-		}
-		return null;
-	}
-	
-	 protected function getLeft() {
-		$items = MenuDB::getMainMenu();
-		$mainmenu = new MainMenu();
-		$mainmenu->uri = $this->url_active;
-		$mainmenu->items = $items;
-		if ($this->auth_user) {
-			$user_panel = new UserPanel();
-			$user_panel->user = $this->auth_user;
-			$user_panel->uri = $this->url_active;
-			$user_panel->addItem("Редактировать профиль", URL::get("editprofile", "user"));
-			$user_panel->addItem("Выход", URL::get("logout"));
-		}
-		else $user_panel = "";
-		$poll_db = new PollDB();
-		$poll_db->loadRandom();
-		if ($poll_db->isSaved()) {
-			$poll = new Poll();
-			$poll->action = URL::get("poll", "", array("id" => $poll_db->id));
-			$poll->title = $poll_db->title;
-			$poll->data = PollDataDB::getAllOnPollID($poll_db->id);
-		}
-		else $poll = "";
-		return $user_panel.$mainmenu.$poll;
-	}
-	
-	protected function getRight() {
-		$course_db_1 = new CourseDB();
-		$course_db_1->loadOnSectionID($this->section_id, FREE_COURSE);
-		$course_db_2 = new CourseDB();
-		$course_db_2->loadOnSectionID($this->section_id, ONLINE_COURSE);
-		$courses = array($course_db_1, $course_db_2);
-		
-		$course = new Course();
-		$course->courses = $courses;
-		$course->auth_user = $this->auth_user;
-		
-		$quote_db = new QuoteDB();
-		$quote_db->loadRandom();
-		
-		$quote = new Quote();
-		$quote->quote = $quote_db;
-		return $course.$quote;
-		
-	}
-	
-	
+
 	final protected function getOffset($count_on_page) {
 		return $count_on_page * ($this->getPage() - 1);
 	}
-	
+
 	final protected function getPage() {
 		$page = ($this->request->page)? $this->request->page: 1;
 		if ($page < 1) $this->notFound();
 		return $page;
 	}
-	
-	final protected function getPagination($count_elements, $count_on_page, $url = false) {
-		$count_pages = ceil($count_elements / $count_on_page);
-		$active = $this->getPage();
-		if (($active > $count_pages) && ($active > 1)) $this->notFound();
-		$pagination = new Pagination();
-		if (!$url) $url = URL::deletePage(URL::current());
-		$pagination->url = $url;
-		$pagination->url_page = URL::addTemplatePage($url);
-		$pagination->count_elements = $count_elements;
-		$pagination->count_on_page = $count_on_page;
-		$pagination->count_show_pages = Config::COUNT_SHOW_PAGES;
-		$pagination->active = $active;
-		return $pagination;
-	}
-	
-	protected function authUser() {
-		$login = "";
-		$password = "";
-		$redirect = false;
-		if ($this->request->auth) {
-			$login = $this->request->login;
-			$password = $this->request->password;
-			$redirect = true;
-		}
-		$user = $this->fp->auth("auth", "UserDB", "authUser", $login, $password);
-		if ($user instanceof UserDB) {
-			if ($redirect) $this->redirect(URL::current());
-			return $user;
-		}
-		return null;
-	}
-	 */
-	
+
 }

@@ -26,21 +26,33 @@ class ProductDB extends ObjectDB {
 		return $this->id;
 	}
 
-	public static function getAllShow($field, $value, $count = false, $offset = false, $post_handling = false) {
-		//$select = self::getBaseSelect();
+	public static function getCountProductOnSection($section_id){
+		$data = self::$db->getCell(
+			"select count(*) 
+			from ".Config::DB_PREFIX."product p 
+			inner join ".Config::DB_PREFIX."category c on p.category_id=c.id
+			inner join ".Config::DB_PREFIX."section s on c.section_id=s.id
+			where s.id = ? and p.available = 1", array($section_id)
+		);
+		return $data;
+	}
 
+	public static function getProductOnSection($section_id, $count, $offset) {
 		$select = new Select(self::$db);
-		$select->from(self::$table, "*")
-			->where("$field = ?", array($field))
-			->order("date", false);
-		if ($count) $select->limit($count, $offset);
+		$select->from(self::$table, array("p.*"), "p")
+			->join("INNER", "category", "c", "p.category_id=c.id")
+			->join("INNER", "section", "s", "c.section_id=s.id")
+			->where("`s`.`id` = ?", array($section_id))
+			->where("`p`.`available` = 1")
+			->order("p.title")
+			->limit($count, $offset);
 		$data = self::$db->select($select);
-		$articles = ObjectDB::buildMultiple(__CLASS__, $data);
-		if ($post_handling) foreach ($articles as $article) $article->postHandling();
-		return $articles;
+		$products = ObjectDB::buildMultiple(__CLASS__, $data);
+		foreach ($products as $product) $product->postHandling();
+		return $products;
 	}
 	
-	public function loadProduct($id){
+	public function getProduct($id){
 		$data = self::$db->getRow(
 			"select p.*,  c.title as category, s.title as section, s.id as section_id, c.id as category_id, b.title as brand 
 			from ".Config::DB_PREFIX."product p 

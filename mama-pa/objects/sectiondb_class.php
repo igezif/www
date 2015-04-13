@@ -12,31 +12,31 @@ class SectionDB extends ObjectDB {
 	}
 
 	public static function getAllShow() {
-		$category = self::getAll();
-		foreach ($category as $cat) $cat->postHandling();
-		return $category;
+		$sections = self::getAll();
+		foreach ($sections as $section) $section->postHandling();
+		return $sections;
 	}
-	
 	
 	private function postHandling() {
 		$this->categories = CategoryDB::getCategoryOnSection($this->id);
 		$this->products = ProductDB::getThreeRandProductOnSection($this->id);
 	}
 	
+	protected function postInsert() {
+		return $this->id;
+	}
+
+	/* ADMINKA */
+
 	public static function getAdminShow(){
-		$category = self::getAll();
-		foreach ($category as $cat) $cat->postAdminHandling();
-		return $category;
+		$sections = self::getAll();
+		foreach ($sections as $section) $section->postAdminHandling();
+		return $sections;
 	}
 	
 	private function postAdminHandling(){
 		$this->link_update = URL::get("update", "admin", array("view" => "section", "id" => $this->id));
 		$this->link_delete = URL::get("delete", "admin", array("view" => "section", "id" => $this->id));
 	}
-	
-	
-	protected function postInsert() {
-		return $this->id;
-	}
-	
+
 }

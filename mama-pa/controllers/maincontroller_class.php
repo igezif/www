@@ -19,7 +19,7 @@ class MainController extends Controller {
 	
 	public function actionProduct() {
 		$obj = new ProductDB();
-		if(!$obj->loadProduct($this->request->id)) $this->notFound();
+		if(!$obj->getProduct($this->request->id)) $this->notFound();
 		$this->title = $obj->title;
 		$this->meta_desc = $obj->meta_desc;
 		$this->meta_key= $obj->meta_key;
@@ -47,14 +47,26 @@ class MainController extends Controller {
 		$this->meta_desc = $obj->meta_desc;
 		$this->meta_key= $obj->meta_key;
 		$head = $this->getHead(array("/css/main.css"), false);
+		$section_db = new SectionDB();
+		$section_db->load($this->request->id);
+
 		$sp = new Sectionproduct();
 		
-		$products = ProductDB::getAllShow("section_id", $this->request->id, Config::COUNT_PRODUCTS_ON_PAGE, $this->getOffset(Config::COUNT_PRODUCTS_ON_PAGE), true);
-		$pagination = $this->getPagination(count($products), Config::COUNT_PRODUCTS_ON_PAGE, "/");
-		
+		$hornav = $this->getHornav();
+		$hornav->addData($section_db->title);
+
+		$sp->hornav = $hornav;
+		$sp->title = $section_db->title;
+
+		$count = ProductDB::getCountProductOnSection($this->request->id);
+		$offset = $this->getOffset(Config::COUNT_PRODUCTS_ON_PAGE);
+
+		$url = URL::get("section", "", array("id" => $this->request->id));
+		$products = ProductDB::getProductOnSection($this->request->id, Config::COUNT_PRODUCTS_ON_PAGE, $offset);
+		$pagination = $this->getPagination($count, Config::COUNT_PRODUCTS_ON_PAGE, $url);
 		$sp->products = $products;
 		$sp->pagination = $pagination;
-		$this->render($head, $product);
+		$this->render($head, $sp);
 	}
 	
 	/*

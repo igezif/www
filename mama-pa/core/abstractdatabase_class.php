@@ -146,8 +146,15 @@ abstract class AbstractDataBase {
 		$sql = $this->getQuery($query, $params);
 		$result_set = $this->mysqli->query($sql);
 		if (!$result_set->num_rows) return false;
-		while (($row = $result_set->fetch_assoc()) != false)	
-		return $row;
+		return $result_set->fetch_assoc();
+	}
+
+	public function getCell($query, $params = false){
+		$sql = $this->getQuery($query, $params);
+		$result_set = $this->mysqli->query($sql);
+		if (!$result_set->num_rows) return false;
+		$arr = array_values($result_set->fetch_assoc());
+		return $arr[0];	
 	}
 		
 	public function __destruct() {
