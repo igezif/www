@@ -16,10 +16,15 @@
 			</div>
 			<?php foreach ($section->products as $product) { ?>
 			<div class = "section_item">
-				<a class = "section_image" href = "<?=$product->link?>" alt = "Image"><img src = "<?=$product->img?>" alt = "Изображение" /></a>
+				<a class = "section_image" href = "<?=$product->link?>" alt = "Image">
+					<img src = "<?=$product->img?>" alt = "Изображение" />
+				</a>
 				<div class = "section_description"><?=$product->title?></div>
 				<div class = "section_price_wrap">
-					<div class = "section_price_block">Цена: <span class = "section_price_digit"><?=$product->price?></span> <span class = "section_price_word">руб.</span></div>
+					<div class = "section_price_block">
+						Цена: <span class = "section_price_digit"><?=$product->price?></span> 
+						<span class = "section_price_word">руб.</span>
+					</div>
 					<a href = "<?=$product->link?>" class = "row section_buy"><div class = "arow_small"></div><div>Купить</div></a>
 				</div>
 			</div>

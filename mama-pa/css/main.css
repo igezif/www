@@ -365,9 +365,7 @@ header{
 	display: table-cell;
 }
 
-.section_price_wrap{
-	
-}
+
 
 .big_arow{
 	background: url("../img/main/arow.png") no-repeat;
@@ -403,13 +401,10 @@ header{
 
 .section_image{
 	text-align: center;
-}
-
-.section_item > a{
 	display: block;
 }
 
-.section_item > a > img{
+.section_image > img{
 	height: 150px;
 }
 
@@ -447,6 +442,32 @@ header{
 .product_foto > div > img{
 	width: 170px;
 }
+
+/* ---   SECTION_PRODUCT   --- */
+
+.section_product_wrap{
+	width: 800px;
+}
+
+.section_product_item{
+	
+	padding: 10px;
+	margin: 5px;
+	width: 231px;
+	color: #808080;
+	border: 1px solid #ffffff;
+	border-radius: 5px;
+}
+
+.section_product_item:hover{
+	border: 1px solid #e7e3a7;
+}
+
+#pagination{
+	text-align: center;
+	padding: 15px 0 5px 0;
+}
+
 
 /* ---   ADMINKA   --- */
 .admin_block h3{
