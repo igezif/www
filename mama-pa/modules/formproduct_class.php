@@ -13,10 +13,10 @@ class Formproduct extends Form {
 		$this->categories = CategoryDB::getAll();
 		$this->brands = BrandDB::getAll();
 		if(!$id){
-			$this->text("title", "Название:");
-			$this->text("price", "Цена:");			
-			$this->textarea("meta_desc", "Описание:");
-			$this->textarea("meta_key", "Ключевые слова:");
+			$this->text("title", "Название:", FormProcessor::getSessionData("title"));
+			$this->text("price", "Цена:", FormProcessor::getSessionData("price"));			
+			$this->textarea("meta_desc", "Описание:", FormProcessor::getSessionData("meta_desc"));
+			$this->textarea("meta_key", "Ключевые слова:", FormProcessor::getSessionData("meta_key"));
 			$this->checkbox("available", "Наличие:", "1");
 			$this->submit("insert_product", "Сохранить");
 		}

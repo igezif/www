@@ -83,6 +83,7 @@ abstract class Controller extends AbstractController {
 		$header->uri = $this->url_active;
 		$header->link_search = $this->link_search;
 		$header->menu_items = SectionDB::getAll();
+		foreach ($header->menu_items as $item) $item->link = URL::get("section", "", array("id" => $item->id));;
 		return $header;
 	}
 	

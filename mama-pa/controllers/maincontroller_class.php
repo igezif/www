@@ -49,18 +49,13 @@ class MainController extends Controller {
 		$head = $this->getHead(array("/css/main.css"), false);
 		$section_db = new SectionDB();
 		$section_db->load($this->request->id);
-
 		$sp = new Sectionproduct();
-		
 		$hornav = $this->getHornav();
 		$hornav->addData($section_db->title);
-
 		$sp->hornav = $hornav;
 		$sp->title = $section_db->title;
-
 		$count = ProductDB::getCountProductOnSection($this->request->id);
 		$offset = $this->getOffset(Config::COUNT_PRODUCTS_ON_PAGE);
-
 		$url = URL::get("section", "", array("id" => $this->request->id));
 		$products = ProductDB::getProductOnSection($this->request->id, Config::COUNT_PRODUCTS_ON_PAGE, $offset);
 		$pagination = $this->getPagination($count, Config::COUNT_PRODUCTS_ON_PAGE, $url);
