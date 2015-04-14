@@ -59,13 +59,9 @@ class AbstractSelect {
 		return $this;
 	}
 	
-	/* SELECT * 
-	FROM  `xyz_slider` s
-	INNER JOIN xyz_product p ON s.product_id = p.id */
-	
 	public function join($view, $table_name, $alias, $on) {
 		$table_name = $this->db->getTableName($table_name);
-		$this->join = " ".$view." JOIN `".$table_name."` `$alias` ON ".$on;
+		$this->join .= " ".$view." JOIN `".$table_name."` `$alias` ON ".$on;
 		return $this;
 	}
 	
@@ -93,14 +89,14 @@ class AbstractSelect {
 				$ask = $temp;
 			}
 			for ($i = 0; $i < count($field); $i++) {
-				$this->order .= "`".$field[$i]."`";
+				$this->order .= $field[$i];
 				if (!$ask[$i]) $this->order .= " DESC,";
 				else $this->order .= ",";
 			}
 			$this->order = substr($this->order, 0, -1);
 		}
 		else {
-			$this->order = "ORDER BY `$field`";
+			$this->order = "ORDER BY $field";
 			if (!$ask) $this->order .= " DESC";
 		}
 		return $this;

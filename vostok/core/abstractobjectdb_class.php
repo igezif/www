@@ -34,10 +34,10 @@ abstract class AbstractObjectDB {
 		if (!$row) return false;
 		if ($this->init($row)) return $this->postLoad();
 	}
-	
+
 	public function init($row) {
 		foreach ($row as $key => $value) {
-			if (!array_key_exists($key, $this->properties)) $this->add($key);
+			if (!isset($this->properties[$key])) $this->add($key);
 			$val = $value;
 			switch ($this->properties[$key]) {
 				case self::TYPE_TIMESTAMP:
@@ -214,6 +214,14 @@ abstract class AbstractObjectDB {
 			->whereIn($field, $ids);
 		$data = self::$db->select($select);
 		return AbstractObjectDB::buildMultiple($class, $data);
+	}
+	
+	public static function getCountAllOnIDsField($ids, $field) {
+		$class = get_called_class();
+		$select = new Select();
+		$select->from($class::$table, array("COUNT(id)"))
+			->whereIn($field, $ids);
+		return self::$db->selectCell($select);
 	}
 	
 	protected function loadOnField($field, $value) {

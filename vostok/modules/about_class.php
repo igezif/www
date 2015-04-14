@@ -1,15 +1,15 @@
 <?php
 
-class Adminauth extends Module {
+class About extends Module {
 	
 	public function __construct() {
 		parent::__construct();
-		$this->add("action");
-		$this->add("message");
+		$this->add("hornav");
+		//$this->add("items", null, true);
 	}
 	
 	public function getTmplFile() {
-		return "adminauth";
+		return "about";
 	}
 	
 }

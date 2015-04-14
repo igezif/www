@@ -23,10 +23,14 @@ class FormProcessor {
 					}
 					else $obj->$f = $v;
 				}
-				else $obj->$field = $this->request->$field;
+				else{
+					$obj->$field = $this->request->$field;
+					$this->setSessionData($field, $this->request->$field);
+				}	
 			}
 			if ($obj->save()) {
 				if ($success_message) $this->setSessionMessage($message_name, $success_message);
+				foreach ($fields as $field) $this->unsetSessionData($field);
 				return $obj;
 			}
 		} catch (Exception $e) {
@@ -63,13 +67,32 @@ class FormProcessor {
 		if (!session_id()) session_start();
 		$_SESSION["message"] = array($to => $message);
 	}
-	
+
 	public function getSessionMessage($to) {
 		if (!session_id()) session_start();
 		if (!empty($_SESSION["message"]) && !empty($_SESSION["message"][$to])) {
 			$message = $_SESSION["message"][$to];
 			unset($_SESSION["message"][$to]);
 			return $this->message->get($message);
+		}
+		return false;
+	}
+
+	public function setSessionData($field, $value){
+		if (!session_id()) session_start();
+		$_SESSION["data"][$field] = $value;
+	}
+
+	public function unsetSessionData($field){
+		unset($_SESSION["data"][$field]);
+	}
+
+	public static function getSessionData($field){
+		if (!session_id()) session_start();
+		if (!empty($_SESSION["data"]) && !empty($_SESSION["data"][$field])) {
+			$data = $_SESSION["data"][$field];
+			unset($_SESSION["data"][$field]);
+			return $data;
 		}
 		return false;
 	}

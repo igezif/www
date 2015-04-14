@@ -106,6 +106,11 @@ abstract class Controller extends AbstractController {
 		return null;
 	}
 	
+	protected function getHornav() {
+		$hornav = new Hornav();
+		$hornav->addData("Главная", URL::get(""));
+		return $hornav;
+	}
 	
 	
 	/*

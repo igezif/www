@@ -7,53 +7,35 @@ class MainController extends Controller {
 		$this->meta_desc = "строительная фирма Восток сервис";
 		$this->meta_key = "строительная фирма Восток сервис";
 		$head = $this->getHead(array("/css/main.css"), false);
-		//$head->add("js", null, true);
-		//$head->js = array("/js/jquery-1.10.2.min.js", "/js/main.js", "/js/slider.js");
-		
-		//$this->render($head, "пт Бро!");
 		$content = new Middleindex();
 		$this->render($head, $content);
-		
-		//$head = $this->getHead(array("/css/main.css"));
-		//$this->render($head, "<h1>В настоящее время на сайте идут технические работы.</h1>");
 	}
 	
-	/*
-	public function actionSection() {
-		$section_db = new SectionDB();
-		$section_db->load($this->request->id);
-		if (!$section_db->isSaved()) $this->notFound();
-		$this->section_id = $section_db->id;
-		$this->title = $section_db->title;
-		$this->meta_desc = $section_db->meta_desc;
-		$this->meta_key = $section_db->meta_key;
-		
+	public function actionAbout() {
+		$this->title = "О компании";
+		$this->meta_desc = "О компании Восток сервис";
+		$this->meta_key = "строительство, ремонт";
+		$head = $this->getHead(array("/css/main.css"), false);
+		$content = new About();
 		$hornav = $this->getHornav();
-		$hornav->addData($section_db->title);
-		
-		$intro = new Intro();
-		$intro->hornav = $hornav;
-		$intro->obj = $section_db;
-		
-		$blog = new Blog();
-		$articles = ArticleDB::getAllOnPageAndSectionID($this->request->id, Config::COUNT_ARTICLES_ON_PAGE);
-		
-		$more_articles = ArticleDB::getAllOnSectionID($this->request->id, false);
-		
-		$i = 0;
-		foreach ($more_articles as $id => $article) {
-			$i++;
-			unset($more_articles[$id]);
-			if ($i == Config::COUNT_ARTICLES_ON_PAGE) break;
-		}
-		
-		$blog->articles = $articles;
-		$blog->more_articles = $more_articles; 
-		$head = $this->getHead(array("/css/main.css"));
-		$this->render($head, "пт Бро!");
+		$hornav->addData("О компании");
+		$content->hornav = $hornav;
+		$this->render($head, $content);
+	}
+
+	public function actionHomes() {
+		$this->title = "Строительство домов";
+		$this->meta_desc = "Строительство домов под ключ в городе Новосибирске";
+		$this->meta_key = "построить дом, построить дом в Новосибирске";
+		$head = $this->getHead(array("/css/main.css"), false);
+		$content = new Homes();
+		$hornav = $this->getHornav();
+		$hornav->addData("Строительство домов");
+		$content->hornav = $hornav;
+		$this->render($head, $content);
 	}
 	
-	 
+	/* 
 	public function actionCategory() {
 		$category_db = new CategoryDB();
 		$category_db->load($this->request->id);

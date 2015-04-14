@@ -1,8 +1,8 @@
 <header>
 	<div class = "content contacts">
-		<div id = "logo">
+		<a href = "/" id = "logo">
 			<img src = "img/main/logo.png" alt = "Изображение" />
-		</div>
+		</a>
 		<div id = "contacts">
 			<div id = "consultation">
 				Заказать консультацию on-line
@@ -13,37 +13,66 @@
 			</div>
 		</div>
 	</div>
-	<nav>
-		<div class = "content menu">
-			<a href = "">
-				О компании
-			</a>
-			<div></div>
-			<a href = "">
-				Услуги
-			</a>
-			<div></div>
-			<a href = "">
-				Фотогалерея
-			</a>
-			<div></div>
-			<a href = "">
-				Проекты
-			</a>
-			<div></div>
-			<a href = "" class = "menu_item">
-				Контакты
-			</a>
-			<div></div>
-			<a href = "" class = "row menu_item" id = "link_magazine">
-				<div id = "stroimat">
-					Стройматериалы
+	<nav class = "head_nav">
+		<ul class = "content head_menu">
+			<li class = "menu_item">
+				<a class = "head_link" href = "/about">
+					О компании
+				</a>
+			</li>
+			<li class = "rardel">
+			</li>
+			<li class = "menu_item">
+				<div class = "head_link">
+					Услуги
 				</div>
-				<div>
-					<img src = "/img/main/korzina.png" alt = "Изображение" />
-				</div>
-			</a>		
-			<div></div>
-		</div>
+				<ul class = "submenu">
+					<li>
+						<a class = "head_link" href="/homes">Строительство домов и коттеджей</a>
+					</li>
+					<li>
+						<a class = "head_link" href="/floats">Ремонт квартир</a>
+					</li>
+					<li>
+						<a class = "head_link" href="/organization">Для юридических лиц</a>
+					</li>
+			    </ul>
+			</li>
+			<li class = "rardel">
+			</li>
+			<li class = "menu_item">
+				<a class = "head_link" href = "#">
+					Фотогалерея
+				</a>
+			</li>
+			<li class = "rardel">
+			</li>
+			<li class = "menu_item">
+				<a class = "head_link" href = "#">
+					Контакты
+				</a>
+			</li>
+			<li class = "rardel">
+			</li>
+			<li class = "menu_item">
+				<a class = "head_link" href = "#">
+					Акции
+				</a>
+			</li>
+			<li class = "rardel">	
+			</li>
+			<li class = "menu_item magazine">
+				<a class = "head_link" href = "#">
+					<div class = "stroimat">
+						Стройматериалы
+					</div>
+					<div class = "stroimat">
+						<img src = "/img/main/korzina.png" alt = "Изображение" />
+					</div>
+				</a>
+			</li>
+			<li class = "rardel">
+			</li>
+		</ul>
 	</nav>
 </header>

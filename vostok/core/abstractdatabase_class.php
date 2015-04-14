@@ -39,7 +39,7 @@ abstract class AbstractDataBase {
 		if (!$result_set) return false;
 		$array = array();
 		while (($row = $result_set->fetch_assoc()) != false)
-			$array[] = $row;
+			$array[$row["id"]] = $row;
 		return $array;
 	}
 	
@@ -140,6 +140,21 @@ abstract class AbstractDataBase {
 		while (($row = $result_set->fetch_assoc()) != false)
 			$array[] = $row;
 		return $array;
+	}
+	
+	public function getRow($query, $params = false){
+		$sql = $this->getQuery($query, $params);
+		$result_set = $this->mysqli->query($sql);
+		if (!$result_set->num_rows) return false;
+		return $result_set->fetch_assoc();
+	}
+
+	public function getCell($query, $params = false){
+		$sql = $this->getQuery($query, $params);
+		$result_set = $this->mysqli->query($sql);
+		if (!$result_set->num_rows) return false;
+		$arr = array_values($result_set->fetch_assoc());
+		return $arr[0];	
 	}
 		
 	public function __destruct() {

@@ -1,14 +1,15 @@
 <?php
 
-class Section extends Module {
+class Homes extends Module {
 	
 	public function __construct() {
 		parent::__construct();
-		$this->add("items");
+		$this->add("hornav");
+		//$this->add("items", null, true);
 	}
 	
 	public function getTmplFile() {
-		return "section";
+		return "homes";
 	}
 	
 }

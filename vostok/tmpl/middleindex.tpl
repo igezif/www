@@ -4,21 +4,21 @@
 	<div class = "line_slider"></div>
 </div>
 <div id = "big_menu" class = "content">
-	<a href = "#" class = "big_menu_item">
+	<a href = "/homes" class = "big_menu_item">
 		<h2 class = "first_h2_big_menu">Строительство домов<br /> и коттеджей</h2>
 		<img class = "big_menu_foto" src = "/img/main/big_menu.png" alt = "Изображение" />
 		<img class = "big_menu_arow" src = "/img/main/strelka_1.png" alt = "Изображение" />
 	</a>
 	<div>
 	</div>
-	<a href = "#" class = "big_menu_item">
+	<a href = "/floats" class = "big_menu_item">
 		<h2>Ремонт квартир</h2>
 		<img class = "big_menu_foto" src = "/img/main/big_menu.png" alt = "Изображение" />
 		<img class = "big_menu_arow" src = "/img/main/strelka_1.png" alt = "Изображение" />
 	</a>
 	<div>
 	</div>
-	<a href = "#" class = "big_menu_item">
+	<a href = "/organization" class = "big_menu_item">
 		<h2>Для юридических лиц</h2>
 		<img class = "big_menu_foto" src = "/img/main/big_menu.png" alt = "Изображение" />
 		<img class = "big_menu_arow" src = "/img/main/strelka_1.png" alt = "Изображение" />
@@ -39,7 +39,7 @@
 			<p>
 				Компания "Новее" предоставляет комплексные работы по ремонту и строительству домов под ключ в Новосибирске и Новосибирской обл. уже  15 лет.
 			</p>
-			<a href = "#" class = "button more">Подробнее</a>
+			<a href = "/about" class = "button more">Подробнее</a>
 			<div class = "clear"></div>
 		</div>
 		<div class = "info_wrap">
@@ -60,6 +60,7 @@
 				<div class = "clear"></div>
 			</div>
 		</div>
+		<!--
 		<div class = "gallery_block">
 			<p>Фотогалерея работ</p>
 			<table>
@@ -93,32 +94,11 @@
 				</tr>
 			</table>
 		</div>
-		<!-- <div class = "info_wrap text">
-			<h3>
-				Почему с нами строительство дома комфортно
-			</h3>
-			<div class = "info">
-				<p><img src = "/img/main/foto.png" alt = "Изображение" /></p>
-			</div>
-			<p>
-				Окончание работ точно в сроки, прописанные в договоре.					
-			</p>
-			<p>
-				Удобная коммуникация между смежниками и субподрядчиками. Обмен, хранение, передача информации.
-			</p>
-			<p>
-				Мы полностью несем перед вами ответственность за результаты строительства домов в Новосибирске под ключ.
-			</p>
-			<p>
-				Соблюдение гарантийных обязательств в течение 3-10 лет для сохранения репутации нашей компании.
-			</p>
-			<p>
-				Возможность значительной экономии на строительстве дома в Новосибирске под ключ при комплексном заказе с рабочим проектом.
-			</p>
-		</div> -->
+		-->
 	</div>
 	
 	<div class = "right_block">
+		<!-- 
 		<div class = "action_block">
 			<h3>Акции</h3>
 			<a href = "#" class = "action_item">
@@ -136,9 +116,9 @@
 				<img class = "action_arow" src = "/img/main/strelka_1.png" alt = "Изображение" />
 				<p class = "action_header">Собственный коттедж<br /> 25000 руб/м2</p>
 			</a>
-		</div>
+		</div> -->
 		<div class = "calc_block">
-			<h3>Калькулятор</h3>
+			<h3>Новости</h3>
 		</div>
 		<!-- <div class = "collective_block">
 			<p>Наш коллектив</p>

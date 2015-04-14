@@ -14,6 +14,10 @@ a{
 	text-decoration: none;
 }
 
+ul li {
+	list-style: none;
+}
+
 .content{
 	width: 1000px;
 	margin: 0 auto;
@@ -38,6 +42,7 @@ a{
 /* HEADER */
 
 #logo{
+	display: inline-block;
 	margin: 20px 0 0 25px;
 }
 
@@ -74,64 +79,92 @@ a{
 	margin: 0 0 0 14px;
 }
 
-nav{
+.head_nav{
 	height: 41px;
 	background: url("../img/main/menu_bokovue.jpg") repeat-x;
 	margin: 25px 0 0 0;
 	box-shadow: 0 0 7px rgba(0,0,0,2.0);
 }
 
-.menu{
+ul.head_menu{
 	background: url("../img/main/menu.jpg") repeat-x;
 	height: 59px;
 	position: relative;
 	top: -10px;
 	border-radius: 7px 7px 0 0;
 	box-shadow: 0 0 7px rgba(0,0,0,2.0);
-}
-
-.menu > div, .menu > a{
 	display: block;
-	float: left;
 }
 
-.menu > :first-child{
+ul.head_menu li {
+	float: left;
+	list-style: none;
+}
+
+ul.head_menu > :first-child, ul.head_menu > :first-child .head_link{
 	border-radius: 7px 0 0 0;
 }
 
-.menu > div{
+ul.head_menu li.rardel{
 	background: url("../img/main/razdelitel.png") no-repeat;
 	width: 2px;
 	height: 59px;
 }
 
-.menu > a{
+ul.head_menu li.menu_item .head_link{
 	color: #dddddd;
 	padding: 19px 15px 20px 15px;
 	font-size: 90%;
 	text-shadow: 0 -1px 1px #777;
-}
-
-.menu a:hover{
-	background: url("../img/main/active_menu_bt.png");
-}
-
-.menu > a > div{
+	display: block;
 	vertical-align: middle;
 }
 
-#link_magazine{
-	padding: 13px 15px 14px 15px;
+ul.head_menu li.menu_item > .head_link:hover{
+	background: url("../img/main/active_menu_bt.png");
+	cursor: pointer;
+}
+
+ul.head_menu li .head_link .stroimat{
+	display: inline-block;
+	font-size: 130%;
+	vertical-align: middle;
+}
+
+ul.head_menu li.magazine .head_link{
+	padding: 13px 15px 12px 15px;
 	background: linear-gradient(#EA1502 52%, #fd6500);
 }
 
-#link_magazine:hover{
+ul.head_menu li.magazine .head_link:hover{
 	background: linear-gradient(#EA1502 52%, #F02F17);
-	transition: 0.2s;
 }
 
-#stroimat{
-	font-size: 130%;
+ul.head_menu li ul.submenu {
+	display: none;
+	z-index: 3;
+}
+
+ul.head_menu li ul.submenu li {
+	background: linear-gradient(#444444 52%, #676767);
+	border-top: 1px solid #676767;
+}
+
+ul.head_menu li ul.submenu :last-child{
+	border-radius: 0 0 7px 7px;
+}
+
+ul.head_menu li ul.submenu li:hover {
+	background: #444444;
+}
+
+ul.head_menu li:hover ul.submenu {
+	display: block;
+	position: absolute;
+}
+
+ul.head_menu li:hover ul.submenu li {
+	float: none;
 }
 
 /* SLIDER */
@@ -207,7 +240,6 @@ nav{
 	display: block;
 	float: left;
 	height: 225px;
-	background: url("../img/main/fon.png") repeat;
 	width: 319px;
 	border: 1px solid #888888;
 	box-shadow: 0 0 10px rgba(0,0,0,0.5);
@@ -223,7 +255,7 @@ nav{
 	top: 39px;
 	color: #dddddd;
 	vertical-align: middle;
-	z-index: 22;
+	z-index: 2;
 	text-shadow: 0 -1px 1px #777;
 }
 
@@ -263,6 +295,21 @@ nav{
 }
 
 /* MIDDLE */
+
+.hornav{
+	margin: 23px auto 0 auto;
+	padding: 0 0 0 35px;
+}
+
+.hornav a{
+	color: #2f2f2f;
+	font-style: italic;
+	text-decoration: underline;
+}
+
+.hornav a:hover{
+	text-decoration: none;
+}
 
 .button{
 	background: linear-gradient(180deg, #888888 0%, #404040 100%);
@@ -314,6 +361,14 @@ nav{
 	margin: 10px 0 0 0;
 }
 
+.white{
+	background: none;
+	padding: 15px;
+	border: 1px solid #888888;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	margin: 10px 0 0 0;
+}
+
 .info h1{
 	color: #7e162d;
 	font-style: italic;
@@ -339,6 +394,7 @@ nav{
 .collective_block {
 	border: 1px solid #888888;
 	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	margin: 10px 0 0 0;
 }
 
 .collective_block > p{
@@ -420,6 +476,16 @@ nav{
 	margin: 10px 0 0 0;
 	font-style: italic;
 }
+
+.grid > a{
+	display: block;
+	float: left;
+	margin: 18px 18px 0 0;
+}
+
+.grid > a:nth-child(3){
+	margin-right: 0;
+} 
 
 /* FOOTER */
 .hFooter{
