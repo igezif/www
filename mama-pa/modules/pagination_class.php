@@ -17,5 +17,3 @@ class Pagination extends Module {
 	}
 	
 }
-
-?>

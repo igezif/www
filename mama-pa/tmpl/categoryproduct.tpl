@@ -4,15 +4,6 @@
 		<?=$title?>
 	</h1>
 	<div class = "row">
-		<div class = "category_ul">
-			<ul>
-				<?php foreach ($categories as $category) { ?>
-				<li>
-					<a href = "<?=$category->link?>" alt = ""><?=$category->title?></a>
-				</li>
-				<?php } ?>
-			</ul>
-		</div>
 		<div class = "row section_product_wrap">
 			<?php foreach($products as $product) { ?>
 			<a href = "<?=$product->link?>" class = "section_product_item">
@@ -29,7 +20,6 @@
 			</a>
 			<?php } ?>
 		</div>
-		
 	</div>
 	<?=$pagination?>
 </section>

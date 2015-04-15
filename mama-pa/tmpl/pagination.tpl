@@ -15,7 +15,7 @@
 	<div id="pagination">
 		<?php if ($active != 1) { ?>
 			<a href="<?=$url?>" title="Первая">Первая</a>
-			<a href="<?php if ($active == 2) { ?>$url<?php } else { ?><?=$url_page.($active - 1)?><?php } ?> title="Предыдущая">Предыдущая</a>
+			<a href="<?php if ($active == 2) { ?><?=$url?><?php } else { ?><?=$url_page.($active - 1)?><?php } ?>" title="Предыдущая">Предыдущая</a>
 		<?php } else { ?>
 			<span>Первая</span>
 			<span>Предыдущая</span>

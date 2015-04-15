@@ -37,6 +37,10 @@ class ProductDB extends ObjectDB {
 		return $data;
 	}
 
+	public static function getCountProductOnCategory($category_id){
+		return self::getCountOnField(self::$table, "category_id", $category_id);
+	}
+
 	public static function getProductOnSection($section_id, $count, $offset) {
 		$select = new Select(self::$db);
 		$select->from(self::$table, array("p.*"), "p")
@@ -45,6 +49,19 @@ class ProductDB extends ObjectDB {
 			->where("`s`.`id` = ?", array($section_id))
 			->where("`p`.`available` = 1")
 			->order("p.title")
+			->limit($count, $offset);
+		$data = self::$db->select($select);
+		$products = ObjectDB::buildMultiple(__CLASS__, $data);
+		foreach ($products as $product) $product->postHandling();
+		return $products;
+	}
+
+	public static function getProductOnCategory($category_id, $count, $offset) {
+		$select = new Select(self::$db);
+		$select->from(self::$table, "*")
+			->where("`category_id` = ?", array($category_id))
+			->where("`available` = 1")
+			->order("title")
 			->limit($count, $offset);
 		$data = self::$db->select($select);
 		$products = ObjectDB::buildMultiple(__CLASS__, $data);

@@ -42,6 +42,10 @@ ul{
 	min-height: 100%;
 }
 
+.float_left{
+	float: left;
+}
+
 /* ---   HEADER   --- */
 
 header{
@@ -365,8 +369,6 @@ header{
 	display: table-cell;
 }
 
-
-
 .big_arow{
 	background: url("../img/main/arow.png") no-repeat;
 	width: 22px;
@@ -379,17 +381,24 @@ header{
 	vertical-align: top;
 }
 
-.section_ul ul{
+.section_ul ul, .category_ul ul{
 	font-size: 80%;
 	list-style-image: url(../img/main/arow_small.png);
 }
 
-.section_ul ul li{
+.section_ul ul li, .category_ul ul li{
 	margin: 0 0 5px 0;
 }
 
-.section_ul a{
+.section_ul a, .category_ul a{
 	color: #808080;
+}
+
+.category_ul{
+	padding: 0 0 0 20px;
+	width: 175px;
+	vertical-align: top;
+	margin: 80px 0 0 0;
 }
 
 .section_item{

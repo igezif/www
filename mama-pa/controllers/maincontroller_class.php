@@ -47,21 +47,47 @@ class MainController extends Controller {
 		$this->meta_desc = $obj->meta_desc;
 		$this->meta_key= $obj->meta_key;
 		$head = $this->getHead(array("/css/main.css"), false);
-		$section_db = new SectionDB();
-		$section_db->load($this->request->id);
-		$sp = new Sectionproduct();
+		$content = new Sectionproduct();
 		$hornav = $this->getHornav();
-		$hornav->addData($section_db->title);
-		$sp->hornav = $hornav;
-		$sp->title = $section_db->title;
+		$hornav->addData($obj->title);
+		$content->hornav = $hornav;
+		$content->title = $obj->title;
 		$count = ProductDB::getCountProductOnSection($this->request->id);
 		$offset = $this->getOffset(Config::COUNT_PRODUCTS_ON_PAGE);
 		$url = URL::get("section", "", array("id" => $this->request->id));
 		$products = ProductDB::getProductOnSection($this->request->id, Config::COUNT_PRODUCTS_ON_PAGE, $offset);
+		$categories = CategoryDB::getCategoryOnSection($this->request->id);
 		$pagination = $this->getPagination($count, Config::COUNT_PRODUCTS_ON_PAGE, $url);
-		$sp->products = $products;
-		$sp->pagination = $pagination;
-		$this->render($head, $sp);
+		$content->products = $products;
+		$content->pagination = $pagination;
+		$content->categories = $categories;
+		$this->render($head, $content);
+	}
+
+	public function actionCategory() {
+		$obj = new CategoryDB();
+		if(!$obj->load($this->request->id)) $this->notFound();
+		$this->title = $obj->title;
+		$this->meta_desc = $obj->meta_desc;
+		$this->meta_key= $obj->meta_key;
+		$section_db = new SectionDB();
+		$section_db->load($obj->section_id);
+		$head = $this->getHead(array("/css/main.css"), false);
+		$content = new Categoryproduct();
+		$url = URL::get("category", "", array("id" => $this->request->id));
+		$section_url = URL::get("section", "", array("id" => $section_db->id));
+		$hornav = $this->getHornav();
+		$hornav->addData($section_db->title, $section_url);
+		$hornav->addData($obj->title);
+		$content->hornav = $hornav;
+		$content->title = $obj->title;
+		$count = ProductDB::getCountProductOnCategory($this->request->id);
+		$offset = $this->getOffset(Config::COUNT_PRODUCTS_ON_PAGE);
+		$products = ProductDB::getProductOnCategory($this->request->id, Config::COUNT_PRODUCTS_ON_PAGE, $offset);
+		$pagination = $this->getPagination($count, Config::COUNT_PRODUCTS_ON_PAGE, $url);
+		$content->products = $products;
+		$content->pagination = $pagination;
+		$this->render($head, $content);
 	}
 	
 	/*

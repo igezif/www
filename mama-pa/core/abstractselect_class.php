@@ -144,5 +144,3 @@ class AbstractSelect {
 		else $this->where = "WHERE $where";
 	}
 }
-
-?>

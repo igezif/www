@@ -5,7 +5,7 @@
 			<div><h2><?=$section->title?></h2></div>
 		</div>
 		<div class = "row border section_block">
-			<div	class = "section_ul">
+			<div class = "section_ul">
 				<ul>
 					<?php foreach ($section->categories as $category) { ?>
 					<li>

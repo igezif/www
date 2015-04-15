@@ -1,6 +1,6 @@
 <?php
 
-class Sectionproduct extends Module {
+class Categoryproduct extends Module {
 	
 	public function __construct() {
 		parent::__construct();
@@ -8,11 +8,10 @@ class Sectionproduct extends Module {
 		$this->add("hornav");
 		$this->add("products");
 		$this->add("pagination");
-		$this->add("categories");
 	}
 	
 	public function getTmplFile() {
-		return "sectionproduct";
+		return "categoryproduct";
 	}
 	
 }
