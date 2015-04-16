@@ -1,16 +1,19 @@
 <?php
 
-class Homes extends Module {
+class Contacts extends Module {
 	
 	public function __construct() {
 		parent::__construct();
 		$this->add("hornav");
-		$this->add("header");
+		//$this->add("header");
+		//$this->add("img");
+		//$this->add("content");
+		//$this->add("price");
 		//$this->add("items", null, true);
 	}
 	
 	public function getTmplFile() {
-		return "homes";
+		return "contacts";
 	}
 	
 }

@@ -5,23 +5,20 @@
 </div>
 <div id = "big_menu" class = "content">
 	<a href = "/homes" class = "big_menu_item">
-		<h2 class = "first_h2_big_menu">Строительство домов<br /> и коттеджей</h2>
+		<h2 class = "flag">Строительство домов и коттеджей</h2>
 		<img class = "big_menu_foto" src = "/img/main/big_menu.png" alt = "Изображение" />
-		<img class = "big_menu_arow" src = "/img/main/strelka_1.png" alt = "Изображение" />
 	</a>
 	<div>
 	</div>
-	<a href = "/floats" class = "big_menu_item">
-		<h2>Ремонт квартир</h2>
+	<a href = "/homes" class = "big_menu_item">
+		<h2 class = "flag">Ремонт квартир</h2>
 		<img class = "big_menu_foto" src = "/img/main/big_menu.png" alt = "Изображение" />
-		<img class = "big_menu_arow" src = "/img/main/strelka_1.png" alt = "Изображение" />
 	</a>
 	<div>
 	</div>
-	<a href = "/organization" class = "big_menu_item">
-		<h2>Для юридических лиц</h2>
+	<a href = "/homes" class = "big_menu_item">
+		<h2 class = "flag">Для юридических лиц</h2>
 		<img class = "big_menu_foto" src = "/img/main/big_menu.png" alt = "Изображение" />
-		<img class = "big_menu_arow" src = "/img/main/strelka_1.png" alt = "Изображение" />
 	</a>
 </div>
 <div class = "content">
@@ -56,7 +53,6 @@
 				<p>
 					Компания "Новее" предоставляет комплексные работы по ремонту и строительству домов под ключ в Новосибирске и Новосибирской обл. уже  15 лет.
 				</p>
-				<a href = "#" class = "button more">Подробнее</a>
 				<div class = "clear"></div>
 			</div>
 		</div>
@@ -158,9 +154,6 @@
 					</div>
 				</div>
 			</div>
-		</div> -->
-		
-		
-		
+		</div> -->	
 	</div>
 </div>

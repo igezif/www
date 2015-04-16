@@ -24,17 +24,77 @@ class MainController extends Controller {
 	}
 
 	public function actionHomes() {
-		$this->title = "Строительство домов";
-		$this->meta_desc = "Строительство домов под ключ в городе Новосибирске";
-		$this->meta_key = "построить дом, построить дом в Новосибирске";
+		if($id = $this->request->id){
+			$obj = new HomeDB();
+			$obj->load($id);
+			if (!$obj->isSaved()) $this->notFound();
+			$this->title = "Строительство домов";
+			$this->meta_desc = "Строительство домов под ключ в городе Новосибирске";
+			$this->meta_key = "построить дом, построить дом в Новосибирске";
+			$head = $this->getHead(array("/css/main.css"), false);
+			$content = new Variation();
+			$hornav = $this->getHornav();
+			$hornav->addData("Строительство домов", URL::get("homes", ""));
+			$hornav->addData($obj->title);
+			$content->hornav = $hornav;
+			$content->header = $obj->title;
+			$content->img = Config::DIR_IMG_HOMES.$obj->img;
+			$content->content = $obj->content;
+			$this->render($head, $content);
+		}
+		else{
+			$this->title = "Строительство домов";
+			$this->meta_desc = "Строительство домов под ключ в городе Новосибирске";
+			$this->meta_key = "построить дом, построить дом в Новосибирске";
+			$head = $this->getHead(array("/css/main.css"), false);
+			$content = new Homes();
+			$hornav = $this->getHornav();
+			$hornav->addData("Строительство домов");
+			$content->hornav = $hornav;
+			$content->header = "Строительство домов";
+			$this->render($head, $content);
+		}
+	}
+
+	public function actionGallery(){
+		if($id = $this->request->id){
+			$this->title = "Строительство домов";
+			$this->meta_desc = "Строительство домов под ключ в городе Новосибирске";
+			$this->meta_key = "построить дом, построить дом в Новосибирске";
+			$head = $this->getHead(array("/css/main.css"), false);
+			$content = new Homes();
+			$hornav = $this->getHornav();
+			$hornav->addData("Строительство домов");
+			$content->hornav = $hornav;
+			$content->header = "Строительство домов";
+			$this->render($head, $content);
+		}
+		else{
+			$this->title = "Фотогалерея";
+			$this->meta_desc = "Фотогалерея";
+			$this->meta_key = "Фотогалерея";
+			$head = $this->getHead(array("/css/main.css"), false);
+			$content = new Gallery();
+			$hornav = $this->getHornav();
+			$hornav->addData("Фотогалерея");
+			$content->hornav = $hornav;
+			$content->header = "Фотогалерея";
+			$this->render($head, $content);
+		}
+	}
+
+	public function actionContacts(){
+		$this->title = "Контакты";
+		$this->meta_desc = "Контактная информация и схема проезда";
+		$this->meta_key = "контакты, схем проезда";
 		$head = $this->getHead(array("/css/main.css"), false);
-		$content = new Homes();
+		$content = new Contacts();
 		$hornav = $this->getHornav();
-		$hornav->addData("Строительство домов");
+		$hornav->addData("Контакты");
 		$content->hornav = $hornav;
 		$this->render($head, $content);
 	}
-	
+
 	/* 
 	public function actionCategory() {
 		$category_db = new CategoryDB();
@@ -365,6 +425,6 @@ class MainController extends Controller {
 		$form->submit("Далее");
 		$form->addJSV("email", $this->jsv->email());
 		return $form;
-	} */
-	
+	} 
+	*/
 }

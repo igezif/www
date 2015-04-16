@@ -1,6 +1,6 @@
 <?php
 
-class Homes extends Module {
+class Gallery extends Module {
 	
 	public function __construct() {
 		parent::__construct();
@@ -10,7 +10,7 @@ class Homes extends Module {
 	}
 	
 	public function getTmplFile() {
-		return "homes";
+		return "gallery";
 	}
 	
 }
