@@ -224,10 +224,6 @@ header{
 	padding: 12px 0 0 0;
 }
 
-.hornav{
-	padding: 15px 15px 15px 15px;
-}
-
 /* ---   MIDDLE   --- */
 
 #slider{
@@ -394,11 +390,15 @@ header{
 	color: #808080;
 }
 
+.section_ul a:hover, .category_ul a:hover{
+	text-decoration: underline;
+}
+
 .category_ul{
 	padding: 0 0 0 20px;
 	width: 175px;
 	vertical-align: top;
-	margin: 80px 0 0 0;
+	margin: 15px 0 0 0;
 }
 
 .section_item{
@@ -448,14 +448,52 @@ header{
 	height: 10px;
 }
 
-.product_foto > div > img{
-	width: 170px;
+/* ---   HORNAV   --- */
+
+.hornav{
+	color: #282424;
+	font-size: 90%;
+	padding: 15px 15px 15px 15px;
+}
+
+.hornav a{
+	color: #282424;
+	text-decoration: underline;
+	font-style: italic;
+}
+
+.hornav a:hover{
+	text-decoration: none;
+}
+
+/* ---   PAGINATION   --- */
+
+#pagination{
+	text-align: center;
+	padding: 50px 0 15px 0;
+}
+
+#pagination a{
+	color: #3d5778;
+	font-style: italic;
+	padding: 0 3px;
+}
+
+#pagination a:hover{
+	text-decoration: underline;
+}
+
+#pagination .active_pagination_item{
+	color: #282424;
+	padding: 0 3px;
+	font-size: 123%;
 }
 
 /* ---   SECTION_PRODUCT   --- */
 
 .section_product_wrap{
-	width: 800px;
+	width: 799px;
+	border-left: 1px solid #e7e3a7;
 }
 
 .section_product_item{
@@ -472,11 +510,79 @@ header{
 	border: 1px solid #e7e3a7;
 }
 
-#pagination{
+/* ---   PRODUCT_KART   --- */
+.product_header{
+	color: #282424;
+	padding: 10px 0 10px 10px;
 	text-align: center;
-	padding: 15px 0 5px 0;
 }
 
+.product_info{
+	vertical-align: top;
+	margin: 79px 0 0 50px;
+}
+
+.product_price{
+	height: 100px;
+	width: 100px;
+	border-radius: 50px;
+	background-color: #4cb2c9;
+	text-align: center;
+}
+
+.product_price div{
+	position: relative;
+	top: 35px;
+	color: #ffffff;
+	font-size: 151%;
+}
+
+.product_brand{
+	color: #282424;
+	margin: 33px 0 0 0;
+}
+
+.product_img{
+	border-right: 1px solid #e7e3a7;
+}
+
+.product_img img{
+	display: block;
+	max-width: 600px;
+}
+
+.product_description{
+	color: #282424;
+	padding: 15px;
+}
+
+.product_fotos{
+	border-top: 1px solid #e7e3a7;
+	padding: 10px 0 0 0;
+}
+
+.product_fotos > div > img{
+	width: 170px;
+}
+
+.product_buy{
+	display: block;
+	width: 151px;
+	height: 30px;
+	background-color: #ef5612;
+	text-align: center;
+	padding: 14px 0 0 0;
+	margin: 55px 0 0 0;
+	color: #ffffff;
+	border-radius: 10px;
+	font-weight: bold;
+	transition: 0.2s;
+}
+
+.product_buy:hover{
+	border-radius: 5px;
+	transition: 0.2s;
+}
 
 /* ---   ADMINKA   --- */
 .admin_block h3{

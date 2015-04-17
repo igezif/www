@@ -36,6 +36,7 @@ class MainController extends Controller {
 		$product->id = $obj->id;
 		$product->brand = $obj->brand;
 		$product->price = $obj->price;
+		$product->description = $obj->meta_desc;
 		$product->foto = ImgDB::getImgOnID($this->request->id);
 		$this->render($head, $product);
 	}
@@ -89,6 +90,8 @@ class MainController extends Controller {
 		$content->pagination = $pagination;
 		$this->render($head, $content);
 	}
+
+
 	
 	/*
 	public function actionArticle() {

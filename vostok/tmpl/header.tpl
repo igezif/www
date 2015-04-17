@@ -84,7 +84,7 @@
 			<li class = "rardel">	
 			</li>
 			<li class = "menu_item magazine">
-				<a class = "head_link" href = "snab54.ru">
+				<a class = "head_link" href = "http://snab54.ru">
 					<div class = "stroimat">
 						Стройматериалы
 					</div>

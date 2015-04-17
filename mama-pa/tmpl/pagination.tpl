@@ -21,7 +21,7 @@
 			<span>Предыдущая</span>
 		<?php } ?>
 		<?php for ($i = $start; $i <= $end; $i++) { ?>
-			<?php if ($i == $active) { ?><span><?=$i?></span><?php } else { ?><a href="<?php if ($i == 1) { ?><?=$url?><?php } else { ?><?=$url_page.$i?><?php } ?>"><?=$i?></a><?php } ?>
+			<?php if ($i == $active) { ?><span class = "active_pagination_item"><?=$i?></span><?php } else { ?><a href="<?php if ($i == 1) { ?><?=$url?><?php } else { ?><?=$url_page.$i?><?php } ?>"><?=$i?></a><?php } ?>
 		<?php } ?>
 		<?php if ($active != $count_pages) { ?>
 			<a href="<?=$url_page.($active + 1)?>" title="Следующая">Следующая</a>

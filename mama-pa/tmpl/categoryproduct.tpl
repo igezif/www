@@ -1,6 +1,6 @@
 <?=$hornav?>
 <section class = "content border">
-	<h1>
+	<h1 class = "product_header">
 		<?=$title?>
 	</h1>
 	<div class = "row">

@@ -11,6 +11,7 @@ class Product extends Module {
 		$this->add("id");
 		$this->add("brand");
 		$this->add("price");
+		$this->add("description");
 		$this->add("foto", null, true);
 	}
 	
