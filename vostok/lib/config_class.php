@@ -6,7 +6,7 @@ abstract class Config {
 	const DB_USER = "root";
 	const DB_PASSWORD = "123qwe";
 	const DB_NAME = "vostok";
-	const DB_PREFIX = "xyz_";
+	const DB_PREFIX = "service_";
 	const DB_SYM_QUERY = "?";
 	/* ------- */
 
