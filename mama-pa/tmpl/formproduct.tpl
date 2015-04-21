@@ -43,6 +43,7 @@
 				</table>
 			</div>
 		</div>
+		<?php if(isset($fotos)) { ?>
 		<div class = "dop_admin_foto row">
 			<p>Фотографии</p>
 			<?php foreach($fotos as $foto) { ?>
@@ -51,5 +52,6 @@
 			</div>
 			<?php } ?>
 		</div>
+		<?php  } ?>
 	</div>
 </form>

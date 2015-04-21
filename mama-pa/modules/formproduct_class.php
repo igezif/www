@@ -15,7 +15,8 @@ class Formproduct extends Form {
 		if(!$id){
 			$this->text("title", "Название:", FormProcessor::getSessionData("title"));
 			$this->text("price", "Цена:", FormProcessor::getSessionData("price"));			
-			$this->textarea("meta_desc", "Описание:", FormProcessor::getSessionData("meta_desc"));
+			$this->textarea("meta_desc", "Короткое описание<br />(не более 255 символов):", FormProcessor::getSessionData("meta_desc"));
+			$this->textarea("product_description", "Длинное описание<br />(хоть сколько символов):", FormProcessor::getSessionData("product_description"));
 			$this->textarea("meta_key", "Ключевые слова:", FormProcessor::getSessionData("meta_key"));
 			$this->checkbox("available", "Наличие:", "1");
 			$this->submit("insert_product", "Сохранить");
@@ -29,7 +30,8 @@ class Formproduct extends Form {
 			$obj->load($id);
 			$this->text("price", "Цена:", $obj->price);
 			$this->textarea("title", "Название:", $obj->title);
-			$this->textarea("meta_desc", "Описание:", $obj->meta_desc);
+			$this->textarea("meta_desc", "Короткое описание<br />(не более 255 символов):", $obj->meta_desc);
+			$this->textarea("product_description", "Длинное описание<br />(хоть сколько символов):", $obj->product_description);
 			$this->textarea("meta_key", "Ключевые слова:", $obj->meta_key);
 			$this->checkbox("available", "Наличие:", "1", "", (int)$obj->available);
 			$this->submit("update_product", "Сохранить");

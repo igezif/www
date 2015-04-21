@@ -19,8 +19,8 @@
 			<!--<div>наличие <?=$available?></div>
 			<div>номер <?=$id?></div>-->
 			<div class = "product_brand"><b>Бренд:</b> <?=$brand?></div>
-			<a href = "#" class = "product_buy">
-				Купить
+			<a href = "/basket?id=<?=$id?>" class = "product_buy">
+				В корзину
 			</a>
 		</div>
 	</div>

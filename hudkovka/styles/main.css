@@ -337,10 +337,12 @@ article a:hover{
 	border: 2px ridge #bcbbbb;
 	border-radius: 5px;
 	margin: 10px 5px 0 5px;
+	transition: 0.2s;
 }
 #production a:hover{
 	border-radius: 0;
 	color: #bcbbbb;
+	transition: 0.2s;
 }
 #production table tr td a img:hover{
 	opacity: 0.7;
@@ -429,6 +431,11 @@ footer #dev{
 	width: 91px;
 	height: 15px;
 	float: right;
+	position: relative;
+	top: 9px;
+}
+footer #dev a{
+	color: #000000;
 }
 footer #copy{
 	position: relative;

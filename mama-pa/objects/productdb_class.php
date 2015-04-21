@@ -11,6 +11,7 @@ class ProductDB extends ObjectDB {
 		$this->add("brand_id", "ValidateID");
 		$this->add("price", "ValidatePrice");
 		$this->add("title", "ValidateTitle");
+		$this->add("product_description", "ValidateText");
 		$this->add("meta_desc", "ValidateMD");
 		$this->add("meta_key", "ValidateMK");
 		$this->add("available", "ValidateBoolean");
@@ -18,7 +19,6 @@ class ProductDB extends ObjectDB {
 	
 	protected function postInit() {
 		$this->link = URL::get("product", "", array("id" => $this->id));
-		$this->img = Config::DIR_IMG_PRODUCT.$this->img;
 		return true;
 	}
 	
@@ -99,14 +99,14 @@ class ProductDB extends ObjectDB {
 	}
 	
 	private function postHandling(){
-		//$this->img = Config::DIR_IMG_PRODUCT.$this->img;
+		$this->img = Config::DIR_IMG_PRODUCT.$this->img;
 		return true;
 	}
 	
 	/* ADMINKA */
 	public static function getAdminShow(){
 		$data = self::$db->getResult(
-			"select p.id, p.title, p.img, c.title as category, b.title as brand, p.price, p.meta_desc, p.meta_key, p.available
+			"select p.id, p.title, p.img, c.title as category, b.title as brand, p.price, p.product_description, p.meta_desc, p.meta_key, p.available
 			from ".Config::DB_PREFIX."product p 
 			left join ".Config::DB_PREFIX."category c on p.category_id=c.id
 			left join ".Config::DB_PREFIX."brand b on p.brand_id=b.id"
@@ -120,7 +120,7 @@ class ProductDB extends ObjectDB {
 		if (!is_null($this->img)){
 			$view = new View(Config::DIR_TMPL);
 			$this->imageName = $this->img;
-			$this->img = $view->render("img", array("src" => $this->img), true);
+			$this->img = $view->render("img", array("src" => Config::DIR_IMG_PRODUCT.$this->img), true);
 		}
 		else $this->img = "нет";
 		$this->link_update = URL::get("update", "admin", array("view" => "product", "id" => $this->id));

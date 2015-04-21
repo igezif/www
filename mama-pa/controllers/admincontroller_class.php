@@ -111,14 +111,14 @@ class AdminController extends Controller {
 				$img = $this->fp->uploadIMG($this->request->view, $_FILES["img"], Config::MAX_SIZE_IMG, Config::DIR_IMG_PRODUCT);
 				if ($img) {
 					$obj_db = new ProductDB();
-					$obj = $this->fp->process($this->request->view, $obj_db, array("category_id", array("img", $img), "brand_id", "price", "title", "meta_desc", "meta_key", ($this->request->available) ? "available" : array("available", 0)), array(), "SUCCESS_POSITION_INSERT");
+					$obj = $this->fp->process($this->request->view, $obj_db, array("category_id", array("img", $img), "brand_id", "price", "title", "product_description", "meta_desc", "meta_key", ($this->request->available) ? "available" : array("available", 0)), array(), "SUCCESS_POSITION_INSERT");
 					if ($obj instanceof ProductDB) $this->redirect(URL::get("product", "admin"));
 					else $this->redirect(URL::current());
 				}
 			}
 			else{
 				$obj_db = new ProductDB();
-				$obj = $this->fp->process($this->request->view, $obj_db, array("category_id", "brand_id", "price", "title", "meta_desc", "meta_key", ($this->request->available) ? "available" : array("available", 0)), array(), "SUCCESS_POSITION_INSERT");
+				$obj = $this->fp->process($this->request->view, $obj_db, array("category_id", "brand_id", "price", "title", "product_description", "meta_desc", "meta_key", ($this->request->available) ? "available" : array("available", 0)), array(), "SUCCESS_POSITION_INSERT");
 				if ($obj instanceof ProductDB)$this->redirect(URL::get("product", "admin"));
 				else $this->redirect(URL::current());
 			}
@@ -176,12 +176,13 @@ class AdminController extends Controller {
 		}
 		else if($this->request->update_product){
 			if(isset($_FILES["img"])){
+				print_r($_REQUEST);die;
 				$img = $this->fp->uploadIMG($this->request->view, $_FILES["img"], Config::MAX_SIZE_IMG, Config::DIR_IMG_PRODUCT);
 				if ($img) {
 					$obj_db = new ProductDB();
 					$obj_db->load($this->request->id);
 					$tmp = $obj_db->imageName;
-					$obj = $this->fp->process($this->request->view, $obj_db, array("category_id", array("img", $img), "brand_id", "price", "title", "meta_desc", "meta_key", "available"), array(), "SUCCESS_POSITION_UPDATE");
+					$obj = $this->fp->process($this->request->view, $obj_db, array("category_id", array("img", $img), "brand_id", "price", "title", "product_description", "meta_desc", "meta_key", "available"), array(), "SUCCESS_POSITION_UPDATE");
 					if ($obj instanceof ProductDB){
 						if ($tmp) File::delete(Config::DIR_IMG_PRODUCT.$tmp);
 						$this->redirect(URL::get("product", "admin"));		
@@ -192,7 +193,7 @@ class AdminController extends Controller {
 			else{
 				$obj_db = new ProductDB();
 				$obj_db->load($this->request->id);
-				$obj = $this->fp->process($this->request->view, $obj_db, array("category_id", "brand_id", "price", "title", "meta_desc", "meta_key", "available"), array(), "SUCCESS_POSITION_UPDATE");
+				$obj = $this->fp->process($this->request->view, $obj_db, array("category_id", "brand_id", "price", "title", "product_description", "meta_desc", "meta_key", "available"), array(), "SUCCESS_POSITION_UPDATE");
 				if ($obj instanceof ProductDB)$this->redirect(URL::get("product", "admin"));
 				else $this->redirect(URL::current());
 			}

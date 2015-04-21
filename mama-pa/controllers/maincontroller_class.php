@@ -31,12 +31,12 @@ class MainController extends Controller {
 		$hornav->addData($obj->title);
 		$product->hornav = $hornav;
 		$product->title = $obj->title;
-		$product->img = $obj->img;
+		$product->img = Config::DIR_IMG_PRODUCT.$obj->img;
 		$product->available = $obj->available;
 		$product->id = $obj->id;
 		$product->brand = $obj->brand;
 		$product->price = $obj->price;
-		$product->description = $obj->meta_desc;
+		$product->description = $obj->product_description;
 		$product->foto = ImgDB::getImgOnID($this->request->id);
 		$this->render($head, $product);
 	}

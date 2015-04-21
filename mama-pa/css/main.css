@@ -514,6 +514,8 @@ header{
 .product_header{
 	color: #282424;
 	padding: 10px 0 10px 10px;
+	margin: 0 auto;
+	max-width: 675px;
 	text-align: center;
 }
 
@@ -549,6 +551,7 @@ header{
 .product_img img{
 	display: block;
 	max-width: 600px;
+	padding: 0 15px 0 15px;
 }
 
 .product_description{
@@ -559,6 +562,10 @@ header{
 .product_fotos{
 	border-top: 1px solid #e7e3a7;
 	padding: 10px 0 0 0;
+}
+
+.product_fotos > div{
+	margin: 0 5px 0 0;
 }
 
 .product_fotos > div > img{
@@ -607,7 +614,7 @@ header{
 	padding: 7px;
 }
 
-.admin_img > img{
+.admin_img img{
 	height: 150px;
 }
 
@@ -722,6 +729,10 @@ header{
 
 #input_file{
 	
+}
+
+#product_description{
+	height: 300px;
 }
 
 /* ---   FOOTER   --- */

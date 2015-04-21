@@ -2,7 +2,7 @@
 
 class ValidateMD extends Validator {
 	
-	const MAX_LEN = 1000;
+	const MAX_LEN = 255;
 	const CODE_EMPTY = "ERROR_MD_EMPTY";
 	const CODE_MAX_LEN = "ERROR_MD_MAX_LEN";
 	

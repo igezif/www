@@ -21,7 +21,10 @@ class FormProcessor {
 						$f = str_replace("()", "", $f);
 						$obj->$f($v);
 					}
-					else $obj->$f = $v;
+					else{
+						$obj->$f = $v;
+						$this->setSessionData($f, $v);
+					}
 				}
 				else{
 					$obj->$field = $this->request->$field;
@@ -128,5 +131,3 @@ class FormProcessor {
 	}
 	
 }
-
-?>

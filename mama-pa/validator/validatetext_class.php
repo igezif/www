@@ -13,5 +13,3 @@ class ValidateText extends Validator {
 	}
 	
 }
-
-?>
