@@ -33,7 +33,10 @@ class FormProcessor {
 			}
 			if ($obj->save()) {
 				if ($success_message) $this->setSessionMessage($message_name, $success_message);
-				foreach ($fields as $field) $this->unsetSessionData($field);
+				foreach ($fields as $field){
+					//$this->unsetSessionData($field);
+					unset($_SESSION["data"]);
+				}
 				return $obj;
 			}
 		} catch (Exception $e) {
@@ -87,7 +90,12 @@ class FormProcessor {
 	}
 
 	public function unsetSessionData($field){
-		unset($_SESSION["data"][$field]);
+		if (!session_id()) session_start();
+		if (!empty($_SESSION["data"]) && !empty($_SESSION["data"][$field])) {
+			unset($_SESSION["data"][$field]);
+			return false;
+		}
+		return false;
 	}
 
 	public static function getSessionData($field){
