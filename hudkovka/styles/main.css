@@ -134,11 +134,13 @@ nav .network-ul ul li a{
 	width: 30px;
 	border-radius: 3px;
 	opacity: 0.7;
+	transition: 0.2s;
 }
 nav .network-ul ul li a:hover{
 	cursor: pointer;
 	border-radius: 0;
 	opacity: 1;
+	transition: 0.2s;
 }
 #vk{
 	background: url("../img/vk.png") no-repeat;

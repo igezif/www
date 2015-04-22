@@ -550,13 +550,20 @@ header{
 
 .product_img img{
 	display: block;
-	max-width: 600px;
+	max-width: 500px;
 	padding: 0 15px 0 15px;
 }
 
 .product_description{
 	color: #282424;
 	padding: 15px;
+	max-width: 600px;
+	font-size: 87%;
+}
+
+.product_description p{
+	margin: 10px 0 0 0;
+	line-height: 1.5;
 }
 
 .product_fotos{

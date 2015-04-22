@@ -6,9 +6,9 @@
 				<?=$title?>
 			</h1>
 			<img src = "<?=$img?>" alt = "Изображение" />
-			<p class = "product_description">
+			<div class = "product_description">
 				<?=$description?>
-			</p>
+			</div>
 		</div>
 		<div class = "product_info">
 			<div class = "product_price">
