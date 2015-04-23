@@ -544,6 +544,11 @@ header{
 	margin: 33px 0 0 0;
 }
 
+.product_brand img{
+	display: block;
+	max-width: 200px;
+}
+
 .product_img{
 	border-right: 1px solid #e7e3a7;
 }

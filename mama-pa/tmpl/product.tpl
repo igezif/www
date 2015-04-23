@@ -18,7 +18,10 @@
 			</div>
 			<!--<div>наличие <?=$available?></div>
 			<div>номер <?=$id?></div>-->
-			<div class = "product_brand"><b>Бренд:</b> <?=$brand?></div>
+			<div class = "product_brand">
+				<b>Бренд:</b> <?=$brand?>
+				<img src = "<?=$brand_img?>">
+			</div>
 			<a href = "/basket?id=<?=$id?>" class = "product_buy">
 				В корзину
 			</a>

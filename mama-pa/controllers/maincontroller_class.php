@@ -35,6 +35,7 @@ class MainController extends Controller {
 		$product->available = $obj->available;
 		$product->id = $obj->id;
 		$product->brand = $obj->brand;
+		$product->brand_img = Config::DIR_IMG_BRAND.$obj->brand_img;
 		$product->price = $obj->price;
 		$product->description = $obj->product_description;
 		$product->foto = ImgDB::getImgOnID($this->request->id);

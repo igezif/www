@@ -71,7 +71,7 @@ class ProductDB extends ObjectDB {
 	
 	public function getProduct($id){
 		$data = self::$db->getRow(
-			"select p.*,  c.title as category, s.title as section, s.id as section_id, c.id as category_id, b.title as brand 
+			"select p.*,  c.title as category, s.title as section, s.id as section_id, c.id as category_id, b.title as brand, b.img as brand_img  
 			from ".Config::DB_PREFIX."product p 
 			inner join ".Config::DB_PREFIX."category c on p.category_id=c.id
 			inner join ".Config::DB_PREFIX."section s on c.section_id=s.id
