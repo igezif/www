@@ -22,9 +22,9 @@
 				<b>Бренд:</b> <?=$brand?>
 				<img src = "<?=$brand_img?>">
 			</div>
-			<a href = "/basket?id=<?=$id?>" class = "product_buy">
+			<div class = "add_basket button_add_basket" data-basket="<?=$id?>">
 				В корзину
-			</a>
+			</div>
 		</div>
 	</div>
 	<?php if ($foto) { ?>

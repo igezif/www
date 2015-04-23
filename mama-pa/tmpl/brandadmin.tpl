@@ -22,7 +22,7 @@
 				<td>
 					<?=$item->meta_key?>
 				</td>
-				<td>
+				<td class = "brand_admin_img">
 					<?=$item->img?>
 				</td>
 				<td>

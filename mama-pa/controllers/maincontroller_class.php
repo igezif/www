@@ -8,7 +8,7 @@ class MainController extends Controller {
 		$this->meta_key = "товары для детей, детские товары";
 		$head = $this->getHead(array("/css/main.css"), false);
 		$head->add("js", null, true);
-		$head->js = array("/js/jquery-1.10.2.min.js", "/js/main.js", "/js/slider.js");
+		$head->js = array("/js/slider.js", "/js/main.js");
 		$sections = new Section();
 		$sections->items = SectionDB::getAllShow();
 		$slider = new Slider();
@@ -24,6 +24,8 @@ class MainController extends Controller {
 		$this->meta_desc = $obj->meta_desc;
 		$this->meta_key= $obj->meta_key;
 		$head = $this->getHead(array("/css/main.css"), false);
+		$head->add("js", null, true);
+		$head->js = array("/js/main.js");
 		$product = new Product();
 		$hornav = $this->getHornav();
 		$hornav->addData($obj->section, URL::get("section", "", array("id" => $obj->section_id)));
@@ -41,6 +43,10 @@ class MainController extends Controller {
 		$product->foto = ImgDB::getImgOnID($this->request->id);
 		$this->render($head, $product);
 	}
+
+	public function actionBasket() {
+		echo $this->request->id;
+	}
 	
 	public function actionSection() {
 		$obj = new SectionDB();
@@ -49,6 +55,8 @@ class MainController extends Controller {
 		$this->meta_desc = $obj->meta_desc;
 		$this->meta_key= $obj->meta_key;
 		$head = $this->getHead(array("/css/main.css"), false);
+		$head->add("js", null, true);
+		$head->js = array("/js/main.js");
 		$content = new Sectionproduct();
 		$hornav = $this->getHornav();
 		$hornav->addData($obj->title);
@@ -75,6 +83,8 @@ class MainController extends Controller {
 		$section_db = new SectionDB();
 		$section_db->load($obj->section_id);
 		$head = $this->getHead(array("/css/main.css"), false);
+		$head->add("js", null, true);
+		$head->js = array("/js/main.js");
 		$content = new Categoryproduct();
 		$url = URL::get("category", "", array("id" => $this->request->id));
 		$section_url = URL::get("section", "", array("id" => $section_db->id));

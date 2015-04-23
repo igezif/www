@@ -151,4 +151,4 @@ function Slider() {
 }
 
 var slider = new Slider();
-window.onload = slider.start;
+window.addEventListener("load", slider.start);

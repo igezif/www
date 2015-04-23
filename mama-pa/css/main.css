@@ -513,7 +513,7 @@ header{
 /* ---   PRODUCT_KART   --- */
 .product_header{
 	color: #282424;
-	padding: 10px 0 10px 10px;
+	padding: 10px;
 	margin: 0 auto;
 	max-width: 675px;
 	text-align: center;
@@ -555,6 +555,7 @@ header{
 
 .product_img img{
 	display: block;
+	width: 500px;
 	max-width: 500px;
 	padding: 0 15px 0 15px;
 }
@@ -584,8 +585,7 @@ header{
 	width: 170px;
 }
 
-.product_buy{
-	display: block;
+.button_add_basket{
 	width: 151px;
 	height: 30px;
 	background-color: #ef5612;
@@ -598,9 +598,13 @@ header{
 	transition: 0.2s;
 }
 
-.product_buy:hover{
+.button_add_basket:hover{
 	border-radius: 5px;
 	transition: 0.2s;
+}
+
+.add_basket:hover{
+	cursor: pointer;
 }
 
 /* ---   ADMINKA   --- */
@@ -745,6 +749,10 @@ header{
 
 #product_description{
 	height: 300px;
+}
+
+.brand_admin_img img{
+	max-width: 200px;
 }
 
 /* ---   FOOTER   --- */

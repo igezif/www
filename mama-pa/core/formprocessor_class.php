@@ -33,10 +33,7 @@ class FormProcessor {
 			}
 			if ($obj->save()) {
 				if ($success_message) $this->setSessionMessage($message_name, $success_message);
-				foreach ($fields as $field){
-					//$this->unsetSessionData($field);
-					unset($_SESSION["data"]);
-				}
+				unset($_SESSION["data"]);
 				return $obj;
 			}
 		} catch (Exception $e) {

@@ -25,7 +25,10 @@
 						Цена: <span class = "section_price_digit"><?=$product->price?></span> 
 						<span class = "section_price_word">руб.</span>
 					</div>
-					<a href = "<?=$product->link?>" class = "row section_buy"><div class = "arow_small"></div><div>Купить</div></a>
+					<div class = "add_basket section_buy row" data-basket="<?=$product->id?>">
+						<div class = "arow_small"></div>
+						<div>Купить</div>
+					</div>
 				</div>
 			</div>
 			<?php } ?>
