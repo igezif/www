@@ -2,31 +2,53 @@ function Basket(){
 	
 	self = this;
 
-	var section_buy = document.getElementsByClassName("add_basket");
+	var adds = document.getElementsByClassName("add_basket");
+	var dels = document.getElementsByClassName("del_basket");
 
 	this.init = function(){
-		for(var i = 0; i < section_buy.length; i++){
-			section_buy[i].addEventListener("click", self.add_basket);
+		if(adds.length > 0){
+			var len = adds.length;
+			for(var i = 0; i < len; i++){
+				adds[i].addEventListener("click", self.add_basket);
+			}	
+		}
+		if(dels.length > 0){
+			var len = dels.length;
+			for(var i = 0; i < len; i++){
+				dels[i].addEventListener("click", self.del_basket);
+			}	
 		}
 	}
 
-	this.add_basket = function(e){
-		var button, id, ajax;
-		var data = [];
+	this.del_basket = function(e){
+		var button = e.target;
 		var ajax = new Ajax();
+		var data = {"action": "del", "id": button.getAttribute("data-basket")};
+		ajax.send("POST", "ajax/basket", data).then(self.del, self.showError);	
+	}
+
+	this.del = function(response){
+		console.log(response);
+	}
+
+	this.add_basket = function(e){
 		if(e.target.classList[0] === "add_basket"){
-			button = e.target;
+			var button = e.target;
 		}
 		else{
-			button = e.target.parentNode;
+			var button = e.target.parentNode;
 		}
-		id = button.getAttribute("data-basket");
-		data["id"] = id;
-		ajax.send("POST", "/basket", data).then(function(response){
-			console.log(response);
-		}, function(error) {
-			console.log(error);
-		});	
+		var ajax = new Ajax();
+		var data = {"action": "add", "id": button.getAttribute("data-basket")};
+		ajax.send("POST", "ajax/basket", data).then(self.show, self.showError);	
+	}
+
+	this.show = function(response){
+		console.log(response);
+	}
+
+	this.showError = function(error){
+		alert(error);
 	}
 
 }
@@ -36,7 +58,8 @@ function Ajax(){
 	var self = this;
 
 	this.send = function(method, url, arr){
-		var data = self.getRow(arr);
+		var data = "";
+		if(arr) data = self.getRow(arr);
 		return new Promise(function(succeed, fail) {
 			var req = self.getXmlHttp();
 			req.open(method, url, true);

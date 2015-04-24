@@ -83,7 +83,7 @@ class URL {
 	}
 	
 	private static function postHandler($uri, $address = "") {
-		$uri = UseSEF::replaceSEF($uri, $address);
+		//$uri = UseSEF::replaceSEF($uri, $address);
 		return $uri;
 	}
 	

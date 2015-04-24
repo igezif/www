@@ -20,7 +20,7 @@
 			<div>номер <?=$id?></div>-->
 			<div class = "product_brand">
 				<b>Бренд:</b> <?=$brand?>
-				<img src = "<?=$brand_img?>">
+				<img src = "<?=$brand_img?>" alt = "Изображение" />
 			</div>
 			<div class = "add_basket button_add_basket" data-basket="<?=$id?>">
 				В корзину

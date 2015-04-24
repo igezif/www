@@ -16,9 +16,9 @@
 				<a href = "#" id = "logo_twitter"></a>
 				<a href = "#" id = "logo_mail"></a>
 			</div>
-			<div id = "basket">
-				<a href = "#"><b>Корзина</b><b>0.00</b></a>
-			</div>
+			<a id = "basket" href = "/basket">
+				<b>Корзина</b><b class = "summ_header"><?=$summ?> <span class = "rouble">р</span></b>
+			</a>
 		</div>
 		<div id = "second_menu_wrap" class = "row">
 			<div id = "logo">

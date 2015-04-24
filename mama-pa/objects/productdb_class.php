@@ -26,6 +26,15 @@ class ProductDB extends ObjectDB {
 		return $this->id;
 	}
 
+	public static function getProductForBasket($id){
+		$data = self::$db->getRow(
+			"select * from ".Config::DB_PREFIX."product 
+			where id = ?", array($id)
+		);
+		if($data) $data["img"] = Config::DIR_IMG_PRODUCT.$data["img"];
+		return $data;
+	}
+
 	public static function getCountProductOnSection($section_id){
 		$data = self::$db->getCell(
 			"select count(*) 

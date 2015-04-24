@@ -46,6 +46,15 @@ ul{
 	float: left;
 }
 
+@font-face {
+	font-family: Ruble; /* Гарнитура шрифта */
+	src: url("../fonts/rouble.ttf"); /* Путь к файлу со шрифтом */
+}
+
+.rouble{
+	font-family: 'Ruble', Arial, sans-serif;
+}
+
 /* ---   HEADER   --- */
 
 header{
@@ -65,7 +74,7 @@ header{
 	background: url("../img/main/logo.png") no-repeat;
 }
 
-#top_menu_wrap div{
+#top_menu_wrap div, #top_menu_wrap a{
 	vertical-align: middle;
 }
 
@@ -119,22 +128,27 @@ header{
 	margin: 0 0 0 63px;
 }
 
-#basket a b{
-	display: inline-block;
+#basket b{
 	color: #ffffff;
 	font-size: 80%;
 }
 
-#basket a :first-child{
-	padding: 6px 0 0 12px;
+#basket > :first-child{
+	float: left;
+	padding: 6px 0 0 10px;
+	display: block;
 }
 
-#basket a :last-child{
-	padding: 6px 0 0 35px;
+#basket .summ_header{
+	float: left;
+	width: 65px;
+	margin: 6px 0 0 11px;
+	text-align: center;
+	display: block;
 }
 
 #second_menu_wrap{
-	margin: 23px 0 0 0;
+	margin: 27px 0 0 0;
 }
 
 #second_menu_wrap > div{
@@ -605,6 +619,16 @@ header{
 
 .add_basket:hover{
 	cursor: pointer;
+}
+
+/* ---   BASKET    --- */
+.basket table{
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.basket table tr{
+	border-top: 1px solid #e7e3a7;
 }
 
 /* ---   ADMINKA   --- */

@@ -70,3 +70,5 @@ abstract class AbstractModule {
 	abstract public function getTmplFile();
 	
 }
+
+?>

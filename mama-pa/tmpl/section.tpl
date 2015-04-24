@@ -16,7 +16,7 @@
 			</div>
 			<?php foreach ($section->products as $product) { ?>
 			<div class = "section_item">
-				<a class = "section_image" href = "<?=$product->link?>" alt = "Image">
+				<a class = "section_image" href = "<?=$product->link?>">
 					<img src = "<?=$product->img?>" alt = "Изображение" />
 				</a>
 				<div class = "section_description"><?=$product->title?></div>

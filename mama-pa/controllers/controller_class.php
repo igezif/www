@@ -64,6 +64,10 @@ abstract class Controller extends AbstractController {
 		$params["footer"] = $this->getFooter();
 		$this->view->render(Config::LAYOUT, $params);
 	}
+
+	final protected function jsonResponse($array) {
+		echo json_encode($array);
+	}
 	
 	protected function getHead($css = false, $index = true) {
 		$head = new Head();
@@ -80,6 +84,7 @@ abstract class Controller extends AbstractController {
 	
 	protected function getHeader() {
 		$header = new Header();
+		$header->summ = BasketData::getSumm();
 		$header->uri = $this->url_active;
 		$header->link_search = $this->link_search;
 		$header->menu_items = SectionDB::getAll();

@@ -45,7 +45,23 @@ class MainController extends Controller {
 	}
 
 	public function actionBasket() {
-		echo $this->request->id;
+		$items = BasketData::getItems();
+		if($items){
+			$basket = new Basket();
+			$basket->items = BasketData::getItems();
+			$basket->summ = BasketData::getSumm();
+			$content = $basket;
+		}
+		else{
+			$content = "<p>Ваша корзина пуста</p>";
+		}
+		$this->title = "Ваша корзина";
+		$this->meta_desc = "Ваша корзина";
+		$this->meta_key = "Ваша корзина";
+		$head = $this->getHead(array("/css/main.css"), false);
+		$head->add("js", null, true);
+		$head->js = array("/js/main.js");
+		$this->render($head, $content);
 	}
 	
 	public function actionSection() {
