@@ -2,6 +2,7 @@ function Basket(){
 	
 	self = this;
 
+	var summ;
 	var adds = document.getElementsByClassName("add_basket");
 	var dels = document.getElementsByClassName("del_basket");
 
@@ -28,6 +29,7 @@ function Basket(){
 	}
 
 	this.del = function(response){
+		document.querySelector("div[data-basket='" + response + "']").parentNode.parentNode.remove();
 		console.log(response);
 	}
 
@@ -44,7 +46,8 @@ function Basket(){
 	}
 
 	this.show = function(response){
-		console.log(response);
+		var data = JSON.parse(response);
+		document.getElementById("summ_header").innerHTML = data["summ"] + " р";
 	}
 
 	this.showError = function(error){

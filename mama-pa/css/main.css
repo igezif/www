@@ -139,7 +139,7 @@ header{
 	display: block;
 }
 
-#basket .summ_header{
+#basket #summ_header{
 	float: left;
 	width: 65px;
 	margin: 6px 0 0 11px;
