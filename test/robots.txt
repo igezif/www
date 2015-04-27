@@ -1,2 +1,2 @@
 User-agent: *
-Host: купитьгараж.рф
+Host: patent-nsk.ru

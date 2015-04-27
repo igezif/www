@@ -1,4 +1,4 @@
 AddDefaultCharset UTF-8
 RewriteEngine On
-RewriteCond %{HTTP_HOST} ^www.купитьгараж.рф$ [NC]
-RewriteRule ^(.*)$ http://купитьгараж.рф/$1 [R=301,L]
+RewriteCond %{HTTP_HOST} ^www.patent-nsk.ru$ [NC]
+RewriteRule ^(.*)$ http://patent-nsk.ru/$1 [R=301,L]

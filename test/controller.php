@@ -14,7 +14,7 @@
 	$from = "patent-nsk";
 	$to = "patent-ufms@yandex.ru";
 	$phone = $data["phone"];
-	$message = "Сообщение от ".$name.",<br /><br />Телефон:".$phone;
+	$message = "Сообщение от ".$name.",\n\nТелефон:".$phone;
 	$subject = "=?utf-8?B?subject?=";
 	$headers = "From: $from\r\nReply-to: $from\r\nContent-type: text/plain; charset=utf-8\r\n";
 	mail($to, $subject, $message, $headers);

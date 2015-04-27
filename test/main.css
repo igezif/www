@@ -35,7 +35,6 @@ header{
 h1{
 	background-color: #f5e6cb;
 	padding: 15px;
-	margin: 0 0 20px 0;
 }
 
 h2{
@@ -136,7 +135,6 @@ a.button7:active {
 	display: block;
 	background-color: #f5e6cb;
 	text-align: center;
-	margin: 0 0 30px 0;
 }
 
 .form div{
@@ -159,4 +157,19 @@ footer{
 
 .phone_footer{
 	padding: 29px 0 21px 0;
+}
+
+#counter{
+	display: none;
+}
+
+.shadow{
+	height: 15px;
+	width: 1000px;
+}
+
+.shadow_180{
+	height: 15px;
+	width: 1000px;
+	display: block;
 }
