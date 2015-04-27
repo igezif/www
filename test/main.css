@@ -13,7 +13,150 @@ a{
 	text-decoration: none;
 }
 
+.center{
+	text-align: center;
+}
+
 .content{
 	width: 1000px;
 	margin: 0 auto;
+}
+
+.line{
+	height: 30px;
+	background-color: #f2ddc6;
+}
+
+header{
+	margin: 0 auto 30px auto;
+	width: 1000px;
+}
+
+h1{
+	background-color: #f5e6cb;
+	padding: 15px;
+	margin: 0 0 20px 0;
+}
+
+h2{
+	background-color: #f5e6cb;
+	padding: 15px;
+}
+
+.row_wrap{
+	display: inline-block;
+}
+
+.v_top{
+	vertical-align: top;
+}
+
+#phone{
+	font-size: 259%;
+	padding: 59px 0 0px 64px;
+}
+
+#phone span{
+	font-size: 80%;
+}
+
+#for_phone{
+	padding: 3px 0 0px 67px;
+}
+
+#email{
+	padding: 40px 0 0px 67px;
+	font-size: 125%;
+}
+
+nav{
+	background-color: #f2ddc6;
+}
+
+nav div{
+	padding: 30px 0 30px 0;
+}
+
+input[type=submit]{
+	border: none;
+}
+
+input[type=text]{
+	padding: 7px;
+	font-size: 110%;
+	width: 284px;
+	border-radius: 5px;
+}
+
+a.button7, input.button7 {
+	font-size: 150%;
+	width: 300px;
+	display: block;
+	margin: 0 auto;
+	font-weight: 700;
+	color: white;
+	text-decoration: none;
+	padding: .8em 1em calc(.8em + 3px);
+	border-radius: 3px;
+	background: rgb(64,199,129);
+	box-shadow: 0 -3px rgb(53,167,110) inset;
+	transition: 0.2s;
+} 
+a.button7:hover, input.button7:hover { background: rgb(53, 167, 110); }
+a.button7:active {
+  background: rgb(33,147,90);
+  box-shadow: 0 3px rgb(33,147,90) inset;
+}
+
+.text{
+	font-size: 115%;
+	text-indent: 1.5em;
+	line-height: 1.5;
+	padding: 10px 0 10px 0;
+}
+
+.big{
+	text-align: center;
+	padding: 25px;
+	
+	font-size: 151%;
+}
+
+.red{
+	background-color: #f2ddc6;
+}
+
+.list{
+	font-size: 141%;
+	font-style: italic;
+	padding: 5px 0 5px 19px;
+}
+
+.form{
+	display: block;
+	background-color: #f5e6cb;
+	text-align: center;
+	margin: 0 0 30px 0;
+}
+
+.form div{
+	padding: 10px 0 0 0;
+}
+
+.form div:last-child{
+	padding: 10px 0 25px 0;
+}
+
+address{
+	background-color: #f5e6cb;
+	padding: 7px;
+}
+
+footer{
+	text-align: center;
+	padding: 0 0 10px 0;
+}
+
+.phone_footer{
+	padding: 29px 0 21px 0;
 }
