@@ -5,7 +5,7 @@
 		</a>
 		<div id = "contacts">
 			<div id = "consultation">
-				Заказать консультацию on-line
+				Задать вопрос
 			</div>
 			<div id = "phone">
 				<span>+7 (383) 213-02-89</span>

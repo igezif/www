@@ -7,6 +7,8 @@ class MainController extends Controller {
 		$this->meta_desc = "строительная фирма Восток сервис";
 		$this->meta_key = "строительная фирма Восток сервис";
 		$head = $this->getHead(array("/css/main.css"), false);
+		$head->add("js", null, true);
+		$head->js = array("/js/main.js");
 		$content = new Middleindex();
 		$this->render($head, $content);
 	}

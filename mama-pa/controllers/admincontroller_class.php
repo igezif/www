@@ -176,7 +176,6 @@ class AdminController extends Controller {
 		}
 		else if($this->request->update_product){
 			if(isset($_FILES["img"])){
-				print_r($_REQUEST);die;
 				$img = $this->fp->uploadIMG($this->request->view, $_FILES["img"], Config::MAX_SIZE_IMG, Config::DIR_IMG_PRODUCT);
 				if ($img) {
 					$obj_db = new ProductDB();

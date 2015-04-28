@@ -47,6 +47,62 @@ h1{
 	text-align: center;
 }
 
+#black{
+	background-color: #000000;
+	opacity: 0.5;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 999;
+}
+
+#modal_form{
+	position: fixed;
+	display: none;
+	z-index: 1000;
+}
+
+#modal_form input[type=text]{
+	padding: 5px;
+	font-size: 110%;
+	border-radius: 5px;
+	display: block;
+	width: 300px;
+	margin: 10px 0 0 0;
+}
+
+#modal_form input[type=submit]{
+	padding: 5px;
+	font-size: 110%;
+	border-radius: 5px;
+	display: block;
+	width: 100%;
+	margin: 10px 0 0 0;
+}
+
+#modal_form textarea{
+	padding: 5px;
+	font-size: 140%;
+	margin: 10px 0 0 0;
+	border-radius: 5px;
+	width: 300px;
+	height: 200px;
+}
+
+#close_modal_form{
+	background: url("../img/main/button_close.png");
+	height: 20px;
+	width: 20px;
+	position: relative;
+	top: 7px;
+	left: 315px;
+}
+
+#close_modal_form:hover{
+	cursor: pointer;
+	opacity: 0.7;
+}
+
 /* HEADER */
 
 #logo{
@@ -69,13 +125,18 @@ h1{
 }
 
 #consultation{
-	padding: 6px 0px 7px 34px;
-	background: url("../img/main/on-line_kons.png") no-repeat;
-	width: 288px;
+	padding: 7px 0px 7px 83px;
+	background: linear-gradient(180deg, #c60125 0%, #810013 100%);
+	border-radius: 0 0 10px 10px;
 	color: #E2E2E2;
 	font-size: 97%;
 	text-shadow: 0 -1px 1px #777;
 }
+
+#consultation:hover{
+	cursor: pointer;
+}
+
 
 #phone{
 	margin: 13px 0 0 0;
@@ -577,6 +638,7 @@ footer{
 	float: left;
 	margin: 5px 0 0 0;
 	border-radius: 5px;
+	width: 300px;
 }
 
 .form_os textarea{

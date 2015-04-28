@@ -87,6 +87,7 @@ class ProductDB extends ObjectDB {
 			inner join ".Config::DB_PREFIX."brand b on p.brand_id=b.id
 			where p.id = ? and p.available = 1", array($id)
 		);
+		$data["product_description"] = htmlspecialchars_decode($data["product_description"]);
 		if ($data) return $this->init($data);
 		else return false;
 	}
