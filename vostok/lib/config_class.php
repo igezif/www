@@ -15,6 +15,7 @@ abstract class Config {
 	const ADDRESS = "http://prorab54.ru";
 	const ADM_NAME = "Василий Борисович";
 	const ADM_EMAIL = "vasilek.php@yandex.ru";
+	const ADM_EMAIL_2 = "lepeshkin_ilya@mail.ru";
 	
 	const DIR_IMG_HOMES = "/img/homes/";
 	

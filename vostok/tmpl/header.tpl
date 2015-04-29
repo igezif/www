@@ -4,7 +4,7 @@
 			<img src = "img/main/logo.png" alt = "Изображение" />
 		</a>
 		<div id = "contacts">
-			<div id = "consultation">
+			<div id = "show_modal_form">
 				Задать вопрос
 			</div>
 			<div id = "phone">

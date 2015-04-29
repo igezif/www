@@ -8,5 +8,3 @@ class Mail extends AbstractMail {
 	}
 	
 }
-
-?>

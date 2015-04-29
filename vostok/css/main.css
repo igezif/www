@@ -47,15 +47,6 @@ h1{
 	text-align: center;
 }
 
-#black{
-	background-color: #000000;
-	opacity: 0.5;
-	position: absolute;
-	top: 0;
-	left: 0;
-	z-index: 999;
-}
-
 #modal_form{
 	position: fixed;
 	display: none;
@@ -124,7 +115,7 @@ h1{
 	margin: 0 0 0 522px;
 }
 
-#consultation{
+#show_modal_form{
 	padding: 7px 0px 7px 83px;
 	background: linear-gradient(180deg, #c60125 0%, #810013 100%);
 	border-radius: 0 0 10px 10px;
@@ -133,10 +124,15 @@ h1{
 	text-shadow: 0 -1px 1px #777;
 }
 
-#consultation:hover{
+#show_modal_form:hover{
 	cursor: pointer;
 }
 
+#modal_form_message{
+	max-width: 300px;
+	margin: 10px 0 0 0;
+	color: #ffffff;
+}
 
 #phone{
 	margin: 13px 0 0 0;

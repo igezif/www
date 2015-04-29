@@ -42,7 +42,7 @@ function Basket(){
 		}
 		var ajax = new Ajax();
 		var data = {"action": "add", "id": button.getAttribute("data-basket")};
-		ajax.send("POST", "ajax/basket", data).then(self.show, self.showError);	
+		ajax.send("POST", "ajax/basket", data).then(self.show, self.showError);
 	}
 
 	this.show = function(response){
