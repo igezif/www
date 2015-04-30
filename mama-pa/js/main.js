@@ -29,8 +29,10 @@ function Basket(){
 	}
 
 	this.del = function(response){
-		document.querySelector("div[data-basket='" + response + "']").parentNode.parentNode.remove();
-		console.log(response);
+		var data = JSON.parse(response);
+		console.log(data);
+		document.querySelector("div[data-basket='" + data["id"] + "']").parentNode.parentNode.remove();
+		document.getElementById("span_summ").innerHTML = data["summ"];
 	}
 
 	this.add_basket = function(e){
@@ -47,7 +49,7 @@ function Basket(){
 
 	this.show = function(response){
 		var data = JSON.parse(response);
-		document.getElementById("summ_header").innerHTML = data["summ"] + " р";
+		document.getElementById("span_summ").innerHTML = data["summ"];
 	}
 
 	this.showError = function(error){

@@ -14,7 +14,13 @@ class AjaxController extends Controller {
 			}
 		}
 		else if($this->request->action === "del"){
-			echo BasketData::del($this->request->id);
+			$product = ProductDB::getProductForBasket($this->request->id);
+			if($product) {
+				$data["id"] = BasketData::del($this->request->id);
+				$data["summ"] = BasketData::getSumm();
+				$this->jsonResponse($data);
+			}
+			else echo "error";
 		}
 	}
 
