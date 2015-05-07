@@ -30,8 +30,15 @@ function Basket(){
 
 	this.del = function(response){
 		var data = JSON.parse(response);
-		console.log(data);
 		document.querySelector("div[data-basket='" + data["id"] + "']").parentNode.parentNode.remove();
+		console.log(data["summ"]);
+		if(data["summ"] === 0){
+			document.getElementById("basket_text").innerHTML = "Ваша корзина пуста";
+			document.getElementById("tr_basket_summ").remove();
+		}
+		else{
+			document.getElementById("basket_span_summ").innerHTML = data["summ"];
+		}
 		document.getElementById("span_summ").innerHTML = data["summ"];
 	}
 
@@ -47,14 +54,15 @@ function Basket(){
 		ajax.send("POST", "ajax/basket", data).then(self.showAddProduct, self.showError);
 	}
 
+	this.showError = function(error){
+		alert(error);
+	}
+
 	this.showAddProduct = function(response){
 		var data = JSON.parse(response);
 		document.getElementById("span_summ").innerHTML = data["summ"];
-		message.createMessage(data["product"]);
-	}
-
-	this.showError = function(error){
-		alert(error);
+		var html = "<p class = 'basket_small_text'>Товар добавлен в корзину</p><p class = 'basket_small_title'>" + data["product"]["title"] + "</p><img src = '" + data["product"]["img"] + "' class = 'basket_small_img'>";
+		message.createMessage(html);
 	}
 
 }
@@ -172,6 +180,14 @@ function Message(){
 		}, hide_interval);
 	}
 
+}
+
+function Gallery(){
+
+	var self = this;
+
+	
+	
 }
 
 var basket = new Basket();

@@ -14,7 +14,6 @@ class MainController extends Controller {
 		$slider = new Slider();
 		$slider->items = SliderDB::getItems();
 		$this->render($head, $this->renderData(array("slider" => $slider, "sections" => $sections), "index"));
-		//$this->render($head, "<h1>В настоящее время на сайте идут технические работы.</h1>");
 	}
 	
 	public function actionProduct() {
@@ -45,19 +44,18 @@ class MainController extends Controller {
 	}
 
 	public function actionBasket() {
-		$items = BasketData::getItems();
-		if($items){
-			$basket = new Basket();
-			$basket->items = BasketData::getItems();
-			$basket->summ = BasketData::getSumm();
-			$content = $basket;
-		}
-		else{
-			$content = "<p>Ваша корзина пуста</p>";
-		}
 		$this->title = "Ваша корзина";
 		$this->meta_desc = "Ваша корзина";
 		$this->meta_key = "Ваша корзина";
+		$content = new Basket();
+		$content->header = "Корзина";
+		$content->items = BasketData::getItems();
+		$hornav = $this->getHornav();
+		$hornav->addData("Корзина");
+		$content->hornav = $hornav;
+		if($content->items) $content->text = "Вы выбрали следующие товары";
+		else $content->text = "Ваша корзина пуста";
+		$content->summ = BasketData::getSumm();
 		$head = $this->getHead(array("/css/main.css"), false);
 		$head->add("js", null, true);
 		$head->js = array("/js/main.js");

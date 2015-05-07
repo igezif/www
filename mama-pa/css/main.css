@@ -49,10 +49,9 @@ ul{
 /* ---   POPUP_MESSAGE   --- */
 
 #for_popup_message{
-	transition: opacity 1s;
 	position: fixed;
-	top: 100px;
-	right: 100px;
+	top: 50px;
+	right: 120px;
 	z-index: 22;
 	width: 200px;
 }
@@ -69,11 +68,11 @@ ul{
 
 .close_popup_message{
 	background: url("../img/main/button_close.png");
-	height: 20px;
-	width: 20px;
+	height: 15px;
+	width: 15px;
 	transition: opacity 0.3s;
 	position: relative;
-	left: 160px;
+	left: 164px;
 }
 
 .close_popup_message:hover{
@@ -264,11 +263,6 @@ header{
 	padding: 12px 0 0 0;
 }
 
-@font-face {
-	font-family: Rouble; /* Гарнитура шрифта */
-	src: url("../fonts/rouble.otf"); /* Путь к файлу со шрифтом */
-}
-
 span.rouble{
 	position: relative;
 	left: 6px;
@@ -289,10 +283,14 @@ span.rouble{
 	font-size: 110%;
 }
 
-/* ---   MIDDLE   --- */
+/* ---   SLIDER   --- */
 
 #slider{
 	overflow: hidden;
+}
+
+#slider img{
+	display: block;
 }
 
 #slider div{
@@ -317,6 +315,7 @@ span.rouble{
 
 #slider_image img{
 	height: 337px;
+	margin: 0 auto;
 }
 
 #active_slide #slider_arow{
@@ -349,7 +348,7 @@ span.rouble{
 
 #slider_carousel > a > div{
 	height: 105px;
-	margin: 0 0 7px 0;
+	margin: 0 0 15px 0;
 	border: 1px solid #808080;
 }
 
@@ -392,6 +391,12 @@ span.rouble{
 #slider_data{
 	display: none !important;
 }
+
+#third_image{
+	margin: 0 !important;
+}
+
+/* ---   MIDDLE   --- */
 
 .border{
 	border: 5px solid #e7e3a7;
@@ -485,6 +490,12 @@ span.rouble{
 .section_description{
 	font-size: 80%;
 	margin: 5px 0 0 0;
+	color: #808080;
+	display: block;
+}
+
+.section_description:hover{
+	text-decoration: underline;
 }
 
 .section_price_block{
@@ -562,17 +573,11 @@ span.rouble{
 }
 
 .section_product_item{
-	
 	padding: 10px;
 	margin: 5px;
 	width: 231px;
-	transition: transform 0.3s;
 	color: #808080;
 	border-radius: 5px;
-}
-
-.section_product_item:hover{
-	transform: scale(1.3, 1.3);
 }
 
 /* ---   PRODUCT_KART   --- */
@@ -582,6 +587,7 @@ span.rouble{
 	margin: 0 auto;
 	max-width: 675px;
 	text-align: center;
+	font-style: italic;
 }
 
 .product_info{
@@ -690,6 +696,70 @@ span.rouble{
 
 .basket table tr{
 	border-top: 1px solid #e7e3a7;
+}
+
+.basket table tr td{
+	padding: 10px;
+}
+
+.basket table tr td p{
+	color: #808080;
+	font-style: italic;
+}
+
+.basket_image{
+	text-align: center;
+	width: 230px;
+}
+
+.basket_title{
+	width: 470px;
+}
+
+.basket_title a{
+	color: #808080;
+}
+
+.basket_title a:hover{
+	text-decoration: underline;
+}
+
+.basket_count{
+	width: 83px;
+}
+
+.basket_price{
+	width: 71px;
+}
+
+.basket_small_text{
+	font-size: 90%;
+	color: #ef5612;
+	margin: 10px auto 0 auto;
+}
+
+.basket_small_title{
+	margin: 10px auto 0 auto;
+	color: #808080;
+	font-style: italic;
+	float: justify;
+}
+
+.basket_small_img{
+	width: 150px;
+	display: block;
+	margin: 10px auto;
+}
+
+.del_basket{
+	font-style: italic;
+	color: #808080;
+	font-size: 90%;
+}
+
+.del_basket:hover{
+	cursor: pointer;
+	text-decoration: underline;
 }
 
 /* ---   ADMINKA   --- */

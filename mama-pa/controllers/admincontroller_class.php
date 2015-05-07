@@ -218,6 +218,14 @@ class AdminController extends Controller {
 			if ($obj instanceof CategoryDB) $this->redirect(URL::get("category", "admin"));
 			else $this->redirect(URL::current());
 		}
+		else if($this->request->upload_small_img) {
+			$img = $this->fp->uploadIMG($this->request->view, $_FILES["small_img"], Config::MAX_SIZE_IMG, Config::DIR_IMG_FSAPRODUCT);
+			if ($img) {
+				$obj_db = new ImgDB();
+				$obj = $this->fp->process($this->request->view, $obj_db, array(array("product_id", $this->request->id), array("url", $img)), array(), "SUCCESS_POSITION_INSERT");
+				$this->redirect(URL::current());
+			}
+		}
 		$this->title = "Админ панель";
 		$this->meta_desc = "Админ панель";
 		$this->meta_key = "админ панель";

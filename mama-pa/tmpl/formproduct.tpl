@@ -1,6 +1,6 @@
 <?php if ($message) { ?><p class="admin_message"><?=$message?></p><?php } ?>
-<form class = "admin_form" name = "<?=$name?>" action = "<?=$action?>" method = "POST" enctype="<?=$enctype?>" onsubmit="return checkForm(this)">
-	<div class = "border row">
+
+	<form class = "border row admin_form" name = "<?=$name?>" action = "<?=$action?>" method = "POST" enctype="<?=$enctype?>">
 		<div class = "admin_block"  style = "vertical-align: top;">
 			<?php foreach ($inputs as $input) { ?>
 				<?php include "f_".$input->type.".tpl"; ?>
@@ -43,15 +43,19 @@
 				</table>
 			</div>
 		</div>
-		<?php if(isset($fotos)) { ?>
-		<div class = "dop_admin_foto row">
-			<p>Фотографии</p>
-			<?php foreach($fotos as $foto) { ?>
-			<div>
-				<img src = "<?=$foto->url?>" alt = "Изображение" />
-			</div>
-			<?php } ?>
+	</form>
+	<?php if(isset($fotos)) { ?>
+	<div class = "dop_admin_foto row border">
+		<p>Фотографии</p>
+		<?php foreach($fotos as $foto) { ?>
+		<div>
+			<img src = "<?=$foto->url?>" alt = "Изображение" />
 		</div>
-		<?php  } ?>
+		<?php } ?>
+		<form name = "form_for_small_img" action = "<?=$action?>" method = "POST" enctype="<?=$enctype?>">
+			<input type = 'file' name = 'small_img' id = 'input_file' />
+			<input type="submit" name="upload_small_img" value="Сохранить">
+		</form>
 	</div>
-</form>
+	<?php  } ?>
+</div>
