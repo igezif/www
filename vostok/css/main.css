@@ -122,10 +122,13 @@ h1{
 	color: #E2E2E2;
 	font-size: 97%;
 	text-shadow: 0 -1px 1px #777;
+	transition: 0.2s;
 }
 
 #show_modal_form:hover{
 	cursor: pointer;
+	border-radius: 0;
+	transition: 0.2s;
 }
 
 #modal_form_message{
@@ -135,7 +138,7 @@ h1{
 }
 
 #phone{
-	margin: 13px 0 0 0;
+	margin: 13px 10px 0 0;
 }
 
 #phone > span {
@@ -659,4 +662,14 @@ footer{
 
 .form_os table{
 	margin: 15px 0 0 0;
+}
+
+/* --- ADMINKA --- */
+form[name='auth'] input[type='text'], form[name='auth'] input[type='password'], form[name='auth'] input[type='submit']{
+	padding: 5px;
+	font-size: 110%;
+	border-radius: 5px;
+	display: block;
+	width: 300px;
+	margin: 10px 0 0 0;
 }

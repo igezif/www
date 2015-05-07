@@ -46,7 +46,40 @@ ul{
 	float: left;
 }
 
+/* ---   POPUP_MESSAGE   --- */
 
+#for_popup_message{
+	transition: opacity 1s;
+	position: fixed;
+	top: 100px;
+	right: 100px;
+	z-index: 22;
+	width: 200px;
+}
+
+#for_popup_message > div{
+	border: 5px solid #e7e3a7;
+	border-radius: 10px;
+	background-color: #ffffff;
+	padding: 5px;
+	margin: 0 0 10px 0;
+	opacity: 0;
+	transition: opacity 1s;
+}
+
+.close_popup_message{
+	background: url("../img/main/button_close.png");
+	height: 20px;
+	width: 20px;
+	transition: opacity 0.3s;
+	position: relative;
+	left: 160px;
+}
+
+.close_popup_message:hover{
+	cursor: pointer;
+	opacity: 0.7;
+}
 
 /* ---   HEADER   --- */
 
@@ -169,7 +202,7 @@ header{
 
 #second_menu a:hover{
 	background: url("../img/main/button_active.png") repeat;
-	box-shadow: inset 0px 3px 11px -3px rgba(0,0,0,1)
+	box-shadow: inset 0px 3px 11px -3px rgba(0,0,0,1);
 }
 
 #search{

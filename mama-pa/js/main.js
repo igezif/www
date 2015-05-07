@@ -44,12 +44,13 @@ function Basket(){
 		}
 		var ajax = new Ajax();
 		var data = {"action": "add", "id": button.getAttribute("data-basket")};
-		ajax.send("POST", "ajax/basket", data).then(self.show, self.showError);
+		ajax.send("POST", "ajax/basket", data).then(self.showAddProduct, self.showError);
 	}
 
-	this.show = function(response){
+	this.showAddProduct = function(response){
 		var data = JSON.parse(response);
 		document.getElementById("span_summ").innerHTML = data["summ"];
+		message.createMessage(data["product"]);
 	}
 
 	this.showError = function(error){
@@ -105,5 +106,75 @@ function Ajax(){
 	}
 }
 
+function Message(){
+
+	var self = this;
+
+	var mb, messages;
+
+	var hide_interval = 3000;
+
+	this.init = function(){
+		mb = document.getElementById("for_popup_message");
+		if(self.isSetMessages()){
+			for(var i = 0; i < messages.length; i++){
+				var block = messages[i];
+				self.showMessage(block);
+				messages[i].querySelector(".close_popup_message").addEventListener("click", function(){
+					self.closeMessage(block);
+				});
+				setTimeout(function(){
+					self.closeMessage(block);
+				}, hide_interval);
+			}
+		}
+	}
+
+	this.showMessage = function(block){
+		block.style.opacity = 1;
+	}
+
+	this.closeMessage = function(block){
+		block.style.opacity = 0;
+		setTimeout(function(){
+			block.remove();
+		}, 1000);
+	}
+
+	this.isSetMessages = function(){
+		var m = document.querySelectorAll("#for_popup_message > div");
+		if(m.length > 0){
+			messages = m;
+			return true;
+		}
+		else return false;
+	}
+
+	this.createMessage = function(content){
+		var block = document.createElement('div');
+		var button_close = document.createElement('div');
+		button_close.setAttribute("class", "close_popup_message");
+		button_close.addEventListener("click", function(e){
+			var block = e.target.parentNode;
+			self.closeMessage(block);
+		});
+		var content_block = document.createElement('div');
+		content_block.setAttribute("class", "content_popup_message");
+		content_block.innerHTML = content;
+		block.appendChild(button_close);
+		block.appendChild(content_block);		
+		mb.appendChild(block);
+		setTimeout(function(){
+			self.showMessage(block);
+		}, 10);
+		setTimeout(function(){
+			self.closeMessage(block);
+		}, hide_interval);
+	}
+
+}
+
 var basket = new Basket();
+var message = new Message();
 window.addEventListener("load", basket.init);
+window.addEventListener("load", message.init);

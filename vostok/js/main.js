@@ -78,28 +78,34 @@ function Validator(){
 		var inputs = form.querySelectorAll("input");
 		var textarea = form.querySelectorAll("textarea");
 		for(var i = 0; i < inputs.length; i++){
+			if (inputs[i].type === "submit") continue;
 			var data_type = inputs[i].getAttribute("data-type");
+			value = inputs[i].value;
+			name = inputs[i].name;
+			selector = "input[name='" + name + "']";
 			if(data_type){
-				value = inputs[i].value;
-				name = inputs[i].name;
 				status = types[data_type].regular.test(value);
-				selector = "input[name='" + name + "']";
 				if(!status) data["status"] = false;
-				data["items"][name] = {"tag": "input", "name": name, "value": value, "data-type": data_type, "status": status, "selector": selector};
 			}
+			else{
+				status = true;
+			}
+			data["items"][name] = {"tag": "input", "name": name, "value": value, "data-type": data_type, "status": status, "selector": selector};
 		}
 		for(var i = 0; i < textarea.length; i++){
 			var data_type = textarea[i].getAttribute("data-type");
+			value = textarea[i].value;
+			name = textarea[i].name;
+			selector = "textarea[name='" + name + "']";
 			if(data_type){
-				value = textarea[i].value;
-				name = textarea[i].name;
 				status = types[data_type].regular.test(value);
-				selector = "textarea[name='" + name + "']";
 				if(!status) data["status"] = false;
-				data["items"][name] = {"tag": "textarea", "name": name, "value": value, "type": textarea[i].type, "status": status, "selector": selector};
 			}
+			else{
+				status = true;
+			}
+			data["items"][name] = {"tag": "textarea", "name": name, "value": value, "data-type": data_type, "status": status, "selector": selector};
 		}
-
 		return data;
 	}
 
@@ -205,7 +211,6 @@ function ModalForm(){
 				}
 				var ajax = new Ajax();
 				ajax.send(data["method"], data["action"], arr).then(self.postSend, self.postSendError);
-				console.log("send");
 			}
 			else{
 				self.showError(data["items"]);

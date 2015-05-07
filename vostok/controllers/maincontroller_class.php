@@ -18,6 +18,8 @@ class MainController extends Controller {
 		$this->meta_desc = "О компании Восток сервис";
 		$this->meta_key = "строительство, ремонт";
 		$head = $this->getHead(array("/css/main.css"), false);
+		$head->add("js", null, true);
+		$head->js = array("/js/main.js");
 		$content = new About();
 		$hornav = $this->getHornav();
 		$hornav->addData("О компании");
@@ -34,6 +36,8 @@ class MainController extends Controller {
 			$this->meta_desc = "Строительство домов под ключ в городе Новосибирске";
 			$this->meta_key = "построить дом, построить дом в Новосибирске";
 			$head = $this->getHead(array("/css/main.css"), false);
+			$head->add("js", null, true);
+			$head->js = array("/js/main.js");
 			$content = new Variation();
 			$hornav = $this->getHornav();
 			$hornav->addData("Строительство домов", URL::get("homes", ""));
@@ -49,6 +53,8 @@ class MainController extends Controller {
 			$this->meta_desc = "Строительство домов под ключ в городе Новосибирске";
 			$this->meta_key = "построить дом, построить дом в Новосибирске";
 			$head = $this->getHead(array("/css/main.css"), false);
+			$head->add("js", null, true);
+			$head->js = array("/js/main.js");
 			$content = new Homes();
 			$hornav = $this->getHornav();
 			$hornav->addData("Строительство домов");
@@ -65,6 +71,8 @@ class MainController extends Controller {
 			$this->meta_key = "построить дом, построить дом в Новосибирске";
 			$head = $this->getHead(array("/css/main.css"), false);
 			$content = new Homes();
+			$head->add("js", null, true);
+			$head->js = array("/js/main.js");
 			$hornav = $this->getHornav();
 			$hornav->addData("Строительство домов");
 			$content->hornav = $hornav;
@@ -77,6 +85,8 @@ class MainController extends Controller {
 			$this->meta_key = "Фотогалерея";
 			$head = $this->getHead(array("/css/main.css"), false);
 			$content = new Gallery();
+			$head->add("js", null, true);
+			$head->js = array("/js/main.js");
 			$hornav = $this->getHornav();
 			$hornav->addData("Фотогалерея");
 			$content->hornav = $hornav;
@@ -91,6 +101,8 @@ class MainController extends Controller {
 		$this->meta_key = "контакты, схем проезда";
 		$head = $this->getHead(array("/css/main.css"), false);
 		$content = new Contacts();
+		$head->add("js", null, true);
+		$head->js = array("/js/main.js");
 		$hornav = $this->getHornav();
 		$hornav->addData("Контакты");
 		$content->hornav = $hornav;

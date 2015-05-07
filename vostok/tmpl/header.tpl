@@ -1,7 +1,7 @@
 <header>
 	<div class = "content contacts">
 		<a href = "/" id = "logo">
-			<img src = "img/main/logo.png" alt = "Изображение" />
+			<img src = "/img/main/logo.png" alt = "Изображение" />
 		</a>
 		<div id = "contacts">
 			<div id = "show_modal_form">
