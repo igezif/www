@@ -24,7 +24,7 @@ class MainController extends Controller {
 		$this->meta_key= $obj->meta_key;
 		$head = $this->getHead(array("/css/main.css"), false);
 		$head->add("js", null, true);
-		$head->js = array("/js/main.js");
+		$head->js = array("/js/main.js", "/js/gallery.js");
 		$product = new Product();
 		$hornav = $this->getHornav();
 		$hornav->addData($obj->section, URL::get("section", "", array("id" => $obj->section_id)));

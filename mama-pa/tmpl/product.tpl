@@ -5,10 +5,16 @@
 			<h1 class = "product_header">
 				<?=$title?>
 			</h1>
-			<img src = "<?=$img?>" alt = "Изображение" />
-			<div class = "product_description">
-				<?=$description?>
+			<div id = "wrap_big_image"><img src = "<?=$img?>" alt = "Изображение" id = "big_image" /></div>
+			<?php if ($foto) { ?>
+			<div class = "row product_fotos">
+				<?php foreach($foto as $f) { ?>
+				<div>
+					<img src = "<?=$f->url?>" alt = "Изображение" class = "gallery_image" />
+				</div>
+				<?php } ?>
 			</div>
+			<?php } ?>
 		</div>
 		<div class = "product_info">
 			<div class = "product_price">
@@ -27,13 +33,7 @@
 			</div>
 		</div>
 	</div>
-	<?php if ($foto) { ?>
-	<div class = "row product_fotos">
-		<?php foreach($foto as $f) { ?>
-		<div>
-			<img src = "<?=$f->url?>" alt = "Изображение" />
-		</div>
-		<?php } ?>
+	<div class = "product_description">
+		<?=$description?>
 	</div>
-	<?php } ?>
 </section>

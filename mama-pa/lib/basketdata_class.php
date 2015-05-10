@@ -4,6 +4,9 @@ class BasketData {
 	
 	public static function add($product) {
 		if (!session_id()) session_start();
+		if(!isset($_SESSION["basket"])) {
+			$_SESSION["basket"] = array();
+		}
 		if (array_key_exists($product["id"], $_SESSION["basket"])) {
 			$count = $_SESSION["basket"][$product["id"]]["count"] + 1;
 			$price = (int)$product["price"] * $count;
@@ -14,6 +17,7 @@ class BasketData {
 			$product["count"] = 1;
 			$_SESSION["basket"][$product["id"]] = $product;
 		}
+		
 	}
 
 	public static function del($id) {

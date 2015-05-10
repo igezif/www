@@ -21,6 +21,7 @@ class ImgDB extends ObjectDB {
 	
 	protected function postInit() {
 		$this->url = Config::DIR_IMG_FSAPRODUCT.$this->url;
+		$this->link_delete = URL::get("delete", "admin", array("view" => "dop_foto", "id" => $this->id));;
 		return true;
 	}
 	

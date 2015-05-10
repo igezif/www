@@ -40,9 +40,5 @@ class BrandDB extends ObjectDB {
 	protected function postInsert() {
 		return $this->id;
 	}
-	
-	/* protected function postInit() {
-		
-	} */
 
 }

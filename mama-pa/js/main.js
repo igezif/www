@@ -182,15 +182,8 @@ function Message(){
 
 }
 
-function Gallery(){
-
-	var self = this;
-
-	
-	
-}
-
 var basket = new Basket();
 var message = new Message();
+
 window.addEventListener("load", basket.init);
 window.addEventListener("load", message.init);

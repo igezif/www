@@ -27,6 +27,10 @@ class URL {
 		if ($amp) $url = str_replace("&", "&amp;", $url);
 		return $url;
 	}
+
+	public static function referer() {
+		return $_SERVER["HTTP_REFERER"];
+	}
 	
 	public static function getControllerAndAction() {
 		$uri = $_SERVER["REQUEST_URI"];

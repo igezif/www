@@ -305,6 +305,18 @@ class AdminController extends Controller {
 					$this->setSessionMessage($this->request->view, $this->getError($e));
 				}
 			break;
+			case "dop_foto":
+				try {
+					$obj_db = new ImgDB();
+					$obj_db->load($this->request->id);
+					File::delete($obj_db->url);
+					if($obj_db->delete()) $this->fp->setSessionMessage("product", "SUCCESS_POSITION_DELETE");
+					else $this->fp->setSessionMessage($this->request->view, "NOTFOUND_POSITION");
+					$this->redirect(URL::referer());
+				} catch (Exception $e) {
+					$this->setSessionMessage($this->request->view, $this->getError($e));
+				}
+			break;
 		}	
 	}
 

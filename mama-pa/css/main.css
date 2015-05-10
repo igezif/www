@@ -632,7 +632,7 @@ span.rouble{
 
 .product_img img{
 	display: block;
-	width: 500px;
+	width: 400px;
 	max-width: 500px;
 	margin: 0 auto;
 }
@@ -640,8 +640,8 @@ span.rouble{
 .product_description{
 	color: #838383;
 	padding: 15px;
-	max-width: 600px;
 	font-size: 87%;
+	border-top: 1px solid #e7e3a7;
 }
 
 .product_description p{
@@ -650,11 +650,12 @@ span.rouble{
 }
 
 .product_description b{
+	margin: 10px 0 0 0;
 	line-height: 1.3;
+	display: block;
 }
 
 .product_fotos{
-	border-top: 1px solid #e7e3a7;
 	padding: 10px 0 0 0;
 }
 
@@ -663,7 +664,11 @@ span.rouble{
 }
 
 .product_fotos > div > img{
-	width: 170px;
+	width: 127px;
+}
+
+.product_fotos > div > img:hover{
+	cursor: pointer;
 }
 
 .button_add_basket{
@@ -898,8 +903,12 @@ span.rouble{
 	
 }
 
-#input_file{
-	
+.wrap_dop_admin_foto{
+	padding: 10px 0 0 0;
+}
+
+.wrap_dop_admin_foto a, .wrap_dop_admin_foto img{
+	display: block;
 }
 
 #product_description{

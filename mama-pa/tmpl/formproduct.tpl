@@ -1,5 +1,4 @@
 <?php if ($message) { ?><p class="admin_message"><?=$message?></p><?php } ?>
-
 	<form class = "border row admin_form" name = "<?=$name?>" action = "<?=$action?>" method = "POST" enctype="<?=$enctype?>">
 		<div class = "admin_block"  style = "vertical-align: top;">
 			<?php foreach ($inputs as $input) { ?>
@@ -48,7 +47,8 @@
 	<div class = "dop_admin_foto row border">
 		<p>Фотографии</p>
 		<?php foreach($fotos as $foto) { ?>
-		<div>
+		<div class = "wrap_dop_admin_foto">
+			<a href = "<?=$foto->link_delete?>">Удалить</a>
 			<img src = "<?=$foto->url?>" alt = "Изображение" />
 		</div>
 		<?php } ?>
