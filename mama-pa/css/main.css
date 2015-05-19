@@ -80,6 +80,19 @@ ul{
 	opacity: 0.7;
 }
 
+.header_adv{
+	color: #ef5612;
+	font-style: italic;
+	text-align: center;
+}
+
+.popup_message_phone{
+	margin: 10px 0 5px 0;
+	font-style: italic;
+	color: #808080;
+	font-size: 120%;
+}
+
 /* ---   HEADER   --- */
 
 header{
@@ -628,9 +641,10 @@ span.rouble{
 .product_img{
 	border-right: 1px solid #e7e3a7;
 	width: 70%;
+	padding: 0 0 5px 0;
 }
 
-.product_img img{
+#wrap_big_image img{
 	display: block;
 	width: 400px;
 	max-width: 500px;
@@ -659,16 +673,18 @@ span.rouble{
 	padding: 10px 0 0 0;
 }
 
-.product_fotos > div{
-	margin: 0 5px 0 0;
+.product_fotos > img{
+	width: 90px;
+	padding: 3px 10px;
+	display: block;
+	float: left;
+	border: 1px solid #ffffff;
+	border-radius: 5px;
 }
 
-.product_fotos > div > img{
-	width: 127px;
-}
-
-.product_fotos > div > img:hover{
+.product_fotos > img:hover{
 	cursor: pointer;
+	border: 1px solid #e7e3a7;
 }
 
 .button_add_basket{
@@ -691,6 +707,15 @@ span.rouble{
 
 .add_basket:hover{
 	cursor: pointer;
+}
+
+.others_content{
+	width: 1020px;
+	margin: 13px auto;
+}
+
+.others_block > :first-child{
+	border: none;
 }
 
 /* ---   BASKET    --- */

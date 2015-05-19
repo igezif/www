@@ -27,6 +27,10 @@ class URL {
 		if ($amp) $url = str_replace("&", "&amp;", $url);
 		return $url;
 	}
+
+	public static function referer() {
+		return $_SERVER["HTTP_REFERER"];
+	}
 	
 	public static function getControllerAndAction() {
 		$uri = $_SERVER["REQUEST_URI"];
@@ -34,7 +38,7 @@ class URL {
 		if (!$uri) return array("Main", "404");
 		list($url_part, $qs_part) = array_pad(explode("?", $uri), 2, "");
 		parse_str($qs_part, $qs_vars);
-		Request::addSEFData($qs_vars);
+		//Request::addSEFData($qs_vars);
 		$controller_name = "Main";
 		$action_name = "index";
 		if (($pos = strpos($uri, "?")) !== false) $uri = substr($uri, 0, strpos($uri, "?"));
@@ -43,7 +47,7 @@ class URL {
 			if (!empty($routes[1])) $controller_name = $routes[1];
 			$action_name = $routes[2];
 		}
-		elseif (!empty($routes[1])) $action_name = $routes[1];	
+		elseif (!empty($routes[1])) $action_name = $routes[1];
 		return array($controller_name, $action_name);
 	}
 	
@@ -84,8 +88,7 @@ class URL {
 	
 	private static function postHandler($uri, $address = "") {
 		//$uri = UseSEF::replaceSEF($uri, $address);
-		//return $uri;
-		return true;
+		return $uri;
 	}
 	
 }

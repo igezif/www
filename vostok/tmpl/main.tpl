@@ -2,7 +2,7 @@
 <html>
 <?=$head?>
 <body>
-	<form id = "modal_form" method = "POST" action="ajax/sendmail">
+	<form class = "modal_form" method = "POST" action="ajax/sendmail">
 		<div id = "close_modal_form"></div>
 		<div><input type = "text" data-type = "text" name = "name" placeholder = "Ваше имя" /></div>
 		<div><input type = "text" name = "phone" placeholder = "Ваш телефон" /></div>

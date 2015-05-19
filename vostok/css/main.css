@@ -47,13 +47,15 @@ h1{
 	text-align: center;
 }
 
-#modal_form{
+/*   MODAL_FORM   */
+
+.modal_form{
 	position: fixed;
 	display: none;
 	z-index: 1000;
 }
 
-#modal_form input[type=text]{
+.modal_form input[type=text]{
 	padding: 5px;
 	font-size: 110%;
 	border-radius: 5px;
@@ -62,7 +64,7 @@ h1{
 	margin: 10px 0 0 0;
 }
 
-#modal_form input[type=submit]{
+.modal_form input[type=submit]{
 	padding: 5px;
 	font-size: 110%;
 	border-radius: 5px;
@@ -71,7 +73,7 @@ h1{
 	margin: 10px 0 0 0;
 }
 
-#modal_form textarea{
+.modal_form textarea{
 	padding: 5px;
 	font-size: 140%;
 	margin: 10px 0 0 0;
@@ -672,4 +674,14 @@ form[name='auth'] input[type='text'], form[name='auth'] input[type='password'], 
 	display: block;
 	width: 300px;
 	margin: 10px 0 0 0;
+}
+
+.admin_change{
+	color: red;
+	font-size: 80%;
+}
+
+.admin_change:hover{
+	cursor: pointer;
+	text-decoration: underline;
 }

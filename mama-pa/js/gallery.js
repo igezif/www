@@ -15,10 +15,12 @@ function Gallery(){
 	}
 
 	this.show = function(e){
+		//console.log(e.target.outerHTML);
 		wrap_big_image.innerHTML = e.target.outerHTML;
 	}
 
-	this.hide = function(){
+	this.hide = function(e){
+		//console.log(e.target);
 		wrap_big_image.innerHTML = big_image.outerHTML;
 	}
 

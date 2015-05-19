@@ -133,7 +133,7 @@ function Message(){
 				});
 				setTimeout(function(){
 					self.closeMessage(block);
-				}, hide_interval);
+				}, 180000);
 			}
 		}
 	}

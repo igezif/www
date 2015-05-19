@@ -19,5 +19,3 @@ class Hornav extends Module {
 	}
 	
 }
-
-?>

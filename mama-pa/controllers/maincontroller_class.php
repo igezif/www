@@ -40,6 +40,7 @@ class MainController extends Controller {
 		$product->price = $obj->price;
 		$product->description = $obj->product_description;
 		$product->foto = ImgDB::getImgOnID($this->request->id);
+		$product->others = ProductDB::getOthers($this->request->id);
 		$this->render($head, $product);
 	}
 

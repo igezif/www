@@ -2,8 +2,6 @@
 
 class AdminController extends Controller {
 	
-	private $names = array("brand" => "Бренды", "slider" => "Слайдер на главной странице", "section" => "Секции", "category" => "Категории", "product" => "Товары");
-	
 	public function actionMenu() {
 		if (!self::isAuthAdmin()) return null;
 		$this->title = "Админ панель";
@@ -15,19 +13,18 @@ class AdminController extends Controller {
 		$this->render($head, $this->renderData(array("admin_menu" => $admin_menu), "adminpanel"));
 	}
 	
-	public function actionBrand() {
+	public function actionAbout() {
 		if (!self::isAuthAdmin()) return null;
 		$this->title = "Админ панель";
 		$this->meta_desc = "Админ панель";
 		$this->meta_key = "админ панель";
 		$head = $this->getHead(array("/css/main.css"), false);
-		$admin_menu = new Brandadmin();
-		$admin_menu->items = BrandDB::getAdminShow();
-		$admin_menu->link_insert = URL::get("insert", "admin", array("view" => "brand"));
-		$admin_menu->message = $this->fp->getSessionMessage("brand");
+		$head->add("js", null, true);
+		$head->js = array("/js/main.js");
+		$admin_menu = new Aboutadmin();
 		$hornav = new Hornav();
 		$hornav->addData("Админпанель", URL::get("menu", "admin"));
-		$hornav->addData("Бренды");
+		$hornav->addData("Контакты");
 		$this->render($head, $this->renderData(array("hornav" => $hornav, "admin_menu" => $admin_menu), "adminpanel"));
 	}
 	

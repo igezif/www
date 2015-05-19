@@ -14,6 +14,7 @@ class Product extends Module {
 		$this->add("price");
 		$this->add("description");
 		$this->add("foto", null, true);
+		$this->add("others", null, true);
 	}
 	
 	public function getTmplFile() {

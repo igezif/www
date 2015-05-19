@@ -38,7 +38,7 @@ class URL {
 		if (!$uri) return array("Main", "404");
 		list($url_part, $qs_part) = array_pad(explode("?", $uri), 2, "");
 		parse_str($qs_part, $qs_vars);
-		Request::addSEFData($qs_vars);
+		//Request::addSEFData($qs_vars);
 		$controller_name = "Main";
 		$action_name = "index";
 		if (($pos = strpos($uri, "?")) !== false) $uri = substr($uri, 0, strpos($uri, "?"));

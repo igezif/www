@@ -107,6 +107,33 @@ class ProductDB extends ObjectDB {
 		foreach ($result as $r) $r->postHandling();
 		return $result;
 	}
+
+	private static function getSectionIDonProductID($id){
+		$data = self::$db->getCell(
+			"SELECT s.id FROM xyz_section s 
+			INNER JOIN xyz_category c on c.section_id = s.id
+			inner join xyz_product p on p.category_id = c.id
+			where p.id = ?", array($id)
+		);
+		return $data;
+	}
+
+	public static function getOthers($id){
+		$section_id = self::getSectionIDonProductID($id);
+		$result = array();
+		$data = self::$db->getResult(
+			"select p.* 
+			from ".Config::DB_PREFIX."product p 
+			inner join ".Config::DB_PREFIX."category c on p.category_id=c.id
+			inner join ".Config::DB_PREFIX."section s on c.section_id=s.id
+			where s.id = ? and p.available = 1", array($section_id)
+		);
+		shuffle($data);
+		$array = array_slice($data, 0, 4);
+		$result = ObjectDB::buildMultiple(__CLASS__, $array);
+		foreach ($result as $r) $r->postHandling();
+		return $result;
+	}
 	
 	private function postHandling(){
 		$this->img = Config::DIR_IMG_PRODUCT.$this->img;

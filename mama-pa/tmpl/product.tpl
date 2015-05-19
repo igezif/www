@@ -9,9 +9,7 @@
 			<?php if ($foto) { ?>
 			<div class = "row product_fotos">
 				<?php foreach($foto as $f) { ?>
-				<div>
-					<img src = "<?=$f->url?>" alt = "Изображение" class = "gallery_image" />
-				</div>
+				<img src = "<?=$f->url?>" alt = "Изображение" class = "gallery_image" />
 				<?php } ?>
 			</div>
 			<?php } ?>
@@ -35,5 +33,31 @@
 	</div>
 	<div class = "product_description">
 		<?=$description?>
+	</div>
+</section>
+<section class = "others_content middle">
+	<div class = "row section_header">
+		<div class = "big_arow"></div>
+		<div><h2>C этим товаром также покупают</h2></div>
+	</div>
+	<div class = "row border others_block center">
+		<?php foreach ($others as $product) { ?>
+		<div class = "section_item">
+			<a class = "section_image" href = "<?=$product->link?>">
+				<img src = "<?=$product->img?>" alt = "Изображение" />
+			</a>
+			<a href = "<?=$product->link?>" class = "section_description"><?=$product->title?></a>
+			<div class = "section_price_wrap">
+				<div class = "section_price_block">
+					Цена: <span class = "section_price_digit"><?=$product->price?></span> 
+					<span class = "section_price_word">руб.</span>
+				</div>
+				<div class = "add_basket section_buy row" data-basket="<?=$product->id?>">
+					<div class = "arow_small"></div>
+					<div>В корзину</div>
+				</div>
+			</div>
+		</div>
+		<?php } ?>
 	</div>
 </section>
