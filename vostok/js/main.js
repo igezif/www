@@ -1,3 +1,45 @@
+function Validator(){
+	
+	var self = this;
+
+	var types = {
+		advisable: {
+			regular: /.+/i
+		},
+
+		email: {
+			regular: /.+@.+\..+/i
+		},
+		text: {
+			regular: /.+/i
+		},
+		integer: {
+			regular: /\d/i
+		},
+		phone: {
+			regular: /\d/i
+		}
+	}
+
+	this.validate = function(inputs){
+		var name, status, selector, data_type, value;
+		var data = {};
+		data["items"] = {};
+		data["status"] = true;
+		for(var key in inputs) {
+			name = inputs[key].name;
+			selector = inputs[key].tagName + "[name='" + name + "']";
+			data_type = inputs[key].getAttribute("data-type");
+			value = inputs[key].value;
+			status = types[data_type].regular.test(value);
+			if(!status) data["status"] = false;
+			data["items"][name] = {"tag": "input", "name": name, "value": value, "data-type": data_type, "status": status, "selector": selector};
+		}
+		return data;
+	}
+
+}
+
 function AbstractForm(){
 
 	var self = this;
@@ -51,56 +93,12 @@ function AbstractForm(){
 			if(textarea[i].getAttribute("data-type")) self._validateInputs[textarea[i].name] = textarea[i];
 			if(self.setPreSendBehaviourInput) self.setPreSendBehaviourInput(inputs[i]);
 		}
-		return;
 	}
 
 	this.postSendError = function(error){
 		alert(error);
 	}
 }
-
-function Validator(){
-	
-	var self = this;
-
-	var types = {
-		advisable: {
-			regular: /.+/i
-		},
-
-		email: {
-			regular: /.+@.+\..+/i
-		},
-		text: {
-			regular: /.+/i
-		},
-		integer: {
-			regular: /\d/i
-		},
-		phone: {
-			regular: /\d/i
-		}
-	}
-
-	this.validate = function(inputs){
-		var name, status, selector, data_type, value;
-		var data = {};
-		data["items"] = {};
-		data["status"] = true;
-		for(var key in inputs) {
-			name = inputs[key].name;
-			selector = inputs[key].tagName + "[name='" + name + "']";
-			data_type = inputs[key].getAttribute("data-type");
-			value = inputs[key].value;
-			status = types[data_type].regular.test(value);
-			if(!status) data["status"] = false;
-			data["items"][name] = {"tag": "input", "name": name, "value": value, "data-type": data_type, "status": status, "selector": selector};
-		}
-		return data;
-	}
-
-}
-
 
 function ModalForm(){
 
@@ -110,18 +108,27 @@ function ModalForm(){
 
 	var parentInit = this.init;
 
-	var bb, top_start;
+	this._bb = null;
+
+	this._top_start = null;
 
 	this.init = function() {
 		parentInit.apply(this, arguments);
-		document.getElementById("show_modal_form").addEventListener("click", self.show);
-		document.getElementById("close_modal_form").addEventListener("click", self.hide);
+		self.setButtonShow();
+		self.setButtonHide();
+    }
+
+    this.setButtonShow = function(){
+    	document.getElementById("show_modal_form").addEventListener("click", self.show);
+    }
+
+    this.setButtonHide = function(){
+    	self._form.querySelector(".close_modal_form").addEventListener("click", self.hide);
     }
 
 	this.postSend = function(response){
 		self.clearForm();
-		document.getElementById("modal_form_message").innerHTML = response;
-		return;
+		self._form.querySelector(".modal_form_message").innerHTML = response;
 	}
 
 	this.showErrors = function(items){
@@ -129,22 +136,19 @@ function ModalForm(){
 			var input = document.querySelector(items[key]["selector"]);
 			if(!items[key]["status"]) self.showErrorOnInput(input);
 		}
-		document.getElementById("modal_form_message").innerHTML = "";
-		return;
+		self._form.querySelector(".modal_form_message").innerHTML = "";
 	}
 
 	this.clearForm = function(){
 		for(var key in self._inputs){
 			self.setStyleInputPostSend(self._inputs[key]);
 		}
-		document.getElementById("modal_form_message").innerHTML = "";
-		return;
+		self._form.querySelector(".modal_form_message").innerHTML = "";
 	}
 
 	this.setStyleInputPostSend = function(input){
 		input.style.backgroundColor = "#ffffff";
 		input.value = "";
-		return;
 	}
 
 	this.setBehaviourOnInvalidInput = function(input){
@@ -153,29 +157,27 @@ function ModalForm(){
 				e.target.style.backgroundColor = "#ffffff";
 			}
 		}
-		return;
 	}
 
 	this.showErrorOnInput = function(input){
 		input.style.backgroundColor = "#ff8c69";
 		self.setBehaviourOnInvalidInput(input);
-		return;
 	}
 
 	this.show = function(){
-		bb = new BlackBackground(self);
-		bb.show();
+		self._bb = new BlackBackground(self);
+		self._bb.show();
 		self._form.style.display = "block";
-		top_start = self.getTopStart();
+		self._top_start = self.getTopStart();
 		var top_finish = self.getTopFinish();
 		var left = self.getLeft();
-		self._form.style.top = top_start + "px";
+		self._form.style.top = self._top_start + "px";
 		self._form.style.left = left + "px";
 		self.move(top_finish);
 	}
 
 	this.move = function(top_finish){
-		var top = top_start;
+		var top = self._top_start;
 		var timer = setInterval(function() {
 		  	top += 50;
 		  	self._form.style.top = top + "px";
@@ -205,13 +207,13 @@ function ModalForm(){
 	}
 
 	this.hide = function(){
-		bb.hide();
-		self._form.style.top = top_start + "px";
+		self._bb.hide();
+		self._form.style.top = self._top_start + "px";
 		self.clearForm();
 	}
 
 	this.onHideBackground = function(){
-		self._form.style.top = top_start + "px";
+		self._form.style.top = self._top_start + "px";
 		self.clearForm();
 	}
 
@@ -299,8 +301,10 @@ function BlackBackground(obj){
 	this.hide = function(func){
 		if(func !== undefined) self.obj.onHideBackground();
 		var div = document.getElementById("black_background");
-		div.removeEventListener("click", self.hide);
-		div.remove();
+		if(div) {
+			div.removeEventListener("click", self.hide);
+			div.remove();
+		}
 	}
 
 }

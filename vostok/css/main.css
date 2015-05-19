@@ -82,7 +82,7 @@ h1{
 	height: 200px;
 }
 
-#close_modal_form{
+.close_modal_form{
 	background: url("../img/main/button_close.png");
 	height: 20px;
 	width: 20px;
@@ -91,7 +91,7 @@ h1{
 	left: 315px;
 }
 
-#close_modal_form:hover{
+.close_modal_form:hover{
 	cursor: pointer;
 	opacity: 0.7;
 }
@@ -133,7 +133,7 @@ h1{
 	transition: 0.2s;
 }
 
-#modal_form_message{
+.modal_form_message{
 	max-width: 300px;
 	margin: 10px 0 0 0;
 	color: #ffffff;

@@ -45,7 +45,7 @@ class AdminDB extends ObjectDB {
 		$_SESSION["authadmin_password"] = $this->password;
 	}
 	
-	public function logout() {
+	public static function logout() {
 		if (!session_id()) session_start();
 		unset($_SESSION["authadmin_login"]);
 		unset($_SESSION["authadmin_password"]);

@@ -11,7 +11,6 @@ class Route {
 			if (method_exists($controller, $action_name)) $controller->$action_name();
 			else throw new Exception();
 		} catch (Exception $e) {
-			print_r($controller_name); die;
 			if ($e->getMessage() != "ACCESS_DENIED") $controller->action404();
 		}
 	}

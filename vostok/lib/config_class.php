@@ -10,7 +10,7 @@ abstract class Config {
 	const DB_SYM_QUERY = "?";
 	/* ------- */
 
-	const SITENAME = "prorab54.ru";
+	const SITENAME = "prorab154.ru";
 	const SECRET = "EEE";
 	const ADDRESS = "http://prorab54.ru";
 	const ADM_NAME = "Василий Борисович";

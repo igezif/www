@@ -12,6 +12,10 @@ class AdminController extends Controller {
 		$admin_menu->admin = $this->auth_admin;
 		$this->render($head, $this->renderData(array("admin_menu" => $admin_menu), "adminpanel"));
 	}
+
+	public function actionTest(){
+		echo "test";
+	}
 	
 	public function actionAbout() {
 		if (!self::isAuthAdmin()) return null;
@@ -20,11 +24,11 @@ class AdminController extends Controller {
 		$this->meta_key = "админ панель";
 		$head = $this->getHead(array("/css/main.css"), false);
 		$head->add("js", null, true);
-		$head->js = array("/js/main.js");
+		$head->js = array("/js/main.js", "/js/admin.js");
 		$admin_menu = new Aboutadmin();
 		$hornav = new Hornav();
 		$hornav->addData("Админпанель", URL::get("menu", "admin"));
-		$hornav->addData("Контакты");
+		$hornav->addData("Контактная информация и схема проезда");
 		$this->render($head, $this->renderData(array("hornav" => $hornav, "admin_menu" => $admin_menu), "adminpanel"));
 	}
 	
