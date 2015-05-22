@@ -18,7 +18,12 @@ abstract class Config {
 	const ADM_EMAIL_2 = "lepeshkin_ilya@mail.ru";
 	
 	const DIR_IMG_HOMES = "/img/homes/";
-	
+
+	const DIR_IMG_VIEWGALLERY = "/img/viewgallery/";
+
+	const DIR_IMG_GALLERY = "/img/gallery/";
+
+	const DIR_IMG_IMGGALLERY = "/img/imggallery/";
 	
 	const DIR_IMG = "/img/";
 

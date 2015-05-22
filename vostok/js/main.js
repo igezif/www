@@ -133,7 +133,7 @@ function ModalForm(){
 
 	this.showErrors = function(items){
 		for(var key in items){
-			var input = document.querySelector(items[key]["selector"]);
+			var input = self._form.querySelector(items[key]["selector"]);
 			if(!items[key]["status"]) self.showErrorOnInput(input);
 		}
 		self._form.querySelector(".modal_form_message").innerHTML = "";

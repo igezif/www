@@ -13,11 +13,7 @@ class AdminController extends Controller {
 		$this->render($head, $this->renderData(array("admin_menu" => $admin_menu), "adminpanel"));
 	}
 
-	public function actionTest(){
-		echo "test";
-	}
-	
-	public function actionAbout() {
+	public function actionContacts() {
 		if (!self::isAuthAdmin()) return null;
 		$this->title = "Админ панель";
 		$this->meta_desc = "Админ панель";
@@ -25,7 +21,29 @@ class AdminController extends Controller {
 		$head = $this->getHead(array("/css/main.css"), false);
 		$head->add("js", null, true);
 		$head->js = array("/js/main.js", "/js/admin.js");
-		$admin_menu = new Aboutadmin();
+		$admin_menu = new Contactsadmin();
+
+
+
+		//$content = new Contacts();
+		$obj = new ContactsDB();
+		$obj->load(1);
+		$admin_menu->name = $obj->name;
+		$admin_menu->ind = $obj->ind;
+		$admin_menu->address = $obj->address;
+		$admin_menu->phone = $obj->phone;
+		$admin_menu->email = $obj->email;
+		$admin_menu->inn = $obj->inn;
+		$admin_menu->kpp = $obj->kpp;
+		$admin_menu->bik = $obj->bik;
+		$admin_menu->rs = $obj->rs;
+		$admin_menu->bank = $obj->bank;
+		$admin_menu->ks = $obj->ks;
+		$admin_menu->okpo = $obj->okpo;
+		$admin_menu->okato = $obj->okato;
+		$admin_menu->ogrn = $obj->ogrn;
+
+
 		$hornav = new Hornav();
 		$hornav->addData("Админпанель", URL::get("menu", "admin"));
 		$hornav->addData("Контактная информация и схема проезда");

@@ -12,6 +12,7 @@ class CategoryDB extends ObjectDB {
 		$this->add("title", "ValidateTitle");
 		$this->add("meta_desc", "ValidateMD");
 		$this->add("meta_key", "ValidateMK");
+		$this->add("show", "ValidateBoolean");
 	}
 	
 	protected function postInit() {
@@ -23,6 +24,7 @@ class CategoryDB extends ObjectDB {
 		$select = new Select(self::$db);
 		$select->from(self::$table, "*")
 			->where("`section_id` = ?", array($id))
+			->where("`show` = 1")
 			->group("title");
 		$data = self::$db->select($select);
 		$category = ObjectDB::buildMultiple(__CLASS__, $data);

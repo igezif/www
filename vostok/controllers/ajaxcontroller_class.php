@@ -24,4 +24,14 @@ class AjaxController extends Controller {
 		echo "Ваше сообщение успешно отправлено, в течение часа с Вами свяжется наш сотрудник.";
 	}
 
+	public function actionAbout(){
+		$key = $this->request->getKeyOnNumber(0);
+		$obj = new ContactsDB();
+		$obj->load(1);
+		$value = $this->request->$key;
+		$obj->$key = $value;
+		if($obj->save()) echo htmlspecialchars_decode($value);
+		else echo "error";	
+	}
+
 }

@@ -14,7 +14,8 @@
 					<b><?=$i?></b>
 				</td>
 				<td>
-					<a href = "<?=$item->link_update?>"><?=$item->title?></a>
+					<a href = "<?=$item->link_update?>"><?=$item->title?></a><br />
+					<span><?php if(!$item->show) { ?>не показывать<?php } ?></span>
 				</td>
 				<td>
 					<?=$item->section?>

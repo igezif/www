@@ -214,7 +214,7 @@ class AdminController extends Controller {
 		else if($this->request->update_category){
 			$obj_db = new CategoryDB();
 			$obj_db->load($this->request->id);
-			$obj = $this->fp->process($this->request->view, $obj_db, array("section_id", "title", "meta_desc", "meta_key"), array(), "SUCCESS_POSITION_UPDATE");
+			$obj = $this->fp->process($this->request->view, $obj_db, array("section_id", "title", "meta_desc", "meta_key", "show"), array(), "SUCCESS_POSITION_UPDATE");
 			if ($obj instanceof CategoryDB) $this->redirect(URL::get("category", "admin"));
 			else $this->redirect(URL::current());
 		}

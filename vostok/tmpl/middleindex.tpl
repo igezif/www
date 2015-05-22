@@ -1,8 +1,11 @@
-<div id = "slider_block" class = "content">
-	<div class = "line_slider"></div>
-	<div id = "slider_image"></div>
-	<div class = "line_slider"></div>
+
+<div id="slides" class = "content">
+	<img src="/img/promo/9271184_Param0.jpg" />
+	<img src="/img/promo/9271185_Param0.jpg" />
+	<img src="/img/promo/9271186_Param0.jpg" />
+	<img src="/img/promo/9271187_Param0.jpg" />
 </div>
+
 <div id = "big_menu" class = "content">
 	<a href = "/homes" class = "big_menu_item">
 		<h2 class = "flag">Строительство домов и коттеджей</h2>

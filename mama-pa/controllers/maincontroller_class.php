@@ -6,7 +6,7 @@ class MainController extends Controller {
 		$this->title = "Мама-па";
 		$this->meta_desc = "Интернет-магазин детских товаров";
 		$this->meta_key = "товары для детей, детские товары";
-		$head = $this->getHead(array("/css/main.css"), false);
+		$head = $this->getHead(array("/css/main.css", "http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"), false);
 		$head->add("js", null, true);
 		$head->js = array("/js/slider.js", "/js/main.js");
 		$sections = new Section();

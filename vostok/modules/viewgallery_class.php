@@ -1,17 +1,16 @@
 <?php
 
-class Gallery extends Module {
+class Viewgallery extends Module {
 	
 	public function __construct() {
 		parent::__construct();
 		$this->add("hornav");
 		$this->add("header");
 		$this->add("items", null, true);
-		//$this->sections = SectionDB::getAll();
 	}
 	
 	public function getTmplFile() {
-		return "gallery";
+		return "viewgallery";
 	}
 	
 }

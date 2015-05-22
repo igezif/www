@@ -1,10 +1,9 @@
 <?php
 
-class Contacts extends Module {
+class Contactsadmin extends Module {
 	
 	public function __construct() {
 		parent::__construct();
-		$this->add("hornav");
 		$this->add("name", "ValidateTitle");
 		$this->add("ind", "ValidateMD");
 		$this->add("address", "ValidateMK");
@@ -22,7 +21,7 @@ class Contacts extends Module {
 	}
 	
 	public function getTmplFile() {
-		return "contacts";
+		return "contactsadmin";
 	}
 	
 }

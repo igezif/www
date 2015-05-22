@@ -31,6 +31,9 @@ class Request {
 		}
 		return trim(htmlspecialchars($data));
 	}
+
+	public function getKeyOnNumber($number){
+		return array_keys($this->data)[$number];
+	}
 	
 }
-?>

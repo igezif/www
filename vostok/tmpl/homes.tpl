@@ -1,5 +1,5 @@
 <?=$hornav?>
-<h1 class = "content center"><?=$header?></h1>
+<h1 class = "cursive center"><?=$header?></h1>
 <div class = "content grid">
 	<a href = "/homes?id=1" class = "big_menu_item">
 		<h2 class = "flag">Дом из кирпича</h2>

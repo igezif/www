@@ -72,7 +72,7 @@ abstract class Controller extends AbstractController {
 		$head->meta("keywords", $this->meta_key, false);
 		$head->meta("viewport", "width=device-width", false);
 		$head->meta("robots", ($index) ? "index, follow" : "noindex, nofollow", false);
-		$head->favicon = "/favicon.ico";
+		$head->favicon = "img/main/favicon.ico";
 		$head->css = $css;
 		return $head;
 	}

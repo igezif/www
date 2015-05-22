@@ -1,7 +1,7 @@
 //about
 function createAboutChangeForm(name){
 	var html = 
-	"<form class = 'modal_form about_change_form' method = 'POST' action='/admin/test'>\
+	"<form class = 'modal_form about_change_form' method = 'POST' action='/ajax/about'>\
 		<div class = 'close_modal_form'></div>\
 		<div><textarea name = '" + name + "' data-type = 'text'></textarea></div>\
 		<div><input type = 'submit' value = 'Сохранить' /></div>\
@@ -11,7 +11,7 @@ function createAboutChangeForm(name){
 }
 
 function removeAboutChangeForm(){
-	document.getElementById("about_change_form").remove();
+	document.querySelector(".about_change_form").remove();
 }
 
 function AdminModalForm(){
@@ -24,14 +24,26 @@ function AdminModalForm(){
 
 	var parentShow = this.show;
 
-	this.init = function(selector, value) {
+	var parentPostSend = this.postSend;
+
+	this._p = null;
+
+	this.init = function(selector, value, p) {
 		parentInit.apply(this, arguments);
+		self._p = p;
 		self.show(value);
     }
 
     this.show = function(value) {
     	parentShow.apply(this, arguments);
     	self._form.querySelector("textarea").value = value;
+    }
+
+    this.postSend = function(response) {
+    	self._bb.hide();
+    	removeAboutChangeForm();
+    	if(response === "error") alert("Вы ввели не корректное значение, попробуйте ещё раз!");
+    	else self._p.textContent = response;
     }
 
 	this.setButtonShow = function(){
@@ -47,8 +59,9 @@ window.addEventListener("load", function(){
 			//console.log(ModalForm);
 			createAboutChangeForm(e.target.classList[1]);
 			var amf = new AdminModalForm();
-			var value = e.target.parentNode.querySelector(".about_admin_text").innerText;
-			amf.init(".about_change_form", value);
+			var p = e.target.parentNode.querySelector(".about_admin_text");
+			var value = p.textContent;
+			amf.init(".about_change_form", value, p);
 		});
 	}
 });

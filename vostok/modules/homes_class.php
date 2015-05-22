@@ -6,7 +6,6 @@ class Homes extends Module {
 		parent::__construct();
 		$this->add("hornav");
 		$this->add("header");
-		//$this->add("items", null, true);
 	}
 	
 	public function getTmplFile() {

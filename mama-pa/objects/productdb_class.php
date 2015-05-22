@@ -99,7 +99,7 @@ class ProductDB extends ObjectDB {
 			from ".Config::DB_PREFIX."product p 
 			inner join ".Config::DB_PREFIX."category c on p.category_id=c.id
 			inner join ".Config::DB_PREFIX."section s on c.section_id=s.id
-			where s.id = ? and p.available = 1", array($section_id)
+			where s.id = ? and p.available = 1 and c.show = 1", array($section_id)
 		);
 		shuffle($data);
 		$array = array_slice($data, 0, 3);
@@ -111,8 +111,8 @@ class ProductDB extends ObjectDB {
 	private static function getSectionIDonProductID($id){
 		$data = self::$db->getCell(
 			"SELECT s.id FROM xyz_section s 
-			INNER JOIN xyz_category c on c.section_id = s.id
-			inner join xyz_product p on p.category_id = c.id
+			INNER JOIN ".Config::DB_PREFIX."category c on c.section_id = s.id
+			inner join ".Config::DB_PREFIX."product p on p.category_id = c.id
 			where p.id = ?", array($id)
 		);
 		return $data;
@@ -137,10 +137,10 @@ class ProductDB extends ObjectDB {
 	
 	private function postHandling(){
 		$this->img = Config::DIR_IMG_PRODUCT.$this->img;
-		return true;
 	}
 	
 	/* ADMINKA */
+	
 	public static function getAdminShow(){
 		$data = self::$db->getResult(
 			"select p.id, p.title, p.img, c.title as category, b.title as brand, p.price, p.product_description, p.meta_desc, p.meta_key, p.available

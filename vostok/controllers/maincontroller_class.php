@@ -6,9 +6,9 @@ class MainController extends Controller {
 		$this->title = "Восток сервис";
 		$this->meta_desc = "строительная фирма Восток сервис";
 		$this->meta_key = "строительная фирма Восток сервис";
-		$head = $this->getHead(array("/css/main.css"), false);
+		$head = $this->getHead(array("/css/main.css", false));
 		$head->add("js", null, true);
-		$head->js = array("/js/main.js");
+		$head->js = array("/js/main.js", "http://code.jquery.com/jquery-latest.min.js", "/js/jquery.slides.min.js", "/js/for_head_slider.js");
 		$content = new Middleindex();
 		$this->render($head, $content);
 	}
@@ -27,6 +27,99 @@ class MainController extends Controller {
 		$this->render($head, $content);
 	}
 
+
+	public function actionGallery(){
+		if(isset($_REQUEST["view"]) && !isset($_REQUEST["id"])) {
+			$view = $this->request->view;
+			$obj = new ViewgalleryDB();
+			$obj->load($view);
+			$this->title = $obj->title;
+			$this->meta_desc = $obj->meta_desc;
+			$this->meta_key = $obj->meta_key;
+			$head = $this->getHead(array("/css/main.css"), false);
+			$content = new Gallery();
+			$content->items = GalleryDB::getItemsOnView($view);
+			$head->add("js", null, true);
+			$head->js = array("/js/main.js");
+			$hornav = $this->getHornav();
+			$hornav->addData("Фотогалерея", URL::get("gallery", ""));
+			$hornav->addData($obj->title);
+			$content->hornav = $hornav;
+			$content->header = $obj->title;
+			$this->render($head, $content);
+		}
+		else if(isset($_REQUEST["view"]) && isset($_REQUEST["id"])) {
+			$view = $this->request->view;
+			$id = $this->request->id;
+			$obj = new GalleryDB();
+			$obj->load($id);
+			$this->title = $obj->title;
+			$this->meta_desc = $obj->meta_desc;
+			$this->meta_key = $obj->meta_key;
+			$head = $this->getHead(array("/css/main.css", "/css/lightbox.css"), false);
+			$content = new Imggallery();
+			$content->items = ImggalleryDB::getImagesOnGalleryId($id);
+			$head->add("js", null, true);
+			$head->js = array("/js/main.js", "/js/jquery-1.10.2.min.js", "/js/lightbox-2.6.min.js");
+			$v = new ViewgalleryDB();
+			$v->load($view);
+			$hornav = $this->getHornav();
+			$hornav->addData("Фотогалерея", URL::get("gallery", ""));
+			$hornav->addData($v->title, URL::get("gallery", "", array("view" => $v->id)));
+			$hornav->addData($obj->title);
+			$content->hornav = $hornav;
+			$content->header = $obj->title;
+			$content->title = $obj->title;
+			$this->render($head, $content);
+		}
+		else{
+			$this->title = "Фотогалерея";
+			$this->meta_desc = "Фотогалерея";
+			$this->meta_key = "Фотогалерея";
+			$head = $this->getHead(array("/css/main.css"), false);
+			$content = new Viewgallery();
+			$content->items = ViewgalleryDB::getAllShow();
+			$head->add("js", null, true);
+			$head->js = array("/js/main.js");
+			$hornav = $this->getHornav();
+			$hornav->addData("Фотогалерея");
+			$content->hornav = $hornav;
+			$content->header = "Фотогалерея";
+			$this->render($head, $content);
+		}
+	}
+
+	public function actionContacts(){
+		$this->title = "Контакты";
+		$this->meta_desc = "Контактная информация и схема проезда";
+		$this->meta_key = "контакты, схем проезда";
+		$head = $this->getHead(array("/css/main.css"), false);
+		$content = new Contacts();
+		$obj = new ContactsDB();
+		$obj->load(1);
+		$content->name = $obj->name;
+		$content->ind = $obj->ind;
+		$content->address = $obj->address;
+		$content->phone = $obj->phone;
+		$content->email = $obj->email;
+		$content->inn = $obj->inn;
+		$content->kpp = $obj->kpp;
+		$content->bik = $obj->bik;
+		$content->rs = $obj->rs;
+		$content->bank = $obj->bank;
+		$content->ks = $obj->ks;
+		$content->okpo = $obj->okpo;
+		$content->okato = $obj->okato;
+		$content->ogrn = $obj->ogrn;
+		$head->add("js", null, true);
+		$head->js = array("/js/main.js");
+		$hornav = $this->getHornav();
+		$hornav->addData("Контакты");
+		$content->hornav = $hornav;
+		$this->render($head, $content);
+	}
+
+	
 	public function actionHomes() {
 		if($id = $this->request->id){
 			$obj = new HomeDB();
@@ -62,51 +155,6 @@ class MainController extends Controller {
 			$content->header = "Строительство домов";
 			$this->render($head, $content);
 		}
-	}
-
-	public function actionGallery(){
-		if($id = $this->request->id){
-			$this->title = "Строительство домов";
-			$this->meta_desc = "Строительство домов под ключ в городе Новосибирске";
-			$this->meta_key = "построить дом, построить дом в Новосибирске";
-			$head = $this->getHead(array("/css/main.css"), false);
-			$content = new Homes();
-			$head->add("js", null, true);
-			$head->js = array("/js/main.js");
-			$hornav = $this->getHornav();
-			$hornav->addData("Строительство домов");
-			$content->hornav = $hornav;
-			$content->header = "Строительство домов";
-			$this->render($head, $content);
-		}
-		else{
-			$this->title = "Фотогалерея";
-			$this->meta_desc = "Фотогалерея";
-			$this->meta_key = "Фотогалерея";
-			$head = $this->getHead(array("/css/main.css"), false);
-			$content = new Gallery();
-			$head->add("js", null, true);
-			$head->js = array("/js/main.js");
-			$hornav = $this->getHornav();
-			$hornav->addData("Фотогалерея");
-			$content->hornav = $hornav;
-			$content->header = "Фотогалерея";
-			$this->render($head, $content);
-		}
-	}
-
-	public function actionContacts(){
-		$this->title = "Контакты";
-		$this->meta_desc = "Контактная информация и схема проезда";
-		$this->meta_key = "контакты, схем проезда";
-		$head = $this->getHead(array("/css/main.css"), false);
-		$content = new Contacts();
-		$head->add("js", null, true);
-		$head->js = array("/js/main.js");
-		$hornav = $this->getHornav();
-		$hornav->addData("Контакты");
-		$content->hornav = $hornav;
-		$this->render($head, $content);
 	}
 
 	/* 

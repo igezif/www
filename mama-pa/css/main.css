@@ -180,7 +180,7 @@ header{
 #basket #summ_header{
 	float: left;
 	width: 65px;
-	margin: 5px 0 0 11px;
+	margin: 3px 0 0 11px;
 	text-align: center;
 	display: block;
 }
@@ -277,22 +277,11 @@ header{
 }
 
 span.rouble{
-	position: relative;
-	left: 6px;
-	top: 1px;
-	font-size: 129%;
-}
-
-#minus_for_rouble {
-	position: relative;
-	top: -3px;
-	left: -5px;
+	font-size: 120%;
+	font-family: 'PT Sans', serif;
 }
 
 #span_summ{
-	position: relative;
-	left: 3px;
-	top: -1px;
 	font-size: 110%;
 }
 

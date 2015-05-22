@@ -17,7 +17,7 @@
 				<a href = "#" id = "logo_mail"></a>
 			</div>
 			<a id = "basket" href = "/basket">
-				<b>Корзина</b><b id = "summ_header"><span id = "span_summ"><?=$summ?></span><span class = "rouble">Р</span><span id = "minus_for_rouble">_</span></b>
+				<b>Корзина</b><b id = "summ_header"><span id = "span_summ"><?=$summ?></span> <span class = "rouble">&#8399;</span></b>
 			</a>
 		</div>
 		<div id = "second_menu_wrap" class = "row">

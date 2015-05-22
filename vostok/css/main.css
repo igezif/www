@@ -27,6 +27,10 @@ h1{
 	margin: 0 auto;
 }
 
+.cursive{
+	font-style: italic;
+}
+
 .row > a, .row > div{
 	display: inline-block;
 }
@@ -45,6 +49,22 @@ h1{
 
 .center{
 	text-align: center;
+}
+
+/*   HEAD_SLIDER  */
+
+#slides {
+	display:none;
+	box-shadow: 0 0 7px rgba(0,0,0,2.0);
+	margin: 25px auto 0 auto;
+}
+
+.slidesjs-stop{
+	display: none !important;
+}
+
+.slidesjs-pagination{
+	display: none !important;
 }
 
 /*   MODAL_FORM   */
@@ -164,6 +184,7 @@ ul.head_menu{
 	border-radius: 7px 7px 0 0;
 	box-shadow: 0 0 7px rgba(0,0,0,2.0);
 	display: block;
+	z-index: 11;
 }
 
 ul.head_menu li {
@@ -579,6 +600,24 @@ ul.head_menu li:hover ul.submenu li {
 
 .gallery_item:hover .gallery_item_view{
 	text-decoration: underline;
+}
+
+.gallery_image_wrap{
+	float: left;
+	margin: 18px 21px 0 21px;
+	padding: 3px;
+	border: 1px solid #888888;
+	display: block;
+}
+
+.gallery_image_wrap:hover{
+	cursor: pointer;
+}
+
+.gallery_image_wrap img{
+	width: 200px;
+	height: 150px;
+	display: block;
 }
 
 /* VARIATION */
