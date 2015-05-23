@@ -29,5 +29,19 @@ class GalleryDB extends ObjectDB {
 	}
 
 	/* ADMINKA */
+
+	public static function getAdminShow($view_id){
+		$items = self::getAllOnField(self::$table, __CLASS__, "view_id", $view_id);
+		foreach ($items as $item) $item->postAdminHandling();
+		return $items;
+	}
+
+	private function postAdminHandling(){
+		$this->link_update = URL::get("update", "admin", array("view" => "imggallery", "id" => $this->id));
+		$this->link_delete = URL::get("delete", "admin", array("view" => "imggallery", "id" => $this->id));
+		$this->link_list = URL::get("listimg", "admin", array("view_id" => $this->view_id, "id" => $this->id));
+		$this->img = Config::DIR_IMG_GALLERY.$this->img;
+		return true;
+	}
 	
 }

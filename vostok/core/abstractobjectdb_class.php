@@ -224,7 +224,7 @@ abstract class AbstractObjectDB {
 		return self::$db->selectCell($select);
 	}
 	
-	protected function loadOnField($field, $value) {
+	public function loadOnField($field, $value) {
 		$select = new Select();
 		$select->from($this->table_name, "*")
 			->where ("`$field` = ".self::$db->getSQ(), array($value));

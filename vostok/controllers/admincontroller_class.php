@@ -44,22 +44,6 @@ class AdminController extends Controller {
 		$this->render($head, $this->renderData(array("hornav" => $hornav, "admin_menu" => $admin_menu), "adminpanel"));
 	}
 	
-	public function actionSlider() {
-		if (!self::isAuthAdmin()) return null;
-		$this->title = "Админ панель";
-		$this->meta_desc = "Админ панель";
-		$this->meta_key = "админ панель";
-		$head = $this->getHead(array("/css/main.css"), false);
-		$admin_menu = new Slideradmin();
-		$admin_menu->items = SliderDB::getAdminShow();
-		$admin_menu->link_insert = URL::get("insert", "admin", array("view" => "slider"));
-		$admin_menu->message = $this->fp->getSessionMessage("slider");
-		$hornav = new Hornav();
-		$hornav->addData("Админпанель", URL::get("menu", "admin"));
-		$hornav->addData("Слайдер на главной странице");
-		$this->render($head, $this->renderData(array("hornav" => $hornav, "admin_menu" => $admin_menu), "adminpanel"));
-	}
-	
 	public function actionViewgallery() {
 		if (!self::isAuthAdmin()) return null;
 		$this->title = "Админ панель";
@@ -75,36 +59,45 @@ class AdminController extends Controller {
 		$hornav->addData("Галерея");
 		$this->render($head, $this->renderData(array("hornav" => $hornav, "admin_menu" => $admin_menu), "adminpanel"));
 	}
-	
-	public function actionCategory() {
-		if (!self::isAuthAdmin()) return null;
+
+	public function actionListgallery(){
 		$this->title = "Админ панель";
 		$this->meta_desc = "Админ панель";
 		$this->meta_key = "админ панель";
 		$head = $this->getHead(array("/css/main.css"), false);
-		$admin_menu = new Categoryadmin();
-		$admin_menu->items = CategoryDB::getAdminShow();
-		$admin_menu->link_insert = URL::get("insert", "admin", array("view" => "category"));
-		$admin_menu->message = $this->fp->getSessionMessage("category");
+		$admin_menu = new Listgallery($this->request->view_id);
+		$admin_menu->items = GalleryDB::getAdminShow($this->request->view_id);
+		$admin_menu->link_insert = URL::get("insert", "admin", array("view" => "gallery"));
 		$hornav = new Hornav();
+		$viewgallery = new ViewgalleryDB();
+		$viewgallery->load($this->request->view_id);
+		$admin_menu->header = $viewgallery->title;
+		$admin_menu->message = $this->fp->getSessionMessage($this->request->view);
 		$hornav->addData("Админпанель", URL::get("menu", "admin"));
-		$hornav->addData("Категории товаров");
+		$hornav->addData("Галерея", URL::get("viewgallery", "admin"));
+		$hornav->addData($viewgallery->title);
 		$this->render($head, $this->renderData(array("hornav" => $hornav, "admin_menu" => $admin_menu), "adminpanel"));
 	}
-	
-	public function actionProduct() {
-		if (!self::isAuthAdmin()) return null;
+
+	public function actionListimg(){
 		$this->title = "Админ панель";
 		$this->meta_desc = "Админ панель";
 		$this->meta_key = "админ панель";
 		$head = $this->getHead(array("/css/main.css"), false);
-		$admin_menu = new Productadmin();
-		$admin_menu->items = ProductDB::getAdminShow();
-		$admin_menu->link_insert = URL::get("insert", "admin", array("view" => "product"));
-		$admin_menu->message = $this->fp->getSessionMessage("product");
+		$admin_menu = new Listimggallery();
+		$admin_menu->link_insert = URL::get("insert", "admin", array("view" => "imggallery"));
+		$admin_menu->items = ImggalleryDB::getAdminShow($this->request->id);
 		$hornav = new Hornav();
+		$gallery = new GalleryDB();
+		$gallery->load($this->request->id);
+		$viewgallery = new ViewgalleryDB();
+		$viewgallery->load($gallery->view_id);
+		$admin_menu->header = $gallery->title;
+		$admin_menu->message = $this->fp->getSessionMessage($this->request->view);
 		$hornav->addData("Админпанель", URL::get("menu", "admin"));
-		$hornav->addData("Товары");
+		$hornav->addData("Галерея", URL::get("viewgallery", "admin"));
+		$hornav->addData($viewgallery->title, URL::get("listgallery", "admin", array("view_id" => $viewgallery->id)));
+		$hornav->addData($gallery->title);
 		$this->render($head, $this->renderData(array("hornav" => $hornav, "admin_menu" => $admin_menu), "adminpanel"));
 	}
 	

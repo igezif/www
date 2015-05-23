@@ -715,6 +715,10 @@ form[name='auth'] input[type='text'], form[name='auth'] input[type='password'], 
 	margin: 10px 0 0 0;
 }
 
+.adminka a:hover{
+	text-decoration: underline;
+}
+
 .admin_change{
 	color: red;
 	font-size: 80%;
@@ -727,4 +731,21 @@ form[name='auth'] input[type='text'], form[name='auth'] input[type='password'], 
 
 .admin_gallery_table tr td{
 	padding: 5px;
+}
+
+.admin_gallery_table tr td img{
+	display: block;
+}
+
+.admin_header{
+	padding: 10px 0 5px 10px;
+}
+
+.admin_link_entry{
+	padding: 10px;
+	display: block;
+}
+
+.imggallery{
+	height: 200px;
 }

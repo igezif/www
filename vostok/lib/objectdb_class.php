@@ -26,6 +26,14 @@ abstract class ObjectDB extends AbstractObjectDB {
 		}
 		return $x;
 	}
+
+	protected static function getAllOnID($table, $id){
+		$select = new Select(self::$db);
+		$select->from($table, "*")
+			->where("`id` = ?", array($id));
+		$data = self::$db->select($select);
+		return $data;
+	}
 	
 	public function preEdit($field, $value) {
 		return true;
