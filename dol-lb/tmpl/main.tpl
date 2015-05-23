@@ -5,6 +5,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="description" content="<?=$this->meta_desc?>" />
 	<meta name="keywords" content="<?=$this->meta_key?>" />
+    <meta name='yandex-verification' content='58c67c19fe11d4bd' />
 	<link rel="stylesheet" href="css/main.css" type="text/css" />
 	<link rel="stylesheet" href="css/lightbox.css" type="text/css" />
 	<link rel="shortcut icon" href="img/icon.ico" type="image/x-icon" />
@@ -62,20 +63,49 @@
     		<div id="footer">
 				<table>
 					<tr>
-						<td><!--LiveInternet counter--><script type="text/javascript"><!--
-							document.write("<a href='http://www.liveinternet.ru/click' "+
-							"target=_blank><img src='//counter.yadro.ru/hit?t11.15;r"+
-							escape(document.referrer)+((typeof(screen)=="undefined")?"":
-							";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
-							screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
-							";"+Math.random()+
-							"' alt='' title='LiveInternet: показано число просмотров за 24"+
-							" часа, посетителей за 24 часа и за сегодня' "+
-							"border='0' width='88' height='31'><\/a>")//--></script><!--/LiveInternet-->
+						<td>
+                            <!-- Yandex.Metrika informer -->
+                            <a href="https://metrika.yandex.ru/stat/?id=30504092&amp;from=informer"
+                            target="_blank" rel="nofollow"><img src="//bs.yandex.ru/informer/30504092/3_0_2BFA71FF_0BDA51FF_0_pageviews"
+                            style="width:88px; height:31px; border:0;" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)" onclick="try{Ya.Metrika.informer({i:this,id:30504092,lang:'ru'});return false}catch(e){}"/></a>
+                            <!-- /Yandex.Metrika informer -->
+
+                            <!-- Yandex.Metrika counter -->
+                            <script type="text/javascript">
+                            (function (d, w, c) {
+                                (w[c] = w[c] || []).push(function() {
+                                    try {
+                                        w.yaCounter30504092 = new Ya.Metrika({id:30504092,
+                                                clickmap:true,
+                                                trackLinks:true,
+                                                accurateTrackBounce:true});
+                                    } catch(e) { }
+                                });
+
+                                var n = d.getElementsByTagName("script")[0],
+                                    s = d.createElement("script"),
+                                    f = function () { n.parentNode.insertBefore(s, n); };
+                                s.type = "text/javascript";
+                                s.async = true;
+                                s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+                                if (w.opera == "[object Opera]") {
+                                    d.addEventListener("DOMContentLoaded", f, false);
+                                } else { f(); }
+                            })(document, window, "yandex_metrika_callbacks");
+                            </script>
+                            <noscript><div><img src="//mc.yandex.ru/watch/30504092" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+                            <!-- /Yandex.Metrika counter -->
 						</td>
-						<td>ДОЛ "Лазурный берег" Все права защищены &copy; 2014</td>
+                        <td>
+                            ДОЛ "Лазурный берег" Все права защищены &copy; 2014 - <?=date("Y")?>
+                        </td>
+						<td>
+                            <a href = "http://no-wordpress.ru" class = "dev" target = "_blank">Разработка</a>
+                        </td>
 					</tr>
 				</table>
+
     		</div>
     	</div>
     </div>

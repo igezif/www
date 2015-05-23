@@ -22,10 +22,6 @@ class AdminController extends Controller {
 		$head->add("js", null, true);
 		$head->js = array("/js/main.js", "/js/admin.js");
 		$admin_menu = new Contactsadmin();
-
-
-
-		//$content = new Contacts();
 		$obj = new ContactsDB();
 		$obj->load(1);
 		$admin_menu->name = $obj->name;
@@ -42,8 +38,6 @@ class AdminController extends Controller {
 		$admin_menu->okpo = $obj->okpo;
 		$admin_menu->okato = $obj->okato;
 		$admin_menu->ogrn = $obj->ogrn;
-
-
 		$hornav = new Hornav();
 		$hornav->addData("Админпанель", URL::get("menu", "admin"));
 		$hornav->addData("Контактная информация и схема проезда");
@@ -66,19 +60,19 @@ class AdminController extends Controller {
 		$this->render($head, $this->renderData(array("hornav" => $hornav, "admin_menu" => $admin_menu), "adminpanel"));
 	}
 	
-	public function actionSection() {
+	public function actionViewgallery() {
 		if (!self::isAuthAdmin()) return null;
 		$this->title = "Админ панель";
 		$this->meta_desc = "Админ панель";
 		$this->meta_key = "админ панель";
 		$head = $this->getHead(array("/css/main.css"), false);
-		$admin_menu = new Sectionadmin();
-		$admin_menu->items = SectionDB::getAdminShow();
-		$admin_menu->link_insert = URL::get("insert", "admin", array("view" => "section"));
-		$admin_menu->message = $this->fp->getSessionMessage("section");
+		$admin_menu = new Viewgalleryadmin();
+		$admin_menu->items = ViewgalleryDB::getAdminShow();
+		$admin_menu->link_insert = URL::get("insert", "admin", array("view" => "viewgallery"));
+		$admin_menu->message = $this->fp->getSessionMessage("viewgallery");
 		$hornav = new Hornav();
 		$hornav->addData("Админпанель", URL::get("menu", "admin"));
-		$hornav->addData("Секции");
+		$hornav->addData("Галерея");
 		$this->render($head, $this->renderData(array("hornav" => $hornav, "admin_menu" => $admin_menu), "adminpanel"));
 	}
 	

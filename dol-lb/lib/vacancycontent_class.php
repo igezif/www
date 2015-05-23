@@ -8,6 +8,7 @@ class Vacancycontent extends Modules {
 		$this->template->set("meta_desc", $this->meta->getMeta_desc("vacancy"));
 		$this->template->set("meta_key", $this->meta->getMeta_key("vacancy"));
 		$this->template->set("vacancy", $this->vacancy->getAllVacancy());
+		$this->template->set("email", $this->config->email);
 		return "vacancy";
 	}
 	

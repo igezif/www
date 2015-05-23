@@ -23,6 +23,24 @@ class ViewgalleryDB extends ObjectDB {
 
 	/* ADMINKA */
 
+	public static function getAdminShow(){
+		$items = self::getAll();
+		foreach ($items as $item) $item->postAdminHandling();
+		return $items;
+	}
+
+	private function postAdminHandling(){
+		/*if (!is_null($this->img)){
+			$view = new View(Config::DIR_TMPL);
+			$this->imageName = $this->img;
+			$this->img = $view->render("img", array("src" => $this->img), true);
+		}
+		else $this->img = "нет";
+		$this->link_update = URL::get("update", "admin", array("view" => "product", "id" => $this->id));
+		$this->link_delete = URL::get("delete", "admin", array("view" => "product", "id" => $this->id));*/
+		return true;
+	}
+
 	/*
 	protected function postInit() {
 		$this->link = URL::get("product", "", array("id" => $this->id));
@@ -123,17 +141,7 @@ class ViewgalleryDB extends ObjectDB {
 		return $items;
 	}
 	
-	private function postAdminHandling(){
-		if (!is_null($this->img)){
-			$view = new View(Config::DIR_TMPL);
-			$this->imageName = $this->img;
-			$this->img = $view->render("img", array("src" => $this->img), true);
-		}
-		else $this->img = "нет";
-		$this->link_update = URL::get("update", "admin", array("view" => "product", "id" => $this->id));
-		$this->link_delete = URL::get("delete", "admin", array("view" => "product", "id" => $this->id));
-		return true;
-	}
+	
 	*/
 	
 }

@@ -44,21 +44,3 @@ $(function(){
     	}
 	});
 });
-
-/*$(function(){
-  $("#slides").slidesjs({
-   
-  });
-});
-
-$(function(){
-  $("#slides").slidesjs({
-    pagination: {
-      active: true,
-        // [boolean] Create pagination items.
-        // You cannot use your own pagination. Sorry.
-      effect: "slide"
-        // [string] Can be either "slide" or "fade".
-    }
-  });
-});*/

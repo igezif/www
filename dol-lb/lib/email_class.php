@@ -5,7 +5,7 @@ class Email {
 	private $data;
 	
 	public function __construct() {
-		$this->data = parse_ini_file("lib/text/emails.ini");
+		$this->data = parse_ini_file("text/emails.ini");
 	}
 	
 	public function getTitle($name) {

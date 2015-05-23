@@ -724,3 +724,7 @@ form[name='auth'] input[type='text'], form[name='auth'] input[type='password'], 
 	cursor: pointer;
 	text-decoration: underline;
 }
+
+.admin_gallery_table tr td{
+	padding: 5px;
+}

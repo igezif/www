@@ -67,8 +67,8 @@ class Manage {
 			$send_data["year"] = $this->getYear();
 			$send_data["unic_number"] = mt_rand(1000, 9999);
 			$this->mail->send($send_data["email"], $send_data, "RESERV");
-			$this->mail->send("2140241@ngs.ru", $send_data, "ADM_RESERV");
-			$this->mail->send("vasilek.php@yandex.ru", $send_data, "ADM_RESERV");
+			$this->mail->send($this->config->admemail, $send_data, "ADM_RESERV");
+			$this->mail->send($this->config->admemail2, $send_data, "ADM_RESERV");
 			return "success_reservation";
 		}
 		else return "error_reservation";
@@ -85,9 +85,8 @@ class Manage {
 		$send_data["email"] = $this->data["email"];
 		$send_data["subject"] = $this->data["subject"];
 		$send_data["text"] = $this->data["text"];
-		$this->mail->send("dol-lb@yandex.ru", $send_data, "QUEST", $send_data["email"]);
-		$this->mail->send("2140241@ngs.ru", $send_data, "QUEST", $send_data["email"]);
-		$this->mail->send("vasilek.php@yandex.ru", $send_data, "QUEST", $send_data["email"]);
+		$this->mail->send($this->config->admemail, $send_data, "QUEST", $send_data["email"]);
+		$this->mail->send($this->config->admemail2, $send_data, "QUEST", $send_data["email"]);
 		return "success_send";
 	}
 

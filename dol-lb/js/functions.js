@@ -1,6 +1,7 @@
 
 
 function getMessageRes (data, d) {
+	console.log(data);
 	if (data == "success_reservation") {
 		$('form[name=reservation_form]').hide();
 		$("<h3>Путёвка успешно забронирована!</h3><span class='center'>На Ваш e-mail отправлено письмо с уникальным номером.</span>").insertAfter("h2");
@@ -104,7 +105,7 @@ $(document).ready(function() {
 	var patronymic = false;
 	var email = false;
 	var phone = false;
-	$("input[name=surname]").bind("blur", function() {
+	$("input[name=surname]").bind("keypress", function() {
 		if (!/^[а-яА-ЯёЁ]{1,50}$/i.test($("input[name=surname]").val())) {
 			$("input[name=surname]").css("background-color", "#ff8c69");
 			$("#message_surname").fadeIn(1000);
@@ -117,7 +118,7 @@ $(document).ready(function() {
 		}
 	});
 	
-	$("input[name=name]").bind("blur", function() {
+	$("input[name=name]").bind("keypress", function() {
 		if (!/^[а-яА-ЯёЁ]{1,50}$/i.test($("input[name=name]").val())) {
 			$("input[name=name]").css("background-color", "#ff8c69");
 			$("#message_name").fadeIn(1000);
@@ -130,7 +131,7 @@ $(document).ready(function() {
 		}
 	});
 			
-	$("input[name=patronymic]").bind("blur", function() {
+	$("input[name=patronymic]").bind("keypress", function() {
 		if (!/^[а-яА-ЯёЁ]{1,50}$/i.test($("input[name=patronymic]").val())) {
 			$("input[name=patronymic]").css("background-color", "#ff8c69");
 			$("#message_patronymic").fadeIn(1000);
@@ -143,7 +144,7 @@ $(document).ready(function() {
 		}
 	});
 	
-	$("input[name=email]").bind("blur", function() {
+	$("input[name=email]").bind("keypress", function() {
 		if (!/.+@.+\..+/i.test($("input[name=email]").val())) {
 			$("input[name=email]").css("background-color", "#ff8c69");
 			$("#message_email").fadeIn(1000);
@@ -156,8 +157,8 @@ $(document).ready(function() {
 		}
 	});
 	
-	$("input[name=phone]").bind("blur", function() {
-		if (!/^8[0-9]{10}$/.test($("input[name=phone]").val())) {
+	$("input[name=phone]").bind("keypress", function() {
+		if (!/^8[0-9]{9}$/.test($("input[name=phone]").val())) {
 			$("input[name=phone]").css("background-color", "#ff8c69");
 			$("#message_phone").fadeIn(1000);
 			phone = false;

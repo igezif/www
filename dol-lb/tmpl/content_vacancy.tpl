@@ -12,5 +12,5 @@
 <br/>
 <br/>
 <p>
-	Подробное резюме присылать на e-mail: <a href="mailto:dol-lb@yandex.ru" title="Наша почта">dol-lb@yandex.ru</a>
+	Подробное резюме присылать на e-mail: <a href="mailto:dol-lb@yandex.ru" title="Наша почта"><?=$this->email?></a>
 </p>

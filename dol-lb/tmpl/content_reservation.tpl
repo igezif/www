@@ -1,5 +1,5 @@
 <h2>Бронирование путёвок</h2>
-<form action="functions.php" method="post" name="reservation_form" onsubmit="return false;">
+<form action="/functions.php" method="post" name="reservation_form" onsubmit="return false;">
 	<table id="reservation">
 		<tr>
 			<td><i>Фамилия ребёнка:</i></td><td><input type="text" size="31"  name="surname"/></td>
@@ -36,6 +36,7 @@
 					<option value="1">1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
+					<option value="4">4</option>
 			   </select>
 			</td>
 		</tr>

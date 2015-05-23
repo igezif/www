@@ -1,6 +1,6 @@
 <h2>Oбpaтнaя cвязь</h2>
 <form action="functions.php" method="post" name="send_form" onsubmit="return false;">
-	<table id="questions" border="1">
+	<table id="questions">
 		<tr>
 			<td><i>Ваше имя:</i></td><td><input type="text" size="31"  name="name_1"/></td>
 			
@@ -31,7 +31,7 @@
 		</tr>
 		<tr>
 			<td class="message"><div id="update" title="обновить картинку"></div></td>
-			<td class="message"><img src="captcha.php" alt="" id="captcha" /></td>
+			<td class="message"><img src="/captcha.php" alt="" id="captcha" /></td>
 		</tr>
 		<tr>
 			<td><i>Текст на изображении:</i></td><td><input type="text" size="31" name="captcha"/></td>
