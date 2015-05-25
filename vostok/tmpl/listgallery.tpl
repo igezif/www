@@ -1,4 +1,4 @@
-<?php if ($message != false) { ?><p class="admin_message"><?=$message?></p><?php } ?>
+<?php if ($message) { ?><p class="admin_message"><?=$message?></p><?php } ?>
 <h2 class = "admin_header"><?=$header?></h2>
 <a href = "<?=$link_insert?>" class = "admin_link_entry">Добавить</a>
 <table border = "1" class = "admin_gallery_table">

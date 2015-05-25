@@ -36,8 +36,8 @@ class ViewgalleryDB extends ObjectDB {
 	}
 
 	private function postAdminHandling(){
-		$this->link_update = URL::get("update", "admin", array("view" => "viewgallery", "id" => $this->id));
-		$this->link_delete = URL::get("delete", "admin", array("view" => "viewgallery", "id" => $this->id));
+		$this->link_update = URL::get("update", "admin", array("view" => "viewgallery", "view_id" => $this->id));
+		$this->link_delete = URL::get("delete", "admin", array("view" => "viewgallery", "view_id" => $this->id));
 		$this->link_list = URL::get("listgallery", "admin", array("view_id" => $this->id));
 		$this->img = Config::DIR_IMG_VIEWGALLERY.$this->img;
 		return true;

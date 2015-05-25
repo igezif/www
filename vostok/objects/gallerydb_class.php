@@ -37,9 +37,9 @@ class GalleryDB extends ObjectDB {
 	}
 
 	private function postAdminHandling(){
-		$this->link_update = URL::get("update", "admin", array("view" => "imggallery", "id" => $this->id));
-		$this->link_delete = URL::get("delete", "admin", array("view" => "imggallery", "id" => $this->id));
-		$this->link_list = URL::get("listimg", "admin", array("view_id" => $this->view_id, "id" => $this->id));
+		$this->link_update = URL::get("update", "admin", array("view" => "listgallery", "view_id" => $this->view_id, "gallery_id" => $this->id));
+		$this->link_delete = URL::get("delete", "admin", array("view" => "listgallery", "view_id" => $this->view_id, "gallery_id" => $this->id));
+		$this->link_list = URL::get("listimg", "admin", array("view_id" => $this->view_id, "gallery_id" => $this->id));
 		$this->img = Config::DIR_IMG_GALLERY.$this->img;
 		return true;
 	}
