@@ -706,6 +706,14 @@ footer{
 }
 
 /* --- ADMINKA --- */
+
+.admin_message{
+	text-align: center;
+	margin: 25px 0 0 0;
+	padding: 5px;
+	background-color: #ff8c69;
+}
+
 form[name='auth'] input[type='text'], form[name='auth'] input[type='password'], form[name='auth'] input[type='submit']{
 	padding: 5px;
 	font-size: 110%;
@@ -735,6 +743,8 @@ form[name='auth'] input[type='text'], form[name='auth'] input[type='password'], 
 
 .admin_gallery_table tr td img{
 	display: block;
+	max-width: 150px;
+	max-height: 150px;
 }
 
 .admin_header{
@@ -748,4 +758,27 @@ form[name='auth'] input[type='text'], form[name='auth'] input[type='password'], 
 
 .imggallery{
 	height: 200px;
+}
+
+.admin_form_table{
+	margin: 15px;
+}
+
+.admin_form_table tr td{
+	padding: 10px;
+}
+
+.admin_form_table tr td input[type='text']{
+	padding: 5px;
+	width: 400px;
+}
+
+.admin_form_table tr td textarea{
+	padding: 5px;
+	width: 400px;
+	height: 200px;
+}
+
+.admin_form_table tr td input[type='submit']{
+	padding: 10px;
 }

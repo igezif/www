@@ -10,6 +10,8 @@ class AdminController extends Controller {
 		$this->meta_desc = "Админ панель";
 		$this->meta_key = "админ панель";
 		$head = $this->getHead(array("/css/main.css"), false);
+		$head->add("js", null, true);
+		$head->js = array("/js/admin.js");
 		$admin_menu = new Adminmenu();
 		$admin_menu->admin = $this->auth_admin;
 		$this->render($head, $this->renderData(array("admin_menu" => $admin_menu), "adminpanel"));
@@ -21,6 +23,8 @@ class AdminController extends Controller {
 		$this->meta_desc = "Админ панель";
 		$this->meta_key = "админ панель";
 		$head = $this->getHead(array("/css/main.css"), false);
+		$head->add("js", null, true);
+		$head->js = array("/js/admin.js");
 		$admin_menu = new Brandadmin();
 		$admin_menu->items = BrandDB::getAdminShow();
 		$admin_menu->link_insert = URL::get("insert", "admin", array("view" => "brand"));
@@ -37,6 +41,8 @@ class AdminController extends Controller {
 		$this->meta_desc = "Админ панель";
 		$this->meta_key = "админ панель";
 		$head = $this->getHead(array("/css/main.css"), false);
+		$head->add("js", null, true);
+		$head->js = array("/js/admin.js");
 		$admin_menu = new Slideradmin();
 		$admin_menu->items = SliderDB::getAdminShow();
 		$admin_menu->link_insert = URL::get("insert", "admin", array("view" => "slider"));
@@ -53,6 +59,8 @@ class AdminController extends Controller {
 		$this->meta_desc = "Админ панель";
 		$this->meta_key = "админ панель";
 		$head = $this->getHead(array("/css/main.css"), false);
+		$head->add("js", null, true);
+		$head->js = array("/js/admin.js");
 		$admin_menu = new Sectionadmin();
 		$admin_menu->items = SectionDB::getAdminShow();
 		$admin_menu->link_insert = URL::get("insert", "admin", array("view" => "section"));
@@ -69,6 +77,8 @@ class AdminController extends Controller {
 		$this->meta_desc = "Админ панель";
 		$this->meta_key = "админ панель";
 		$head = $this->getHead(array("/css/main.css"), false);
+		$head->add("js", null, true);
+		$head->js = array("/js/admin.js");
 		$admin_menu = new Categoryadmin();
 		$admin_menu->items = CategoryDB::getAdminShow();
 		$admin_menu->link_insert = URL::get("insert", "admin", array("view" => "category"));
@@ -85,6 +95,8 @@ class AdminController extends Controller {
 		$this->meta_desc = "Админ панель";
 		$this->meta_key = "админ панель";
 		$head = $this->getHead(array("/css/main.css"), false);
+		$head->add("js", null, true);
+		$head->js = array("/js/admin.js");
 		$admin_menu = new Productadmin();
 		$admin_menu->items = ProductDB::getAdminShow();
 		$admin_menu->link_insert = URL::get("insert", "admin", array("view" => "product"));
@@ -137,7 +149,7 @@ class AdminController extends Controller {
 		}
 		else if ($this->request->insert_category) {
 			$obj_db = new CategoryDB();
-			$obj = $this->fp->process($this->request->view, $obj_db, array("section_id", "title", "meta_desc", "meta_key"), array(), "SUCCESS_POSITION_INSERT");
+			$obj = $this->fp->process($this->request->view, $obj_db, array("section_id", "title", "meta_desc", "meta_key", ($this->request->show) ? "show" : array("show", 0)), array(), "SUCCESS_POSITION_INSERT");
 			if ($obj instanceof CategoryDB) $this->redirect(URL::get("category", "admin"));
 			else $this->redirect(URL::current());
 		}
@@ -214,7 +226,7 @@ class AdminController extends Controller {
 		else if($this->request->update_category){
 			$obj_db = new CategoryDB();
 			$obj_db->load($this->request->id);
-			$obj = $this->fp->process($this->request->view, $obj_db, array("section_id", "title", "meta_desc", "meta_key", "show"), array(), "SUCCESS_POSITION_UPDATE");
+			$obj = $this->fp->process($this->request->view, $obj_db, array("section_id", "title", "meta_desc", "meta_key", ($this->request->show) ? "show" : array("show", 0)), array(), "SUCCESS_POSITION_UPDATE");
 			if ($obj instanceof CategoryDB) $this->redirect(URL::get("category", "admin"));
 			else $this->redirect(URL::current());
 		}

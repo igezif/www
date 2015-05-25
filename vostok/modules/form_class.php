@@ -12,11 +12,6 @@ class Form extends ModuleHornav {
 		$this->add("check", true);
 		$this->add("enctype");
 		$this->add("inputs", null, true);
-		$this->add("jsv", null, true);
-	}
-	
-	public function addJSV($field, $jsv) {
-		$this->addObj("jsv", $field, $jsv);
 	}
 	
 	public function text($name, $label = "", $value = "", $default_v = "") {
