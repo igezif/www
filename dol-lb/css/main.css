@@ -210,6 +210,15 @@ p a {
 	color: red;
 }
 
+form[name='reservation_form'] input[type='text']{
+	padding: 3px;
+}
+
+form[name='reservation_form'] select{
+	margin: 0 0 3px 0;
+	padding: 3px;
+}
+
 #update {
 	height: 50px;
 	width: 50px;

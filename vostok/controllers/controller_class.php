@@ -79,7 +79,8 @@ abstract class Controller extends AbstractController {
 	
 	protected function getHeader() {
 		$header = new Header();
-		//$header->uri = $this->url_active;
+		$contacts = new ContactsDB();
+		$header->phone = $contacts->getPhone();
 		//$header->link_search = $this->link_search;
 		return $header;
 	}

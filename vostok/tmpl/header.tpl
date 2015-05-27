@@ -7,10 +7,9 @@
 			<div id = "show_modal_form">
 				Задать вопрос
 			</div>
-			<div id = "phone">
-				<span>+7 (383) 213-02-89</span>
-				<span>+7-913-985-02-89</span>
-			</div>
+			<a id = "phone" href="tel:<?=$phone?>">
+				<b><?=$phone?></b>
+			</a>
 		</div>
 	</div>
 	<nav class = "head_nav">

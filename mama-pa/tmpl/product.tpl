@@ -26,7 +26,7 @@
 				<b>Бренд:</b> <?=$brand?>
 				<img src = "<?=$brand_img?>" alt = "Изображение" />
 			</div>
-			<div class = "add_basket button_add_basket" data-basket="<?=$id?>">
+			<div class = "add_basket button red" data-basket="<?=$id?>">
 				В корзину
 			</div>
 		</div>

@@ -35,6 +35,7 @@ function Basket(){
 		if(data["summ"] === 0){
 			document.getElementById("basket_text").innerHTML = "Ваша корзина пуста";
 			document.getElementById("tr_basket_summ").remove();
+			document.getElementById("tr_basket_order").remove();
 		}
 		else{
 			document.getElementById("basket_span_summ").innerHTML = data["summ"];
@@ -187,3 +188,8 @@ var message = new Message();
 
 window.addEventListener("load", basket.init);
 window.addEventListener("load", message.init);
+window.addEventListener("load", function(){
+	document.querySelector(".set_order").onclick = function(){
+		document.querySelector("form[name='order_form']").submit();
+	}
+});

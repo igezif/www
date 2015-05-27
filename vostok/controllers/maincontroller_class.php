@@ -8,7 +8,7 @@ class MainController extends Controller {
 		$this->meta_key = "строительная фирма Восток сервис";
 		$head = $this->getHead(array("/css/main.css", false));
 		$head->add("js", null, true);
-		$head->js = array("/js/main.js", "http://code.jquery.com/jquery-latest.min.js", "/js/jquery.slides.min.js", "/js/for_head_slider.js");
+		$head->js = array("/js/main.js", "/js/jquery.slides.min.js", "/js/for_head_slider.js");
 		$content = new Middleindex();
 		$this->render($head, $content);
 	}
@@ -60,7 +60,7 @@ class MainController extends Controller {
 			$content = new Imggallery();
 			$content->items = ImggalleryDB::getImagesOnGalleryId($id);
 			$head->add("js", null, true);
-			$head->js = array("/js/main.js", "/js/jquery-1.10.2.min.js", "/js/lightbox-2.6.min.js");
+			$head->js = array("/js/main.js", "/js/lightbox-2.6.min.js");
 			$v = new ViewgalleryDB();
 			$v->load($view);
 			$hornav = $this->getHornav();

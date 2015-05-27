@@ -138,7 +138,8 @@ h1{
 }
 
 #show_modal_form{
-	padding: 7px 0px 7px 83px;
+	display: table;
+	padding: 7px 77px;
 	background: linear-gradient(180deg, #c60125 0%, #810013 100%);
 	border-radius: 0 0 10px 10px;
 	color: #E2E2E2;
@@ -160,13 +161,15 @@ h1{
 }
 
 #phone{
-	margin: 13px 10px 0 0;
+	display: table;
+	margin: 5px auto 0 auto;
+	font-size: 90%;
+	color: #000000;
 }
 
 #phone > span {
 	display: inline-block;
-	font-size: 90%;
-	margin: 0 0 0 14px;
+	
 }
 
 .head_nav{

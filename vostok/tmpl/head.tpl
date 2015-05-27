@@ -9,7 +9,8 @@
 	<?php foreach ($css as $href) { ?>
 		<link type="text/css" rel="stylesheet" href="<?=$href?>" />
 	<?php } ?>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<?php if (isset($js)) { foreach ($js as $src) { ?>
-				<script type="text/javascript" src="<?=$src?>"></script>
+		<script type="text/javascript" src="<?=$src?>"></script>
 	<?php } }?>
 </head>

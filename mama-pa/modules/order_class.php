@@ -1,19 +1,17 @@
 <?php
 
-class Basket extends Module {
+class Order extends Module {
 	
 	public function __construct() {
 		parent::__construct();
 		$this->add("hornav");
 		$this->add("summ");
 		$this->add("header");
-		$this->add("text");
-		$this->add("items");
-		$this->add("link_order");
+		$this->add("action");
 	}
 	
 	public function getTmplFile() {
-		return "basket";
+		return "order";
 	}
 
 }

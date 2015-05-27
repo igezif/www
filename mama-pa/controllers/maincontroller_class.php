@@ -6,7 +6,7 @@ class MainController extends Controller {
 		$this->title = "Мама-па";
 		$this->meta_desc = "Интернет-магазин детских товаров";
 		$this->meta_key = "товары для детей, детские товары";
-		$head = $this->getHead(array("/css/main.css", "http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"), false);
+		$head = $this->getHead(array("/css/main.css"), false);
 		$head->add("js", null, true);
 		$head->js = array("/js/slider.js", "/js/main.js");
 		$sections = new Section();
@@ -51,11 +51,29 @@ class MainController extends Controller {
 		$content = new Basket();
 		$content->header = "Корзина";
 		$content->items = BasketData::getItems();
+		if($content->items) $content->link_order = URL::get("order", "");
 		$hornav = $this->getHornav();
 		$hornav->addData("Корзина");
 		$content->hornav = $hornav;
 		if($content->items) $content->text = "Вы выбрали следующие товары";
 		else $content->text = "Ваша корзина пуста";
+		$content->summ = BasketData::getSumm();
+		$head = $this->getHead(array("/css/main.css"), false);
+		$head->add("js", null, true);
+		$head->js = array("/js/main.js");
+		$this->render($head, $content);
+	}
+
+	public function actionOrder(){
+		$this->title = "Оформить заказ";
+		$this->meta_desc = "Оформить заказ";
+		$this->meta_key = "Оформить заказ";
+		$content = new Order();
+		$content->header = "Оформить заказ";
+		$hornav = $this->getHornav();
+		$hornav->addData("Оформить заказ");
+		$content->hornav = $hornav;
+		$content->action = URL::current();
 		$content->summ = BasketData::getSumm();
 		$head = $this->getHead(array("/css/main.css"), false);
 		$head->add("js", null, true);

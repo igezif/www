@@ -1,12 +1,9 @@
 <h2>Вакансии</h2>
 <table id="vacancy">
+	<?php for ($i = 0; $i < count($this->vacancy); $i++) { ?>
 	<tr>
-		<?php for ($i = 0; $i < count($this->vacancy); $i++) { ?>
 		<td><?=($i + 1).".&nbsp;&nbsp;"?></td><td><?=$this->vacancy[$i]["title"]?></td>
 	</tr>
-	<tr>
-		<?php if ($i + 1 == count($this->vacancy)) { ?>
-	</tr><?php } ?>
 	<?php } ?>
 </table>
 <br/>

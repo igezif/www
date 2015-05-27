@@ -22,7 +22,10 @@ class ContactsDB extends ObjectDB {
 		$this->add("ogrn", "ValidateText");
 	}
 
-
+	public function getPhone(){
+		$this->load(1);
+		return $this->phone;
+	}
 
 
 

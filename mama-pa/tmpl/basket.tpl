@@ -15,32 +15,32 @@
 			<td>
 			</td>
 		</tr>
-		<?php foreach ($items as $product) { ?>
-		<tr>
-			<td class = "basket_image">
-				<a class="section_image" href="<?=$product->link?>">
-					<img src="<?=$product->img?>" alt="Изображение">
-				</a>
-			</td>
-			<td class = "basket_title">
-				<a href="<?=$product->link?>" alt="Image">
-					<?=$product->title?>
-				</a>
-			</td>
-			<td class = "basket_count center">
-				<?=$product->count?> шт.
-			</td>
-			<td class = "basket_price center">
-				<?=$product->price?> <span>р</span>
-			</td>
-			<td class = "basket_delete center">
-				<div class = "del_basket" data-basket="<?=$product->id?>">
-					Удалить
-				</div>
-			</td>
-		</tr>
-		<?php } ?>
 		<?php if ($items) { ?>
+			<?php foreach ($items as $product) { ?>
+			<tr>
+				<td class = "basket_image">
+					<a class="section_image" href="<?=$product->link?>">
+						<img src="<?=$product->img?>" alt="Изображение">
+					</a>
+				</td>
+				<td class = "basket_title">
+					<a href="<?=$product->link?>" alt="Image">
+						<?=$product->title?>
+					</a>
+				</td>
+				<td class = "basket_count center">
+					<?=$product->count?> шт.
+				</td>
+				<td class = "basket_price center">
+					<?=$product->price?> <span>р</span>
+				</td>
+				<td class = "basket_delete center">
+					<div class = "del_basket" data-basket="<?=$product->id?>">
+						Удалить
+					</div>
+				</td>
+			</tr>
+			<?php } ?>
 		<tr id = "tr_basket_summ">
 			<td class = "right" colspan = "3">
 				<b>Итого:</b>
@@ -53,4 +53,7 @@
 		</tr>
 		<?php } ?>
 	</table>
+	<a class = "button green set_order" href = "<?=$link_order?>">
+		Оформить заказ
+	</a>
 </section>
