@@ -23,8 +23,12 @@ class ContactsDB extends ObjectDB {
 	}
 
 	public function getPhone(){
+		$result = array();
 		$this->load(1);
-		return $this->phone;
+		$phone = $this->phone;
+		$result[] = $phone;
+		$result[] = str_replace("-", "", $phone);
+		return $result;
 	}
 
 

@@ -12,6 +12,7 @@
 				</li>
 				<?php } ?>
 			</ul>
+			
 		</div>
 		<div class = "row section_product_wrap">
 			<?php foreach($products as $product) { ?>

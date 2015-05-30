@@ -80,6 +80,21 @@ class MainController extends Controller {
 		$head->js = array("/js/main.js");
 		$this->render($head, $content);
 	}
+
+	public function actionContacts(){
+		$this->title = "Наши контакты";
+		$this->meta_desc = "Наши контакты";
+		$this->meta_key = "Наши контакты";
+		$head = $this->getHead(array("/css/main.css"), false);
+		$head->add("js", null, true);
+		$head->js = array("/js/main.js");
+		$content = new Contacts();
+		$content->header = "Наши контакты";
+		$hornav = $this->getHornav();
+		$hornav->addData("Наши контакты");
+		$content->hornav = $hornav;
+		$this->render($head, $content);
+	}
 	
 	public function actionSection() {
 		$obj = new SectionDB();

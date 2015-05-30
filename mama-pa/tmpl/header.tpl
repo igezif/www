@@ -2,19 +2,13 @@
 	<nav id = "headnav" class = "content">
 		<div id = "top_menu_wrap" class = "row">
 			<div id = "phone">
-				+7-913-781-39-97
+				<a href = "tel:89137813997">+7-913-781-39-97</a>
 			</div>
-			<div id="top_menu" class = "row">
-				<a href="#">Статус заказа</a>
-				<a href="#">Доставка</a>
-				<a href="#">Оплата</a>
-				<a href="#">Контакты</a>
-			</div>
-			<div id = "menu_network" class = "row">
-				<a href = "#" id = "logo_vk"></a>
-				<a href = "#" id = "logo_facebook"></a>
-				<a href = "#" id = "logo_twitter"></a>
-				<a href = "#" id = "logo_mail"></a>
+			<div class = "row menu_network">
+				<a href = "#" class = "logo_vk"></a>
+				<a href = "#" class = "logo_facebook"></a>
+				<a href = "#" class = "logo_twitter"></a>
+				<a href = "#" class = "logo_mail"></a>
 			</div>
 			<a id = "basket" href = "/basket">
 				<b>Корзина</b><b id = "summ_header"><span id = "span_summ"><?=$summ?></span> <span class = "rouble header_rouble">&#8399;</span></b>

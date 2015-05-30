@@ -4,6 +4,9 @@
 		<?=$title?>
 	</h1>
 	<div class = "row">
+		<div class = "category_ul">
+			
+		</div>
 		<div class = "row section_product_wrap">
 			<?php foreach($products as $product) { ?>
 			<div class = "section_product_item">

@@ -13,6 +13,22 @@ class AdminController extends Controller {
 		$this->render($head, $this->renderData(array("admin_menu" => $admin_menu), "adminpanel"));
 	}
 
+	public function actionCollective(){
+		if (!self::isAuthAdmin()) return null;
+		$this->title = "Наш колектив";
+		$this->meta_desc = "Наш колектив";
+		$this->meta_key = "Наш колектив";
+		$head = $this->getHead(array("/css/main.css"), false);
+		$admin_menu = new Collectiveadmin();
+		$admin_menu->items = CollectiveDB::getAdminShow();
+		$admin_menu->link_insert = URL::get("insert", "admin", array("view" => "collective"));
+		$admin_menu->message = $this->fp->getSessionMessage("collective");
+		$hornav = new Hornav();
+		$hornav->addData("Админпанель", URL::get("menu", "admin"));
+		$hornav->addData("Наш коллектив");
+		$this->render($head, $this->renderData(array("hornav" => $hornav, "admin_menu" => $admin_menu), "adminpanel"));
+	}
+
 	public function actionContacts() {
 		if (!self::isAuthAdmin()) return null;
 		$this->title = "Админ панель";
@@ -142,6 +158,24 @@ class AdminController extends Controller {
 				else $this->redirect(URL::current());
 			}
 		}
+
+
+		if ($this->request->insert_collective) {
+			$this->request->setRequestOnSession();
+			$image_name = $this->fp->checkIMG($this->request->view, $_FILES["img"], Config::MAX_SIZE_IMG);
+			if($image_name) {
+				$obj_db = new CollectiveDB();
+				$obj = $this->fp->process($this->request->view, $obj_db, array("name", "post", array("img", $image_name)), array(), "SUCCESS_POSITION_INSERT");
+				if($obj) $this->fp->uploadIMG($this->request->view, $_FILES["img"], $image_name, Config::DIR_IMG_COLLECTIVE);
+				if ($obj instanceof CollectiveDB){
+					$this->redirect(URL::get("collective", "admin"));
+				}
+				else $this->redirect(URL::current());
+			}
+		}
+
+
+
 		$this->title = "Админ панель";
 		$this->meta_desc = "Админ панель";
 		$this->meta_key = "админ панель";
@@ -220,6 +254,28 @@ class AdminController extends Controller {
 				else $this->redirect(URL::current());
 			}
 		}
+
+
+
+		if ($this->request->update_collective) {
+			$this->request->setRequestOnSession();
+			$image_name = $this->fp->checkIMG($this->request->view, $_FILES["img"], Config::MAX_SIZE_IMG);
+			$obj_db = new CollectiveDB();
+			$obj_db->load($this->request->id);
+			if($image_name) {
+				$obj = $this->fp->process($this->request->view, $obj_db, array("name", "post", array("img", $image_name)), array(), "SUCCESS_POSITION_UPDATE");
+				if($obj) $this->fp->uploadIMG($this->request->view, $_FILES["img"], $image_name, Config::DIR_IMG_COLLECTIVE);
+				if ($obj instanceof CollectiveDB) $this->redirect(URL::get("collective", "admin"));
+				else $this->redirect(URL::current());
+			}
+			else{
+				$obj = $this->fp->process($this->request->view, $obj_db, array("name", "post"), array(), "SUCCESS_POSITION_UPDATE");
+				if ($obj instanceof CollectiveDB) $this->redirect(URL::get("collective", "admin"));
+				else $this->redirect(URL::current());
+			}
+		}
+
+
 		$this->title = "Админ панель";
 		$this->meta_desc = "Админ панель";
 		$this->meta_key = "админ панель";
@@ -271,6 +327,19 @@ class AdminController extends Controller {
 					if($obj_db->delete()) $this->fp->setSessionMessage("imggallery", "SUCCESS_POSITION_DELETE");
 					else $this->fp->setSessionMessage("imggallery", "NOTFOUND_POSITION");
 					$this->redirect(URL::get("listimg", "admin", array("view_id" => $this->request->view_id, "gallery_id" => $this->request->gallery_id), false));
+				} catch (Exception $e) {
+					$this->setSessionMessage($this->request->view, $this->getError($e));
+				}
+			break;
+			case "collective":
+				try {
+					$obj_db = new CollectiveDB();
+					$obj_db->load($this->request->img_id);
+					$tmp = $obj_db->img;
+					if ($tmp) File::delete(Config::DIR_IMG_COLLECTIVE.$tmp);
+					if($obj_db->delete()) $this->fp->setSessionMessage("collective", "SUCCESS_POSITION_DELETE");
+					else $this->fp->setSessionMessage("collective", "NOTFOUND_POSITION");
+					$this->redirect(URL::current());
 				} catch (Exception $e) {
 					$this->setSessionMessage($this->request->view, $this->getError($e));
 				}

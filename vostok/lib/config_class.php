@@ -25,6 +25,8 @@ abstract class Config {
 
 	const DIR_IMG_IMGGALLERY = "/img/imggallery/";
 	
+	const DIR_IMG_COLLECTIVE = "/img/collective/";
+	
 	const DIR_IMG = "/img/";
 
 	const DIR_TMPL = "tmpl/";

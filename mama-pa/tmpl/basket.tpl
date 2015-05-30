@@ -53,7 +53,9 @@
 		</tr>
 		<?php } ?>
 	</table>
+	<?php if ($items) { ?>
 	<a class = "button green set_order" href = "<?=$link_order?>">
 		Оформить заказ
 	</a>
+	<?php } ?>
 </section>

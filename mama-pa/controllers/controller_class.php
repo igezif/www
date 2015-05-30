@@ -14,7 +14,7 @@ abstract class Controller extends AbstractController {
 		parent::__construct(new View(Config::DIR_TMPL), new Message(Config::FILE_MESSAGES));
 		$this->mail = new Mail();
 		$this->url_active = URL::deleteGET(URL::current(), "page");
-		$this->link_search = URL::get("search");
+		
 		
 	}
 	
@@ -59,9 +59,12 @@ abstract class Controller extends AbstractController {
 	final protected function render($head, $content) {
 		$params = array();
 		$params["head"] = $head;
-		$params["header"] = $this->getHeader();
+		$params["uri"] = $this->url_active;
+		$params["link_search"] = URL::get("search");
+		$params["summ"] = BasketData::getSumm();
+		$params["menu_items"] = SectionDB::getAll();
+		foreach ($params["menu_items"] as $item) $item->link = URL::get("section", "", array("id" => $item->id));
 		$params["content"] = $content;
-		$params["footer"] = $this->getFooter();
 		$this->view->render(Config::LAYOUT, $params);
 	}
 
@@ -88,7 +91,7 @@ abstract class Controller extends AbstractController {
 		$header->uri = $this->url_active;
 		$header->link_search = $this->link_search;
 		$header->menu_items = SectionDB::getAll();
-		foreach ($header->menu_items as $item) $item->link = URL::get("section", "", array("id" => $item->id));;
+		foreach ($header->menu_items as $item) $item->link = URL::get("section", "", array("id" => $item->id));
 		return $header;
 	}
 	

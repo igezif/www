@@ -2,7 +2,7 @@
 <h2 class = "admin_header"><?=$header?></h2>
 <a href = "<?=$link_insert?>" class = "admin_link_entry">Добавить</a>
 <table border = "1" class = "admin_gallery_table">
-	<tr><td><i><b>№</b></i></td><td><i><b>Навание</b></i></td><td><i><b>Описание</b></i></td><td><i><b>Ключевые слова</b></i></td><td><i><b>Удалить/<br />Редактировать</b></i></td></tr>
+	<tr><td><i><b>№</b></i></td><td><i><b>Название</b></i></td><td><i><b>Описание</b></i></td><td><i><b>Ключевые слова</b></i></td><td><i><b>Удалить/<br />Редактировать</b></i></td></tr>
 	<?php $i = 1; foreach ($items as $item) { ?>
 	<tr>
 		<td>

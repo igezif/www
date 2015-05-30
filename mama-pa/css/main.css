@@ -150,16 +150,22 @@ header{
 	padding: 10px 0 0 10px;
 }
 
+#phone{
+	  margin: 0 0 0 43px;
+}
+
 #logo{
 	background: url("../img/main/logo.png") no-repeat;
 }
 
 #top_menu_wrap div, #top_menu_wrap a{
 	vertical-align: middle;
+	color: #efeaf1;
 }
 
 #top_menu{
-	padding: 0 0 0 89px;
+	margin: 0 0 0 89px;
+	font-size: 120%;
 }
 
 #top_menu a{
@@ -172,11 +178,11 @@ header{
 	text-decoration: underline;
 }
 
-#menu_network{
-	padding: 0 0 0 131px;
+.menu_network{
+	margin: 0 0 0 231px;
 }
 
-#menu_network a{
+.menu_network > a{
 	height: 27px;
 	width: 29px;
 }
@@ -185,19 +191,19 @@ header{
 	height: 100px;
 }
 
-#logo_vk{
+.logo_vk{
 	background: url("../img/main/fcb.png") no-repeat;
 }
 
-#logo_facebook{
+.logo_facebook{
 	background: url("../img/main/tw.png") no-repeat;
 }
 
-#logo_twitter{
+.logo_twitter{
 	background: url("../img/main/rss.png") no-repeat;
 }
 
-#logo_mail{
+.logo_mail{
 	background: url("../img/main/mail.png") no-repeat;
 }
 
@@ -205,7 +211,7 @@ header{
 	background: url("../img/main/basket.png") no-repeat;
 	height: 27px;
 	width: 139px;
-	margin: 0 0 0 63px;
+	margin: 0 0 0 249px;
 }
 
 #basket b{
@@ -838,6 +844,11 @@ input[name='order']{
 	border-bottom: 1px solid #e7e3a7;
 }
 
+.pay_order_form{
+	border-bottom: 1px solid #e7e3a7;
+	padding: 0 0 11px 0;
+}
+
 .address_order_form_label{
 	margin: 10px 0 0 0;
 }
@@ -859,6 +870,10 @@ form[name='order_form'] input[name='name']{
 	width: 353px;
 }
 
+form[name='order_form'] input[name='phone']{
+	width: 159px;
+}
+
 form[name='order_form'] input[name='region']{
 	margin: 0 0 0 2px;
 }
@@ -878,6 +893,22 @@ form[name='order_form'] input[name='float']{
 
 .for_home{
 	margin: 0 0 0 20px;
+}
+
+/* ---   CONTACTS   --- */
+.contacts_block p{
+	margin: 10px;
+	color: #282424;
+}
+
+.map{
+	height: 500px;
+	width: 1000px;
+	margin: 10px;
+}
+
+.vk_section{
+	margin: 20px 0 0 0;
 }
 
 /* ---   ADMINKA   --- */
@@ -1041,10 +1072,82 @@ footer{
 	height: 349px;
 }
 
-.hFooter{
-	height: 349px;
+.footer_wrap{
+	padding: 50px 20px 0 0;
 }
 
-.footer{
-	
+.footer_wrap > div{
+	vertical-align: top;
+	margin: 0 0 0 50px;
+}
+
+
+.footer_block{
+	display: table;
+	max-height: 280px;
+}
+
+.footer_header{
+	margin: 0 0 20px 0;
+	color: #fcf3ca;
+}
+
+.feedback_header{
+	color: #fcf3ca;
+}
+
+.footer_item{
+	padding: 0 0 5px 0;
+	color: #d1d1d1;
+}
+
+.footer_item > a{
+	color: #d1d1d1;
+}
+
+.footer_item > a:hover{
+	text-decoration: underline;
+}
+
+.footer_network > a{
+	height: 27px;
+	width: 29px;
+}
+
+.feedback_block{
+	margin: 20px 0 0 0;
+}
+
+.feedback_block div{
+	margin: 5px 0 0 0;
+}
+
+form[name='feedback'] input[type='text']{
+	padding: 3px;
+	width: 180px;
+	display: block;
+}
+
+form[name='feedback'] textarea{
+	padding: 3px;
+	height: 57px;
+	width: 182px;
+	display: block;	
+}
+
+form[name='feedback'] button{
+	padding: 4px;
+	border:  1px solid #3a4e73;
+	display: block;
+	border: 0;
+	background: linear-gradient(180deg, #ffeeef 0%, #ff6e4d 100%);
+	color: #971d06;
+}
+
+#counter{
+	display: none;
+}
+
+.hFooter{
+	height: 349px;
 }

@@ -80,8 +80,9 @@ abstract class Controller extends AbstractController {
 	protected function getHeader() {
 		$header = new Header();
 		$contacts = new ContactsDB();
-		$header->phone = $contacts->getPhone();
-		//$header->link_search = $this->link_search;
+		$phone = $contacts->getPhone();
+		$header->phone = $phone[0];
+		$header->phone_number = $phone[1];
 		return $header;
 	}
 	

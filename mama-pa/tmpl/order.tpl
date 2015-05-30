@@ -16,6 +16,14 @@
 			<div>
 				<input type = "text" name = "name" />
 			</div>
+
+		</div>
+		<div class="row row_order_form">
+			<div class = "order_form_label"><b>Ваш телефон</b></div>
+			<div>
+				<input type = "text" name = "phone" />
+			</div>
+			
 		</div>
 		<div>
 			<div class = "order_form_label address_order_form_label"><b>Адрес доставки</b></div>
@@ -49,13 +57,22 @@
 					<input type="radio" name="delivery" value="0" checked /> <span class = "order_form_label">Досавка курьером</span>
 				</div>
 				<div class = "order_form_radio">
-					<input type="radio" name="delivery" value="1" /> <span class = "order_form_label">Доставка почтой</span>
+					<input type="radio" name="delivery" value="1" /> <span class = "order_form_label">Досавка транспортной организацией</span>
 				</div>
 				<div class = "order_form_radio">
 					<input type="radio" name="delivery" value="2" /> <span class = "order_form_label">Самовывоз</span>
 				</div>
 			</div>
-			<input type = "submit" name = "order" display = "none" />
+			<div class = "pay_order_form">
+				<div class = "order_form_label"><b>Способ оплаты</b></div>
+				<div class = "order_form_radio">
+					<input type="radio" name="pay" value="0" checked /> <span class = "order_form_label">Наличными при получении</span>
+				</div>
+				<div class = "order_form_radio">
+					<input type="radio" name="pay" value="1" /> <span class = "order_form_label">Сервис ROBOKASSA</span>
+				</div>
+			</div>
+			<input type = "submit" name = "order" />
 			<div class = "button green set_order">
 				Завершить оформление
 			</div>

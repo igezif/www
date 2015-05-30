@@ -7,8 +7,8 @@
 			<div id = "show_modal_form">
 				Задать вопрос
 			</div>
-			<a id = "phone" href="tel:<?=$phone?>">
-				<b><?=$phone?></b>
+			<a id = "phone" href="tel:<?=$phone_number?>">
+				<b>т. <?=$phone?></b>
 			</a>
 		</div>
 	</div>

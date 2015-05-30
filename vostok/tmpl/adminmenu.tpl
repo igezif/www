@@ -7,6 +7,7 @@
 		<p class="center">Здравствуйте <b><?=$admin->login?></b>!</p>
 		<div><a href = "/admin/contacts">Контактная информация и схема проезда</a></div>
 		<div><a href = "/admin/viewgallery">Галерея</a></div>
+		<div><a href = "/admin/collective">Наш колектив</a></div>
 		<div><a href = "/admin/logout"><b>Выход</b></a></div>
 	</div>
 </div>
