@@ -3,17 +3,7 @@
 <?=$head?>
 <body>
 	<div id = "for_popup_message">
-		<div>
-			<div class = "close_popup_message"></div>
-			<p class = 'center'><b class = "header_adv">Дорогие друзья!</b></p>
-			<img src = "/img/main/tech.png" alt = "image" class = 'basket_small_img' />
-			<p class = 'basket_small_title'>
-				Всвязи с тем, что на сайте в настоящее время идут технические работы, товар можно заказать по телефону
-			</p>
-			<p class = 'popup_message_phone center'>
-				<phone><b>8-913-781-39-97</b></phone>
-			</p>
-		</div>
+		
 	</div>
 	<div id = "container">
 		<header>
@@ -21,6 +11,9 @@
 				<div id = "top_menu_wrap" class = "row">
 					<div id = "phone">
 						<a href = "tel:89137813997">+7-913-781-39-97</a>
+					</div>
+					<div class = "top_menu_delivery">
+						<a href = "/delivery">Оплата/Доставка</a>
 					</div>
 					<div class = "row menu_network">
 						<a href = "#" class = "logo_vk"></a>
@@ -45,11 +38,11 @@
 							</div>
 						</div>
 						<div id = "search">
-							<form action = "<?=$link_search?>" name = "search_form">
+							<form action = "<?=$link_search?>" method = "GET" name = "search_form">
 								<table>
 									<tr>
 										<td>
-											<input name = "search" value = "" placeholder = "Поиск..." />
+											<input type = "text" name = "query" placeholder = "Поиск..." />
 										</td>
 										<td id = "td_search">
 											<button><span>Искать</span><span></span></button>
@@ -86,14 +79,7 @@
 					</div>
 				</div>
 				<div class = "footer_block">
-					<div class="vk vk_footer">
-		                <script type="text/javascript" src="//vk.com/js/api/openapi.js?116"></script>
-						<!-- VK Widget -->
-						<div id="vk_groups"></div>
-						<script type="text/javascript">
-							VK.Widgets.Group("vk_groups", {mode: 0, width: "260", height: "280", color1: 'FFFFFF', color2: '2B587A', color3: '5B7FA6'}, 19668034);
-						</script>
-		            </div>
+					
 				</div>
 				<div class = "footer_block footer_sections">
 					<div class = "footer_header"><b>Давайте дружить</b></div>

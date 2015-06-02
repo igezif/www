@@ -15,6 +15,42 @@ class MainController extends Controller {
 		$slider->items = SliderDB::getItems();
 		$this->render($head, $this->renderData(array("slider" => $slider, "sections" => $sections), "index"));
 	}
+
+	public function actionDelivery() {
+		$this->title = "Ваша корзина";
+		$this->meta_desc = "Ваша корзина";
+		$this->meta_key = "Ваша корзина";
+		$content = new Delivery();
+		$content->header = "Оплата и доставка";
+		
+		$hornav = $this->getHornav();
+		$hornav->addData("Оплата и доставка");
+		$content->hornav = $hornav;
+		
+		$head = $this->getHead(array("/css/main.css"), false);
+		$head->add("js", null, true);
+		$head->js = array("/js/main.js");
+		$this->render($head, $content);
+	}
+
+	public function actionSearch() {
+		$head = $this->getHead(array("/css/main.css"), false);
+		$head->add("js", null, true);
+		$head->js = array("/js/main.js");
+		$hornav = $this->getHornav();
+		$hornav->addData("Результат поиска");
+		$this->title = "Результат поиска: ".$this->request->query;
+		$this->meta_desc = "Результат поиска ".$this->request->query.".";
+		$this->meta_key = "поиск, поиск ".$this->request->query;
+		$articles = ProductDB::search($this->request->query);
+		$sr = new SearchResult();
+		if (mb_strlen($this->request->query) < Config::MIN_SEARCH_LEN) $sr->error_len = true;
+		$sr->hornav = $hornav;
+		$sr->field = "product_description";
+		$sr->query = $this->request->query;
+		$sr->data = $articles;
+		$this->render($head, $sr);
+	}
 	
 	public function actionProduct() {
 		$obj = new ProductDB();
@@ -65,6 +101,21 @@ class MainController extends Controller {
 	}
 
 	public function actionOrder(){
+		if(isset($_REQUEST["order"])){
+			$name = $this->request->name;
+			$email = $this->request->email;
+			$phone = $this->request->phone;
+			$address = $this->request->region.", ".$this->request->index.", ".$this->request->street.", ".$this->request->home.", квартира ".$this->request->float;
+ 			$pay = $this->request->pay;
+ 			$delivery = $this->request->delivery;
+ 			$products = BasketData::getItems();
+ 			$summ = BasketData::getSumm();
+ 			$this->mail->send(Config::ADM_EMAIL, array("site" => Config::SITENAME, "name" => $name, "email" => $email, "phone" => $phone, "address" => $address, "pay" => $pay, "delivery" => $delivery, "products" => $products, "summ" => $summ), "admin_order");
+ 			$this->mail->send(Config::ADM_EMAIL2, array("site" => Config::SITENAME, "name" => $name, "email" => $email, "phone" => $phone, "address" => $address, "pay" => $pay, "delivery" => $delivery, "products" => $products, "summ" => $summ), "admin_order");
+ 			$this->mail->send(Config::ADM_EMAIL3, array("site" => Config::SITENAME, "name" => $name, "email" => $email, "phone" => $phone, "address" => $address, "pay" => $pay, "delivery" => $delivery, "products" => $products, "summ" => $summ), "admin_order");
+			$this->mail->send($this->request->email, array("site" => Config::SITENAME, "name" => $name, "products" => $products, "summ" => $summ), "client_order");
+			
+		}
 		$this->title = "Оформить заказ";
 		$this->meta_desc = "Оформить заказ";
 		$this->meta_key = "Оформить заказ";

@@ -174,17 +174,21 @@ header{
 	padding: 0 10px 0 0;
 }
 
-#top_menu a:hover{
+#top_menu_wrap div a:hover{
 	text-decoration: underline;
 }
 
 .menu_network{
-	margin: 0 0 0 231px;
+	margin: 0 0 0 101px;
 }
 
 .menu_network > a{
 	height: 27px;
 	width: 29px;
+}
+
+.top_menu_delivery{
+	margin: 0 0 0 101px;
 }
 
 #logo img{
@@ -211,7 +215,7 @@ header{
 	background: url("../img/main/basket.png") no-repeat;
 	height: 27px;
 	width: 139px;
-	margin: 0 0 0 249px;
+	margin: 0 0 0 161px;
 }
 
 #basket b{
@@ -806,11 +810,52 @@ header{
 	text-decoration: underline;
 }
 
-/* ---   ORDER   --- */
-input[name='order']{
-	display: none;
+/* ---   SEARCH   --- */
+#search_result{
+	padding: 20px 20px 0 20px;
 }
 
+#search_result p{
+	color: #282424;
+	margin: 0 0 10px 0;
+}
+
+#message_search_result{
+	margin: 0 0 0 10px;
+	color: #c8524d;
+	font-weight: bold;
+}
+
+#what_search{
+	font-style: italic;
+}
+
+.search_item{
+	margin: 0 0 10px 0;
+	padding: 5px 0 0 0;
+	border-top: 1px solid #e7e3a7;
+}
+
+.article_info a{
+	color: #808080;
+	font-style: italic;
+}
+
+.article_info a:hover{
+	text-decoration: underline;
+}
+
+.search_text{
+	margin: 5px 0 0 0;
+	color: #282424;
+}
+
+.search_text span{
+	color: #c8524d;
+	font-weight: bold;
+}
+
+/* ---   ORDER   --- */
 .order_summ{
 	margin: 0 0 0 100px;
 	font-size: 120%;
@@ -889,6 +934,11 @@ form[name='order_form'] input[name='home']{
 
 form[name='order_form'] input[name='float']{
 	width: 67px;
+}
+
+input[name='order']{
+	font-size: 110%;
+	border: 0;
 }
 
 .for_home{

@@ -13,8 +13,10 @@ abstract class Config {
 	const SITENAME = "www.mama-pa.ru";
 	const SECRET = "EEE";
 	const ADDRESS = "http://www.mama-pa.ru";
-	const ADM_NAME = "Василий Борисович";
-	const ADM_EMAIL = "vasilek.php@yandex.ru";
+	const ADM_NAME = "Козлов Андрей";
+	const ADM_EMAIL = "shop@mama-pa.ru";
+	const ADM_EMAIL2 = "belo-zhenya@yandex.ru";
+	const ADM_EMAIL3 = "vasilek.php@yandex.ru";
 	
 	const API_KEY = "DKEL39DL";
 	const REFRESH_KEY = "update113";

@@ -138,6 +138,23 @@ class ProductDB extends ObjectDB {
 	private function postHandling(){
 		$this->img = Config::DIR_IMG_PRODUCT.$this->img;
 	}
+
+	public static function search($words) {
+		$select = self::getBaseSelect();
+		$articles = self::searchObjects($select, __CLASS__, array("title", "product_description"), $words, Config::MIN_SEARCH_LEN);
+		foreach ($articles as $article){
+			//$article->description = htmlspecialchars_decode($article->description);
+			//echo $article->description;
+		}
+		//die;
+		return $articles;
+	}
+
+	private static function getBaseSelect() {
+		$select = new Select(self::$db);
+		$select->from(self::$table, "*");
+		return $select;
+	}
 	
 	/* ADMINKA */
 	
