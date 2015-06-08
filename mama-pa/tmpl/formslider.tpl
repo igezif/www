@@ -1,5 +1,5 @@
 <?php if ($message) { ?><p class="admin_message"><?=$message?></p><?php } ?>
-<form class = "admin_form" name = "<?=$name?>" action = "<?=$action?>" method = "POST" enctype="<?=$enctype?>" onsubmit="return checkForm(this)">
+<form class = "admin_form" name = "<?=$name?>" action = "<?=$action?>" method = "POST" enctype="<?=$enctype?>">
 	<div class = "border row">
 		<div class = "admin_block"  style = "vertical-align: top;">
 			<?php if(isset($img)) { ?><div class = "admin_img"><?=$img?></div><?php } ?>

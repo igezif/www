@@ -16,7 +16,7 @@
 						<a href = "/delivery">Оплата/Доставка</a>
 					</div>
 					<div class = "row menu_network">
-						<a href = "#" class = "logo_vk"></a>
+						<a href = "//vk.com/mama_pa" class = "logo_vk"></a>
 						<a href = "#" class = "logo_facebook"></a>
 						<a href = "#" class = "logo_twitter"></a>
 						<a href = "#" class = "logo_mail"></a>
@@ -79,12 +79,17 @@
 					</div>
 				</div>
 				<div class = "footer_block">
-					
+					<script type="text/javascript" src="//vk.com/js/api/openapi.js?116"></script>
+					<!-- VK Widget -->
+					<div id="vk_groups"></div>
+					<script type="text/javascript">
+						VK.Widgets.Group("vk_groups", {mode: 0, width: "260", height: "265", color1: 'FFFFFF', color2: '2B587A', color3: '5B7FA6'}, 19668034);
+					</script>
 				</div>
 				<div class = "footer_block footer_sections">
 					<div class = "footer_header"><b>Давайте дружить</b></div>
 					<div class = "row footer_network">	
-						<a href = "#" class = "logo_vk"></a>
+						<a href = "//vk.com/mama_pa" class = "logo_vk"></a>
 						<a href = "#" class = "logo_facebook"></a>
 						<a href = "#" class = "logo_twitter"></a>
 						<a href = "#" class = "logo_mail"></a>

@@ -17,8 +17,8 @@
 			<a href="<?=$url?>" title="Первая">Первая</a>
 			<a href="<?php if ($active == 2) { ?><?=$url?><?php } else { ?><?=$url_page.($active - 1)?><?php } ?>" title="Предыдущая">Предыдущая</a>
 		<?php } else { ?>
-			<span>Первая</span>
-			<span>Предыдущая</span>
+			<span class = "text italic">Первая</span>
+			<span class = "text italic">Предыдущая</span>
 		<?php } ?>
 		<?php for ($i = $start; $i <= $end; $i++) { ?>
 			<?php if ($i == $active) { ?><span class = "active_pagination_item"><?=$i?></span><?php } else { ?><a href="<?php if ($i == 1) { ?><?=$url?><?php } else { ?><?=$url_page.$i?><?php } ?>"><?=$i?></a><?php } ?>
@@ -27,8 +27,8 @@
 			<a href="<?=$url_page.($active + 1)?>" title="Следующая">Следующая</a>
 			<a href="<?=$url_page.$count_pages?>" title="Последняя">Последняя</a>		
 		<?php } else { ?>
-			<span>Следующая</span>
-			<span>Последняя</span>
+			<span class = "text italic">Следующая</span>
+			<span class = "text italic">Последняя</span>
 		<?php } ?>			
 	</div>
 <?php } ?>

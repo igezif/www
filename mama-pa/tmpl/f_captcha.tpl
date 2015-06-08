@@ -1,6 +1,6 @@
 <div>
 	<label for="<?=$input->name?>">Введите код с картинки:</label>
-	<input type="text" name="<?=$input->name?>" id="<?=$input->name?>" <?php include "jsv.tpl"; ?> />
+	<input type="text" name="<?=$input->name?>" id="<?=$input->name?>" />
 </div>
 <div class="captcha">
 	<img src="/images/update.png" alt="Обновить" />

@@ -17,9 +17,9 @@ class MainController extends Controller {
 	}
 
 	public function actionDelivery() {
-		$this->title = "Ваша корзина";
-		$this->meta_desc = "Ваша корзина";
-		$this->meta_key = "Ваша корзина";
+		$this->title = "Оплата и доставка";
+		$this->meta_desc = "Оплата и доставка";
+		$this->meta_key = "Оплата и доставка";
 		$content = new Delivery();
 		$content->header = "Оплата и доставка";
 		
@@ -101,21 +101,6 @@ class MainController extends Controller {
 	}
 
 	public function actionOrder(){
-		if(isset($_REQUEST["order"])){
-			$name = $this->request->name;
-			$email = $this->request->email;
-			$phone = $this->request->phone;
-			$address = $this->request->region.", ".$this->request->index.", ".$this->request->street.", ".$this->request->home.", квартира ".$this->request->float;
- 			$pay = $this->request->pay;
- 			$delivery = $this->request->delivery;
- 			$products = BasketData::getItems();
- 			$summ = BasketData::getSumm();
- 			$this->mail->send(Config::ADM_EMAIL, array("site" => Config::SITENAME, "name" => $name, "email" => $email, "phone" => $phone, "address" => $address, "pay" => $pay, "delivery" => $delivery, "products" => $products, "summ" => $summ), "admin_order");
- 			$this->mail->send(Config::ADM_EMAIL2, array("site" => Config::SITENAME, "name" => $name, "email" => $email, "phone" => $phone, "address" => $address, "pay" => $pay, "delivery" => $delivery, "products" => $products, "summ" => $summ), "admin_order");
- 			$this->mail->send(Config::ADM_EMAIL3, array("site" => Config::SITENAME, "name" => $name, "email" => $email, "phone" => $phone, "address" => $address, "pay" => $pay, "delivery" => $delivery, "products" => $products, "summ" => $summ), "admin_order");
-			$this->mail->send($this->request->email, array("site" => Config::SITENAME, "name" => $name, "products" => $products, "summ" => $summ), "client_order");
-			
-		}
 		$this->title = "Оформить заказ";
 		$this->meta_desc = "Оформить заказ";
 		$this->meta_key = "Оформить заказ";
@@ -124,11 +109,10 @@ class MainController extends Controller {
 		$hornav = $this->getHornav();
 		$hornav->addData("Оформить заказ");
 		$content->hornav = $hornav;
-		$content->action = URL::current();
 		$content->summ = BasketData::getSumm();
 		$head = $this->getHead(array("/css/main.css"), false);
 		$head->add("js", null, true);
-		$head->js = array("/js/main.js");
+		$head->js = array("/js/main.js", "/js/order.js");
 		$this->render($head, $content);
 	}
 

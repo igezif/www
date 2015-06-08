@@ -23,7 +23,6 @@ function Basket(){
 
 	this.del_basket = function(e){
 		var button = e.target;
-		var ajax = new Ajax();
 		var data = {"action": "del", "id": button.getAttribute("data-basket")};
 		ajax.send("POST", "ajax/basket", data).then(self.del, self.showError);	
 	}
@@ -31,7 +30,6 @@ function Basket(){
 	this.del = function(response){
 		var data = JSON.parse(response);
 		document.querySelector("div[data-basket='" + data["id"] + "']").parentNode.parentNode.remove();
-		console.log(data["summ"]);
 		if(data["summ"] === 0){
 			document.getElementById("basket_text").innerHTML = "Ваша корзина пуста";
 			document.getElementById("tr_basket_summ").remove();
@@ -50,7 +48,6 @@ function Basket(){
 		else{
 			var button = e.target.parentNode;
 		}
-		var ajax = new Ajax();
 		var data = {"action": "add", "id": button.getAttribute("data-basket")};
 		ajax.send("POST", "ajax/basket", data).then(self.showAddProduct, self.showError);
 	}
@@ -64,6 +61,12 @@ function Basket(){
 		document.getElementById("span_summ").innerHTML = data["summ"];
 		var html = "<p class = 'basket_small_text'>Товар добавлен в корзину</p><p class = 'basket_small_title'>" + data["product"]["title"] + "</p><img src = '" + data["product"]["img"] + "' class = 'basket_small_img'>";
 		message.createMessage(html);
+	}
+
+	this.clear = function(){
+		ajax.send("POST", "ajax/basket", {"action": "clear"}).then(function(){
+			document.getElementById("span_summ").innerHTML = "0";
+		}, self.showError);
 	}
 
 }
@@ -246,15 +249,16 @@ function AbstractForm(){
 			var validator = new Validator();
 			var resultValidate = validator.validate(self._validateInputs);
 			if(resultValidate["status"]){
-				//var data = self.getSendData();
-				//var ajax = new Ajax();
-				//ajax.send(self._form.method, self._form.action, data).then(self.postSend, self.postSendError);
-				self._form.submit();
+				self.preSend();
+				var data = self.getSendData();
+				ajax.send(self._form.method, self._form.action, data).then(self.postSend, self.postSendError);
 			}
 			else{
 				self.showErrors(resultValidate["items"]);
 			}
 		});
+		var radioButtons = self._form.querySelectorAll("input[type='radio']");
+		for(var i = 0; i < radioButtons.length; i++) radioButtons[i].addEventListener("click", self.setInputs);
 	}
 
 	this.getSendData = function(){
@@ -266,13 +270,19 @@ function AbstractForm(){
 	}
 
 	this.setInputs = function(){
+		if(self._inputs.length > 0) self._inputs = {};
 		var inputs = self._form.querySelectorAll("input");
 		var textarea = self._form.querySelectorAll("textarea");
 		for(var i = 0; i < inputs.length; i++) {
 			if (inputs[i].type === "submit") continue;
-			self._inputs[inputs[i].name] = inputs[i];
-			if(inputs[i].getAttribute("data-type")) self._validateInputs[inputs[i].name] = inputs[i];
-			if(self.setPreSendBehaviourInput) self.setPreSendBehaviourInput(inputs[i]);
+			if(inputs[i].type === "text") {
+				self._inputs[inputs[i].name] = inputs[i];
+				if(inputs[i].getAttribute("data-type")) self._validateInputs[inputs[i].name] = inputs[i];
+				if(self.setPreSendBehaviourInput) self.setPreSendBehaviourInput(inputs[i]);
+			}
+			else if(inputs[i].type === "radio" && inputs[i].checked) {
+				self._inputs[inputs[i].name] = inputs[i];
+			}
 		}
 		for(var i = 0; i < textarea.length; i++) {
 			self._inputs[textarea[i].name] = textarea[i];
@@ -283,6 +293,10 @@ function AbstractForm(){
 
 	this.postSendError = function(error){
 		alert(error);
+	}
+
+	this.preSend = function(){
+		return
 	}
 }
 
@@ -339,9 +353,7 @@ function BlackBackground(obj){
 
 	var self = this;
 
-
 	this.show = function(){
-		var div;
 		var height = document.body.scrollHeight;
 		var width = document.body.scrollWidth;
 		var div = document.createElement('div');
@@ -369,64 +381,9 @@ function BlackBackground(obj){
 
 }
 
-function OrderForm(){
-
-	AbstractForm.apply(this, arguments);
-
-	var self = this;
-
-	var parentInit = this.init;
-
-	this.init = function() {
-		parentInit.apply(this, arguments);
-    }
-
-	this.postSend = function(response){
-		//self.clearForm();
-		//self._form.querySelector(".modal_form_message").innerHTML = response;
-	}
-
-	this.showErrors = function(items){
-		for(var key in items){
-			var input = self._form.querySelector(items[key]["selector"]);
-			if(!items[key]["status"]) self.showErrorOnInput(input);
-		}
-	}
-
-	//this.clearForm = function(){
-	//	for(var key in self._inputs){
-	//		self.setStyleInputPostSend(self._inputs[key]);
-	//	}
-	//}
-
-	//this.setStyleInputPostSend = function(input){
-	//	input.style.backgroundColor = "#ffffff";
-	//	input.value = "";
-	//}
-
-	this.setBehaviourOnInvalidInput = function(input){
-		if(!input.onfocus){
-			input.onfocus = function(e){
-				e.target.style.backgroundColor = "#ffffff";
-			}
-		}
-	}
-
-	this.showErrorOnInput = function(input){
-		input.style.backgroundColor = "#ff8c69";
-		self.setBehaviourOnInvalidInput(input);
-	}
-
-}
-
-var of = new OrderForm();
 var basket = new Basket();
 var message = new Message();
+var ajax = new Ajax();
 
 window.addEventListener("load", basket.init);
 window.addEventListener("load", message.init);
-
-
-window.addEventListener("load", function(){
-	of.init("#order_form");
-});

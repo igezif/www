@@ -50,6 +50,14 @@ ul{
 	font-family: 'PT Sans', serif;
 }
 
+.text{
+	color: #282424;
+}
+
+.italic{
+	font-style: italic;
+}
+
 /* ---   BUTTONS   --- */
 
 .button{
@@ -196,7 +204,7 @@ header{
 }
 
 .logo_vk{
-	background: url("../img/main/fcb.png") no-repeat;
+	background: url("../img/main/vk.png") no-repeat;
 }
 
 .logo_facebook{
@@ -336,6 +344,29 @@ header{
 	font-size: 110%;
 }
 
+/* ---   DELIVERY   ---*/
+.delivery > div{
+	padding: 0 0 10px 10px;
+}
+
+.delivery h2{
+	font-style: italic;
+	color: #227d76;
+}
+
+.delivery > div > p{
+	padding: 5px 0 0 0;
+	color: #282424;
+}
+
+.happy_pay{
+	font-size: 150%;
+	font-style: italic;
+	font-weight: bold;
+	color: #ef5612;
+	margin: 10px 0 0 0;
+}
+
 /* ---   SLIDER   --- */
 
 #slider{
@@ -453,9 +484,9 @@ header{
 
 .border{
 	border: 5px solid #e7e3a7;
+	padding: 5px;
 	border-radius: 10px;
 	background-color: #ffffff;
-	padding: 5px;
 }
 
 .content{
@@ -661,7 +692,7 @@ header{
 
 .product_price div{
 	position: relative;
-	top: 35px;
+	top: 32px;
 	color: #ffffff;
 	font-size: 151%;
 }
@@ -686,8 +717,8 @@ header{
 
 #wrap_big_image img{
 	display: block;
-	width: 400px;
-	max-width: 500px;
+	height: 480px;
+	max-width: 680px;
 	margin: 0 auto;
 }
 
@@ -856,6 +887,15 @@ header{
 }
 
 /* ---   ORDER   --- */
+.order{
+	height: 820px;
+}
+
+.order .load_gif{
+	margin: 350px auto;
+	display: table;
+}
+
 .order_summ{
 	margin: 0 0 0 100px;
 	font-size: 120%;
@@ -936,6 +976,18 @@ form[name='order_form'] input[name='float']{
 	width: 67px;
 }
 
+form[name='order_form'] textarea[name='notice']{
+	padding: 5px;
+	border-radius: 5px;
+	border: 1px solid #e7e3a7;
+	font-size: 120%;
+	font-style: italic;
+	color: #282424;
+	margin: 5px 0 0 10px;
+	width: 500px;
+  	height: 120px;
+}
+
 input[name='order']{
 	font-size: 110%;
 	border: 0;
@@ -943,6 +995,25 @@ input[name='order']{
 
 .for_home{
 	margin: 0 0 0 20px;
+}
+
+#form_order_block{
+	transition: opacity 1s;
+}
+
+#form_order_message_block{
+	
+}
+
+#form_order_message_block p{
+	color: #227d76;
+	padding: 0 0 10px 0;
+}
+
+#form_order_message_block img{
+	margin: 100px auto;
+	display: block;
+	height: 210px;
 }
 
 /* ---   CONTACTS   --- */

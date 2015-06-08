@@ -14,8 +14,6 @@ abstract class Controller extends AbstractController {
 		parent::__construct(new View(Config::DIR_TMPL), new Message(Config::FILE_MESSAGES));
 		$this->mail = new Mail();
 		$this->url_active = URL::deleteGET(URL::current(), "page");
-		
-		
 	}
 	
 	public function action404() {
@@ -83,16 +81,6 @@ abstract class Controller extends AbstractController {
 		$head->favicon = "img/main/favicon.ico";
 		$head->css = $css;
 		return $head;
-	}
-	
-	protected function getHeader() {
-		$header = new Header();
-		$header->summ = BasketData::getSumm();
-		$header->uri = $this->url_active;
-		$header->link_search = $this->link_search;
-		$header->menu_items = SectionDB::getAll();
-		foreach ($header->menu_items as $item) $item->link = URL::get("section", "", array("id" => $item->id));
-		return $header;
 	}
 	
 	protected function getFooter() {

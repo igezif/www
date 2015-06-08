@@ -17,7 +17,7 @@
 		<div class = "product_info">
 			<div class = "product_price">
 				<div>
-					<b><?=$price?></b> р.
+					<b><?=$price?></b> <span class = "rouble">&#8399;</span>
 				</div>
 			</div>
 			<!--<div>наличие <?=$available?></div>
@@ -50,7 +50,7 @@
 			<div class = "section_price_wrap">
 				<div class = "section_price_block">
 					Цена: <span class = "section_price_digit"><?=$product->price?></span> 
-					<span class = "section_price_word">руб.</span>
+					<span class = "section_price_word"> <span class = "rouble">&#8399;</span></span>
 				</div>
 				<div class = "add_basket section_buy row" data-basket="<?=$product->id?>">
 					<div class = "arow_small"></div>

@@ -43,4 +43,8 @@ class BasketData {
 		}
 		else return "0";
 	}
+
+	public static function clear(){
+		unset($_SESSION["basket"]);
+	}
 }
