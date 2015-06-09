@@ -63,27 +63,19 @@
 				</div>
 				<div class = "delivery_order_form">
 					<div class = "order_form_label"><b>Способ доставки</b></div>
+					<?php foreach ($delivery as $d) { ?>
 					<div class = "order_form_radio">
-						<input type="radio" name="delivery" value="Доставка курьером" checked /> <span class = "order_form_label">Доставка курьером</span>
+						<input type="radio" name="delivery" value="<?=$d->id?>" <?php if($d->checked) { ?>checked<?php } ?> /> <span class = "order_form_label"><?=$d->title?></span>
 					</div>
-					<div class = "order_form_radio">
-						<input type="radio" name="delivery" value="Доставка транспортной организацией" /> <span class = "order_form_label">Доставка транспортной организацией</span>
-					</div>
-					<div class = "order_form_radio">
-						<input type="radio" name="delivery" value="Самовывоз" /> <span class = "order_form_label">Самовывоз</span>
-					</div>
+					<?php } ?>
 				</div>
 				<div class = "pay_order_form">
 					<div class = "order_form_label"><b>Способ оплаты</b></div>
+					<?php foreach ($pay as $p) { ?>
 					<div class = "order_form_radio">
-						<input type="radio" name="pay" value="Наличными при получении" checked /> <span class = "order_form_label">Наличными при получении</span>
+						<input type="radio" name="pay" value="<?=$p->id?>" <?php if($p->checked) { ?>checked<?php } ?> /> <span class = "order_form_label"><?=$p->title?></span>
 					</div>
-					<div class = "order_form_radio">
-						<input type="radio" name="pay" value="На карту Сбербанка" /> <span class = "order_form_label">На карту Сбербанка</span>
-					</div>
-					<!--<div class = "order_form_radio">
-						<input type="radio" name="pay" value="3" /> <span class = "order_form_label">Сервис ROBOKASSA</span>
-					</div>-->
+					<?php } ?>
 				</div>
 				<input type = "submit" name = "order" class="button green set_order" value = "Завершить оформление" />
 			</div>

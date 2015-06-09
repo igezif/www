@@ -608,6 +608,10 @@ header{
 	height: 10px;
 }
 
+.section_price_wrap{
+	vertical-align: bottom;
+}
+
 /* ---   HORNAV   --- */
 
 .hornav{
@@ -828,6 +832,15 @@ header{
 	width: 150px;
 	display: block;
 	margin: 10px auto;
+}
+
+.basket_small_price{
+	font-size: 120%;
+	font-style: italic;
+	color: #227d76;
+	display: table;
+	margin: 0 auto;
+	font-weight: bold;
 }
 
 .del_basket{

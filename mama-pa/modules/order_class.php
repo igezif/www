@@ -7,6 +7,8 @@ class Order extends Module {
 		$this->add("hornav");
 		$this->add("summ");
 		$this->add("header");
+		$this->add("delivery");
+		$this->add("pay");
 	}
 	
 	public function getTmplFile() {

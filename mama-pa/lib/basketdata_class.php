@@ -9,12 +9,13 @@ class BasketData {
 		}
 		if (array_key_exists($product["id"], $_SESSION["basket"])) {
 			$count = $_SESSION["basket"][$product["id"]]["count"] + 1;
-			$price = (int)$product["price"] * $count;
+			$summ = (int)$product["price"] * $count;
 			$_SESSION["basket"][$product["id"]]["count"] = $count;
-			$_SESSION["basket"][$product["id"]]["price"] = $price;
+			$_SESSION["basket"][$product["id"]]["summ"] = $summ;
 		}
 		else{
 			$product["count"] = 1;
+			$product["summ"] = $product["price"];
 			$_SESSION["basket"][$product["id"]] = $product;
 		}
 		
@@ -37,7 +38,7 @@ class BasketData {
 		if(isset($_SESSION["basket"])){
 			$summ = 0;
 			foreach ($_SESSION["basket"] as $product) {
-				$summ += (int) $product["price"];
+				$summ += (int) $product["summ"];
 			}
 			return $summ;
 		}

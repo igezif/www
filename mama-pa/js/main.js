@@ -33,7 +33,7 @@ function Basket(){
 		if(data["summ"] === 0){
 			document.getElementById("basket_text").innerHTML = "Ваша корзина пуста";
 			document.getElementById("tr_basket_summ").remove();
-			document.getElementById("tr_basket_order").remove();
+			document.querySelector(".set_order").remove();
 		}
 		else{
 			document.getElementById("basket_span_summ").innerHTML = data["summ"];
@@ -59,7 +59,7 @@ function Basket(){
 	this.showAddProduct = function(response){
 		var data = JSON.parse(response);
 		document.getElementById("span_summ").innerHTML = data["summ"];
-		var html = "<p class = 'basket_small_text'>Товар добавлен в корзину</p><p class = 'basket_small_title'>" + data["product"]["title"] + "</p><img src = '" + data["product"]["img"] + "' class = 'basket_small_img'>";
+		var html = "<p class = 'basket_small_text'>Товар добавлен в корзину</p><p class = 'basket_small_title'>" + data["product"]["title"] + "</p><img src = '" + data["product"]["img"] + "' class = 'basket_small_img'><p class = 'basket_small_price'>" + data["product"]["price"] + " <span class = 'rouble'>&#8399;</span></p>";
 		message.createMessage(html);
 	}
 
@@ -293,6 +293,7 @@ function AbstractForm(){
 
 	this.postSendError = function(error){
 		alert(error);
+		//alert("error");
 	}
 
 	this.preSend = function(){

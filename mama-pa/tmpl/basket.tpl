@@ -12,6 +12,9 @@
 			<td class = "basket_price center">
 				<p>Цена</p>
 			</td>
+			<td class = "basket_price center">
+				<p>Сумма</p>
+			</td>
 			<td>
 			</td>
 		</tr>
@@ -32,7 +35,10 @@
 					<?=$product->count?> шт.
 				</td>
 				<td class = "basket_price center">
-					<?=$product->price?> <span>р</span>
+					<?=$product->price?> <span class = "rouble">&#8399;</span>
+				</td>
+				<td class = "basket_price center">
+					<?=$product->summ?> <span class = "rouble">&#8399;</span>
 				</td>
 				<td class = "basket_delete center">
 					<div class = "del_basket" data-basket="<?=$product->id?>">
@@ -42,11 +48,11 @@
 			</tr>
 			<?php } ?>
 		<tr id = "tr_basket_summ">
-			<td class = "right" colspan = "3">
+			<td class = "right" colspan = "4">
 				<b>Итого:</b>
 			</td>
 			<td class = "center">
-				<span id = "basket_span_summ"><?=$summ?></span> р.
+				<span id = "basket_span_summ"><?=$summ?></span> <span class = "rouble">&#8399;</span>
 			</td>
 			<td>
 			</td>

@@ -21,6 +21,7 @@ function OrderForm(){
     }
 
 	this.postSend = function(response){
+		//console.log(response);
 		var html;
 		if(response !== "success") {
 			html = "<div id = 'form_order_message_block'>\
