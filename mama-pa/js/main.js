@@ -1,71 +1,55 @@
+var span_summ;
+
 function Basket(){
 	
 	self = this;
 
-	var summ;
-	var adds = document.getElementsByClassName("add_basket");
-	var dels = document.getElementsByClassName("del_basket");
-
 	this.init = function(){
-		if(adds.length > 0){
-			var len = adds.length;
-			for(var i = 0; i < len; i++){
-				adds[i].addEventListener("click", self.add_basket);
+		span_summ = document.getElementById("span_summ");
+		var add_buttons = document.querySelectorAll(".add_basket");
+		if(add_buttons.length > 0){
+			for(var i = 0; i < add_buttons.length; i++){
+				add_buttons[i].addEventListener("click", self.add);
 			}	
 		}
-		if(dels.length > 0){
-			var len = dels.length;
-			for(var i = 0; i < len; i++){
-				dels[i].addEventListener("click", self.del_basket);
-			}	
-		}
-	}
-
-	this.del_basket = function(e){
-		var button = e.target;
-		var data = {"action": "del", "id": button.getAttribute("data-basket")};
-		ajax.send("POST", "ajax/basket", data).then(self.del, self.showError);	
-	}
-
-	this.del = function(response){
-		var data = JSON.parse(response);
-		document.querySelector("div[data-basket='" + data["id"] + "']").parentNode.parentNode.remove();
-		if(data["summ"] === 0){
-			document.getElementById("basket_text").innerHTML = "Ваша корзина пуста";
-			document.getElementById("tr_basket_summ").remove();
-			document.querySelector(".set_order").remove();
-		}
-		else{
-			document.getElementById("basket_span_summ").innerHTML = data["summ"];
-		}
-		document.getElementById("span_summ").innerHTML = data["summ"];
-	}
-
-	this.add_basket = function(e){
-		if(e.target.classList[0] === "add_basket"){
-			var button = e.target;
-		}
-		else{
-			var button = e.target.parentNode;
-		}
-		var data = {"action": "add", "id": button.getAttribute("data-basket")};
-		ajax.send("POST", "ajax/basket", data).then(self.showAddProduct, self.showError);
 	}
 
 	this.showError = function(error){
 		alert(error);
 	}
 
+	this.add = function(e){
+		if(e.target.classList[0] === "add_basket"){
+			var button = e.target;
+		}
+		else{
+			var button = e.target.parentNode;
+		}
+		var data = {"action": "add", "id": button.getAttribute("data-id")};
+		ajax.send("POST", "ajax/basket", data).then(self.showAddProduct, self.showError);
+	}
+
+	this.del = function(id, postSend){
+		var data = {"action": "del", "id": id};
+		ajax.send("POST", "ajax/basket", data).then(postSend, self.showError);	
+	}
+
 	this.showAddProduct = function(response){
+		console.log(response);
 		var data = JSON.parse(response);
-		document.getElementById("span_summ").innerHTML = data["summ"];
+		span_summ.innerHTML = data["summ"];
 		var html = "<p class = 'basket_small_text'>Товар добавлен в корзину</p><p class = 'basket_small_title'>" + data["product"]["title"] + "</p><img src = '" + data["product"]["img"] + "' class = 'basket_small_img'><p class = 'basket_small_price'>" + data["product"]["price"] + " <span class = 'rouble'>&#8399;</span></p>";
 		message.createMessage(html);
 	}
 
+	this.changeCount = function(id, action, preSend, postSend){
+		ajax.send("POST", "ajax/basket", {"action": action, "id": id}).then(postSend, self.showError);
+		preSend();
+	}
+
 	this.clear = function(){
 		ajax.send("POST", "ajax/basket", {"action": "clear"}).then(function(){
-			document.getElementById("span_summ").innerHTML = "0";
+			span_summ.innerHTML = "0";
 		}, self.showError);
 	}
 

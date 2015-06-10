@@ -94,7 +94,7 @@ class MainController extends Controller {
 		$content->summ = BasketData::getSumm();
 		$head = $this->getHead(array("/css/main.css"), false);
 		$head->add("js", null, true);
-		$head->js = array("/js/main.js");
+		$head->js = array("/js/main.js", "/js/basket.js");
 		$this->render($head, $content);
 	}
 

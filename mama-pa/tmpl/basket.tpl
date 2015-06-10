@@ -31,17 +31,25 @@
 						<?=$product->title?>
 					</a>
 				</td>
-				<td class = "basket_count center">
-					<?=$product->count?> шт.
+				<td class = "basket_count">
+					<div>
+						<div data-id = "<?=$product->id?>" class="count_basket_arow_wrap count_minus">
+							<div class="count_basket_arow_left"></div>
+						</div>
+						<div data-id = "<?=$product->id?>" class="basket_product_count"><?=$product->count?></div>
+						<div data-id = "<?=$product->id?>" class="count_basket_arow_wrap count_plus">
+							<div class="count_basket_arow_right"></div>
+						</div>
+					</div>
 				</td>
 				<td class = "basket_price center">
 					<?=$product->price?> <span class = "rouble">&#8399;</span>
 				</td>
 				<td class = "basket_price center">
-					<?=$product->summ?> <span class = "rouble">&#8399;</span>
+					<span data-id = "<?=$product->id?>" class="basket_product_summ"><?=$product->summ?></span> <span class = "rouble">&#8399;</span>
 				</td>
 				<td class = "basket_delete center">
-					<div class = "del_basket" data-basket="<?=$product->id?>">
+					<div class = "del_basket" data-id="<?=$product->id?>">
 						Удалить
 					</div>
 				</td>

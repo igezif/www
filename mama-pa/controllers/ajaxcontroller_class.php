@@ -14,17 +14,31 @@ class AjaxController extends Controller {
 			}
 		}
 		else if($this->request->action === "del"){
-			$product = ProductDB::getProductForBasket($this->request->id);
-			if($product) {
-				$data = array();
-				$data["id"] = BasketData::del($this->request->id);
-				$data["summ"] = BasketData::getSumm();
-				$this->jsonResponse($data);
-			}
-			else echo "error";
+			$data = array();
+			$data["id"] = BasketData::del($this->request->id);
+			$data["summ"] = BasketData::getSumm();
+			$this->jsonResponse($data);
 		}
 		else if($this->request->action === "clear"){
 			BasketData::clear();
+		}
+		else if($this->request->action === "count_plus"){
+			$product = BasketData::countPlus($this->request->id);
+			$data = array();
+			$data["id"] = $product["id"];
+			$data["count"] = $product["count"];
+			$data["product_summ"] = $product["product_summ"];
+			$data["summ"] = BasketData::getSumm();
+			$this->jsonResponse($data);
+		}
+		else if($this->request->action === "count_minus"){
+			$product = BasketData::countMinus($this->request->id);
+			$data = array();
+			$data["id"] = $product["id"];
+			$data["count"] = $product["count"];
+			$data["product_summ"] = $product["product_summ"];
+			$data["summ"] = BasketData::getSumm();
+			$this->jsonResponse($data);
 		}
 	}
 

@@ -27,7 +27,7 @@
 						Цена: <span class = "section_price_digit"><?=$product->price?></span> 
 						<span class = "section_price_word"> <span class = "rouble">&#8399;</span></span>
 					</div>
-					<div class = "add_basket section_buy row" data-basket="<?=$product->id?>">
+					<div class = "add_basket section_buy row" data-id="<?=$product->id?>">
 						<div class = "arow_small"></div>
 						<div>В корзину</div>
 					</div>

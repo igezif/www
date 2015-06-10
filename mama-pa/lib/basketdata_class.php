@@ -8,17 +8,20 @@ class BasketData {
 			$_SESSION["basket"] = array();
 		}
 		if (array_key_exists($product["id"], $_SESSION["basket"])) {
-			$count = $_SESSION["basket"][$product["id"]]["count"] + 1;
-			$summ = (int)$product["price"] * $count;
-			$_SESSION["basket"][$product["id"]]["count"] = $count;
-			$_SESSION["basket"][$product["id"]]["summ"] = $summ;
+			$_SESSION["basket"][$product["id"]]["count"]++;
+			$_SESSION["basket"][$product["id"]]["summ"] = self::getSummProduct($product["id"]);
 		}
 		else{
 			$product["count"] = 1;
 			$product["summ"] = $product["price"];
 			$_SESSION["basket"][$product["id"]] = $product;
 		}
-		
+	}
+
+	private static function getSummProduct($id){
+		$count = (int)$_SESSION["basket"][$id]["count"];
+		$price = (int)$_SESSION["basket"][$id]["price"];
+		return $price * $count;
 	}
 
 	public static function del($id) {
@@ -47,5 +50,27 @@ class BasketData {
 
 	public static function clear(){
 		unset($_SESSION["basket"]);
+	}
+
+	public static function countPlus($id){
+		$data = array();
+		$_SESSION["basket"][$id]["count"]++;
+		$_SESSION["basket"][$id]["summ"] += $_SESSION["basket"][$id]["price"];
+		$data["id"] = $id;
+		$data["count"] = $_SESSION["basket"][$id]["count"];
+		$data["product_summ"] = $_SESSION["basket"][$id]["summ"];
+		$data["summ"] = self::getSumm();
+		return $data;
+	}
+
+	public static function countMinus($id){
+		$data = array();
+		$_SESSION["basket"][$id]["count"]--;
+		$_SESSION["basket"][$id]["summ"] -= $_SESSION["basket"][$id]["price"];
+		$data["id"] = $id;
+		$data["count"] = $_SESSION["basket"][$id]["count"];
+		$data["product_summ"] = $_SESSION["basket"][$id]["summ"];
+		$data["summ"] = self::getSumm();
+		return $data;
 	}
 }

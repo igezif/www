@@ -87,9 +87,9 @@ class ProductDB extends ObjectDB {
 			inner join ".Config::DB_PREFIX."brand b on p.brand_id=b.id
 			where p.id = ? and p.available = 1", array($id)
 		);
+		if(!$data) return false;
 		$data["product_description"] = htmlspecialchars_decode($data["product_description"]);
-		if ($data) return $this->init($data);
-		else return false;
+		return $this->init($data);
 	}
 	
 	public static function getThreeRandProductOnSection($section_id) {
@@ -140,13 +140,10 @@ class ProductDB extends ObjectDB {
 	}
 
 	public static function search($words) {
-		$select = self::getBaseSelect();
+		$select = new Select(self::$db);
+		$select->from(self::$table, "*")
+			->where("`available` = 1");
 		$articles = self::searchObjects($select, __CLASS__, array("title", "product_description"), $words, Config::MIN_SEARCH_LEN);
-		foreach ($articles as $article){
-			//$article->description = htmlspecialchars_decode($article->description);
-			//echo $article->description;
-		}
-		//die;
 		return $articles;
 	}
 
