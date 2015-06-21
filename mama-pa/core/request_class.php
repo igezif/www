@@ -31,6 +31,16 @@ class Request {
 		}
 		return trim(htmlspecialchars($data));
 	}
+
+	public function getKeyOnNumber($number){
+		return array_keys($this->data)[$number];
+	}
+
+	public function setRequestOnSession(){
+		if (!session_id()) session_start();
+		foreach ($this->data as $key => $value) {
+			if($value) $_SESSION["data"][$key] = $value;
+		}
+	}
 	
 }
-?>

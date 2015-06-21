@@ -15,6 +15,8 @@
 				</td>
 				<td>
 					<a href = "<?=$item->link_update?>"><?=$item->title?></a>
+					<br /><br />
+					ЧПУ - <a href = "<?=$item->alias?>"><?=$item->alias?></a>
 				</td>
 				<td>
 					<?=$item->meta_desc?>

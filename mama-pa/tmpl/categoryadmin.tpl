@@ -16,6 +16,8 @@
 				<td>
 					<a href = "<?=$item->link_update?>"><?=$item->title?></a><br />
 					<span><?php if(!$item->show) { ?>не показывать<?php } ?></span>
+					<br /><br />
+					ЧПУ - <a href = "<?=$item->alias?>"><?=$item->alias?></a>
 				</td>
 				<td>
 					<?=$item->section?>

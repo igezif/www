@@ -25,6 +25,8 @@
 					<div><a href = "<?=$item->link_update?>"><?=$item->title?></a></div>
 					<div><a class="link_adm_del" href = "<?=$item->link_delete?>">Удалить</a></div>
 					<div><?=$item->img?></div>
+					<br /><br />
+					ЧПУ - <a href = "<?=$item->alias?>"><?=$item->alias?></a>
 				</td>
 				<td><?=$item->category?></td>
 				<td><?=$item->brand?></td>

@@ -144,6 +144,7 @@ abstract class AbstractDataBase {
 	
 	public function getRow($query, $params = false){
 		$sql = $this->getQuery($query, $params);
+		
 		$result_set = $this->mysqli->query($sql);
 		if (!$result_set->num_rows) return false;
 		return $result_set->fetch_assoc();

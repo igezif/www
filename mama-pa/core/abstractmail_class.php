@@ -46,3 +46,5 @@ abstract class AbstractMail {
 	}
 	
 }
+
+?>

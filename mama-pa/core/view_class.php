@@ -17,3 +17,5 @@ class View {
 		else echo ob_get_clean();
 	}
 }
+
+?>

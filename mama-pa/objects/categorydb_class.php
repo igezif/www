@@ -14,10 +14,18 @@ class CategoryDB extends ObjectDB {
 		$this->add("meta_key", "ValidateMK");
 		$this->add("show", "ValidateBoolean");
 	}
-	
+
 	protected function postInit() {
 		$this->link = URL::get("category", "", array("id" => $this->id));
 		return true;
+	}
+
+	protected function postInsert() {
+		return $this->id;
+	}
+
+	protected function postUpdate() {
+		return $this->id;
 	}
 	
 	public static function getCategoryOnSection($id){
@@ -31,10 +39,6 @@ class CategoryDB extends ObjectDB {
 		return $category;
 	}
 	
-	protected function postInsert() {
-		return $this->id;
-	}
-	
 	/* ADMINKA */
 	public static function getAdminShow(){
 		$data = self::$db->getResult("select c.*, s.title as section from ".Config::DB_PREFIX."category c left join ".Config::DB_PREFIX."section s on c.section_id=s.id");
@@ -46,6 +50,7 @@ class CategoryDB extends ObjectDB {
 	private function postAdminHandling(){
 		$this->link_update = URL::get("update", "admin", array("view" => "category", "id" => $this->id));
 		$this->link_delete = URL::get("delete", "admin", array("view" => "category", "id" => $this->id));
+		$this->alias = URL::get(self::$table, "", array("id" => $this->id));
 	}
 	
 	public static function getIdonNumder($number){

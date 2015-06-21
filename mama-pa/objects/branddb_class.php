@@ -12,6 +12,14 @@ class BrandDB extends ObjectDB {
 		$this->add("img", "ValidateIMG");
 	}
 	
+	protected function postInsert() {
+		return $this->id;
+	}
+
+	protected function postUpdate() {
+		return $this->id;
+	}
+
 	public static function getBrandIDonName($name){
 		$select = new Select();
 		$select->from(self::$table, array("id"))
@@ -28,6 +36,7 @@ class BrandDB extends ObjectDB {
 		else $this->img = "нет";
 		$this->link_update = URL::get("update", "admin", array("view" => "brand", "id" => $this->id));
 		$this->link_delete = URL::get("delete", "admin", array("view" => "brand", "id" => $this->id));
+		$this->alias = URL::get(self::$table, "", array("id" => $this->id));
 		return true;
 	}
 	
@@ -37,8 +46,4 @@ class BrandDB extends ObjectDB {
 		return $brands;
 	}
 	
-	protected function postInsert() {
-		return $this->id;
-	}
-
 }

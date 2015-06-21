@@ -18,7 +18,9 @@ class Formproduct extends Form {
 			$this->textarea("meta_desc", "Короткое описание<br />(не более 255 символов):", FormProcessor::getSessionData("meta_desc"));
 			$this->textarea("product_description", "Длинное описание<br />(хоть сколько символов):", FormProcessor::getSessionData("product_description"));
 			$this->textarea("meta_key", "Ключевые слова:", FormProcessor::getSessionData("meta_key"));
+			$this->text("alias", "ЧПУ ссылка", FormProcessor::getSessionData("alias"));
 			$this->checkbox("available", "Наличие:", "1");
+			$this->file("img", "Картинка:");
 			$this->submit("insert_product", "Сохранить");
 		}
 		else{
@@ -33,7 +35,11 @@ class Formproduct extends Form {
 			$this->textarea("meta_desc", "Короткое описание<br />(не более 255 символов):", $obj->meta_desc);
 			$this->textarea("product_description", "Длинное описание<br />(хоть сколько символов):", $obj->product_description);
 			$this->textarea("meta_key", "Ключевые слова:", $obj->meta_key);
+			$link = URL::get("product", "", array("id" => $id), true, "", false);
+			$alias = SefDB::getAliasOnLink($link);
+			$this->text("alias", "ЧПУ ссылка", $alias);
 			$this->checkbox("available", "Наличие:", "1", "", (int)$obj->available);
+			$this->file("img", "Картинка:");
 			$this->submit("update_product", "Сохранить");
 			$view = new View(Config::DIR_TMPL);
 			$this->img = $view->render("img", array("src" => $obj->img), true);

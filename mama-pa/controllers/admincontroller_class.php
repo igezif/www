@@ -110,47 +110,73 @@ class AdminController extends Controller {
 	public function actionInsert() {
 		if (!self::isAuthAdmin()) return null;
 		if ($this->request->insert_brand) {
-			$img = $this->fp->uploadIMG($this->request->view, $_FILES["img"], Config::MAX_SIZE_IMG, Config::DIR_IMG_BRAND);
-			if ($img) {
+			$this->request->setRequestOnSession();
+			$img = $this->fp->checkIMG($this->request->view, $_FILES["img"], Config::MAX_SIZE_IMG);
+			if($img) {
 				$obj_db = new BrandDB();
-				$obj = $this->fp->process($this->request->view, $obj_db, array("title", "meta_desc", "meta_key", array("img", $img)), array(), "SUCCESS_POSITION_INSERT");
-				if ($obj instanceof BrandDB) $this->redirect(URL::get("brand", "admin"));
-				else $this->redirect(URL::current());
-			}
-		}
-		else if($this->request->insert_product){
-			if(isset($_FILES["img"])){
-				$img = $this->fp->uploadIMG($this->request->view, $_FILES["img"], Config::MAX_SIZE_IMG, Config::DIR_IMG_PRODUCT);
-				if ($img) {
-					$obj_db = new ProductDB();
-					$obj = $this->fp->process($this->request->view, $obj_db, array("category_id", array("img", $img), "brand_id", "price", "title", "product_description", "meta_desc", "meta_key", ($this->request->available) ? "available" : array("available", 0)), array(), "SUCCESS_POSITION_INSERT");
-					if ($obj instanceof ProductDB) $this->redirect(URL::get("product", "admin"));
-					else $this->redirect(URL::current());
+				$checks = array(array(SefDB::issetAlias($this->request->alias), false, "ERROR_ISSET_ALIAS"));
+				$checks[] = array(strlen($this->request->alias), true, "ERROR_ALIAS");
+				$res = $this->fp->process($this->request->view, $obj_db, array("title", "meta_desc", "meta_key", array("img", $img)), $checks, "SUCCESS_POSITION_INSERT");
+				if ($res["obj"] instanceof BrandDB){
+					$this->fp->uploadIMG($this->request->view, $_FILES["img"], $img, Config::DIR_IMG_BRAND);
+					$sef_db = new SefDB();
+					$link = URL::get($this->request->view, "", array("id" => $res["id"]), true, "", false);
+					$this->fp->process($this->request->view, $sef_db, array(array("link", $link), "alias"), array());
+					$this->redirect(URL::get($this->request->view, "admin"));
 				}
-			}
-			else{
-				$obj_db = new ProductDB();
-				$obj = $this->fp->process($this->request->view, $obj_db, array("category_id", "brand_id", "price", "title", "product_description", "meta_desc", "meta_key", ($this->request->available) ? "available" : array("available", 0)), array(), "SUCCESS_POSITION_INSERT");
-				if ($obj instanceof ProductDB)$this->redirect(URL::get("product", "admin"));
 				else $this->redirect(URL::current());
 			}
 		}
-		else if ($this->request->insert_slider) {
-			$obj_db = new SliderDB();
-			$obj = $this->fp->process($this->request->view, $obj_db, array("product_id", "title", "description"), array(), "SUCCESS_POSITION_INSERT");
-			if ($obj instanceof SliderDB) $this->redirect(URL::get("slider", "admin"));
+		else if ($this->request->insert_product) {
+			$this->request->setRequestOnSession();
+			$img = $this->fp->checkIMG($this->request->view, $_FILES["img"], Config::MAX_SIZE_IMG);
+			if($img) {
+				$obj_db = new ProductDB();
+				$checks = array(array(SefDB::issetAlias($this->request->alias), false, "ERROR_ISSET_ALIAS"));
+				$checks[] = array(strlen($this->request->alias), true, "ERROR_ALIAS");
+				$res = $this->fp->process($this->request->view, $obj_db, array("category_id", array("img", $img), "brand_id", "price", "title", "product_description", "meta_desc", "meta_key", ($this->request->available) ? "available" : array("available", 0)), $checks, "SUCCESS_POSITION_INSERT");
+				if ($res["obj"] instanceof ProductDB){
+					$this->fp->uploadIMG($this->request->view, $_FILES["img"], $img, Config::DIR_IMG_PRODUCT);
+					$sef_db = new SefDB();
+					$link = URL::get($this->request->view, "", array("id" => $res["id"]), true, "", false);
+					$this->fp->process($this->request->view, $sef_db, array(array("link", $link), "alias"), array());
+					$this->redirect(URL::get($this->request->view, "admin"));
+				}
+				else $this->redirect(URL::current());
+			}
+		}
+		else if ($this->request->insert_category) {
+			$this->request->setRequestOnSession();
+			$obj_db = new CategoryDB();
+			$checks = array(array(SefDB::issetAlias($this->request->alias), false, "ERROR_ISSET_ALIAS"));
+			$checks[] = array(strlen($this->request->alias), true, "ERROR_ALIAS");
+			$res = $this->fp->process($this->request->view, $obj_db, array("section_id", "title", "meta_desc", "meta_key", ($this->request->show) ? "show" : array("show", 0)), $checks, "SUCCESS_POSITION_INSERT");
+			if ($res["obj"] instanceof CategoryDB){
+				$sef_db = new SefDB();
+				$link = URL::get($this->request->view, "", array("id" => $res["id"]), true, "", false);
+				$this->fp->process($this->request->view, $sef_db, array(array("link", $link), "alias"), array());
+				$this->redirect(URL::get($this->request->view, "admin"));
+			}
 			else $this->redirect(URL::current());
 		}
 		else if ($this->request->insert_section) {
+			$this->request->setRequestOnSession();
 			$obj_db = new SectionDB();
-			$obj = $this->fp->process($this->request->view, $obj_db, array("title", "meta_desc", "meta_key"), array(), "SUCCESS_POSITION_INSERT");
-			if ($obj instanceof SectionDB) $this->redirect(URL::get("section", "admin"));
+			$checks = array(array(SefDB::issetAlias($this->request->alias), false, "ERROR_ISSET_ALIAS"));
+			$checks[] = array(strlen($this->request->alias), true, "ERROR_ALIAS");
+			$res = $this->fp->process($this->request->view, $obj_db, array("title", "meta_desc", "meta_key"), $checks, "SUCCESS_POSITION_INSERT");
+			if ($res["obj"] instanceof SectionDB){
+				$sef_db = new SefDB();
+				$link = URL::get($this->request->view, "", array("id" => $res["id"]), true, "", false);
+				$this->fp->process($this->request->view, $sef_db, array(array("link", $link), "alias"), array());
+				$this->redirect(URL::get("section", "admin"));
+			}
 			else $this->redirect(URL::current());
 		}
-		else if ($this->request->insert_category) {
-			$obj_db = new CategoryDB();
-			$obj = $this->fp->process($this->request->view, $obj_db, array("section_id", "title", "meta_desc", "meta_key", ($this->request->show) ? "show" : array("show", 0)), array(), "SUCCESS_POSITION_INSERT");
-			if ($obj instanceof CategoryDB) $this->redirect(URL::get("category", "admin"));
+		else if ($this->request->insert_slider) {
+			$obj_db = new SliderDB();
+			$res = $this->fp->process($this->request->view, $obj_db, array("product_id", "title", "description"), array(), "SUCCESS_POSITION_INSERT");
+			if ($res["obj"] instanceof SliderDB) $this->redirect(URL::get("slider", "admin"));
 			else $this->redirect(URL::current());
 		}
 		$this->title = "Админ панель";
@@ -173,68 +199,118 @@ class AdminController extends Controller {
 	public function actionUpdate() {
 		if (!self::isAuthAdmin()) return null;
 		if ($this->request->update_brand) {
-			$img = $this->fp->uploadIMG($this->request->view, $_FILES["img"], Config::MAX_SIZE_IMG, Config::DIR_IMG_BRAND);
-			if ($img) {
-				$obj_db = new BrandDB();
-				$obj_db->load($this->request->id);
-				$tmp = $obj_db->imageName;
-				$obj = $this->fp->process($this->request->view, $obj_db, array("title", "meta_desc", "meta_key", array("img", $img)), array(), "SUCCESS_POSITION_UPDATE");
-				if ($obj instanceof BrandDB){
-					if ($tmp) File::delete(Config::DIR_IMG_BRAND.$tmp);
-					$this->redirect(URL::get("brand", "admin"));		
+			$obj_db = new BrandDB();
+			$obj_db->load($this->request->id);
+			$tmp = $obj_db->img;
+			$img = $this->fp->checkIMG($this->request->view, $_FILES["img"], Config::MAX_SIZE_IMG);
+			$link = URL::get($this->request->view, "", array("id" => $this->request->id), true, "", false);
+			$checks = array(array(strlen($this->request->alias), true, "ERROR_ALIAS"));
+			if($img) {
+				$res = $this->fp->process($this->request->view, $obj_db, array("title", "meta_desc", "meta_key", array("img", $img)), $checks, "SUCCESS_POSITION_UPDATE");
+				if ($res["obj"] instanceof BrandDB){
+					$this->fp->uploadIMG($this->request->view, $_FILES["img"], $img, Config::DIR_IMG_BRAND);
+					File::delete(Config::DIR_IMG_BRAND.$tmp);
+					$sef_db = new SefDB();
+					$sef_db->loadOnLink($link);
+					if($sef_db->alias !== $this->request->alias && !SefDB::issetAlias($this->request->alias)) {
+						$this->fp->process($this->request->view, $sef_db, array(array("link", $link), "alias"), array());
+					}
+					$this->redirect(URL::get($this->request->view, "admin"));
 				}
 				else $this->redirect(URL::current());
-			}
-		}
-		else if($this->request->update_product){
-			if(isset($_FILES["img"])){
-				$img = $this->fp->uploadIMG($this->request->view, $_FILES["img"], Config::MAX_SIZE_IMG, Config::DIR_IMG_PRODUCT);
-				if ($img) {
-					$obj_db = new ProductDB();
-					$obj_db->load($this->request->id);
-					$tmp = $obj_db->imageName;
-					$obj = $this->fp->process($this->request->view, $obj_db, array("category_id", array("img", $img), "brand_id", "price", "title", "product_description", "meta_desc", "meta_key", "available"), array(), "SUCCESS_POSITION_UPDATE");
-					if ($obj instanceof ProductDB){
-						if ($tmp) File::delete(Config::DIR_IMG_PRODUCT.$tmp);
-						$this->redirect(URL::get("product", "admin"));		
-					}
-					else $this->redirect(URL::current());
-				}
 			}
 			else{
-				$obj_db = new ProductDB();
-				$obj_db->load($this->request->id);
-				$obj = $this->fp->process($this->request->view, $obj_db, array("category_id", "brand_id", "price", "title", "product_description", "meta_desc", "meta_key", "available"), array(), "SUCCESS_POSITION_UPDATE");
-				if ($obj instanceof ProductDB)$this->redirect(URL::get("product", "admin"));
+				$res = $this->fp->process($this->request->view, $obj_db, array("title", "meta_desc", "meta_key"), $checks, "SUCCESS_POSITION_UPDATE");
+				if ($res["obj"] instanceof BrandDB){
+					$sef_db = new SefDB();
+					$sef_db->loadOnLink($link);
+					if($sef_db->alias !== $this->request->alias && !SefDB::issetAlias($this->request->alias)) {
+						$this->fp->process($this->request->view, $sef_db, array(array("link", $link), "alias"), array());
+					}
+					$this->redirect(URL::get($this->request->view, "admin"));
+				}
 				else $this->redirect(URL::current());
 			}
 		}
-		else if($this->request->update_slider){
-			$obj_db = new SliderDB();
+		if ($this->request->update_product) {
+			$obj_db = new ProductDB();
 			$obj_db->load($this->request->id);
-			$obj = $this->fp->process($this->request->view, $obj_db, array("product_id", "title", "description"), array(), "SUCCESS_POSITION_UPDATE");
-			if ($obj instanceof SliderDB) $this->redirect(URL::get("slider", "admin"));
+			$tmp = $obj_db->img;
+			$img = $this->fp->checkIMG($this->request->view, $_FILES["img"], Config::MAX_SIZE_IMG);
+			$link = URL::get($this->request->view, "", array("id" => $this->request->id), true, "", false);
+			$checks = array(array(strlen($this->request->alias), true, "ERROR_ALIAS"));
+			if($img) {
+				$res = $this->fp->process($this->request->view, $obj_db, array("category_id", array("img", $img), "brand_id", "price", "title", "product_description", "meta_desc", "meta_key", "available"), $checks, "SUCCESS_POSITION_UPDATE");
+				if ($res["obj"] instanceof ProductDB){
+					$this->fp->uploadIMG($this->request->view, $_FILES["img"], $img, Config::DIR_IMG_PRODUCT);
+					File::delete(Config::DIR_IMG_PRODUCT.$tmp);
+					$sef_db = new SefDB();
+					$sef_db->loadOnLink($link);
+					if($sef_db->alias !== $this->request->alias && !SefDB::issetAlias($this->request->alias)) {
+						$this->fp->process($this->request->view, $sef_db, array(array("link", $link), "alias"), array());
+					}
+					$this->redirect(URL::get($this->request->view, "admin"));
+				}
+				else $this->redirect(URL::current());
+			}
+			else{
+				$res = $this->fp->process($this->request->view, $obj_db, array("category_id", "brand_id", "price", "title", "product_description", "meta_desc", "meta_key", "available"), $checks, "SUCCESS_POSITION_UPDATE");
+				if ($res["obj"] instanceof ProductDB){
+					$sef_db = new SefDB();
+					$sef_db->loadOnLink($link);
+					if($sef_db->alias !== $this->request->alias && !SefDB::issetAlias($this->request->alias)) {
+						$this->fp->process($this->request->view, $sef_db, array(array("link", $link), "alias"), array());
+					}
+					$this->redirect(URL::get($this->request->view, "admin"));
+				}
+				else $this->redirect(URL::current());
+			}
+		}
+		else if($this->request->update_category){
+			$obj_db = new CategoryDB();
+			$obj_db->load($this->request->id);
+			$link = URL::get($this->request->view, "", array("id" => $this->request->id), true, "", false);
+			$checks = array(array(strlen($this->request->alias), true, "ERROR_ALIAS"));	
+			$res = $this->fp->process($this->request->view, $obj_db, array("section_id", "title", "meta_desc", "meta_key", ($this->request->show) ? "show" : array("show", 0)), $checks, "SUCCESS_POSITION_UPDATE");
+			if ($res["obj"] instanceof CategoryDB){
+				$sef_db = new SefDB();
+				$sef_db->loadOnLink($link);
+				if($sef_db->alias !== $this->request->alias && !SefDB::issetAlias($this->request->alias)) {
+					$this->fp->process($this->request->view, $sef_db, array(array("link", $link), "alias"), array());
+				}
+				$this->redirect(URL::get("category", "admin"));
+			}
 			else $this->redirect(URL::current());
 		}
 		else if($this->request->update_section){
 			$obj_db = new SectionDB();
 			$obj_db->load($this->request->id);
-			$obj = $this->fp->process($this->request->view, $obj_db, array("title", "meta_desc", "meta_key"), array(), "SUCCESS_POSITION_UPDATE");
-			if ($obj instanceof SectionDB) $this->redirect(URL::get("section", "admin"));
+			$link = URL::get($this->request->view, "", array("id" => $this->request->id), true, "", false);
+			$checks = array(array(strlen($this->request->alias), true, "ERROR_ALIAS"));	
+			$res = $this->fp->process($this->request->view, $obj_db, array("title", "meta_desc", "meta_key"), array(), "SUCCESS_POSITION_UPDATE");
+			if ($res["obj"] instanceof SectionDB){
+				$sef_db = new SefDB();
+				$sef_db->loadOnLink($link);
+				if($sef_db->alias !== $this->request->alias && !SefDB::issetAlias($this->request->alias)) {
+					$this->fp->process($this->request->view, $sef_db, array(array("link", $link), "alias"), array());
+				}
+				$this->redirect(URL::get("section", "admin"));
+			}
 			else $this->redirect(URL::current());
 		}
-		else if($this->request->update_category){
-			$obj_db = new CategoryDB();
+		else if($this->request->update_slider){
+			$obj_db = new SliderDB();
 			$obj_db->load($this->request->id);
-			$obj = $this->fp->process($this->request->view, $obj_db, array("section_id", "title", "meta_desc", "meta_key", ($this->request->show) ? "show" : array("show", 0)), array(), "SUCCESS_POSITION_UPDATE");
-			if ($obj instanceof CategoryDB) $this->redirect(URL::get("category", "admin"));
+			$res = $this->fp->process($this->request->view, $obj_db, array("product_id", "title", "description"), array(), "SUCCESS_POSITION_UPDATE");
+			if ($res["obj"] instanceof SliderDB) $this->redirect(URL::get("slider", "admin"));
 			else $this->redirect(URL::current());
 		}
 		else if($this->request->upload_small_img) {
-			$img = $this->fp->uploadIMG($this->request->view, $_FILES["small_img"], Config::MAX_SIZE_IMG, Config::DIR_IMG_FSAPRODUCT);
+			$img = $this->fp->checkIMG($this->request->view, $_FILES["small_img"], Config::MAX_SIZE_IMG);
+			$this->fp->uploadIMG($this->request->view, $_FILES["small_img"], $img, Config::DIR_IMG_FSAPRODUCT);
 			if ($img) {
 				$obj_db = new ImgDB();
-				$obj = $this->fp->process($this->request->view, $obj_db, array(array("product_id", $this->request->id), array("url", $img)), array(), "SUCCESS_POSITION_INSERT");
+				$res = $this->fp->process($this->request->view, $obj_db, array(array("product_id", $this->request->id), array("url", $img)), array(), "SUCCESS_POSITION_INSERT");
 				$this->redirect(URL::current());
 			}
 		}
@@ -262,9 +338,12 @@ class AdminController extends Controller {
 				try {
 					$obj_db = new BrandDB();
 					$obj_db->load($this->request->id);
-					$tmp = $obj_db->imageName;
+					$tmp = $obj_db->img;
+					$link = URL::get($this->request->view, "", array("id" => $this->request->id), true, "", false);
+					$sef_db = new SefDB();
+					$sef_db->loadOnLink($link);
 					if ($tmp) File::delete(Config::DIR_IMG_BRAND.$tmp);
-					if($obj_db->delete()) $this->fp->setSessionMessage($this->request->view, "SUCCESS_POSITION_DELETE");
+					if($obj_db->delete() && $sef_db->delete()) $this->fp->setSessionMessage($this->request->view, "SUCCESS_POSITION_DELETE");
 					else $this->fp->setSessionMessage($this->request->view, "NOTFOUND_POSITION");
 					$this->redirect(URL::get($this->request->view, "admin"));
 				} catch (Exception $e) {
@@ -275,20 +354,26 @@ class AdminController extends Controller {
 				try {
 					$obj_db = new ProductDB();
 					$obj_db->load($this->request->id);
-					$tmp = $obj_db->imageName;
+					$tmp = $obj_db->img;
+					$link = URL::get($this->request->view, "", array("id" => $this->request->id), true, "", false);
+					$sef_db = new SefDB();
+					$sef_db->loadOnLink($link);
 					if ($tmp) File::delete(Config::DIR_IMG_PRODUCT.$tmp);
-					if($obj_db->delete()) $this->fp->setSessionMessage($this->request->view, "SUCCESS_POSITION_DELETE");
+					if($obj_db->delete() && $sef_db->delete()) $this->fp->setSessionMessage($this->request->view, "SUCCESS_POSITION_DELETE");
 					else $this->fp->setSessionMessage($this->request->view, "NOTFOUND_POSITION");
 					$this->redirect(URL::get($this->request->view, "admin"));
 				} catch (Exception $e) {
 					$this->setSessionMessage($this->request->view, $this->getError($e));
 				}
 			break;
-			case "slider":
+			case "category":
 				try {
-					$obj_db = new SliderDB();
+					$obj_db = new CategoryDB();
 					$obj_db->load($this->request->id);
-					if($obj_db->delete()) $this->fp->setSessionMessage($this->request->view, "SUCCESS_POSITION_DELETE");
+					$link = URL::get($this->request->view, "", array("id" => $this->request->id), true, "", false);
+					$sef_db = new SefDB();
+					$sef_db->loadOnLink($link);
+					if($obj_db->delete() && $sef_db->delete()) $this->fp->setSessionMessage($this->request->view, "SUCCESS_POSITION_DELETE");
 					else $this->fp->setSessionMessage($this->request->view, "NOTFOUND_POSITION");
 					$this->redirect(URL::get($this->request->view, "admin"));
 				} catch (Exception $e) {
@@ -299,16 +384,19 @@ class AdminController extends Controller {
 				try {
 					$obj_db = new SectionDB();
 					$obj_db->load($this->request->id);
-					if($obj_db->delete()) $this->fp->setSessionMessage($this->request->view, "SUCCESS_POSITION_DELETE");
+					$link = URL::get($this->request->view, "", array("id" => $this->request->id), true, "", false);
+					$sef_db = new SefDB();
+					$sef_db->loadOnLink($link);
+					if($obj_db->delete() && $sef_db->delete()) $this->fp->setSessionMessage($this->request->view, "SUCCESS_POSITION_DELETE");
 					else $this->fp->setSessionMessage($this->request->view, "NOTFOUND_POSITION");
 					$this->redirect(URL::get($this->request->view, "admin"));
 				} catch (Exception $e) {
 					$this->setSessionMessage($this->request->view, $this->getError($e));
 				}
 			break;
-			case "category":
+			case "slider":
 				try {
-					$obj_db = new CategoryDB();
+					$obj_db = new SliderDB();
 					$obj_db->load($this->request->id);
 					if($obj_db->delete()) $this->fp->setSessionMessage($this->request->view, "SUCCESS_POSITION_DELETE");
 					else $this->fp->setSessionMessage($this->request->view, "NOTFOUND_POSITION");

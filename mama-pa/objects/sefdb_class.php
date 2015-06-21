@@ -32,4 +32,16 @@ class SefDB extends ObjectDB {
 		return self::$db->selectCell($select);
 	}
 
+	public static function issetAlias($alias){
+		if(self::getLinkOnAlias($alias)) return true;
+		else return false;
+	}
+	
+	public static function issetAliasOnLink($link){
+		$select = new Select(self::$db);
+		$select->from(self::$table, "*")
+			->where("`category_id` = ?", array($link));
+		$data = self::$db->select($select);
+	}
+
 }

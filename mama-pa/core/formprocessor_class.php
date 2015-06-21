@@ -23,18 +23,16 @@ class FormProcessor {
 					}
 					else{
 						$obj->$f = $v;
-						$this->setSessionData($f, $v);
 					}
 				}
 				else{
 					$obj->$field = $this->request->$field;
-					$this->setSessionData($field, $this->request->$field);
 				}	
 			}
-			if ($obj->save()) {
+			if ($id = $obj->save()) {
 				if ($success_message) $this->setSessionMessage($message_name, $success_message);
 				unset($_SESSION["data"]);
-				return $obj;
+				return array("id" => $id, "obj" => $obj);
 			}
 		} catch (Exception $e) {
 			$this->setSessionMessage($message_name, $this->getError($e));
@@ -86,15 +84,6 @@ class FormProcessor {
 		$_SESSION["data"][$field] = $value;
 	}
 
-	public function unsetSessionData($field){
-		if (!session_id()) session_start();
-		if (!empty($_SESSION["data"]) && !empty($_SESSION["data"][$field])) {
-			unset($_SESSION["data"][$field]);
-			return false;
-		}
-		return false;
-	}
-
 	public static function getSessionData($field){
 		if (!session_id()) session_start();
 		if (!empty($_SESSION["data"]) && !empty($_SESSION["data"][$field])) {
@@ -104,10 +93,10 @@ class FormProcessor {
 		}
 		return false;
 	}
-	
-	public function uploadIMG($message_name, $file, $max_size, $dir, $source_name = false) {
-		try {
-			$name = File::uploadIMG($file, $max_size, $dir, false, $source_name);
+
+	public function checkIMG($message_name, $file, $max_size, $source_name = false){
+		try{
+			$name = File::checkIMG($file, $max_size, $source_name);
 			return $name;
 		} catch (Exception $e) {
 			$this->setSessionMessage($message_name, $this->getError($e));
@@ -115,10 +104,9 @@ class FormProcessor {
 		}
 	}
 	
-	public function uploadAdminIMG($message_name, $file, $max_size, $dir, $id) {
+	public function uploadIMG($message_name, $file, $image_name, $dir, $root = false) {
 		try {
-			
-			$name = File::uploadAdminIMG($file, $max_size, $dir, false, $id);
+			$name = File::uploadIMG($file, $image_name, $dir, $root = false);
 			return $name;
 		} catch (Exception $e) {
 			$this->setSessionMessage($message_name, $this->getError($e));

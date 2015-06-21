@@ -26,6 +26,10 @@ class ProductDB extends ObjectDB {
 		return $this->id;
 	}
 
+	protected function postUpdate() {
+		return $this->id;
+	}
+
 	public static function getProductForBasket($id){
 		$data = self::$db->getRow(
 			"select * from ".Config::DB_PREFIX."product 
@@ -110,7 +114,7 @@ class ProductDB extends ObjectDB {
 
 	private static function getSectionIDonProductID($id){
 		$data = self::$db->getCell(
-			"SELECT s.id FROM xyz_section s 
+			"select s.id FROM xyz_section s 
 			INNER JOIN ".Config::DB_PREFIX."category c on c.section_id = s.id
 			inner join ".Config::DB_PREFIX."product p on p.category_id = c.id
 			where p.id = ?", array($id)
@@ -135,16 +139,16 @@ class ProductDB extends ObjectDB {
 		return $result;
 	}
 	
-	private function postHandling(){
-		$this->img = Config::DIR_IMG_PRODUCT.$this->img;
-	}
-
 	public static function search($words) {
 		$select = new Select(self::$db);
 		$select->from(self::$table, "*")
 			->where("`available` = 1");
 		$articles = self::searchObjects($select, __CLASS__, array("title", "product_description"), $words, Config::MIN_SEARCH_LEN);
 		return $articles;
+	}
+
+	private function postHandling(){
+		$this->img = Config::DIR_IMG_PRODUCT.$this->img;
 	}
 
 	private static function getBaseSelect() {
@@ -176,6 +180,7 @@ class ProductDB extends ObjectDB {
 		else $this->img = "нет";
 		$this->link_update = URL::get("update", "admin", array("view" => "product", "id" => $this->id));
 		$this->link_delete = URL::get("delete", "admin", array("view" => "product", "id" => $this->id));
+		$this->alias = URL::get(self::$table, "", array("id" => $this->id));
 		return true;
 	}
 

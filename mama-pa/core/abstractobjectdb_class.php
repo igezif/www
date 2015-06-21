@@ -224,7 +224,7 @@ abstract class AbstractObjectDB {
 		return self::$db->selectCell($select);
 	}
 	
-	protected function loadOnField($field, $value) {
+	public function loadOnField($field, $value) {
 		$select = new Select();
 		$select->from($this->table_name, "*")
 			->where ("`$field` = ".self::$db->getSQ(), array($value));
@@ -359,8 +359,8 @@ abstract class AbstractObjectDB {
 		$v = array();
 		$errors = array();
 		foreach ($this->properties as $key => $value) {
-			if (!$value["validator"]) return true;
-			$v[$key] = new $value["validator"]($value["value"]);
+			$str = (string)$value["validator"];
+			if($str) $v[$key] = new $str($value["value"]);
 		}
 		foreach ($v as $key => $validator) {
 			if (!$validator->isValid()) $errors[$key] = $validator->getErrors();

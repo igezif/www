@@ -1,4 +1,4 @@
-window.onload = function(){
+/*window.onload = function(){
 	document.getElementById("for_popup_message").style.display = "none";
 	var span_img = document.querySelector("#for_file_input_adm > span");
 	var for_input = document.getElementById("for_file_input_adm");
@@ -15,4 +15,4 @@ window.onload = function(){
 		file_input_adm_wrap.style.display = "none";
 		div_file_input.innerHTML = "";
 	});
-}
+}*/
