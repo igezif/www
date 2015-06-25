@@ -17,7 +17,6 @@ function OrderForm(){
     this.preSend = function(){
     	var html = "<img class = 'load_gif' src = '/img/main/load.gif' alt = 'Image' />";
     	order_section.innerHTML = html;
-    	console.log("preSend");
     }
 
 	this.postSend = function(response){

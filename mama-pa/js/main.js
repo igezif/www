@@ -277,7 +277,6 @@ function AbstractForm(){
 
 	this.postSendError = function(error){
 		alert(error);
-		//alert("error");
 	}
 
 	this.preSend = function(){
@@ -363,6 +362,16 @@ function BlackBackground(obj){
 			div.remove();
 		}
 	}
+
+}
+
+function OrderForm(){
+
+	AbstractForm.apply(this, arguments);
+
+	var self = this;
+
+	var parentInit = this.init;
 
 }
 

@@ -51,7 +51,12 @@ class ProductDB extends ObjectDB {
 	}
 
 	public static function getCountProductOnCategory($category_id){
-		return self::getCountOnField(self::$table, "category_id", $category_id);
+		$data = self::$db->getCell(
+			"select count(*) 
+			from ".Config::DB_PREFIX."product
+			where category_id = ? and available = 1", array($category_id)
+		);
+		return $data;
 	}
 
 	public static function getProductOnSection($section_id, $count, $offset) {

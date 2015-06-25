@@ -13,7 +13,7 @@
 						<a href = "tel:89137813997">+7-913-781-39-97</a>
 					</div>
 					<div class = "top_menu_delivery">
-						<a href = "/delivery">Оплата/Доставка</a>
+						<a href = "<?=$link_delivery?>">Оплата/Доставка</a>
 					</div>
 					<div class = "row menu_network">
 						<a href = "//vk.com/mama_pa" class = "logo_vk"></a>
@@ -33,7 +33,7 @@
 						<div id = "second_menu">
 							<div class = "row">
 								<?php foreach($menu_items as $item) { ?>
-								<a href="<?=$item->link?>"><?=$item->title?></a>
+								<a href="<?=$item->link?>" <?php if($item->link === $uri) { ?>class = "active_second_menu_item"<?php } ?>><?=$item->title?></a>
 								<?php } ?>
 							</div>
 						</div>
@@ -72,14 +72,19 @@
 				<div class = "footer_block footer_sections">
 					<div class = "footer_header"><b>Информация</b></div>
 					<div class = "footer_item">
-						<a href = "/contacts">Наши контакты</a>
+						<a href = "<?=$link_contacts?>">Наши контакты</a>
 					</div>
 					<div class = "footer_item">
 						<a href="mailto:shop@mama-pa.ru" title="Наша почта">shop@mama-pa.ru</a>
 					</div>
 				</div>
 				<div class = "footer_block">
-					
+					<script type="text/javascript" src="//vk.com/js/api/openapi.js?116"></script>
+					<!-- VK Widget -->
+					<div id="vk_groups"></div>
+					<script type="text/javascript">
+						VK.Widgets.Group("vk_groups", {mode: 0, width: "260", height: "265", color1: 'FFFFFF', color2: '2B587A', color3: '5B7FA6'}, 19668034);
+					</script>
 				</div>
 				<div class = "footer_block footer_sections">
 					<div class = "footer_header"><b>Давайте дружить</b></div>

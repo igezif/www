@@ -96,6 +96,10 @@ ul{
 	background-color: #39b85e;
 }
 
+button:hover{
+	cursor: pointer;
+}
+
 /* ---   POPUP_MESSAGE   --- */
 
 #for_popup_message{
@@ -270,10 +274,18 @@ header{
 	text-shadow: 1px 1px 1px black, 0 0 2px black;
 	border-radius: 3px;
 	margin: 0 0 6px 0;
+	background-image: url("../img/main/button_second_menu.png");
+	background-position: left bottom;
+	transition: background-position 0.3s;
 }
 
 #second_menu a:hover{
-	background: url("../img/main/button_active.png") repeat;
+	background-position: left top;
+	box-shadow: inset 0px 3px 11px -3px rgba(0,0,0,1);
+}
+
+#second_menu .active_second_menu_item{
+	background-position: left top;
 	box-shadow: inset 0px 3px 11px -3px rgba(0,0,0,1);
 }
 

@@ -56,7 +56,6 @@ class AjaxController extends Controller {
 		$notice = $this->request->notice;
 		$products = BasketData::getItems();
 		$summ = BasketData::getSumm();
-		
 		$order_db = new OrderDB();
 		$order_db->name = $name;
 		$order_db->phone = $phone;
@@ -67,7 +66,6 @@ class AjaxController extends Controller {
 		$order_db->summ = $summ;
 		$order_db->notice = $notice;
 		if(!$order_id = $order_db->save()) exit("error");
-
 		foreach($products as $product) {
 			$purchase_db = new PurchaseDB();
 			$purchase_db->order_id = $order_id;
@@ -75,12 +73,17 @@ class AjaxController extends Controller {
 			$purchase_db->count = $product->count;
 			$purchase_db->save();
 		}
-
 		$this->mail->send(Config::ADM_EMAIL, array("site" => Config::SITENAME, "name" => $name, "email" => $email, "phone" => $phone, "address" => $address, "pay" => $pay->title, "delivery" => $delivery->title, "products" => $products, "summ" => $summ, "notice" => $notice), "admin_order");
 		$this->mail->send(Config::ADM_EMAIL2, array("site" => Config::SITENAME, "name" => $name, "email" => $email, "phone" => $phone, "address" => $address, "pay" => $pay->title, "delivery" => $delivery->title, "products" => $products, "summ" => $summ, "notice" => $notice), "admin_order");
 		$this->mail->send(Config::ADM_EMAIL3, array("site" => Config::SITENAME, "name" => $name, "email" => $email, "phone" => $phone, "address" => $address, "pay" => $pay->title, "delivery" => $delivery->title, "products" => $products, "summ" => $summ, "notice" => $notice), "admin_order");
 		$this->mail->send($this->request->email, array("site" => Config::SITENAME, "name" => $name, "products" => $products, "summ" => $summ), "client_order");
-		
+		echo "success";
+	}
+
+	public function actionFeedback() {
+		$this->mail->send(Config::ADM_EMAIL, array("site" => Config::SITENAME, "email" => $email, "message" => $message, "feedback");
+		$this->mail->send(Config::ADM_EMAIL2, array("site" => Config::SITENAME, "email" => $email, "message" => $message, "feedback");
+		$this->mail->send(Config::ADM_EMAIL3, array("site" => Config::SITENAME, "email" => $email, "message" => $message, "feedback");
 		echo "success";
 	}
 

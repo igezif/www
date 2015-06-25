@@ -59,6 +59,8 @@ abstract class Controller extends AbstractController {
 		$params["head"] = $head;
 		$params["uri"] = $this->url_active;
 		$params["link_search"] = URL::get("search");
+		$params["link_delivery"] = URL::get("delivery", "");
+		$params["link_contacts"] = URL::get("contacts", "");
 		$params["summ"] = BasketData::getSumm();
 		$params["menu_items"] = SectionDB::getAll();
 		foreach ($params["menu_items"] as $item) $item->link = URL::get("section", "", array("id" => $item->id));
