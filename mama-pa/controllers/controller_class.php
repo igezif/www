@@ -3,8 +3,8 @@
 abstract class Controller extends AbstractController {
 	
 	protected $title;
-	protected $meta_desc;
-	protected $meta_key;
+	protected $meta_desc = false;
+	protected $meta_key = false;
 	protected $mail = null;
 	protected $url_active;
 	protected $link_search;
@@ -61,6 +61,7 @@ abstract class Controller extends AbstractController {
 		$params["link_search"] = URL::get("search");
 		$params["link_delivery"] = URL::get("delivery", "");
 		$params["link_contacts"] = URL::get("contacts", "");
+		$params["link_basket"] = URL::get("basket", "");
 		$params["summ"] = BasketData::getSumm();
 		$params["menu_items"] = SectionDB::getAll();
 		foreach ($params["menu_items"] as $item) $item->link = URL::get("section", "", array("id" => $item->id));
@@ -76,8 +77,8 @@ abstract class Controller extends AbstractController {
 		$head = new Head();
 		$head->title = $this->title;
 		$head->meta("Content-Type", "text/html; charset=utf-8", true);
-		$head->meta("description", $this->meta_desc, false);
-		$head->meta("keywords", $this->meta_key, false);
+		if($this->meta_desc) $head->meta("description", $this->meta_desc, false);
+		if($this->meta_key) $head->meta("keywords", $this->meta_key, false);
 		$head->meta("viewport", "width=device-width", false);
 		$head->meta("robots", ($index) ? "index, follow" : "noindex, nofollow", false);
 		$head->favicon = "img/main/favicon.ico";

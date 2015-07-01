@@ -105,7 +105,7 @@ button:hover{
 #for_popup_message{
 	position: fixed;
 	top: 50px;
-	right: 120px;
+	right: 10%;
 	z-index: 22;
 	width: 200px;
 }
@@ -145,6 +145,11 @@ button:hover{
 	font-style: italic;
 	color: #808080;
 	font-size: 120%;
+}
+
+.message_text{
+	padding: 5px 0 5px 0;
+	font-style: italic;
 }
 
 /* ---   HEADER   --- */
@@ -201,6 +206,7 @@ header{
 
 .top_menu_delivery{
 	margin: 0 0 0 101px;
+	font-size: 80%;
 }
 
 #logo img{
@@ -224,29 +230,60 @@ header{
 }
 
 #basket{
-	background: url("../img/main/basket.png") no-repeat;
-	height: 27px;
-	width: 139px;
+	color: #ffffff;
+	
+	
 	margin: 0 0 0 161px;
 }
 
-#basket b{
-	color: #ffffff;
-	font-size: 80%;
+#basket > div{
+	float: left;
+	
+}
+
+#basket > div > div{
+	float: left;
 }
 
 #basket > :first-child{
-	float: left;
-	padding: 6px 0 0 10px;
-	display: block;
+	background: linear-gradient(180deg, #fff0ed 0%, #ef775c 3%, #d84828 100%);
+	border-radius: 12px 0 0 12px;
+	border: 1px solid #881c04;
+	padding: 3px 3px 0 4px;
+	font-size: 80%;
+	font-weight: bold;
+	border-right: 1px solid #881c04;
+}
+
+#basket > :last-child{
+	background: linear-gradient(180deg, #fff0ed 0%, #ffbfb0 3%, #fe6c4c 100%);
+	padding: 1px 3px 0 4px;
+	border-radius: 0 12px 12px 0;
+	border-top: 1px solid #881c04;
+	border-right: 1px solid #881c04;
+	border-bottom: 1px solid #881c04;
+	height: 20px;
+	min-width: 55px;
+	text-align: center;
+}
+
+#basket > :first-child :last-child{
+	padding: 0 1px 0 3px;
+}
+
+#span_summ{
+	font-size: 90%;
+	font-weight: bold;
+	padding: 0 0 0 3px;
+}
+
+.header_rouble{
+	font-size: 90%;
+	padding: 0 3px 0 0;
 }
 
 #basket #summ_header{
-	float: left;
-	width: 65px;
-	margin: 3px 0 0 11px;
-	text-align: center;
-	display: block;
+	
 }
 
 #second_menu_wrap{
@@ -346,14 +383,6 @@ header{
 
 #search_wrap{
 	padding: 12px 0 0 0;
-}
-
-.header_rouble{
-	font-size: 120%;
-}
-
-#span_summ{
-	font-size: 110%;
 }
 
 /* ---   DELIVERY   ---*/
@@ -949,7 +978,7 @@ header{
 }
 
 .article_info a{
-	color: #808080;
+	color: #227d76;
 	font-style: italic;
 }
 
@@ -1290,7 +1319,7 @@ footer{
 }
 
 .footer_header{
-	margin: 0 0 20px 0;
+	margin: 0 0 9px 0;
 	color: #fcf3ca;
 }
 
@@ -1317,11 +1346,11 @@ footer{
 }
 
 .feedback_block{
-	margin: 20px 0 0 0;
+	margin: 9px 0 0 0;
 }
 
 .feedback_block div{
-	margin: 5px 0 0 0;
+	margin: 4px 0 0 0;
 }
 
 form[name='feedback'] input[type='text']{
@@ -1352,4 +1381,11 @@ form[name='feedback'] button{
 
 .hFooter{
 	height: 349px;
+}
+
+#copyright{
+	display: table;
+	margin: 9px auto 0 auto;
+	font-style: italic;
+	color: #d1d1d1;
 }

@@ -10,12 +10,12 @@
 			<tr>
 				<td>№</td>
 				<td>Навание</td>
+				<td>Короткое<br />описание<br />meta-description</td>
+				<td>Ключевые слова<br />meta-keywords</td>
 				<td>Категория</td>
 				<td>Бренд</td>
 				<td>Цена</td>
 				<td>Длинное<br />описание<br /></td>
-				<td>Короткое<br />описание</td>
-				<td>Ключевые слова</td>
 				<td>Н</td>
 			</tr>
 			<?php $i = 1; foreach ($items as $item) {?>
@@ -28,12 +28,12 @@
 					<br /><br />
 					ЧПУ - <a href = "<?=$item->alias?>"><?=$item->alias?></a>
 				</td>
+				<td><?=$item->meta_desc?></td>
+				<td><?=$item->meta_key?></td>
 				<td><?=$item->category?></td>
 				<td><?=$item->brand?></td>
 				<td><?=$item->price?></td>
 				<td><?=$item->product_description?></td>
-				<td><?=$item->meta_desc?></td>
-				<td><?=$item->meta_key?></td>
 				<td><?=$item->available?></td>
 			</tr>
 			<?php $i++; } ?>

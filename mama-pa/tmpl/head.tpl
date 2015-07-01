@@ -1,8 +1,8 @@
 <head>
 	<title><?=$title?></title>
-	<?php foreach ($meta as $m) { ?>
+	<?php if (isset($meta)) { foreach ($meta as $m) { ?>
 		<meta <?php if ($m->http_equiv) { ?>http-equiv<?php } else { ?>name<?php } ?>="<?=$m->name?>" content="<?=$m->content?>" />
-	<?php } ?>
+	<?php } } ?>
 	<?php if ($favicon) { ?>
 		<link href="<?=$favicon?>" rel="shortcut icon" type="image/x-icon" />
 	<?php } ?>

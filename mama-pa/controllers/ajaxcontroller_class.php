@@ -81,9 +81,12 @@ class AjaxController extends Controller {
 	}
 
 	public function actionFeedback() {
-		$this->mail->send(Config::ADM_EMAIL, array("site" => Config::SITENAME, "email" => $email, "message" => $message, "feedback");
-		$this->mail->send(Config::ADM_EMAIL2, array("site" => Config::SITENAME, "email" => $email, "message" => $message, "feedback");
-		$this->mail->send(Config::ADM_EMAIL3, array("site" => Config::SITENAME, "email" => $email, "message" => $message, "feedback");
+		$email = $this->request->email;
+		$phone = $this->request->phone;
+		$message = $this->request->message;
+		$this->mail->send(Config::ADM_EMAIL, array("site" => Config::SITENAME, "email" => $email, "phone" => $phone, "message" => $message), "feedback");
+		$this->mail->send(Config::ADM_EMAIL2, array("site" => Config::SITENAME, "email" => $email, "phone" => $phone, "message" => $message), "feedback");
+		$this->mail->send(Config::ADM_EMAIL3, array("site" => Config::SITENAME, "email" => $email, "phone" => $phone, "message" => $message), "feedback");
 		echo "success";
 	}
 

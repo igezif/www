@@ -54,8 +54,8 @@ class MainController extends Controller {
 		$obj = new ProductDB();
 		if(!$obj->getProduct($this->request->id)) $this->notFound();
 		$this->title = $obj->title;
-		$this->meta_desc = $obj->meta_desc;
-		$this->meta_key= $obj->meta_key;
+		//$this->meta_desc = $obj->meta_desc;
+		//$this->meta_key= $obj->meta_key;
 		$head = $this->getHead(array("/css/main.css"), false);
 		$head->add("js", null, true);
 		$head->js = array("/js/main.js", "/js/gallery.js");

@@ -8,7 +8,7 @@
 			<div class="search_item">
 				<div class="article_info">
 					<ul>
-						<li><?=$number?>. <a href="<?=$d->link?>"><?=$d->title?></a></li>
+						<li><?=$number?>. <a href="<?=$d->link?>"><b><?=$d->title?></b></a></li>
 						<?php if (isset($d->section) || isset($d->category)) { ?>
 							<li><?=$d->section->title?><?php if ($d->category) { ?>/<?=$d->category->title?><?php } ?></li>
 						<?php } ?>

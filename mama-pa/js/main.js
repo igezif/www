@@ -35,7 +35,7 @@ function Basket(){
 	}
 
 	this.showAddProduct = function(response){
-		console.log(response);
+		//console.log(response);
 		var data = JSON.parse(response);
 		span_summ.innerHTML = data["summ"];
 		var html = "<p class = 'basket_small_text'>Товар добавлен в корзину</p><p class = 'basket_small_title'>" + data["product"]["title"] + "</p><img src = '" + data["product"]["img"] + "' class = 'basket_small_img'><p class = 'basket_small_price'>" + data["product"]["price"] + " <span class = 'rouble'>&#8399;</span></p>";
@@ -108,7 +108,7 @@ function Message(){
 
 	var mb, messages;
 
-	var hide_interval = 3000;
+	var default_interval = 3000;
 
 	this.init = function(){
 		mb = document.getElementById("for_popup_message");
@@ -146,7 +146,7 @@ function Message(){
 		else return false;
 	}
 
-	this.createMessage = function(content){
+	this.createMessage = function(content, hide_interval){
 		var block = document.createElement('div');
 		var button_close = document.createElement('div');
 		button_close.setAttribute("class", "close_popup_message");
@@ -165,7 +165,7 @@ function Message(){
 		}, 10);
 		setTimeout(function(){
 			self.closeMessage(block);
-		}, hide_interval);
+		}, hide_interval || default_interval);
 	}
 
 }
@@ -365,7 +365,7 @@ function BlackBackground(obj){
 
 }
 
-function OrderForm(){
+function FeedBackForm(){
 
 	AbstractForm.apply(this, arguments);
 
@@ -373,11 +373,65 @@ function OrderForm(){
 
 	var parentInit = this.init;
 
+	this.init = function() {
+		parentInit.apply(this, arguments);
+		
+    }
+
+	this.postSend = function(response){
+		console.log(response);
+		self.clear();
+		var html = "<p class = 'basket_small_text'><b>Сообщение успешно отправлено!</b></p>\
+					<p class = 'message_text'>В ближайшее время с Вами свяжется наш сотрудник по работе с клиентами.</p>";
+		message.createMessage(html);
+	}
+
+	this.showErrors = function(items){
+		for(var key in items) if(!items[key]["status"]) self.showErrorOnInput(self._form.querySelector(items[key]["selector"]));
+	}
+
+	this.setBehaviourOnInvalidInput = function(input){
+		if(!input.onfocus){
+			input.onfocus = function(e){
+				e.target.style.backgroundColor = "#ffffff";
+			}
+		}
+	}
+
+	this.showErrorOnInput = function(input){
+		input.style.backgroundColor = "#ff8c69";
+		self.setBehaviourOnInvalidInput(input);
+	}
+
+	this.clear = function(){
+		for(var key in self._inputs) {
+			self._inputs[key].value = "";
+		}
+	}
+
 }
 
+var ff = new FeedBackForm();
 var basket = new Basket();
 var message = new Message();
 var ajax = new Ajax();
 
+window.addEventListener("load", function(){
+	ff.init("form[name='feedback']");
+});
 window.addEventListener("load", basket.init);
 window.addEventListener("load", message.init);
+
+window.addEventListener("scroll", function(){
+	var scrolled = window.pageYOffset || document.documentElement.scrollTop;
+	var b = document.getElementById("basket");
+	if(scrolled > 169) {
+		b.style.position = "fixed";
+		b.style.top = "10px";
+		b.style.zIndex = "1000";
+	}
+	else{
+		b.style.position = "inherit";
+		b.style.zIndex = "1";
+	}
+});

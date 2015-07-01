@@ -40,10 +40,7 @@ function OrderForm(){
 	}
 
 	this.showErrors = function(items){
-		for(var key in items){
-			var input = self._form.querySelector(items[key]["selector"]);
-			if(!items[key]["status"]) self.showErrorOnInput(input);
-		}
+		for(var key in items) if(!items[key]["status"]) self.showErrorOnInput(self._form.querySelector(items[key]["selector"]));
 	}
 
 	this.setBehaviourOnInvalidInput = function(input){
