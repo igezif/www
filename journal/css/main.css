@@ -1,0 +1,19 @@
+.admin_message{
+	padding: 5px;
+	color: red;
+}
+
+form label{
+	width: 151px;
+	display: block;
+	float: left;
+}
+
+form > div{
+	margin: 5px 0 0 0;
+}
+
+form input[type='text'], form input[type='password']{
+	width: 300px;
+	padding: 5px;
+}

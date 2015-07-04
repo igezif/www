@@ -27,7 +27,7 @@
 					</a>
 				</td>
 				<td class = "basket_title">
-					<a href="<?=$product->link?>" alt="Image">
+					<a href="<?=$product->link?>">
 						<?=$product->title?>
 					</a>
 				</td>

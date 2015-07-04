@@ -100,9 +100,6 @@
                         <td>
                             ДОЛ "Лазурный берег" Все права защищены &copy; 2014 - <?=date("Y")?>
                         </td>
-						<td>
-                            <a href = "http://no-wordpress.ru" class = "dev" target = "_blank">Разработка</a>
-                        </td>
 					</tr>
 				</table>
 
