@@ -8,11 +8,11 @@ abstract class Config {
 	const DB_NAME = "journal";
 	const DB_PREFIX = "xyz_";
 	const DB_SYM_QUERY = "?";
+	const ADDRESS = "http://no-wordpress.ru";
+	const SITENAME = "no-wordpress.ru";
 	/* ------- */
 
-	const SITENAME = "journal.ru";
 	const SECRET = "EEE";
-	const ADDRESS = "http://journal.ru";
 	const ADM_NAME = "";
 	const ADM_EMAIL = "";
 	

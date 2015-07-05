@@ -30,11 +30,13 @@ class FormProcessor {
 				}	
 			}
 			if ($id = $obj->save()) {
+
 				if ($success_message) $this->setSessionMessage($message_name, $success_message);
 				unset($_SESSION["data"]);
 				return array("id" => $id, "obj" => $obj);
 			}
 		} catch (Exception $e) {
+			print_r($e);die;
 			$this->setSessionMessage($message_name, $this->getError($e));
 			return null;
 		}

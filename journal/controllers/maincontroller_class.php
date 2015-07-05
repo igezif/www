@@ -10,6 +10,26 @@ class MainController extends Controller {
 		$head->js = array("/js/main.js");
 		$content = new Adminmenu();
 		$content->admin = $this->auth_admin;
+		$content->groups = GroupDB::getGroupsOnTeacherID($this->auth_admin->id);
+		$content->message = $this->fp->getSessionMessage("create");
+		$this->render($head, $content);
+	}
+
+	public function actionGroup(){
+		if (!self::isAuthAdmin()) return null;
+		$head = $this->getHead(array("/css/main.css"));
+		$head->add("js", null, true);
+		$head->js = array("/js/main.js");
+		$content = new Group();
+		$group_db = new GroupDB();
+		$group_db->load($this->request->id);
+		$this->title = "Группа № ".$group_db->number;
+		$content->group = $group_db;
+		$content->students = StudentDB::getStudentsOnGroupID($this->request->id);
+		$content->message = $this->fp->getSessionMessage("create");
+		$hornav = $this->getHornav();
+		$hornav->addData("Группа № ".$group_db->number);
+		$content->hornav = $hornav;
 		$this->render($head, $content);
 	}
 
@@ -48,6 +68,32 @@ class MainController extends Controller {
 		$form->password("password", "Пароль");
 		$form->password("password_conf", "Подтвердите пароль");
 		$form->submit("register", "Регистрация");
+		$this->render($head, $form);
+	}
+
+	public function actionCreate(){
+		if (!self::isAuthAdmin()) return null;
+		$message_name = "create";
+		if ($this->request->create) {
+			$obj_db = new GroupDB();
+			$checks = array(array(GroupDB::issetGroup($this->request->number), false, "ERROR_CREATE_GROUP"));
+			$res = $this->fp->process($message_name, $obj_db, array("number", array("teacher_id", $this->auth_admin->id)), $checks, "SUCCESS_POSITION_INSERT");
+			if ($res["obj"] instanceof GroupDB){
+				$this->redirect(URL::get("", ""));
+			}
+		}
+		$head = $this->getHead(array("/css/main.css"));
+		$form = new CreateGroup();
+		$hornav = $this->getHornav();
+		$hornav->addData("Создать группу");
+		$form->hornav = $hornav;
+		$form->name = $message_name;
+		$form->action = URL::current();
+		$form->method = "POST";
+		$form->message = $this->fp->getSessionMessage($message_name);
+		$form->text("number", "Номер", $this->request->number);
+		$form->hidden("teacher_id", $this->auth_admin->id);
+		$form->submit($message_name, "Создать");
 		$this->render($head, $form);
 	}
 

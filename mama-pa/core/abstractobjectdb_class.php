@@ -70,7 +70,8 @@ abstract class AbstractObjectDB {
 		foreach ($this->properties as $key => $value) {
 			switch ($value["type"]) {
 				case self::TYPE_TIMESTAMP:
-					if (!is_null($value["value"])) $value["value"] = strtotime($value["value"]);
+					$time = strtotime($value["value"]);
+					if (!is_null($value["value"]) && $time !== false) $value["value"] = $time;
 					break;
 				case self::TYPE_IP:
 					if (!is_null($value["value"])) $value["value"] = ip2long($value["value"]);

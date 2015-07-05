@@ -44,14 +44,16 @@ class AdminDB extends ObjectDB {
 	public function login() {
 		if ($this->activation != "") return false;
 		if (!session_id()) session_start();
-		$_SESSION["authadmin_login"] = $this->login;
-		$_SESSION["authadmin_password"] = $this->password;
+		$_SESSION["auth_login"] = $this->login;
+		$_SESSION["auth_password"] = $this->password;
+		$_SESSION["auth_id"] = $this->id;
 	}
 	
 	public static function logout() {
 		if (!session_id()) session_start();
 		unset($_SESSION["auth_login"]);
 		unset($_SESSION["auth_password"]);
+		unset($_SESSION["auth_id"]);
 	}
 	
 	public function checkPassword($password) {

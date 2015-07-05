@@ -94,8 +94,7 @@ abstract class Controller extends AbstractController {
 		}
 		$admin = $this->fp->auth("auth", "AdminDB", "authAdmin", $login, $password);
 		if ($admin instanceof AdminDB) {
-			//var_dump($redirect);die;
-			//if ($redirect) $this->redirect(URL::current());
+			if ($redirect) $this->redirect(URL::current());
 			return $admin;
 		}
 		return null;

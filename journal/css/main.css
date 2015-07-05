@@ -17,3 +17,11 @@ form input[type='text'], form input[type='password']{
 	width: 300px;
 	padding: 5px;
 }
+
+table tr td{
+	padding: 5px;
+}
+
+.table_group{
+	margin: 0 0 10px 0;
+}
