@@ -26,11 +26,6 @@ abstract class ObjectDB extends AbstractObjectDB {
 		}
 		return $x;
 	}
-
-	protected static function getDate($time = false){
-		if(!$time) $time = time();
-		return date('H:m:s', $time); 
-	}
 	
 	public function preEdit($field, $value) {
 		return true;

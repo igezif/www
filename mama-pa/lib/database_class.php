@@ -10,5 +10,3 @@ class DataBase extends AbstractDataBase {
 	}
 	
 }
-
-?>

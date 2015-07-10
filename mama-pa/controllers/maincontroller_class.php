@@ -3,9 +3,9 @@
 class MainController extends Controller {
 
 	public function actionIndex() {
-		$this->title = "Мама-па";
-		//$this->meta_desc = "Интернет-магазин детских товаров";
-		//$this->meta_key = "товары для детей, детские товары";
+		$this->title = "Интернет магазин детских товаров Мама-Па";
+		$this->meta_desc = "В интернет магазине www.mama-pa.ru представлены товары самых известных и качественных брендов, доказавших на деле удобство, красоту и практичность своих товаров";
+		$this->meta_key = "товары для детей, детские товары, магазин детских товаров, интернет магазин детских товаров";
 		$head = $this->getHead(array("/css/main.css"));
 		$head->add("js", null, true);
 		$head->js = array("/js/slider.js", "/js/main.js");
@@ -18,8 +18,8 @@ class MainController extends Controller {
 
 	public function actionDelivery() {
 		$this->title = "Оплата и доставка";
-		//$this->meta_desc = "Оплата и доставка";
-		//$this->meta_key = "Оплата и доставка";
+		$this->meta_desc = "В этом разделе представлены  правила и условия доставки товаров клиентам интернет магазина www.mama-pa.ru";
+		$this->meta_key = "оплата и доставка, рездел оплаты и доставки";
 		$content = new Delivery();
 		$content->header = "Оплата и доставка";
 		$hornav = $this->getHornav();
@@ -39,8 +39,8 @@ class MainController extends Controller {
 		$hornav = $this->getHornav();
 		$hornav->addData("Результат поиска");
 		$this->title = "Результат поиска: ".$this->request->query;
-		//$this->meta_desc = "Результат поиска ".$this->request->query.".";
-		//$this->meta_key = "поиск, поиск ".$this->request->query;
+		$this->meta_desc = "Результат поиска ".$this->request->query.".";
+		$this->meta_key = "поиск, поиск ".$this->request->query;
 		$articles = ProductDB::search($this->request->query);
 		$sr = new SearchResult();
 		if (mb_strlen($this->request->query) < Config::MIN_SEARCH_LEN) $sr->error_len = true;
@@ -81,8 +81,8 @@ class MainController extends Controller {
 
 	public function actionBasket() {
 		$this->title = "Ваша корзина";
-		//$this->meta_desc = "Ваша корзина";
-		//$this->meta_key = "Ваша корзина";
+		$this->meta_desc = "Ваша корзина, здесь находятся выбранные Вами товары";
+		$this->meta_key = "корзина, ваша корзина";
 		$content = new Basket();
 		$content->header = "Корзина";
 		$content->items = BasketData::getItems();
@@ -101,8 +101,8 @@ class MainController extends Controller {
 
 	public function actionOrder(){
 		$this->title = "Оформить заказ";
-		//$this->meta_desc = "Оформить заказ";
-		//$this->meta_key = "Оформить заказ";
+		$this->meta_desc = "В данном разделе Вы можете завершить оформление заказа";
+		$this->meta_key = "оформление заказа, оформить заказ";
 		$content = new Order();
 		$content->header = "Оформить заказ";
 		$hornav = $this->getHornav();
@@ -119,8 +119,8 @@ class MainController extends Controller {
 
 	public function actionContacts(){
 		$this->title = "Наши контакты";
-		//$this->meta_desc = "Наши контакты";
-		//$this->meta_key = "Наши контакты";
+		$this->meta_desc = "В данном разделе представлены все наши контакты, банковские реквизиты, местоположение на карте и способы проезда";
+		$this->meta_key = "наши контакты, наши реквизиты";
 		$head = $this->getHead(array("/css/main.css"));
 		$head->add("js", null, true);
 		$head->js = array("/js/main.js");
@@ -136,8 +136,8 @@ class MainController extends Controller {
 		$obj = new SectionDB();
 		if(!$obj->load($this->request->id)) $this->notFound();
 		$this->title = $obj->title;
-		//$this->meta_desc = $obj->meta_desc;
-		//$this->meta_key= $obj->meta_key;
+		$this->meta_desc = $obj->meta_desc;
+		$this->meta_key= $obj->meta_key;
 		$head = $this->getHead(array("/css/main.css"));
 		$head->add("js", null, true);
 		$head->js = array("/js/main.js");
@@ -162,8 +162,8 @@ class MainController extends Controller {
 		$obj = new CategoryDB();
 		if(!$obj->load($this->request->id)) $this->notFound();
 		$this->title = $obj->title;
-		//$this->meta_desc = $obj->meta_desc;
-		//$this->meta_key= $obj->meta_key;
+		$this->meta_desc = $obj->meta_desc;
+		$this->meta_key= $obj->meta_key;
 		$section_db = new SectionDB();
 		$section_db->load($obj->section_id);
 		$head = $this->getHead(array("/css/main.css"));
