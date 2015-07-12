@@ -15,6 +15,9 @@
 					<div class = "top_menu_delivery">
 						<a href = "<?=$link_delivery?>">Оплата/Доставка</a>
 					</div>
+					<div class = "top_menu_opt">
+						<a href = "<?=$link_opt?>">Опт</a>
+					</div>
 					<div class = "row menu_network">
 						<a href = "//vk.com/mama_pa" class = "logo_vk"></a>
 						<a href = "#" class = "logo_facebook"></a>

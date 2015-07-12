@@ -7,34 +7,18 @@ class MainController extends Controller {
 		$this->meta_desc = "В интернет магазине www.mama-pa.ru представлены товары самых известных и качественных брендов, доказавших на деле удобство, красоту и практичность своих товаров";
 		$this->meta_key = "товары для детей, детские товары, магазин детских товаров, интернет магазин детских товаров";
 		$head = $this->getHead(array("/css/main.css"));
-		$head->add("js", null, true);
-		$head->js = array("/js/slider.js", "/js/main.js");
+		$head->js = array("/js/main.js", "/js/slider.js");
 		$sections = new Section();
 		$sections->items = SectionDB::getAllShow();
 		$slider = new Slider();
 		$slider->items = SliderDB::getItems();
-		$this->render($head, $this->renderData(array("slider" => $slider, "sections" => $sections), "index"));
-	}
-
-	public function actionDelivery() {
-		$this->title = "Оплата и доставка";
-		$this->meta_desc = "В этом разделе представлены  правила и условия доставки товаров клиентам интернет магазина www.mama-pa.ru";
-		$this->meta_key = "оплата и доставка, рездел оплаты и доставки";
-		$content = new Delivery();
-		$content->header = "Оплата и доставка";
-		$hornav = $this->getHornav();
-		$hornav->addData("Оплата и доставка");
-		$content->hornav = $hornav;
-		$head = $this->getHead(array("/css/main.css"));
-		$head->add("js", null, true);
-		$head->js = array("/js/main.js");
-		$this->render($head, $content);
+		$promo = new Promo();
+		$this->render($head, $this->renderData(array("slider" => $slider, "promo" => $promo, "sections" => $sections), "index"));
 	}
 
 	public function actionSearch() {
 		$this->title = "Результат поиска: ".$this->request->query;
 		$head = $this->getHead(array("/css/main.css"));
-		$head->add("js", null, true);
 		$head->js = array("/js/main.js");
 		$hornav = $this->getHornav();
 		$hornav->addData("Результат поиска");
@@ -58,7 +42,6 @@ class MainController extends Controller {
 		//$this->meta_desc = $obj->meta_desc;
 		//$this->meta_key= $obj->meta_key;
 		$head = $this->getHead(array("/css/main.css"));
-		$head->add("js", null, true);
 		$head->js = array("/js/main.js", "/js/gallery.js");
 		$product = new Product();
 		$hornav = $this->getHornav();
@@ -94,7 +77,6 @@ class MainController extends Controller {
 		else $content->text = "Ваша корзина пуста";
 		$content->summ = BasketData::getSumm();
 		$head = $this->getHead(array("/css/main.css"));
-		$head->add("js", null, true);
 		$head->js = array("/js/main.js", "/js/basket.js");
 		$this->render($head, $content);
 	}
@@ -112,7 +94,6 @@ class MainController extends Controller {
 		$content->delivery = DeliveryDB::getAllShow();
 		$content->pay = PayDB::getAllShow();
 		$head = $this->getHead(array("/css/main.css"));
-		$head->add("js", null, true);
 		$head->js = array("/js/main.js", "/js/order.js");
 		$this->render($head, $content);
 	}
@@ -122,7 +103,6 @@ class MainController extends Controller {
 		$this->meta_desc = "В данном разделе представлены все наши контакты, банковские реквизиты, местоположение на карте и способы проезда";
 		$this->meta_key = "наши контакты, наши реквизиты";
 		$head = $this->getHead(array("/css/main.css"));
-		$head->add("js", null, true);
 		$head->js = array("/js/main.js");
 		$content = new Contacts();
 		$content->header = "Наши контакты";
@@ -139,7 +119,6 @@ class MainController extends Controller {
 		$this->meta_desc = $obj->meta_desc;
 		$this->meta_key= $obj->meta_key;
 		$head = $this->getHead(array("/css/main.css"));
-		$head->add("js", null, true);
 		$head->js = array("/js/main.js");
 		$content = new Sectionproduct();
 		$hornav = $this->getHornav();
@@ -167,7 +146,6 @@ class MainController extends Controller {
 		$section_db = new SectionDB();
 		$section_db->load($obj->section_id);
 		$head = $this->getHead(array("/css/main.css"));
-		$head->add("js", null, true);
 		$head->js = array("/js/main.js");
 		$content = new Categoryproduct();
 		$url = URL::get("category", "", array("id" => $this->request->id));
@@ -183,6 +161,35 @@ class MainController extends Controller {
 		$pagination = $this->getPagination($count, Config::COUNT_PRODUCTS_ON_PAGE, $url);
 		$content->products = $products;
 		$content->pagination = $pagination;
+		$this->render($head, $content);
+	}
+
+	public function actionDelivery() {
+		$this->title = "Оплата и доставка";
+		$this->meta_desc = "В этом разделе представлены  правила и условия доставки товаров клиентам интернет магазина www.mama-pa.ru";
+		$this->meta_key = "оплата и доставка, рездел оплаты и доставки";
+		$content = new Delivery();
+		$content->header = "Оплата и доставка";
+		$hornav = $this->getHornav();
+		$hornav->addData("Оплата и доставка");
+		$content->hornav = $hornav;
+		$head = $this->getHead(array("/css/main.css"));
+		$head->js = array("/js/main.js");
+		$this->render($head, $content);
+	}
+
+	public function actionOpt(){
+		$this->title = "Детские товары оптом";
+		$this->meta_desc = "В этом разделе представлены  правила и условия приобретения детских товаров оптом в интернет магазине www.mama-pa.ru";
+		$this->meta_key = "оптом, купить оптом, детское оптом, детские товары оптом";
+		$content = new Opt();
+		$hornav = $this->getHornav();
+		$hornav->addData("Опт");
+		$content->header = "Детские товары оптом";
+		$content->brands = BrandDB::getAllShow();
+		$content->hornav = $hornav;
+		$head = $this->getHead(array("/css/main.css"));
+		$head->js = array("/js/main.js");
 		$this->render($head, $content);
 	}
 

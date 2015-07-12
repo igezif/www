@@ -375,15 +375,19 @@ function FeedBackForm(){
 
 	this.init = function() {
 		parentInit.apply(this, arguments);
-		
     }
 
 	this.postSend = function(response){
-		console.log(response);
-		self.clear();
-		var html = "<p class = 'basket_small_text'><b>Сообщение успешно отправлено!</b></p>\
-					<p class = 'message_text'>В ближайшее время с Вами свяжется наш сотрудник по работе с клиентами.</p>";
-		message.createMessage(html);
+		//console.log(response);
+		if(response === "success") {
+			self.clear();
+			var html = "<p class = 'basket_small_text'><b>Сообщение успешно отправлено!</b></p>\
+						<p class = 'message_text'>В ближайшее время с Вами свяжется наш сотрудник по работе с клиентами.</p>";
+			message.createMessage(html);
+		}
+		else{
+			alert("Что-то пошло не так, попробуйте ещё раз...")
+		}
 	}
 
 	this.showErrors = function(items){

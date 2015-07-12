@@ -33,7 +33,38 @@ function Slider() {
 		var name = data[1].children[2].textContent;
 		var description = data[1].children[1].textContent;
 		var slider_data = document.getElementById("slider_data");
-		var html = '<div id = "slider_image"><a href = "' + link_2_act + '"><img src = "' + img_2_act + '" alt = "Изображение" /></a></div><div id = "slider_content"><div id = "slider_description">' + description + '</div><div id = "slider_name"><b>' + name + '</b></div><a href = "' + link_2_act + '"><div id = "slider_button">Посмотреть</div></a></div><div id = "slider_carousel"><a href = "' + link_1 + '"><div class = "slider_product" id = "first_image"><img src = "' + img_1 + '" alt = "Изображение" /></div></a><a href = "' + link_2_act + '"><div class = "slider_product" id = "active_slide"><div id = "slider_arow"></div><img src = "' + img_2_act + '" alt = "Изображение" /></div></a><a href = "' + link_3 + '"><div class = "slider_product" id = "third_image"><img src = "' + img_3 + '" alt = "" /></div></a></div>';
+		var html = '<div id = "slider_image">\
+						<a href = "' + link_2_act + '">\
+							<img src = "' + img_2_act + '" alt = "Изображение" />\
+						</a>\
+					</div>\
+					<div id = "slider_content">\
+						<div id = "slider_description"></div>\
+						<div id = "slider_name">\
+							<b>' + name + '</b>\
+						</div>\
+						<a href = "' + link_2_act + '">\
+							<div id = "slider_button">Посмотреть</div>\
+						</a>\
+					</div>\
+					<div id = "slider_carousel">\
+						<a href = "' + link_1 + '">\
+							<div class = "slider_product" id = "first_image">\
+								<img src = "' + img_1 + '" alt = "Изображение" />\
+							</div>\
+						</a>\
+						<a href = "' + link_2_act + '">\
+							<div class = "slider_product" id = "active_slide">\
+								<div id = "slider_arow"></div>\
+								<img src = "' + img_2_act + '" alt = "Изображение" />\
+							</div>\
+						</a>\
+						<a href = "' + link_3 + '">\
+							<div class = "slider_product" id = "third_image">\
+								<img src = "' + img_3 + '" alt = "" />\
+							</div>\
+						</a>\
+					</div>';
 		first_index = 0;
 		last_index = data.length - 1;
 		slider_data.insertAdjacentHTML("afterEnd", html);
@@ -62,7 +93,7 @@ function Slider() {
 	this.setActive = function(item){
 		big_img.src = item.src;
 		big_img.style.opacity = 0;
-		description_block.textContent = item.description;
+		//description_block.textContent = item.description;
 		name_block.textContent = item.name;
 		second_active_img.src = item.src;
 		big_img_a.href = item.link;

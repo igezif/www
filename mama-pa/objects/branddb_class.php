@@ -20,13 +20,30 @@ class BrandDB extends ObjectDB {
 		return $this->id;
 	}
 
+	protected function postInit() {
+		$this->link = URL::get("brand", "", array("id" => $this->id));
+		$this->img = Config::DIR_IMG_BRAND.$this->img;
+		return true;
+	}
+
+	public static function getAllShow(){
+		$brands = self::getAll();
+		//foreach ($brands as $brand) $brand->postHandling();
+		return $brands;
+	}
+
 	public static function getBrandIDonName($name){
 		$select = new Select();
 		$select->from(self::$table, array("id"))
 			->where("title = ?", array($name));
 		return self::$db->selectCell($select);
 	}
-	
+
+	private function postHandling(){
+
+	}
+
+	//ADMINKA
 	private function postAdminHandling(){
 		if (!is_null($this->img)){
 			$view = new View(Config::DIR_TMPL);

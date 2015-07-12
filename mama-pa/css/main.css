@@ -58,6 +58,10 @@ ul{
 	font-style: italic;
 }
 
+.line_height{
+	line-height: 1.5;
+}
+
 /* ---   BUTTONS   --- */
 
 .button{
@@ -196,7 +200,7 @@ header{
 }
 
 .menu_network{
-	margin: 0 0 0 101px;
+	margin: 0 0 0 81px;
 }
 
 .menu_network > a{
@@ -205,8 +209,13 @@ header{
 }
 
 .top_menu_delivery{
-	margin: 0 0 0 101px;
+	margin: 0 0 0 81px;
 	font-size: 80%;
+}
+
+.top_menu_opt{
+	font-size: 80%;
+	  margin: 0 0 0 41px;
 }
 
 #logo img{
@@ -383,6 +392,26 @@ header{
 
 #search_wrap{
 	padding: 12px 0 0 0;
+}
+
+/* ---   PROMO   ---*/
+.promo .header_promo{
+	margin: 10px 0px 0px 0px;
+}
+
+.promo .header_promo p{
+	color: #227d76;
+}
+
+.promo .info_promo{
+	margin: 10px 0px 0px 0px;
+	padding: 0px 10px 5px 10px;
+}
+
+.promo .info_promo p{
+	line-height: 1.5;
+	text-align: justify;
+	text-indent: 1.5em;
 }
 
 /* ---   DELIVERY   ---*/
@@ -568,7 +597,7 @@ header{
 
 .section_ul{
 	padding: 0 0 0 27px;
-	width: 200px;
+	width: 213px;
 	vertical-align: top;
 }
 
@@ -1292,6 +1321,16 @@ input[name='order']{
 
 .brand_admin_img img{
 	max-width: 200px;
+}
+
+/* ---   OPT   --- */
+
+.opt_link{
+	color: #227d76;
+}
+
+.opt_link:hover{
+	text-decoration: underline;
 }
 
 /* ---   FOOTER   --- */
