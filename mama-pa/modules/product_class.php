@@ -12,7 +12,7 @@ class Product extends Module {
 		$this->add("brand");
 		$this->add("brand_img");
 		$this->add("price");
-		$this->add("description");
+		$this->add("full_text");
 		$this->add("foto", null, true);
 		$this->add("others", null, true);
 	}

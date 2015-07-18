@@ -4,9 +4,8 @@ class AjaxController extends Controller {
 	
 	public function actionBasket() {
 		if ($this->request->action === "add") {
-			$product = ProductDB::getProductForBasket($this->request->id);
-			if($product){
-				BasketData::add($product);
+			if($this->request->id){
+				$product = BasketData::add($this->request->id);
 				$data = array();
 				$data["summ"] = BasketData::getSumm();
 				$data["product"] = $product;

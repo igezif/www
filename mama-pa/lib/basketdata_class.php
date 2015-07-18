@@ -2,7 +2,9 @@
 
 class BasketData {
 	
-	public static function add($product) {
+	public static function add($id) {
+		$product = ProductDB::getProductForBasket($id);
+		if(!$product) return;
 		if (!session_id()) session_start();
 		if(!isset($_SESSION["basket"])) {
 			$_SESSION["basket"] = array();
@@ -16,6 +18,8 @@ class BasketData {
 			$product["summ"] = $product["price"];
 			$_SESSION["basket"][$product["id"]] = $product;
 		}
+		$product["img"] = Config::DIR_IMG_PRODUCT.$product["img"];
+		return $product;
 	}
 
 	private static function getSummProduct($id){

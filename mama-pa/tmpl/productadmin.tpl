@@ -24,7 +24,7 @@
 				<td class = "admin_img">
 					<div><a href = "<?=$item->link_update?>"><?=$item->title?></a></div>
 					<div><a class="link_adm_del" href = "<?=$item->link_delete?>">Удалить</a></div>
-					<div><?=$item->img?></div>
+					<div><img src = "<?=$item->img?>" alt = "Img" /></div>
 					<br /><br />
 					ЧПУ - <a href = "<?=$item->alias?>"><?=$item->alias?></a>
 				</td>

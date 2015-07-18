@@ -25,7 +25,7 @@
 					<?=$item->meta_key?>
 				</td>
 				<td class = "brand_admin_img">
-					<?=$item->img?>
+					<img src = "<?=$item->img?>" alt = "Img" />
 				</td>
 				<td>
 					<a href = "<?=$item->link_delete?>">Удалить</a>

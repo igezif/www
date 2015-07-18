@@ -45,12 +45,12 @@ class BrandDB extends ObjectDB {
 
 	//ADMINKA
 	private function postAdminHandling(){
-		if (!is_null($this->img)){
-			$view = new View(Config::DIR_TMPL);
-			$this->imageName = $this->img;
-			$this->img = $view->render("img", array("src" => Config::DIR_IMG_BRAND.$this->img), true);
-		}
-		else $this->img = "нет";
+		//if (!is_null($this->img)){
+		//	$view = new View(Config::DIR_TMPL);
+		//	$this->imageName = $this->img;
+		//	$this->img = $view->render("img", array("src" => Config::DIR_IMG_BRAND.$this->img), true);
+		//}
+		//else $this->img = "нет";
 		$this->link_update = URL::get("update", "admin", array("view" => "brand", "id" => $this->id));
 		$this->link_delete = URL::get("delete", "admin", array("view" => "brand", "id" => $this->id));
 		$this->alias = URL::get(self::$table, "", array("id" => $this->id));

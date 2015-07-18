@@ -20,8 +20,6 @@
 					<b><?=$price?></b> <span class = "rouble">&#8399;</span>
 				</div>
 			</div>
-			<!--<div>наличие <?=$available?></div>
-			<div>номер <?=$id?></div>-->
 			<div class = "product_brand">
 				<b>Бренд:</b> <?=$brand?>
 				<img src = "<?=$brand_img?>" alt = "Изображение" />
@@ -32,7 +30,7 @@
 		</div>
 	</div>
 	<div class = "product_description">
-		<?=$description?>
+		<?=$full_text?>
 	</div>
 </section>
 <section class = "others_content middle">
@@ -52,7 +50,7 @@
 					Цена: <span class = "section_price_digit"><?=$product->price?></span> 
 					<span class = "section_price_word"> <span class = "rouble">&#8399;</span></span>
 				</div>
-				<div class = "add_basket section_buy row" data-basket="<?=$product->id?>">
+				<div class = "add_basket section_buy row" data-id="<?=$product->id?>">
 					<div class = "arow_small"></div>
 					<div>В корзину</div>
 				</div>

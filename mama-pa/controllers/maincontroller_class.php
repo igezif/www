@@ -50,13 +50,13 @@ class MainController extends Controller {
 		$hornav->addData($obj->title);
 		$product->hornav = $hornav;
 		$product->title = $obj->title;
-		$product->img = Config::DIR_IMG_PRODUCT.$obj->img;
+		$product->img = $obj->img;
 		$product->available = $obj->available;
 		$product->id = $obj->id;
 		$product->brand = $obj->brand;
 		$product->brand_img = Config::DIR_IMG_BRAND.$obj->brand_img;
 		$product->price = $obj->price;
-		$product->description = $obj->product_description;
+		$product->full_text = $obj->full_text;
 		$product->foto = ImgDB::getImgOnID($this->request->id);
 		$product->others = ProductDB::getOthers($this->request->id);
 		$this->render($head, $product);
@@ -134,6 +134,29 @@ class MainController extends Controller {
 		$content->products = $products;
 		$content->pagination = $pagination;
 		$content->categories = $categories;
+		$this->render($head, $content);
+	}
+
+	public function actionBrand() {
+		$obj = new BrandDB();
+		if(!$obj->load($this->request->id)) $this->notFound();
+		$this->title = $obj->title;
+		$this->meta_desc = $obj->meta_desc;
+		$this->meta_key= $obj->meta_key;
+		$head = $this->getHead(array("/css/main.css"));
+		$head->js = array("/js/main.js");
+		$content = new Brandproduct();
+		$hornav = $this->getHornav();
+		$hornav->addData($obj->title);
+		$content->hornav = $hornav;
+		$content->title = $obj->title;
+		$count = ProductDB::getCountProductOnBrand($this->request->id);
+		$offset = $this->getOffset(Config::COUNT_PRODUCTS_ON_PAGE);
+		$url = URL::get("brand", "", array("id" => $this->request->id));
+		$products = ProductDB::getProductOnBrand($this->request->id, Config::COUNT_PRODUCTS_ON_PAGE, $offset);
+		$pagination = $this->getPagination($count, Config::COUNT_PRODUCTS_ON_PAGE, $url);
+		$content->products = $products;
+		$content->pagination = $pagination;
 		$this->render($head, $content);
 	}
 

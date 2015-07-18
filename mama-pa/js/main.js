@@ -35,7 +35,7 @@ function Basket(){
 	}
 
 	this.showAddProduct = function(response){
-		//console.log(response);
+		console.log(response);
 		var data = JSON.parse(response);
 		span_summ.innerHTML = data["summ"];
 		var html = "<p class = 'basket_small_text'>Товар добавлен в корзину</p><p class = 'basket_small_title'>" + data["product"]["title"] + "</p><img src = '" + data["product"]["img"] + "' class = 'basket_small_img'><p class = 'basket_small_price'>" + data["product"]["price"] + " <span class = 'rouble'>&#8399;</span></p>";

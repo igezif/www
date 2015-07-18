@@ -1343,12 +1343,12 @@ footer{
 }
 
 .footer_wrap{
-	padding: 50px 20px 0 0;
+	padding: 41px 20px 0 0;
 }
 
 .footer_wrap > div{
 	vertical-align: top;
-	margin: 0 0 0 50px;
+	margin: 0 0 0 45px;
 }
 
 
@@ -1415,16 +1415,25 @@ form[name='feedback'] button{
 }
 
 #counter{
-	display: none;
+	padding: 7px 10px 0 0;
 }
 
 .hFooter{
 	height: 349px;
 }
 
-#copyright{
+#copyright_wrap{
 	display: table;
-	margin: 9px auto 0 auto;
+	margin: 0 auto;
 	font-style: italic;
 	color: #d1d1d1;
+	vertical-align: middle;
+}
+
+#copyright{
+	padding: 15px 0 0 0;
+}
+
+#copyright_wrap div{
+	float: left;
 }

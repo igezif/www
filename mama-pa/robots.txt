@@ -1,0 +1,14 @@
+User-agent: *
+Disallow: /controllers
+Disallow: /core
+Disallow: /js
+Disallow: /lib
+Disallow: /modules
+Disallow: /objects
+Disallow: /text
+Disallow: /tmpl
+Disallow: /validator
+Disallow: /captcha.php
+Disallow: /start.php
+
+Host: www.mama-pa.ru
