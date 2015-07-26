@@ -249,7 +249,8 @@ abstract class AbstractObjectDB {
 	}
 	
 	protected function preUpdate() {
-		return $this->validate();
+		//return $this->validate();
+		return true;
 	}
 	
 	protected function postUpdate() {

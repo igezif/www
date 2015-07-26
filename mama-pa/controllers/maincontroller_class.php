@@ -125,6 +125,7 @@ class MainController extends Controller {
 		$hornav->addData($obj->title);
 		$content->hornav = $hornav;
 		$content->title = $obj->title;
+		$content->full_text = $obj->full_text;
 		$count = ProductDB::getCountProductOnSection($this->request->id);
 		$offset = $this->getOffset(Config::COUNT_PRODUCTS_ON_PAGE);
 		$url = URL::get("section", "", array("id" => $this->request->id));

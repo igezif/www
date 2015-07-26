@@ -11,7 +11,7 @@ class ProductDB extends ObjectDB {
 		$this->add("brand_id", "ValidateID");
 		$this->add("price", "ValidatePrice");
 		$this->add("title", "ValidateTitle");
-		$this->add("product_description", "ValidateText");
+		$this->add("full_text", "ValidateText");
 		$this->add("meta_desc", "ValidateMD");
 		$this->add("meta_key", "ValidateMK");
 		$this->add("available", "ValidateBoolean");
@@ -19,7 +19,7 @@ class ProductDB extends ObjectDB {
 	
 	protected function postInit() {
 		$this->link = URL::get("product", "", array("id" => $this->id));
-		$this->img = Config::DIR_IMG_PRODUCT.$this->img;
+		//$this->img = Config::DIR_IMG_PRODUCT.$this->img;
 		return true;
 	}
 	
@@ -70,7 +70,7 @@ class ProductDB extends ObjectDB {
 			->limit($count, $offset);
 		$data = self::$db->select($select);
 		$products = ObjectDB::buildMultiple(__CLASS__, $data);
-		//foreach ($products as $product) $product->postHandling();
+		foreach ($products as $product) $product->postHandling();
 		return $products;
 	}
 
@@ -83,7 +83,7 @@ class ProductDB extends ObjectDB {
 			->limit($count, $offset);
 		$data = self::$db->select($select);
 		$products = ObjectDB::buildMultiple(__CLASS__, $data);
-		//foreach ($products as $product) $product->postHandling();
+		foreach ($products as $product) $product->postHandling();
 		return $products;
 	}
 	
@@ -98,6 +98,7 @@ class ProductDB extends ObjectDB {
 		);
 		if(!$data) return false;
 		$data["full_text"] = htmlspecialchars_decode($data["full_text"]);
+		$data["img"] = Config::DIR_IMG_PRODUCT.$data["img"];
 		return $this->init($data);
 	}
 	
@@ -113,7 +114,7 @@ class ProductDB extends ObjectDB {
 		shuffle($data);
 		$array = array_slice($data, 0, 3);
 		$result = ObjectDB::buildMultiple(__CLASS__, $array);
-		//foreach ($result as $r) $r->postHandling();
+		foreach ($result as $r) $r->postHandling();
 		return $result;
 	}
 
@@ -140,7 +141,7 @@ class ProductDB extends ObjectDB {
 		shuffle($data);
 		$array = array_slice($data, 0, 4);
 		$result = ObjectDB::buildMultiple(__CLASS__, $array);
-		//foreach ($result as $r) $r->postHandling();
+		foreach ($result as $r) $r->postHandling();
 		return $result;
 	}
 	
@@ -153,7 +154,7 @@ class ProductDB extends ObjectDB {
 	}
 
 	private function postHandling(){
-		
+		$this->img = Config::DIR_IMG_PRODUCT.$this->img;
 	}
 
 	private static function getBaseSelect() {
@@ -166,7 +167,7 @@ class ProductDB extends ObjectDB {
 	
 	public static function getAdminShow(){
 		$data = self::$db->getResult(
-			"select p.id, p.title, p.img, c.title as category, b.title as brand, p.price, p.product_description, p.meta_desc, p.meta_key, p.available
+			"select p.id, p.title, p.img, c.title as category, b.title as brand, p.price, p.full_text, p.meta_desc, p.meta_key, p.available
 			from ".Config::DB_PREFIX."product p 
 			left join ".Config::DB_PREFIX."category c on p.category_id=c.id
 			left join ".Config::DB_PREFIX."brand b on p.brand_id=b.id"
@@ -183,6 +184,7 @@ class ProductDB extends ObjectDB {
 		//	$this->img = $view->render("img", array("src" => Config::DIR_IMG_PRODUCT.$this->img), true);
 		//}
 		//else $this->img = "нет";
+		$this->img = Config::DIR_IMG_PRODUCT.$this->img;
 		$this->link_update = URL::get("update", "admin", array("view" => "product", "id" => $this->id));
 		$this->link_delete = URL::get("delete", "admin", array("view" => "product", "id" => $this->id));
 		$this->alias = URL::get(self::$table, "", array("id" => $this->id));

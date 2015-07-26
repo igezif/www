@@ -16,7 +16,7 @@ class Formproduct extends Form {
 			$this->text("title", "Название:", FormProcessor::getSessionData("title"));
 			$this->text("price", "Цена:", FormProcessor::getSessionData("price"));			
 			$this->textarea("meta_desc", "Короткое описание<br />(не более 255 символов):", FormProcessor::getSessionData("meta_desc"));
-			$this->textarea("product_description", "Длинное описание<br />(хоть сколько символов):", FormProcessor::getSessionData("product_description"));
+			$this->textarea("full_text", "Длинное описание<br />(хоть сколько символов):", FormProcessor::getSessionData("full_text"));
 			$this->textarea("meta_key", "Ключевые слова:", FormProcessor::getSessionData("meta_key"));
 			$this->text("alias", "ЧПУ ссылка", FormProcessor::getSessionData("alias"));
 			$this->checkbox("available", "Наличие:", "1");
@@ -33,7 +33,7 @@ class Formproduct extends Form {
 			$this->text("price", "Цена:", $obj->price);
 			$this->textarea("title", "Название:", $obj->title);
 			$this->textarea("meta_desc", "Короткое описание<br />(не более 255 символов):", $obj->meta_desc);
-			$this->textarea("product_description", "Длинное описание<br />(хоть сколько символов):", $obj->product_description);
+			$this->textarea("full_text", "Длинное описание<br />(хоть сколько символов):", $obj->full_text);
 			$this->textarea("meta_key", "Ключевые слова:", $obj->meta_key);
 			$link = URL::get("product", "", array("id" => $id), true, "", false);
 			$alias = SefDB::getAliasOnLink($link);

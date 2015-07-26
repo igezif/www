@@ -9,6 +9,7 @@ class SectionDB extends ObjectDB {
 		$this->add("title", "ValidateTitle");
 		$this->add("meta_desc", "ValidateMD");
 		$this->add("meta_key", "ValidateMK");
+		$this->add("full_text", "ValidateText");
 	}
 
 	protected function postInsert() {
@@ -17,6 +18,11 @@ class SectionDB extends ObjectDB {
 
 	protected function postUpdate() {
 		return $this->id;
+	}
+
+	protected function postInit() {
+		$this->full_text = htmlspecialchars_decode($this->full_text);
+		return true;
 	}
 
 	private function postHandling() {

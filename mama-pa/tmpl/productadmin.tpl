@@ -33,7 +33,7 @@
 				<td><?=$item->category?></td>
 				<td><?=$item->brand?></td>
 				<td><?=$item->price?></td>
-				<td><?=$item->product_description?></td>
+				<td><?=$item->full_text?></td>
 				<td><?=$item->available?></td>
 			</tr>
 			<?php $i++; } ?>

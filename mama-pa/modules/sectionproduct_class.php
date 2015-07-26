@@ -6,6 +6,7 @@ class Sectionproduct extends Module {
 		parent::__construct();
 		$this->add("title");
 		$this->add("hornav");
+		$this->add("full_text");
 		$this->add("products");
 		$this->add("pagination");
 		$this->add("categories");

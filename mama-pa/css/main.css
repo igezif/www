@@ -395,23 +395,38 @@ header{
 }
 
 /* ---   PROMO   ---*/
-.promo .header_promo{
+.header_promo{
 	margin: 10px 0px 0px 0px;
 }
 
-.promo .header_promo p{
+.header_promo p{
 	color: #227d76;
 }
 
-.promo .info_promo{
+.info_promo{
 	margin: 10px 0px 0px 0px;
 	padding: 0px 10px 5px 10px;
 }
 
-.promo .info_promo p{
+.info_promo_section{
+	margin: 10px 0px 0px 0px;
+	padding: 0px 10px 10px 10px;
+	border-bottom: 1px solid #e7e3a7;
+}
+
+.info_promo p, .info_promo_section p{
 	line-height: 1.5;
 	text-align: justify;
 	text-indent: 1.5em;
+}
+
+.promo_header{
+	color: #282424;
+	padding: 10px 10px 0px 10px;
+	margin: 0 auto;
+	max-width: 675px;
+	text-align: center;
+	font-style: italic;
 }
 
 /* ---   DELIVERY   ---*/

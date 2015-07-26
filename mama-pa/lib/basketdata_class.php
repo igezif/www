@@ -35,8 +35,9 @@ class BasketData {
 
 	public static function getItems(){
 		if(isset($_SESSION["basket"])){
-			$data = ObjectDB::buildMultiple("ProductDB", $_SESSION["basket"]);
-			return $data;
+			$items = ObjectDB::buildMultiple("ProductDB", $_SESSION["basket"]);
+			foreach ($items as $item) $item->img = Config::DIR_IMG_PRODUCT.$item->img;
+			return $items;
 		}
 		return false;
 	}

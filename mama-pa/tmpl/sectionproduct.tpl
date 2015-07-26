@@ -1,8 +1,11 @@
 <?=$hornav?>
 <section class = "content border">
-	<h1 class = "product_header">
+	<h1 class = "promo_header">
 		<?=$title?>
 	</h1>
+	<div class = "info_promo_section text">
+		<?=$full_text?>
+	</div>
 	<div class = "row">
 		<div class = "category_ul">
 			<ul>
