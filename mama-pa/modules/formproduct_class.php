@@ -19,6 +19,7 @@ class Formproduct extends Form {
 			$this->textarea("full_text", "Длинное описание<br />(хоть сколько символов):", FormProcessor::getSessionData("full_text"));
 			$this->textarea("meta_key", "Ключевые слова:", FormProcessor::getSessionData("meta_key"));
 			$this->text("alias", "ЧПУ ссылка", FormProcessor::getSessionData("alias"));
+			$this->text("video", "Ссылка на видео", FormProcessor::getSessionData("video"));
 			$this->checkbox("available", "Наличие:", "1");
 			$this->file("img", "Картинка:");
 			$this->submit("insert_product", "Сохранить");
@@ -38,6 +39,7 @@ class Formproduct extends Form {
 			$link = URL::get("product", "", array("id" => $id), true, "", false);
 			$alias = SefDB::getAliasOnLink($link);
 			$this->text("alias", "ЧПУ ссылка", $alias);
+			$this->text("video", "Ссылка на видео", $obj->video);
 			$this->checkbox("available", "Наличие:", "1", "", (int)$obj->available);
 			$this->file("img", "Картинка:");
 			$this->submit("update_product", "Сохранить");

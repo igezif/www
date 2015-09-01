@@ -32,6 +32,11 @@
 	<div class = "product_description">
 		<?=$full_text?>
 	</div>
+	<?php if($video) { ?>
+	<div>
+		<iframe width="640" height="360" src="<?=$video?>" allowfullscreen></iframe>
+	</div>
+	<?php } ?>
 </section>
 <section class = "others_content middle">
 	<div class = "row section_header">

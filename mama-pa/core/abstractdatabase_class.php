@@ -126,6 +126,7 @@ abstract class AbstractDataBase {
 	
 	public function query($query, $params = false) {
 		$sql = $this->getQuery($query, $params);
+		//print_r($sql);
 		$success = $this->mysqli->query($sql);
 		if (!$success) return false;
 		if ($this->mysqli->insert_id === 0) return true;

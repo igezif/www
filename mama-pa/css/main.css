@@ -1038,6 +1038,7 @@ header{
 .search_text span{
 	color: #c8524d;
 	font-weight: bold;
+	font-style: italic;
 }
 
 /* ---   ORDER   --- */

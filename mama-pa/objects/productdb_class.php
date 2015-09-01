@@ -8,6 +8,7 @@ class ProductDB extends ObjectDB {
 		parent::__construct(self::$table);
 		$this->add("category_id", "ValidateID");
 		$this->add("img", "ValidateIMG");
+		$this->add("video", "ValidateURL");
 		$this->add("brand_id", "ValidateID");
 		$this->add("price", "ValidatePrice");
 		$this->add("title", "ValidateTitle");
@@ -146,10 +147,11 @@ class ProductDB extends ObjectDB {
 	}
 	
 	public static function search($words) {
+		//print_r($words);die;
 		$select = new Select(self::$db);
 		$select->from(self::$table, "*")
 			->where("`available` = 1");
-		$articles = self::searchObjects($select, __CLASS__, array("title", "product_description"), $words, Config::MIN_SEARCH_LEN);
+		$articles = self::searchObjects($select, __CLASS__, array("title", "full_text"), $words, Config::MIN_SEARCH_LEN);
 		return $articles;
 	}
 
@@ -167,7 +169,7 @@ class ProductDB extends ObjectDB {
 	
 	public static function getAdminShow(){
 		$data = self::$db->getResult(
-			"select p.id, p.title, p.img, c.title as category, b.title as brand, p.price, p.full_text, p.meta_desc, p.meta_key, p.available
+			"select p.id, p.title, p.img, p.video, c.title as category, b.title as brand, p.price, p.full_text, p.meta_desc, p.meta_key, p.available
 			from ".Config::DB_PREFIX."product p 
 			left join ".Config::DB_PREFIX."category c on p.category_id=c.id
 			left join ".Config::DB_PREFIX."brand b on p.brand_id=b.id"

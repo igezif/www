@@ -5,7 +5,7 @@ class AdminController extends Controller {
 	private $names = array("brand" => "Бренды", "slider" => "Слайдер на главной странице", "section" => "Секции", "category" => "Категории", "product" => "Товары");
 	
 	public function actionMenu() {
-		if (!self::isAuthAdmin()) return null;
+		if (!self::isAuthAdmin()) return;
 		$this->title = "Админ панель";
 		$this->meta_desc = "Админ панель";
 		$this->meta_key = "админ панель";
@@ -134,7 +134,7 @@ class AdminController extends Controller {
 				$obj_db = new ProductDB();
 				$checks = array(array(SefDB::issetAlias($this->request->alias), false, "ERROR_ISSET_ALIAS"));
 				$checks[] = array(strlen($this->request->alias), true, "ERROR_ALIAS");
-				$res = $this->fp->process($this->request->view, $obj_db, array("category_id", array("img", $img), "brand_id", "price", "title", "full_text", "meta_desc", "meta_key", ($this->request->available) ? "available" : array("available", 0)), $checks, "SUCCESS_POSITION_INSERT");
+				$res = $this->fp->process($this->request->view, $obj_db, array("category_id", array("img", $img), "video", "brand_id", "price", "title", "full_text", "meta_desc", "meta_key", ($this->request->available) ? "available" : array("available", 0)), $checks, "SUCCESS_POSITION_INSERT");
 				if ($res["obj"] instanceof ProductDB){
 					$this->fp->uploadIMG($this->request->view, $_FILES["img"], $img, Config::DIR_IMG_PRODUCT);
 					$sef_db = new SefDB();
@@ -240,7 +240,7 @@ class AdminController extends Controller {
 			$link = URL::get($this->request->view, "", array("id" => $this->request->id), true, "", false);
 			$checks = array(array(strlen($this->request->alias), true, "ERROR_ALIAS"));
 			if($img) {
-				$res = $this->fp->process($this->request->view, $obj_db, array("category_id", array("img", $img), "brand_id", "price", "title", "full_text", "meta_desc", "meta_key", "available"), $checks, "SUCCESS_POSITION_UPDATE");
+				$res = $this->fp->process($this->request->view, $obj_db, array("category_id", array("img", $img), "video", "brand_id", "price", "title", "full_text", "meta_desc", "meta_key", "available"), $checks, "SUCCESS_POSITION_UPDATE");
 				if ($res["obj"] instanceof ProductDB){
 					$this->fp->uploadIMG($this->request->view, $_FILES["img"], $img, Config::DIR_IMG_PRODUCT);
 					File::delete(Config::DIR_IMG_PRODUCT.$tmp);
@@ -254,7 +254,7 @@ class AdminController extends Controller {
 				else $this->redirect(URL::current());
 			}
 			else{
-				$res = $this->fp->process($this->request->view, $obj_db, array("category_id", array("img", $tmp), "brand_id", "price", "title", "full_text", "meta_desc", "meta_key", "available"), $checks, "SUCCESS_POSITION_UPDATE");
+				$res = $this->fp->process($this->request->view, $obj_db, array("category_id", array("img", $tmp), "video", "brand_id", "price", "title", "full_text", "meta_desc", "meta_key", "available"), $checks, "SUCCESS_POSITION_UPDATE");
 				if ($res["obj"] instanceof ProductDB){
 					$sef_db = new SefDB();
 					$sef_db->loadOnLink($link);

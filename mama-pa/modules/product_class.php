@@ -7,6 +7,7 @@ class Product extends Module {
 		$this->add("hornav");
 		$this->add("title");
 		$this->add("img");
+		$this->add("video");
 		$this->add("available");
 		$this->add("id");
 		$this->add("brand");

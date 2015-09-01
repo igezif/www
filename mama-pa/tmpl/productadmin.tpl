@@ -18,7 +18,7 @@
 				<td>Длинное<br />описание<br /></td>
 				<td>Н</td>
 			</tr>
-			<?php $i = 1; foreach ($items as $item) {?>
+			<?php $i = 1; foreach ($items as$item) {?>
 			<tr>
 				<td><?=$i?></td>
 				<td class = "admin_img">
@@ -26,7 +26,8 @@
 					<div><a class="link_adm_del" href = "<?=$item->link_delete?>">Удалить</a></div>
 					<div><img src = "<?=$item->img?>" alt = "Img" /></div>
 					<br /><br />
-					ЧПУ - <a href = "<?=$item->alias?>"><?=$item->alias?></a>
+					ЧПУ - <a href = "<?=$item->alias?>"><?=$item->alias?></a><br />
+					<?php if($item->video) { ?><div><a href = "<?=$item->video?>">video</a></div><?php } ?>
 				</td>
 				<td><?=$item->meta_desc?></td>
 				<td><?=$item->meta_key?></td>

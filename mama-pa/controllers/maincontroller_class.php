@@ -29,7 +29,7 @@ class MainController extends Controller {
 		$sr = new SearchResult();
 		if (mb_strlen($this->request->query) < Config::MIN_SEARCH_LEN) $sr->error_len = true;
 		$sr->hornav = $hornav;
-		$sr->field = "product_description";
+		$sr->field = "full_text";
 		$sr->query = $this->request->query;
 		$sr->data = $articles;
 		$this->render($head, $sr);
@@ -57,6 +57,7 @@ class MainController extends Controller {
 		$product->brand_img = Config::DIR_IMG_BRAND.$obj->brand_img;
 		$product->price = $obj->price;
 		$product->full_text = $obj->full_text;
+		$product->video = $obj->video;
 		$product->foto = ImgDB::getImgOnID($this->request->id);
 		$product->others = ProductDB::getOthers($this->request->id);
 		$this->render($head, $product);
