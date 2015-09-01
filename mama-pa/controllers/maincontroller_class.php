@@ -13,6 +13,7 @@ class MainController extends Controller {
 		$slider = new Slider();
 		$slider->items = SliderDB::getItems();
 		$promo = new Promo();
+		$promo->brands = BrandDB::getAllShow();
 		$this->render($head, $this->renderData(array("slider" => $slider, "promo" => $promo, "sections" => $sections), "index"));
 	}
 

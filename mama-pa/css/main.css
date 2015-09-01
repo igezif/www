@@ -848,6 +848,10 @@ header{
 	border: 1px solid #e7e3a7;
 }
 
+.video{
+	padding: 0 0 7px 17px;
+}
+
 .others_content{
 	width: 1020px;
 	margin: 13px auto;

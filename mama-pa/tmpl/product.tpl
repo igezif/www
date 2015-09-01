@@ -33,7 +33,7 @@
 		<?=$full_text?>
 	</div>
 	<?php if($video) { ?>
-	<div>
+	<div class = "video">
 		<iframe width="640" height="360" src="<?=$video?>" allowfullscreen></iframe>
 	</div>
 	<?php } ?>
